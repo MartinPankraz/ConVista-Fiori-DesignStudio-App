@@ -1,1 +1,19 @@
 /* Enter your custom styles here */
+
+/***************** CSS for setting the IconTabBar distances and text wrap in the tab bar correctly ************************************/
+div[id="__xmlview0--idIconTabBarFiori1--header-head"] > div {
+	width:6rem;
+	height:5.8rem;
+}
+
+#__xmlview0--idIconTabBarFiori1--header-head > div > div {
+	width:6rem;
+}
+
+div[id="__xmlview0--idIconTabBarFiori1--header-head"] > div > .sapMITBText {
+	white-space:normal;
+	overflow:visible;
+	height:1.7rem;
+}
+
+/***************** Enter your description Text hier  ************************************/
