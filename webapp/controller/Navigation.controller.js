@@ -27,6 +27,13 @@ sap.ui.define([
 										icon:"{icon}"
 									});
 			navigationList.bindAggregation("items","/home", navigationListItem);
+			
+			var html = this.getView().byId('html');
+			html.setContent("<iframe class='bo_container' src='view/test.html'></iframe>");
+			
+			html.addStyleClass("bo_container");
+			
+			
 		},
  
 		onCollapseExapandPress: function (event) {

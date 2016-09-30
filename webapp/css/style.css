@@ -16,4 +16,20 @@ div[id="__xmlview0--idIconTabBarFiori1--header-head"] > div > .sapMITBText {
 	height:1.7rem;
 }
 
-/***************** Enter your description Text hier  ************************************/
+/***************** Setting horizontal sideNav position  ************************************/
+
+div[id="__xmlview0--layout_horizontal_sideNav"]{
+	margin-left:0rem!important;
+}
+
+div[id="__xmlview0--layout_vertical_sideNav"]{
+	margin-top:0rem!important;
+	margin-left:0rem!important;
+}
+
+/***************** Setting bo container iframe width and height  ************************************/
+
+.bo_container {
+	width:100%;
+	height:100%;
+}

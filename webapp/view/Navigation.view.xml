@@ -1,4 +1,4 @@
-<mvc:View controllerName="convista.com.controller.Navigation" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+<mvc:View controllerName="convista.com.controller.Navigation" xmlns:html="http://www.w3.org/1999/xhtml"  xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
 	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt">
 	<App>
 		<pages>
@@ -15,20 +15,26 @@
 							<IconTabFilter text="dummy2"/>
 						</items>
 					</IconTabBar>
-					 <Button text=""
-		              icon="sap-icon://navigation-right-arrow"
-		              class="SapUiSmallMargin"
-		              press="onCollapseExapandPress" />
-					<tnt:SideNavigation id="sideNavigation" expanded="false">
-				        <tnt:item>
-				            <tnt:NavigationList id="navigationList">
-				                <tnt:NavigationListItem
-				                        text="{text}"
-				                        icon="{icon}">
-				                </tnt:NavigationListItem>
-			                </tnt:NavigationList>
-				        </tnt:item>
-				    </tnt:SideNavigation>
+					<l:HorizontalLayout id="layout_horizontal_sideNav" class="sapUiSmallMargin" >
+						<l:VerticalLayout id="layout_vertical_sideNav" class="sapUiSmallMargin" >
+							<Button text=""
+				              icon="sap-icon://navigation-right-arrow"
+				              class="SapUiSmallMargin"
+				              press="onCollapseExapandPress" />
+							<tnt:SideNavigation id="sideNavigation" expanded="false">
+						        <tnt:item>
+						            <tnt:NavigationList id="navigationList">
+						                <tnt:NavigationListItem
+						                        text="{text}"
+						                        icon="{icon}">
+						                </tnt:NavigationListItem>
+					                </tnt:NavigationList>
+						        </tnt:item>
+						    </tnt:SideNavigation>
+					    </l:VerticalLayout>
+					    <core:HTML id="html">
+						</core:HTML>
+					</l:HorizontalLayout>
 				</content>
 			</Page>
 		</pages>
