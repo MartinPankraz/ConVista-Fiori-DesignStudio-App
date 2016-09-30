@@ -8,64 +8,26 @@
 						id="idIconTabBarFiori1"
 						upperCase="true"
 						expanded="{device>/isNoPhone}"
-						class="sapUiResponsiveContentPadding">
+						class="sapUiResponsiveContentPadding"
+						select="handleIconTabBarSelect">
 						<items>
-							<IconTabFilter
-								text="Home"
-								icon="sap-icon://home">
-							</IconTabFilter>
-							<IconTabFilter
-								text="Dashboards"
-								icon="sap-icon://area-chart">
-							</IconTabFilter>
-							<IconTabFilter
-								text="Multi Basis Accounting"
-								icon="sap-icon://monitor-payments">
-							</IconTabFilter>
-							<IconTabFilter
-								text="General Ledger"
-								icon="sap-icon://wallet">
-							</IconTabFilter>
-							<IconTabFilter
-								text="Regulatory"
-								icon="sap-icon://expense-report">
-							</IconTabFilter>
-							<IconTabFilter
-								text="Management"
-								icon="sap-icon://employee-approvals">
-							</IconTabFilter>
-							<IconTabFilter
-								text="Scheduling"
-								icon="sap-icon://calendar">
-							</IconTabFilter>
-							<IconTabFilter
-								text="People"
-								icon="sap-icon://open-folder">
-							</IconTabFilter>
+							<IconTabFilter text="dummy1"/>
+							<IconTabFilter text="dummy2"/>
 						</items>
 					</IconTabBar>
-					<tnt:SideNavigation id="sideNavigation">
+					 <Button text=""
+		              icon="sap-icon://navigation-right-arrow"
+		              class="SapUiSmallMargin"
+		              press="onCollapseExapandPress" />
+					<tnt:SideNavigation id="sideNavigation" expanded="false">
 				        <tnt:item>
-				            <tnt:NavigationList>
+				            <tnt:NavigationList id="navigationList">
 				                <tnt:NavigationListItem
-				                        text="Portfolio Holdings"
-				                        icon="sap-icon://measurement-document">
-				                </tnt:NavigationListItem>
-				                <tnt:NavigationListItem
-				                        text="Earned Income Trend Analysis"
-				                        icon="sap-icon://measurement-document">
-				                </tnt:NavigationListItem>
-				                 <tnt:NavigationListItem
-				                        text="Amortized Cost Progression"
-				                        icon="sap-icon://measurement-document">
+				                        text="{text}"
+				                        icon="{icon}">
 				                </tnt:NavigationListItem>
 			                </tnt:NavigationList>
 				        </tnt:item>
-				        <tnt:fixedItem>
-				            <tnt:NavigationList>
-				                <tnt:NavigationListItem text="BI Folder" icon="sap-icon://open-folder"></tnt:NavigationListItem>
-				            </tnt:NavigationList>
-				        </tnt:fixedItem>
 				    </tnt:SideNavigation>
 				</content>
 			</Page>
