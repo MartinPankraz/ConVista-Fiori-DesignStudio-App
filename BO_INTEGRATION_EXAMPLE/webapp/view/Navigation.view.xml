@@ -1,0 +1,74 @@
+<mvc:View controllerName="convista.com.controller.Navigation" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt">
+	<App>
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+					<IconTabBar
+						id="idIconTabBarFiori1"
+						upperCase="true"
+						expanded="{device>/isNoPhone}"
+						class="sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter
+								text="Home"
+								icon="sap-icon://home">
+							</IconTabFilter>
+							<IconTabFilter
+								text="Dashboards"
+								icon="sap-icon://area-chart">
+							</IconTabFilter>
+							<IconTabFilter
+								text="Multi Basis Accounting"
+								icon="sap-icon://monitor-payments">
+							</IconTabFilter>
+							<IconTabFilter
+								text="General Ledger"
+								icon="sap-icon://wallet">
+							</IconTabFilter>
+							<IconTabFilter
+								text="Regulatory"
+								icon="sap-icon://expense-report">
+							</IconTabFilter>
+							<IconTabFilter
+								text="Management"
+								icon="sap-icon://employee-approvals">
+							</IconTabFilter>
+							<IconTabFilter
+								text="Scheduling"
+								icon="sap-icon://calendar">
+							</IconTabFilter>
+							<IconTabFilter
+								text="People"
+								icon="sap-icon://open-folder">
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+					<tnt:SideNavigation id="sideNavigation">
+				        <tnt:item>
+				            <tnt:NavigationList>
+				                <tnt:NavigationListItem
+				                        text="Portfolio Holdings"
+				                        icon="sap-icon://measurement-document">
+				                </tnt:NavigationListItem>
+				                <tnt:NavigationListItem
+				                        text="Earned Income Trend Analysis"
+				                        icon="sap-icon://measurement-document">
+				                </tnt:NavigationListItem>
+				                 <tnt:NavigationListItem
+				                        text="Amortized Cost Progression"
+				                        icon="sap-icon://measurement-document">
+				                </tnt:NavigationListItem>
+			                </tnt:NavigationList>
+				        </tnt:item>
+				        <tnt:fixedItem>
+				            <tnt:NavigationList>
+				                <tnt:NavigationListItem text="BI Folder" icon="sap-icon://open-folder"></tnt:NavigationListItem>
+				            </tnt:NavigationList>
+				        </tnt:fixedItem>
+				    </tnt:SideNavigation>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
