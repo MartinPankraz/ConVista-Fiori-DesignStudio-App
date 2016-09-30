@@ -1,0 +1,59 @@
+{
+	"home": [
+		{
+			"key":"layout",
+			"text":"Layouts",
+			"icon":"sap-icon://business-by-design"
+		},
+		{
+			"key":"favorite",
+			"text":"Favorites",
+			"icon":"sap-icon://favorite"
+		}],
+		
+	"dashboard": [
+		{
+			"key":"lib",
+			"text":"Dashboard Library",
+			"icon":"sap-icon://business-by-design"
+		}],
+	"accounting": [
+		{
+			"key":"holdings",
+			"text":"Portfolio Holdings",
+			"icon":"sap-icon://insurance-life"
+		},
+		{
+			"key":"earned_income",
+			"text":"Earned Income",
+			"icon":"sap-icon://insurance-life"
+		}],
+	"gl": [
+		{
+			
+		},
+		{
+			
+		}],
+	"regulatory": [
+		{
+			
+		},
+		{
+			
+		}],
+	"management": [
+		{
+			
+		},
+		{
+			
+		}],
+	"scheduling": [
+		{
+			
+		},
+		{
+			
+		}]	
+}

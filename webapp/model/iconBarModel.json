@@ -1,0 +1,43 @@
+{
+	"NavigationItems": [
+		{
+			"key":"home",
+			"text":"Home",
+			"icon":"sap-icon://home"
+		},
+		{
+			"key":"dashboard",
+			"text":"Dashboards",
+			"icon":"sap-icon://area-chart"
+		},
+		{
+			"key":"accounting",
+			"text":"Multi Basis Accounting",
+			"icon":"sap-icon://monitor-payments"
+		},
+		{
+			"key":"gl",
+			"text":"General Ledger",
+			"icon":"sap-icon://wallet"
+		},
+		{
+			"key":"regulatory",
+			"text":"Regulatory",
+			"icon":"sap-icon://expense-report"
+		},
+		{
+			"key":"management",
+			"text":"Management",
+			"icon":"sap-icon://employee-approvals"
+		},
+		{
+			"key":"scheduling",
+			"text":"Scheduling",
+			"icon":"sap-icon://calendar"
+		},
+		{
+			"key":"bi_folder",
+			"text":"BI Folder",
+			"icon":"sap-icon://open-folder"
+		}]
+}
