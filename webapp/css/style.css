@@ -19,12 +19,28 @@ div[id="__xmlview0--idIconTabBarFiori1--header-head"] > div > .sapMITBText {
 /***************** Setting horizontal sideNav position  ************************************/
 
 div[id="__xmlview0--layout_horizontal_sideNav"]{
-	margin-left:0rem!important;
+	margin-left:0!important;
+	display: table;
+	width: 100%;
+	height: calc(100% - 176px);
 }
 
 div[id="__xmlview0--layout_vertical_sideNav"]{
-	margin-top:0rem!important;
-	margin-left:0rem!important;
+	margin-top:0!important;
+	margin-left:0!important;
+}
+
+div[id="__xmlview0--layout_horizontal_sideNav"] > div{
+	 display: table-cell;
+}
+
+div[id="__xmlview0--layout_horizontal_sideNav"] > div:nth-child(1){
+	 width: 4%;
+}
+
+div[id="__xmlview0--layout_horizontal_sideNav"] > div:nth-child(2){
+	 padding-top: 3px;
+     padding-right: 20px;
 }
 
 /***************** Setting bo container iframe width and height  ************************************/
