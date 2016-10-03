@@ -8,7 +8,7 @@ sap.ui.define([
 	return Controller.extend("convista.com.controller.Navigation", {
 
 		onInit: function () {
-			var iconTabBar = this.getView().byId('idIconTabBarFiori1');
+			var iconTabBar = this.getView().byId("idIconTabBarFiori1");
 			// set the model
 			iconTabBar.setModel(iconBarModel.createIconBarModel());
 			var iconTabFilter = new sap.m.IconTabFilter({
@@ -18,7 +18,7 @@ sap.ui.define([
 									});
 			iconTabBar.bindAggregation("items","/NavigationItems", iconTabFilter);
 			
-			var navigationList = this.getView().byId('navigationList');
+			var navigationList = this.getView().byId("navigationList");
 			navigationList.setModel(sideNavigationModel.createSideNavigationModel());
 			
 			var navigationListItem = new sap.tnt.NavigationListItem({
@@ -28,7 +28,7 @@ sap.ui.define([
 									});
 			navigationList.bindAggregation("items","/home", navigationListItem);
 			
-			var html = this.getView().byId('html');
+			var html = this.getView().byId("html");
 			html.setContent("<iframe class='bo_container' src='view/test.html'></iframe>");
 			
 			html.addStyleClass("bo_container");
@@ -37,7 +37,7 @@ sap.ui.define([
 		},
  
 		onCollapseExapandPress: function (event) {
-			var sideNavigation = this.getView().byId('sideNavigation');
+			var sideNavigation = this.getView().byId("sideNavigation");
 			var expanded = !sideNavigation.getExpanded();
  
 			sideNavigation.setExpanded(expanded);
@@ -53,7 +53,7 @@ sap.ui.define([
 		handleIconTabBarSelect : function (oEvent) {
 			var source = oEvent.getSource();
 			var selectedKey = source.getSelectedKey();
-			var navigationList = this.getView().byId('navigationList');
+			var navigationList = this.getView().byId("navigationList");
 			//navigationList.bindAggregation("items","/"+selectedKey, navigationListItem);
 			
         	navigationList.bindAggregation("items","/" + selectedKey,

@@ -20,6 +20,7 @@
 							<Button text=""
 				              icon="sap-icon://navigation-right-arrow"
 				              class="SapUiSmallMargin"
+				              tooltip="Show/hide reports"
 				              press="onCollapseExapandPress" />
 							<tnt:SideNavigation id="sideNavigation" expanded="false">
 						        <tnt:item>

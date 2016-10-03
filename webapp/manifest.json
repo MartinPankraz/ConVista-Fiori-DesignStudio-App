@@ -13,14 +13,14 @@
 		"sourceTemplate": {
 			"id": "ui5template.basicSAPUI5ApplicationProject",
 			"version": "1.32.0"
-		}
+		},
+		"ach": "BO-DS"
 	},
-
 	"sap.ui": {
 		"_version": "1.1.0",
 		"technology": "UI5",
 		"icons": {
-			"icon": "",
+			"icon": "sap-icon://accounting-document-verification",
 			"favIcon": "",
 			"phone": "",
 			"phone@2": "",
@@ -32,12 +32,8 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": [
-			"sap_hcb",
-			"sap_bluecrystal"
-		]
+		"supportedThemes": ["sap_hcb", "sap_bluecrystal"]
 	},
-
 	"sap.ui5": {
 		"_version": "1.1.0",
 		"rootView": {
@@ -69,5 +65,9 @@
 				"uri": "css/style.css"
 			}]
 		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zflp_bo_ds/webapp",
+		"_version": "1.1.0"
 	}
 }
