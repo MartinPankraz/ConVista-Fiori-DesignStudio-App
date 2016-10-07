@@ -1,5 +1,9 @@
 /* Enter your custom styles here */
 
+.sapMShellCentralBox {
+	height:calc(100% - 4px);
+}
+
 /***************** CSS for setting the IconTabBar distances and text wrap in the tab bar correctly ************************************/
 div[id="__xmlview0--idIconTabBarFiori1--header-head"] > div {
 	width:6rem;
@@ -16,13 +20,16 @@ div[id="__xmlview0--idIconTabBarFiori1--header-head"] > div > .sapMITBText {
 	height:1.7rem;
 }
 
+#__xmlview0--idIconTabBarFiori1-containerContent {
+	display:none;
+}
 /***************** Setting horizontal sideNav position  ************************************/
 
 div[id="__xmlview0--layout_horizontal_sideNav"]{
 	margin-left:0!important;
 	display: table;
 	width: 100%;
-	height: calc(100% - 176px);
+	height: calc(100% - 150px);
 }
 
 div[id="__xmlview0--layout_vertical_sideNav"]{

@@ -33,7 +33,6 @@ sap.ui.define([
 			
 			html.addStyleClass("bo_container");
 			
-			
 		},
  
 		onCollapseExapandPress: function (event) {
@@ -43,10 +42,10 @@ sap.ui.define([
 			sideNavigation.setExpanded(expanded);
 			
 			var source = event.getSource();
-			if(expanded){
-				source.setIcon("sap-icon://navigation-left-arrow");
-			}else{
+			if(!expanded){
 				source.setIcon("sap-icon://navigation-right-arrow");
+			}else{
+				source.setIcon("sap-icon://navigation-left-arrow");
 			}
 		},
  

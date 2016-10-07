@@ -7,22 +7,18 @@
 					<IconTabBar
 						id="idIconTabBarFiori1"
 						upperCase="true"
-						expanded="{device>/isNoPhone}"
+						expanded="false"
 						class="sapUiResponsiveContentPadding"
 						select="handleIconTabBarSelect">
-						<items>
-							<IconTabFilter text="dummy1"/>
-							<IconTabFilter text="dummy2"/>
-						</items>
 					</IconTabBar>
 					<l:HorizontalLayout id="layout_horizontal_sideNav" class="sapUiSmallMargin" >
 						<l:VerticalLayout id="layout_vertical_sideNav" class="sapUiSmallMargin" >
 							<Button text=""
-				              icon="sap-icon://navigation-right-arrow"
+				              icon="sap-icon://navigation-left-arrow"
 				              class="SapUiSmallMargin"
 				              tooltip="Show/hide reports"
 				              press="onCollapseExapandPress" />
-							<tnt:SideNavigation id="sideNavigation" expanded="false">
+							<tnt:SideNavigation id="sideNavigation" expanded="true">
 						        <tnt:item>
 						            <tnt:NavigationList id="navigationList">
 						                <tnt:NavigationListItem
@@ -37,6 +33,13 @@
 						</core:HTML>
 					</l:HorizontalLayout>
 				</content>
+				<footer>
+					<Toolbar>
+						<content>
+							<Text class="sapUiSmallMarginBeginEnd" text="2016 ConVista Consulting AG"/>
+						</content>
+					</Toolbar>
+				</footer>	
 			</Page>
 		</pages>
 	</App>
