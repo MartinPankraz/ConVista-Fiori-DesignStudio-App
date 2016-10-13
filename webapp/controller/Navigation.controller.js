@@ -32,7 +32,6 @@ sap.ui.define([
 			html.setContent("<iframe class='bo_container' src='view/test.html'></iframe>");
 			
 			html.addStyleClass("bo_container");
-			
 		},
  
 		onCollapseExapandPress: function (event) {
@@ -54,14 +53,15 @@ sap.ui.define([
 			var selectedKey = source.getSelectedKey();
 			var navigationList = this.getView().byId("navigationList");
 			//navigationList.bindAggregation("items","/"+selectedKey, navigationListItem);
-			
-        	navigationList.bindAggregation("items","/" + selectedKey,
-            						new sap.tnt.NavigationListItem({
+			var item = new sap.tnt.NavigationListItem({
 										key:"{key}",
 										text:"{text}",
 										icon:"{icon}"
-									})
-			);
+									});
+			if(selectedKey === "bi_folder"){
+				window.open("http://CDSAPBJ.sap.convista.local:50000/BOE/BI?startFolder=AdKUWGHO7gRNhWMb5eUrOOE&noDetailsPanel=true&isCat=false");
+			}
+        	navigationList.bindAggregation("items","/" + selectedKey, item);	
 		}
 	});
 

@@ -7,7 +7,7 @@
 					<IconTabBar
 						id="idIconTabBarFiori1"
 						upperCase="true"
-						expanded="false"
+						expanded="true"
 						class="sapUiResponsiveContentPadding"
 						select="handleIconTabBarSelect">
 					</IconTabBar>
@@ -34,11 +34,18 @@
 					</l:HorizontalLayout>
 				</content>
 				<footer>
-					<Toolbar>
-						<content>
+					<Bar>
+						<contentLeft>
 							<Text class="sapUiSmallMarginBeginEnd" text="2016 ConVista Consulting AG"/>
-						</content>
-					</Toolbar>
+						</contentLeft>
+						<contentRight>
+							<Image
+								src="./css/images/sap_logo.png"
+								densityAware="false"
+								width="60px">
+							</Image>
+						</contentRight>
+					</Bar>
 				</footer>	
 			</Page>
 		</pages>

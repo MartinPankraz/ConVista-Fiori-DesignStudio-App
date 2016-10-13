@@ -30,30 +30,47 @@
 		}],
 	"gl": [
 		{
-			
+			"key":"gl_summary",
+			"text":"General Ledger Summary",
+			"icon":"sap-icon://wallet"
 		},
 		{
-			
+			"key":"gl_trial_balance",
+			"text":"Trial Balance Rollforward",
+			"icon":"sap-icon://wallet"
 		}],
 	"regulatory": [
 		{
-			
-		},
-		{
-			
+			"key":"naic_sr",
+			"text":"NAIC Statutory Reporting",
+			"icon":"sap-icon://expense-report"	
 		}],
 	"management": [
 		{
-			
-		},
-		{
-			
+			"key":"mgmt_ps",
+			"text":"Portfolio Summary by Amortized Cost",
+			"icon":"sap-icon://employee-approvals"
 		}],
 	"scheduling": [
 		{
-			
+			"key":"sched_1",
+			"text":"Scheduling Overview",
+			"icon":"sap-icon://calendar"
 		},
 		{
-			
-		}]	
+			"key":"sched_2",
+			"text":"Manage Scheduling Groups",
+			"icon":"sap-icon://calendar"
+		},
+		{
+			"key":"sched_3",
+			"text":"View My Fildes",
+			"icon":"sap-icon://calendar"
+		},
+		{
+			"key":"sched_4",
+			"text":"Scheduling History",
+			"icon":"sap-icon://calendar"
+		}],
+	"bi_folder":[{}]
 }
