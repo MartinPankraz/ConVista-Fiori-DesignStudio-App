@@ -10,6 +10,11 @@
 	height: 7rem!important;
 }
 
+.roundedIcons {
+	border-radius: 50%;
+	border: 1px solid #2ba6af;
+}
+
 .ccMBar > div:nth-child(1) {
 	height: 7rem!important;
 }
@@ -18,7 +23,7 @@
 }
 
 #__xmlview0--layout_vertical_clock > div {
-	line-height:1.5rem;
+	line-height:1rem;
 }
 
 /***************** CSS for setting the IconTabBar distances and text wrap in the tab bar correctly ************************************/

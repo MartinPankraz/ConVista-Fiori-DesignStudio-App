@@ -34,8 +34,9 @@ sap.ui.define([
 			html.setContent("<iframe class='bo_container' src='view/test.html'></iframe>");
 			html.addStyleClass("bo_container");
 			
-			var timeInstance = sap.ui.core.format.DateFormat.getTimeInstance({style:"medium"});
+			var timeInstance = sap.ui.core.format.DateFormat.getTimeInstance({style:"short"});
 			var clock1 = this.getView().byId("clock1");
+			clock1.setText("Köln " + timeInstance.format(new Date()));
 			window.setInterval(function() {
 				var time = timeInstance.format(new Date());
 				clock1.setText("Köln " + time);
@@ -45,6 +46,7 @@ sap.ui.define([
 			var userModel = new sap.ui.model.json.JSONModel("/services/userapi/currentUser");
 			var userView = this.getView().byId("username");
 			userView.setModel(userModel, "userapi");
+			
 		},
  
 		onCollapseExapandPress: function (event) {
@@ -77,11 +79,16 @@ sap.ui.define([
         	navigationList.bindAggregation("items","/" + selectedKey, item);	
 		},
 		
-		setupTimeDisplay: function(date){
-			// convert to msec
-		    // add local time zone offset 
-		    // get UTC time in msec
-		     var utc = that.date.getTime() + (that.date.getTimezoneOffset() * 60000);
+		onUserImagePressed: function(oEvent){
+			var oImage = oEvent.getSource();
+ 
+			// create action sheet only once
+			if (!this._actionSheet) {
+				this._actionSheet = sap.ui.xmlfragment("convista.com.view.ActionSheet",this);
+				this.getView().addDependent(this._actionSheet);
+			}
+ 
+			this._actionSheet.openBy(oImage);
 		}
 	});
 
