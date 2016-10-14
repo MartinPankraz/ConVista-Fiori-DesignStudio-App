@@ -8,6 +8,8 @@ sap.ui.define([
 	return Controller.extend("convista.com.controller.Navigation", {
 
 		onInit: function () {
+			jQuery.sap.require("sap.ui.core.format.DateFormat");
+			
 			var iconTabBar = this.getView().byId("idIconTabBarFiori1");
 			// set the model
 			iconTabBar.setModel(iconBarModel.createIconBarModel());
@@ -30,8 +32,19 @@ sap.ui.define([
 			
 			var html = this.getView().byId("html");
 			html.setContent("<iframe class='bo_container' src='view/test.html'></iframe>");
-			
 			html.addStyleClass("bo_container");
+			
+			var timeInstance = sap.ui.core.format.DateFormat.getTimeInstance({style:"medium"});
+			var clock1 = this.getView().byId("clock1");
+			window.setInterval(function() {
+				var time = timeInstance.format(new Date());
+				clock1.setText("Köln " + time);
+			}, 60000);
+			//source: https://blogs.sap.com/2015/04/16/using-the-hcp-user-api-in-web-ide/
+			// {userapi>/ [name,firstName,lastName,displayName,email]
+			var userModel = new sap.ui.model.json.JSONModel("/services/userapi/currentUser");
+			var userView = this.getView().byId("username");
+			userView.setModel(userModel, "userapi");
 		},
  
 		onCollapseExapandPress: function (event) {
@@ -62,6 +75,13 @@ sap.ui.define([
 				window.open("http://CDSAPBJ.sap.convista.local:50000/BOE/BI?startFolder=AdKUWGHO7gRNhWMb5eUrOOE&noDetailsPanel=true&isCat=false");
 			}
         	navigationList.bindAggregation("items","/" + selectedKey, item);	
+		},
+		
+		setupTimeDisplay: function(date){
+			// convert to msec
+		    // add local time zone offset 
+		    // get UTC time in msec
+		     var utc = that.date.getTime() + (that.date.getTimezoneOffset() * 60000);
 		}
 	});
 

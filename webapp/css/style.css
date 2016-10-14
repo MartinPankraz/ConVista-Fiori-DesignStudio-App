@@ -4,7 +4,28 @@
 	height:calc(100% - 4px);
 }
 
+/* Header Bar Styling */
+.ccMBar {
+	background-color:transparent!important;
+	height: 7rem!important;
+}
+
+.ccMBar > div:nth-child(1) {
+	height: 7rem!important;
+}
+.ccMBar > div:nth-child(3) {
+	height: 7rem!important;
+}
+
+#__xmlview0--layout_vertical_clock > div {
+	line-height:1.5rem;
+}
+
 /***************** CSS for setting the IconTabBar distances and text wrap in the tab bar correctly ************************************/
+#__xmlview0--idIconTabBarFiori1--header {
+	box-shadow: none!important;
+}
+
 div[id="__xmlview0--idIconTabBarFiori1--header-head"] > div {
 	width:6rem;
 	height:5.8rem;
@@ -18,6 +39,10 @@ div[id="__xmlview0--idIconTabBarFiori1--header-head"] > div > .sapMITBText {
 	white-space:normal;
 	overflow:visible;
 	height:1.7rem;
+}
+
+div[aria-controls="__xmlview0--idIconTabBarFiori1-content"]:hover > div > span {
+	background-color: #def1f2!important;
 }
 
 #__xmlview0--idIconTabBarFiori1-containerContent {

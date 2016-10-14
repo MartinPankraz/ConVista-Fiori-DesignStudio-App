@@ -4,13 +4,23 @@
 		<pages>
 			<Page title="{i18n>title}">
 				<content>
-					<IconTabBar
-						id="idIconTabBarFiori1"
-						upperCase="true"
-						expanded="true"
-						class="sapUiResponsiveContentPadding"
-						select="handleIconTabBarSelect">
-					</IconTabBar>
+					<Bar class="ccMBar">
+						<contentLeft>
+							<IconTabBar
+								id="idIconTabBarFiori1"
+								upperCase="true"
+								expanded="true"
+								class="sapUiResponsiveContentPadding"
+								select="handleIconTabBarSelect">
+							</IconTabBar>
+						</contentLeft>
+						<contentRight>
+							<l:VerticalLayout id="layout_vertical_clock" class="sapUiSmallMargin">
+								<Text id="username" text="{userapi>/firstName}, {userapi>/lastName}"/>
+								<Text id="clock1" text="Köln 11:11 am"/>
+							</l:VerticalLayout>
+						</contentRight>
+					</Bar>
 					<l:HorizontalLayout id="layout_horizontal_sideNav" class="sapUiSmallMargin" >
 						<l:VerticalLayout id="layout_vertical_sideNav" class="sapUiSmallMargin" >
 							<Button text=""
