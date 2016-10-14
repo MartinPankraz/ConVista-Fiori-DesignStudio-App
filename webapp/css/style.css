@@ -15,6 +15,10 @@
 	border: 1px solid #2ba6af;
 }
 
+.roundedIcons:hover {
+	border: 1px solid #7d3496;
+}
+
 .ccMBar > div:nth-child(1) {
 	height: 7rem!important;
 }
