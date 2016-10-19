@@ -7,7 +7,7 @@
         "type": "service",
         "name": "sapui5",
         "entryPath": "/resources",
-        "version": "1.38.6"
+        "version": "1.38.5"
       },
       "description": "SAPUI5 Resources"
     },
@@ -17,17 +17,17 @@
         "type": "service",
         "name": "sapui5",
         "entryPath": "/test-resources",
-        "version": "1.38.6"
+        "version": "1.38.5"
       },
       "description": "SAPUI5 Test Resources"
     },
     {
-     "path": "/services/userapi", 
-     "target": {
-       "type": "service",
-       "name": "userapi"
-     }
-	}
+      "path": "/services/userapi",
+      "target": {
+        "type": "service",
+        "name": "userapi"
+      }
+    }
   ],
   "sendWelcomeFileRedirect": true
 }
