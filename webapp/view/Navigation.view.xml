@@ -1,5 +1,5 @@
 <mvc:View controllerName="convista.com.controller.Navigation" xmlns:html="http://www.w3.org/1999/xhtml"  xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
-	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt">
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" >
 	<App>
 		<pages>
 			<Page title="{i18n>title}">
@@ -31,7 +31,7 @@
 						</contentRight>
 					</Bar>
 					<l:HorizontalLayout id="layout_horizontal_sideNav" class="sapUiSmallMargin" >
-						<l:VerticalLayout id="layout_vertical_sideNav" class="sapUiSmallMargin" >
+						<l:VerticalLayout id="layout_vertical_sideNav" class="sapUiSmallMargin" width="100%">
 							<Button text=""
 				              icon="sap-icon://navigation-right-arrow"
 				              class="SapUiSmallMargin"
@@ -48,8 +48,7 @@
 						        </tnt:item>
 						    </tnt:SideNavigation>
 					    </l:VerticalLayout>
-					    <core:HTML id="html">
-						</core:HTML>
+					    <core:HTML id="html"/>
 					</l:HorizontalLayout>
 				</content>
 				<footer>

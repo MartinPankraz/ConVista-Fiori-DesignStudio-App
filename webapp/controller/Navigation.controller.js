@@ -40,7 +40,7 @@ sap.ui.define([
 			window.setInterval(function() {
 				var time = timeInstance.format(new Date());
 				clock1.setText("Köln " + time);
-			}, 60000);
+			}, 30000);
 			//source: https://blogs.sap.com/2015/04/16/using-the-hcp-user-api-in-web-ide/
 			// {userapi>/ [name,firstName,lastName,displayName,email]
 			var userModel = new sap.ui.model.json.JSONModel("/services/userapi/currentUser");
@@ -87,8 +87,16 @@ sap.ui.define([
 				this._actionSheet = sap.ui.xmlfragment("convista.com.view.ActionSheet",this);
 				this.getView().addDependent(this._actionSheet);
 			}
- 
-			this._actionSheet.openBy(oImage);
+			if(this._actionSheet.isOpen()){
+				this._actionSheet.close();
+			}else{
+				this._actionSheet.openBy(oImage);	
+			}
+		},
+		
+		handleActionClose: function(oEvent){
+			/*var oPopOver = oEvent.getSource();*/
+			this._actionSheet.close();
 		}
 	});
 
