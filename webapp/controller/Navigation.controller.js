@@ -31,7 +31,10 @@ sap.ui.define([
 			navigationList.bindAggregation("items","/home", navigationListItem);
 			
 			var html = this.getView().byId("html");
-			html.setContent("<iframe class='bo_container' src='view/test.html'></iframe>");
+			//var src = "http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AXw1ZT5j.x1PmagOvBlnylE&noDetailsPanel=true";//'view/test.html';
+			var src = "http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AbkVZs4kE0BOgWIWrGLC6Yg&noDetailsPanel=true";
+			/*html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");*/
+			html.setContent("<iframe sandbox='allow-popups allow-same-origin allow-scripts allow-pointer-lock allow-forms' class='bo_container' src='"+src+"'></iframe>");
 			html.addStyleClass("bo_container");
 			
 			var timeInstance = sap.ui.core.format.DateFormat.getTimeInstance({style:"short"});
