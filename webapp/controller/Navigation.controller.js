@@ -43,9 +43,9 @@ sap.ui.define([
 			}, 30000);
 			//source: https://blogs.sap.com/2015/04/16/using-the-hcp-user-api-in-web-ide/
 			// {userapi>/ [name,firstName,lastName,displayName,email]
-			var userModel = new sap.ui.model.json.JSONModel("/services/userapi/currentUser");
+			/*var userModel = new sap.ui.model.json.JSONModel("/services/userapi/currentUser");
 			var userView = this.getView().byId("username");
-			userView.setModel(userModel, "userapi");
+			userView.setModel(userModel, "userapi");*/
 			
 		},
  
