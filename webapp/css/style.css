@@ -2,6 +2,21 @@
 
 .sapMShellCentralBox {
 	height:calc(100% - 4px);
+	width:auto!important;
+	margin-left:0px!important;
+	left:0px!important;
+}
+
+section[id="__page0-cont"] {
+	background: #def1f2; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#1cbcb3, #36b8e9); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#1cbcb3, #36b8e9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#1cbcb3, #36b8e9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#1cbcb3, #36b8e9); /* Standard syntax */
+}
+
+section[id="__page0-cont"] > div {
+	background:transparent;
 }
 
 /* Header Bar Styling */
@@ -12,7 +27,7 @@
 
 .roundedIcons {
 	border-radius: 50%;
-	border: 1px solid #2ba6af;
+	border: 1px solid white;
 }
 
 .roundedIcons:hover {
@@ -48,10 +63,24 @@ div[id="__xmlview0--idIconTabBarFiori1--header-head"] > div > .sapMITBText {
 	white-space:normal;
 	overflow:visible;
 	height:1.7rem;
+	color:white;
 }
 
 div[aria-controls="__xmlview0--idIconTabBarFiori1-content"]:hover > div > span {
-	background-color: #def1f2!important;
+	background-color: #03a0dc!important;
+}
+
+div[aria-controls="__xmlview0--idIconTabBarFiori1-content"] > div > span {
+	background-color: transparent!important;
+	color:white;
+}
+
+.sapMITBFilterIcon {
+	border:1px solid white;
+}
+
+.sapMText{
+	color:white;
 }
 
 #__xmlview0--idIconTabBarFiori1-containerContent {

@@ -2,7 +2,8 @@
 	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" >
 	<App>
 		<pages>
-			<Page title="{i18n>title}">
+			<Page showHeader="false"
+				  title="{i18n>title}">
 				<content>
 					<Bar class="ccMBar">
 						<contentLeft>
@@ -16,7 +17,7 @@
 						</contentLeft>
 						<contentRight>
 							<l:VerticalLayout id="layout_vertical_clock" class="sapUiSmallMargin">
-								<Image
+								<!--<Image
 									id="userimage"
 									src="./css/images/MPankraz.jpg"
 									densityAware="false"
@@ -24,7 +25,13 @@
 									height="50px"
 									class="roundedIcons"
 									press="onUserImagePressed">
-								</Image>
+								</Image>-->
+								<core:Icon src="sap-icon://favorite"
+									color="yellow"
+									width="50px"
+									height="50px"
+									class="roundedIcons"
+									press="onUserImagePressed"/>
 								<Text id="username" text="{userapi>/firstName}, {userapi>/lastName}"/>
 								<Text id="clock1" text="Köln 11:11 am"/>
 							</l:VerticalLayout>

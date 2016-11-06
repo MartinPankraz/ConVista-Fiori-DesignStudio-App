@@ -79,7 +79,7 @@ sap.ui.define([
 			if(selectedKey === "bi_folder"){
 				window.open("http://CDSAPBJ.sap.convista.local:50000/BOE/BI?startFolder=AdKUWGHO7gRNhWMb5eUrOOE&noDetailsPanel=true&isCat=false");
 			}
-        	navigationList.bindAggregation("items","/" + selectedKey, item);	
+        	navigationList.bindAggregation("items","/" + selectedKey, item);
 		},
 		
 		onUserImagePressed: function(oEvent){
