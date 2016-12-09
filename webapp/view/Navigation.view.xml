@@ -1,5 +1,5 @@
 <mvc:View controllerName="convista.com.controller.Navigation" xmlns:html="http://www.w3.org/1999/xhtml"  xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
-	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" >
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" height="100%">
 	<App>
 		<pages>
 			<Page showHeader="false"
@@ -39,23 +39,17 @@
 						</contentRight>
 					</Bar>
 					<l:HorizontalLayout id="layout_horizontal_sideNav" >
-						<l:VerticalLayout id="layout_vertical_sideNav" width="100%">
-							<Button text=""
-				              icon="sap-icon://navigation-right-arrow"
-				              class="SapUiSmallMargin"
-				              tooltip="Show/hide reports"
-				              press="onCollapseExapandPress" />
-							<tnt:SideNavigation id="sideNavigation" expanded="false" class="sideNav">
-						        <tnt:item>
-						            <tnt:NavigationList id="navigationList">
-						                <tnt:NavigationListItem
-						                        text="{text}"
-						                        icon="{icon}">
-						                </tnt:NavigationListItem>
-					                </tnt:NavigationList>
-						        </tnt:item>
-						    </tnt:SideNavigation>
-					    </l:VerticalLayout>
+						<!--<tnt:SideNavigation id="sideNavigation" expanded="false">
+					        <tnt:item>-->
+					            <tnt:NavigationList id="navigationList" itemSelect="onNavListItemSelect" expanded="false">
+					                <tnt:NavigationListItem
+					                        key="{key}"
+					                        text="{text}"
+					                        icon="{icon}">
+					                </tnt:NavigationListItem>
+				                </tnt:NavigationList>
+					        <!--</tnt:item>
+					    </tnt:SideNavigation>-->
 					    <core:HTML id="html"/>
 					</l:HorizontalLayout>
 				</content>

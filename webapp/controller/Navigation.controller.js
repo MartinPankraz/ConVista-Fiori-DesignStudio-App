@@ -22,11 +22,12 @@ sap.ui.define([
 			
 			var navigationList = this.getView().byId("navigationList");
 			navigationList.setModel(sideNavigationModel.createSideNavigationModel());
-			
+			/*navigationList.attachItemSelect(this.onNavListItemSelect);*/
 			var navigationListItem = new sap.tnt.NavigationListItem({
 										key:"{key}",
 										text:"{text}",
-										icon:"{icon}"
+										icon:"{icon}",
+										tooltip:"{tooltip}"
 									});
 			navigationList.bindAggregation("items","/home", navigationListItem);
 			
@@ -51,18 +52,22 @@ sap.ui.define([
 			userView.setModel(userModel, "userapi");*/
 			
 		},
- 
-		onCollapseExapandPress: function (event) {
-			var sideNavigation = this.getView().byId("sideNavigation");
-			var expanded = !sideNavigation.getExpanded();
- 
-			sideNavigation.setExpanded(expanded);
+		
+		onNavListItemSelect: function(oEvent){
+			var expanded = oEvent.getSource().getExpanded();
+			var item = oEvent.getParameters().item;
+			var selectedKey = item.getKey();
 			
-			var source = event.getSource();
-			if(!expanded){
-				source.setIcon("sap-icon://navigation-right-arrow");
+			if(selectedKey === "collapse"){
+				if(expanded){
+					item.setIcon("sap-icon://navigation-right-arrow");
+				}else{
+					item.setIcon("sap-icon://navigation-left-arrow");
+				}
+				var sideNavigation = this.getView().byId("navigationList");
+				sideNavigation.setExpanded(!expanded);
 			}else{
-				source.setIcon("sap-icon://navigation-left-arrow");
+				//ToDo Use OData to retrieve BO OpenDocument links to fill IFrame
 			}
 		},
  
