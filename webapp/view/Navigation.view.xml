@@ -3,7 +3,8 @@
 	<App>
 		<pages>
 			<Page showHeader="false"
-				  title="{i18n>title}">
+				  title="{i18n>title}"
+				  enableScrolling="false">
 				<content>
 					<Bar class="ccMBar">
 						<contentLeft>
@@ -37,14 +38,14 @@
 							</l:VerticalLayout>
 						</contentRight>
 					</Bar>
-					<l:HorizontalLayout id="layout_horizontal_sideNav" class="sapUiSmallMargin" >
-						<l:VerticalLayout id="layout_vertical_sideNav" class="sapUiSmallMargin" width="100%">
+					<l:HorizontalLayout id="layout_horizontal_sideNav" >
+						<l:VerticalLayout id="layout_vertical_sideNav" width="100%">
 							<Button text=""
 				              icon="sap-icon://navigation-right-arrow"
 				              class="SapUiSmallMargin"
 				              tooltip="Show/hide reports"
 				              press="onCollapseExapandPress" />
-							<tnt:SideNavigation id="sideNavigation" expanded="false">
+							<tnt:SideNavigation id="sideNavigation" expanded="false" class="sideNav">
 						        <tnt:item>
 						            <tnt:NavigationList id="navigationList">
 						                <tnt:NavigationListItem
