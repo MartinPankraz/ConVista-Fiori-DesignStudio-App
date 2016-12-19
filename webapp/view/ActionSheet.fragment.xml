@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ResponsivePopover
+		title="Choose Your Action"
+		placement="Bottom">
+		<content>
+			<SelectList>
+				<items>
+					<core:Item key="Reject" text="Reject" />
+					<core:Item key="Accept" text="Accept" />
+					<core:Item key="Email" text="Email" />
+					<core:Item key="Forward" text="Forward" />
+					<core:Item key="Delete" text="Delete" />
+					<core:Item key="Other" text="Other" />
+				</items>
+			</SelectList>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>
