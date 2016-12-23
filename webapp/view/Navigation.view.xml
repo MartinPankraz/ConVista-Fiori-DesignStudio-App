@@ -4,6 +4,7 @@
 		<pages>
 			<Page showHeader="false"
 				  title="{i18n>title}"
+				  showNavButton="true"
 				  enableScrolling="false">
 				<content>
 					<Bar class="ccMBar">
@@ -18,15 +19,6 @@
 						</contentLeft>
 						<contentRight>
 							<l:VerticalLayout id="layout_vertical_clock" class="sapUiSmallMargin">
-								<!--<Image
-									id="userimage"
-									src="./css/images/MPankraz.jpg"
-									densityAware="false"
-									width="50px"
-									height="50px"
-									class="roundedIcons"
-									press="onUserImagePressed">
-								</Image>-->
 								<core:Icon src="sap-icon://favorite"
 									color="yellow"
 									width="50px"
@@ -54,17 +46,10 @@
 					</l:HorizontalLayout>
 				</content>
 				<footer>
-					<Bar>
+					<Bar id="footerBar" >
 						<contentLeft>
 							<Text class="sapUiSmallMarginBeginEnd" text="2016 ConVista Consulting AG"/>
 						</contentLeft>
-						<contentRight>
-							<Image
-								src="./css/images/sap_logo.png"
-								densityAware="false"
-								width="60px">
-							</Image>
-						</contentRight>
 					</Bar>
 				</footer>	
 			</Page>

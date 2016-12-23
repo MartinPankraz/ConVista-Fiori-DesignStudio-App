@@ -9,6 +9,15 @@ sap.ui.define([
 
 		onInit: function () {
 			jQuery.sap.require("sap.ui.core.format.DateFormat");
+			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
+			
+			var footerBar = this.getView().byId("footerBar");
+			var oImage = new sap.m.Image();
+			oImage.setSrc([sRootPath,"css/images/sap_logo.png"].join("/"));
+			oImage.setAlt("Image not loaded");
+			oImage.setWidth("60px");
+			oImage.setDensityAware(false);
+			footerBar.addContentRight(oImage);
 			
 			var iconTabBar = this.getView().byId("idIconTabBarFiori1");
 			// set the model
