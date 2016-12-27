@@ -7,14 +7,22 @@
 			"tooltip":"Show/hide reports"
 		},
 		{
+			"key":"landing",
+			"text":"Home Page",
+			"icon":"sap-icon://home",
+			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AShpWcml_ydMhyDYk.wCuHg&noDetailsPanel=true"
+		},
+		{
 			"key":"layout",
 			"text":"Layouts",
-			"icon":"sap-icon://business-by-design"
+			"icon":"sap-icon://business-by-design",
+			"link":""
 		},
 		{
 			"key":"favorite",
 			"text":"Favorites",
-			"icon":"sap-icon://favorite"
+			"icon":"sap-icon://favorite",
+			"link":""
 		}],
 		
 	"dashboard": [
@@ -27,7 +35,8 @@
 		{
 			"key":"lib",
 			"text":"Dashboard Library",
-			"icon":"sap-icon://business-by-design"
+			"icon":"sap-icon://business-by-design",
+			"link":""
 		}],
 	"accounting": [
 		{
@@ -39,32 +48,38 @@
 		{
 			"key":"holdings",
 			"text":"Portfolio Holdings",
-			"icon":"sap-icon://insurance-life"
+			"icon":"sap-icon://insurance-life",
+			"link":""
 		},
 		{
 			"key":"earned_income",
 			"text":"Earned Income",
-			"icon":"sap-icon://insurance-life"
+			"icon":"sap-icon://insurance-life",
+			"link":""
 		},
 		{
 			"key":"acc_3",
 			"text":"Transactions",
-			"icon":"sap-icon://insurance-life"
+			"icon":"sap-icon://insurance-life",
+			"link":""
 		},
 		{
 			"key":"acc_4",
 			"text":"Transactions",
-			"icon":"sap-icon://insurance-life"
+			"icon":"sap-icon://insurance-life",
+			"link":""
 		},
 		{
 			"key":"acc_5",
 			"text":"Transactions",
-			"icon":"sap-icon://insurance-life"
+			"icon":"sap-icon://insurance-life",
+			"link":""
 		},
 		{
 			"key":"acc_6",
 			"text":"Transactions",
-			"icon":"sap-icon://insurance-life"
+			"icon":"sap-icon://insurance-life",
+			"link":""
 		}],
 	"gl": [
 		{
@@ -76,12 +91,14 @@
 		{
 			"key":"gl_summary",
 			"text":"General Ledger Summary",
-			"icon":"sap-icon://wallet"
+			"icon":"sap-icon://wallet",
+			"link":""
 		},
 		{
 			"key":"gl_trial_balance",
 			"text":"Trial Balance Rollforward",
-			"icon":"sap-icon://wallet"
+			"icon":"sap-icon://wallet",
+			"link":""
 		}],
 	"regulatory": [
 		{
@@ -93,7 +110,8 @@
 		{
 			"key":"naic_sr",
 			"text":"NAIC Statutory Reporting",
-			"icon":"sap-icon://expense-report"	
+			"icon":"sap-icon://expense-report",
+			"link":""	
 		}],
 	"management": [
 		{
@@ -105,7 +123,8 @@
 		{
 			"key":"mgmt_ps",
 			"text":"Portfolio Summary by Amortized Cost",
-			"icon":"sap-icon://employee-approvals"
+			"icon":"sap-icon://employee-approvals",
+			"link":""
 		}],
 	"scheduling": [
 		{
@@ -117,27 +136,32 @@
 		{
 			"key":"sched_1",
 			"text":"Scheduling Overview",
-			"icon":"sap-icon://calendar"
+			"icon":"sap-icon://calendar",
+			"link":""
 		},
 		{
 			"key":"sched_2",
 			"text":"Manage Scheduling Groups",
-			"icon":"sap-icon://calendar"
+			"icon":"sap-icon://calendar",
+			"link":""
 		},
 		{
 			"key":"sched_3",
 			"text":"View My Fildes",
-			"icon":"sap-icon://calendar"
+			"icon":"sap-icon://calendar",
+			"link":""
 		},
 		{
 			"key":"sched_4",
 			"text":"Scheduling History",
-			"icon":"sap-icon://calendar"
+			"icon":"sap-icon://calendar",
+			"link":""
 		}],
 	"bi_folder":[{
 			"key":"collapse",
 			"text":"",
 			"icon":"sap-icon://navigation-right-arrow",
-			"tooltip":"Show/hide reports"
+			"tooltip":"Show/hide reports",
+			"link":""
 		}]
 }

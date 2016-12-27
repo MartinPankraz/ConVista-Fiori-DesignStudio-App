@@ -13,10 +13,11 @@ sap.ui.define([
 			
 			var footerBar = this.getView().byId("footerBar");
 			var oImage = new sap.m.Image();
-			oImage.setSrc([sRootPath,"css/images/sap_logo.png"].join("/"));
+			oImage.setSrc([sRootPath,"css/images/cc-logo-white.png"].join("/"));
 			oImage.setAlt("Image not loaded");
-			oImage.setWidth("60px");
+			oImage.setWidth("90px");
 			oImage.setDensityAware(false);
+			oImage.addStyleClass("ccImage");
 			footerBar.addContentRight(oImage);
 			
 			var iconTabBar = this.getView().byId("idIconTabBarFiori1");
@@ -42,11 +43,10 @@ sap.ui.define([
 			
 			var html = this.getView().byId("html");
 			
-			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
-			var src = [sRootPath,'view/test.html'].join("/");
-			//var src = "http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AbkVZs4kE0BOgWIWrGLC6Yg&noDetailsPanel=true";
+			//var src = [sRootPath,'view/test.html'].join("/");
+			var src = "http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AShpWcml_ydMhyDYk.wCuHg&noDetailsPanel=true";
 			/*html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");*/
-			html.setContent("<iframe sandbox='allow-popups allow-same-origin allow-scripts allow-pointer-lock allow-forms' class='bo_container' src='"+src+"'></iframe>");
+			html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
 			html.addStyleClass("bo_container");
 			
 			var timeInstance = sap.ui.core.format.DateFormat.getTimeInstance({style:"short"});
@@ -65,7 +65,8 @@ sap.ui.define([
 		},
 		
 		onNavListItemSelect: function(oEvent){
-			var expanded = oEvent.getSource().getExpanded();
+			var source = oEvent.getSource();
+			var expanded =source.getExpanded();
 			var item = oEvent.getParameters().item;
 			var selectedKey = item.getKey();
 			
@@ -79,6 +80,27 @@ sap.ui.define([
 				sideNavigation.setExpanded(!expanded);
 			}else{
 				//ToDo Use OData to retrieve BO OpenDocument links to fill IFrame
+				var iconTabBar = this.getView().byId("idIconTabBarFiori1");
+				var selectedSection = iconTabBar.getSelectedKey();
+				var sourceModel = source.getModel().getData();
+				var workingSet = sourceModel[selectedSection];
+				var targetLink = "";
+				for(var i=0;i<workingSet.length;i++){
+					var currentItem = workingSet[i];
+					if(currentItem.key === selectedKey){
+						targetLink = currentItem.link;
+						//quit loop since we found the object
+						break;
+					}
+				}
+				var html = this.getView().byId("html");
+				var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
+				if(targetLink === ""){
+					var src = [sRootPath,'view/test.html'].join("/");
+					html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
+				}else{
+					html.setContent("<iframe class='bo_container' src='"+targetLink+"'></iframe>");					
+				}
 			}
 		},
  
@@ -96,6 +118,11 @@ sap.ui.define([
 				window.open("http://CDSAPBJ.sap.convista.local:50000/BOE/BI?startFolder=AdKUWGHO7gRNhWMb5eUrOOE&noDetailsPanel=true&isCat=false");
 			}
         	navigationList.bindAggregation("items","/" + selectedKey, item);
+        	//Make sure expanded state is carried over on tab bar change
+        	if(navigationList.getExpanded()){
+        		var item = navigationList.getItems()[0];
+        		item.setIcon("sap-icon://navigation-left-arrow");
+        	}
 		},
 		
 		onUserImagePressed: function(oEvent){

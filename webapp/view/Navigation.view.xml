@@ -7,7 +7,8 @@
 				  showNavButton="true"
 				  enableScrolling="false">
 				<content>
-					<Bar class="ccMBar">
+					<Bar class="ccMBar"
+						 design="SubHeader">
 						<contentLeft>
 							<IconTabBar
 								id="idIconTabBarFiori1"
@@ -31,17 +32,13 @@
 						</contentRight>
 					</Bar>
 					<l:HorizontalLayout id="layout_horizontal_sideNav" >
-						<!--<tnt:SideNavigation id="sideNavigation" expanded="false">
-					        <tnt:item>-->
-					            <tnt:NavigationList id="navigationList" itemSelect="onNavListItemSelect" expanded="false">
-					                <tnt:NavigationListItem
-					                        key="{key}"
-					                        text="{text}"
-					                        icon="{icon}">
-					                </tnt:NavigationListItem>
-				                </tnt:NavigationList>
-					        <!--</tnt:item>
-					    </tnt:SideNavigation>-->
+			            <tnt:NavigationList id="navigationList" itemSelect="onNavListItemSelect" expanded="false">
+			                <tnt:NavigationListItem
+			                        key="{key}"
+			                        text="{text}"
+			                        icon="{icon}">
+			                </tnt:NavigationListItem>
+		                </tnt:NavigationList>
 					    <core:HTML id="html"/>
 					</l:HorizontalLayout>
 				</content>

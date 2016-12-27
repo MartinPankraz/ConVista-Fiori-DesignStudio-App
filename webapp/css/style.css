@@ -94,38 +94,53 @@ div[aria-controls="__xmlview0--idIconTabBarFiori1-content"] > div > span {
 /***************** Setting horizontal sideNav position  ************************************/
 
 div[id="__xmlview0--layout_horizontal_sideNav"]{
-	margin-left:0!important;
+/*	margin-left:0!important;*/
 	display: table;
 	width: 100%;
 	height: calc(100% - 112px);
 }
 
 div[id="__xmlview0--layout_vertical_sideNav"]{
-	margin-top:0!important;
-	margin-left:0!important;
+	/*margin-top:0!important;
+	margin-left:0!important;*/
 	height:100%;
 }
 
 div[id="__xmlview0--layout_horizontal_sideNav"] > div{
 	 display: table-cell;
-	 height:100%;
 }
 
 div[id="__xmlview0--layout_horizontal_sideNav"] > div:nth-child(1){
-	 width: 4%;
+	 width: 2rem;
 	 height:100%;
 }
 
 div[id="__xmlview0--layout_horizontal_sideNav"] > div:nth-child(2){
-	 padding-top: 3px;
-     padding-right: 5px;
      height:100%;
+}
+
+div[id="__xmlview0--layout_horizontal_sideNav"] > div > ul{
+	overflow-y:scroll;
+	overflow-x:hidden;
+	height: 100%;
+	min-width:3rem!important;
+	background-color:white;
+}
+
+div[id="__xmlview0--layout_horizontal_sideNav"] > div > ul > li > div{
+	margin-right: 10px;
 }
 
 /***************** Setting bo container iframe width and height  ************************************/
 
 .bo_container {
-	width:100%;
-	height:100%;
-	/*border-color:transparent;*/
+	width:calc(100% - 3.2px);
+	height:calc(100%);
+	border-color:transparent;
+}
+
+/**************** Footer ***************************************************************/
+.ccImage{
+	margin-bottom: 4px;
+	margin-right: 10px!important;
 }
