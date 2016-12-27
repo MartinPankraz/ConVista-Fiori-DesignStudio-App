@@ -1,5 +1,5 @@
 <mvc:View controllerName="convista.com.arp.demo.controller.Navigation" xmlns:html="http://www.w3.org/1999/xhtml"  xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
-	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" height="100%">
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" height="100%" class="sapUiSizeCompact">
 	<App>
 		<pages>
 			<Page showHeader="false"
