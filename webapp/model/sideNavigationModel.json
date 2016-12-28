@@ -55,7 +55,7 @@
 			"key":"earned_income",
 			"text":"Earned Income Trend Analysis",
 			"icon":"sap-icon://insurance-life",
-			"link":""
+			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AelowVN8pCxHi0ggNC5Olzk&noDetailsPanel=true"
 		},
 		{
 			"key":"acc_3",

@@ -49,7 +49,7 @@
 				<footer>
 					<Bar id="footerBar" >
 						<contentLeft>
-							<Text class="sapUiSmallMarginBeginEnd" text="2016 ConVista Consulting AG"/>
+							<Text id="companyText" class="sapUiSmallMarginBeginEnd" text="2016 ConVista Consulting AG"/>
 						</contentLeft>
 					</Bar>
 				</footer>	
