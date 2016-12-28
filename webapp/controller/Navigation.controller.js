@@ -110,7 +110,7 @@ sap.ui.define([
 										icon:"{icon}"
 									});
 			if(selectedKey === "bi_folder"){
-				window.open("http://CDSAPBJ.sap.convista.local:50000/BOE/BI?startFolder=AdKUWGHO7gRNhWMb5eUrOOE&noDetailsPanel=true&isCat=false");
+				window.open("https://sapwebdcbw.sap.convista.local:8444/BOE/BI?startFolder=AdKUWGHO7gRNhWMb5eUrOOE&noDetailsPanel=true&isCat=false");
 			}
         	navigationList.bindAggregation("items","/" + selectedKey, item);
 		},

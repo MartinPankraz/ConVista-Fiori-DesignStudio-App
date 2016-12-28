@@ -22,6 +22,11 @@ section[id="__page0-cont"] > div {
 	height: 7rem!important;
 }
 
+.sapMITBSelected span{
+	border-color:#7d3496;
+	color:#7d3496;
+}
+
 .roundedIcons {
 	border-radius: 50%;
 	border: 1px solid white;

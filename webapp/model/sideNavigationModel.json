@@ -53,31 +53,31 @@
 		},
 		{
 			"key":"earned_income",
-			"text":"Earned Income",
+			"text":"Earned Income Trend Analysis",
 			"icon":"sap-icon://insurance-life",
 			"link":""
 		},
 		{
 			"key":"acc_3",
-			"text":"Transactions",
+			"text":"Transactions Activity",
 			"icon":"sap-icon://insurance-life",
 			"link":""
 		},
 		{
 			"key":"acc_4",
-			"text":"Transactions",
+			"text":"Realized Gains & Losses",
 			"icon":"sap-icon://insurance-life",
 			"link":""
 		},
 		{
 			"key":"acc_5",
-			"text":"Transactions",
+			"text":"Holdings Multi Currency",
 			"icon":"sap-icon://insurance-life",
 			"link":""
 		},
 		{
 			"key":"acc_6",
-			"text":"Transactions",
+			"text":"Amortized Progression",
 			"icon":"sap-icon://insurance-life",
 			"link":""
 		}],

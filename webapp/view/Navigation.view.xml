@@ -7,13 +7,15 @@
 				  showNavButton="true"
 				  enableScrolling="false">
 				<content>
-					<Bar class="ccMBar"
-						 design="SubHeader">
+					<Bar 
+						id="idHeaderBar"
+						class="ccMBar"
+						design="SubHeader">
 						<contentLeft>
 							<IconTabBar
 								id="idIconTabBarFiori1"
 								upperCase="true"
-								expanded="true"
+								showOverflowSelectList="true"
 								class="sapUiResponsiveContentPadding"
 								select="handleIconTabBarSelect">
 							</IconTabBar>
