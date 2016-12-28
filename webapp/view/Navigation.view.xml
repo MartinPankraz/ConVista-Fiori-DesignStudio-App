@@ -32,7 +32,9 @@
 						</contentRight>
 					</Bar>
 					<l:HorizontalLayout id="layout_horizontal_sideNav" >
-			            <tnt:NavigationList id="navigationList" itemSelect="onNavListItemSelect" expanded="false">
+			            <tnt:NavigationList id="navigationList"
+			            					itemSelect="onNavListItemSelect"
+			            					expanded="true">
 			                <tnt:NavigationListItem
 			                        key="{key}"
 			                        text="{text}"

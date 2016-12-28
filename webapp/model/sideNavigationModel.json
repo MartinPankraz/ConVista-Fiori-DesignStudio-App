@@ -3,14 +3,14 @@
 		{
 			"key":"collapse",
 			"text":"",
-			"icon":"sap-icon://navigation-right-arrow",
+			"icon":"sap-icon://expand",
 			"tooltip":"Show/hide reports"
 		},
 		{
 			"key":"landing",
 			"text":"Home Page",
 			"icon":"sap-icon://home",
-			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AShpWcml_ydMhyDYk.wCuHg&noDetailsPanel=true"
+			"link":"http://cdsapbj.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AShpWcml_ydMhyDYk.wCuHg&noDetailsPanel=true"
 		},
 		{
 			"key":"layout",
@@ -29,7 +29,7 @@
 		{
 			"key":"collapse",
 			"text":"",
-			"icon":"sap-icon://navigation-right-arrow",
+			"icon":"sap-icon://expand",
 			"tooltip":"Show/hide reports"
 		},
 		{
@@ -42,14 +42,14 @@
 		{
 			"key":"collapse",
 			"text":"",
-			"icon":"sap-icon://navigation-right-arrow",
+			"icon":"sap-icon://expand",
 			"tooltip":"Show/hide reports"
 		},
 		{
 			"key":"holdings",
 			"text":"Portfolio Holdings",
 			"icon":"sap-icon://insurance-life",
-			"link":""
+			"link":"http://cdsapbj.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AT8WcbrCtARIhFjoXZdMuwM&noDetailsPanel=true"
 		},
 		{
 			"key":"earned_income",
@@ -85,7 +85,7 @@
 		{
 			"key":"collapse",
 			"text":"",
-			"icon":"sap-icon://navigation-right-arrow",
+			"icon":"sap-icon://expand",
 			"tooltip":"Show/hide reports"
 		},
 		{
@@ -104,7 +104,7 @@
 		{
 			"key":"collapse",
 			"text":"",
-			"icon":"sap-icon://navigation-right-arrow",
+			"icon":"sap-icon://expand",
 			"tooltip":"Show/hide reports"
 		},
 		{
@@ -117,7 +117,7 @@
 		{
 			"key":"collapse",
 			"text":"",
-			"icon":"sap-icon://navigation-right-arrow",
+			"icon":"sap-icon://expand",
 			"tooltip":"Show/hide reports"
 		},
 		{
@@ -130,7 +130,7 @@
 		{
 			"key":"collapse",
 			"text":"",
-			"icon":"sap-icon://navigation-right-arrow",
+			"icon":"sap-icon://expand",
 			"tooltip":"Show/hide reports"
 		},
 		{
@@ -160,7 +160,7 @@
 	"bi_folder":[{
 			"key":"collapse",
 			"text":"",
-			"icon":"sap-icon://navigation-right-arrow",
+			"icon":"sap-icon://expand",
 			"tooltip":"Show/hide reports",
 			"link":""
 		}]

@@ -44,7 +44,7 @@ sap.ui.define([
 			var html = this.getView().byId("html");
 			
 			//var src = [sRootPath,'view/test.html'].join("/");
-			var src = "http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AShpWcml_ydMhyDYk.wCuHg&noDetailsPanel=true";
+			var src = "http://cdsapbj.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AShpWcml_ydMhyDYk.wCuHg&noDetailsPanel=true";
 			/*html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");*/
 			html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
 			html.addStyleClass("bo_container");
@@ -71,11 +71,6 @@ sap.ui.define([
 			var selectedKey = item.getKey();
 			
 			if(selectedKey === "collapse"){
-				if(expanded){
-					item.setIcon("sap-icon://navigation-right-arrow");
-				}else{
-					item.setIcon("sap-icon://navigation-left-arrow");
-				}
 				var sideNavigation = this.getView().byId("navigationList");
 				sideNavigation.setExpanded(!expanded);
 			}else{
@@ -118,11 +113,6 @@ sap.ui.define([
 				window.open("http://CDSAPBJ.sap.convista.local:50000/BOE/BI?startFolder=AdKUWGHO7gRNhWMb5eUrOOE&noDetailsPanel=true&isCat=false");
 			}
         	navigationList.bindAggregation("items","/" + selectedKey, item);
-        	//Make sure expanded state is carried over on tab bar change
-        	if(navigationList.getExpanded()){
-        		var item = navigationList.getItems()[0];
-        		item.setIcon("sap-icon://navigation-left-arrow");
-        	}
 		},
 		
 		onUserImagePressed: function(oEvent){
