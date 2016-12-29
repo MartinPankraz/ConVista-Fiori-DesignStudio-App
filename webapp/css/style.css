@@ -93,6 +93,18 @@ div[aria-controls="__xmlview0--idIconTabBarFiori1-content"] > div > span {
 	color:white;
 }
 
+#__xmlview0--contactUs {
+	color:white;
+}
+
+#__xmlview0--contactUs:hover {
+	text-decoration:none!important;
+}
+
+#__popover0-popover {
+	max-width:700px;
+}
+
 #__xmlview0--idIconTabBarFiori1-containerContent {
 	display:none;
 }

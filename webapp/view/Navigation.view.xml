@@ -50,6 +50,8 @@
 					<Bar id="footerBar" >
 						<contentLeft>
 							<Text id="companyText" class="sapUiSmallMarginBeginEnd" text="2016 ConVista Consulting AG"/>
+							<Text class="sapUiSmallMarginBeginEnd" text="|"/>
+							<Link id="contactUs" class="sapUiSmallMarginBeginEnd" text="Contact Us" press="onContactUsClicked"/>
 						</contentLeft>
 					</Bar>
 				</footer>	

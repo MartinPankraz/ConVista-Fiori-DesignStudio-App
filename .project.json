@@ -6,14 +6,19 @@
   "build": {
     "targetFolder": "dist",
     "sourceFolder": "webapp",
-    "buildRequired": true,
-    "lastBuildDateTime": "Wed, 28 Dec 2016 16:07:11 GMT"
+    "buildRequired": false,
+    "lastBuildDateTime": "Thu, 29 Dec 2016 15:56:23 GMT"
   },
   "generation": [
     {
       "templateId": "ui5template.basicSAPUI5ApplicationProject",
       "templateVersion": "1.40.12",
       "dateTimeStamp": "Mon, 19 Dec 2016 17:27:03 GMT"
+    },
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationComponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Thu, 29 Dec 2016 13:34:47 GMT"
     }
   ],
   "translation": {

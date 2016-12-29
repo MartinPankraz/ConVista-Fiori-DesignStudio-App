@@ -33,8 +33,9 @@
 		},
 		"supportedThemes": [
 			"sap_hcb",
-			"sap_belize"
-		]
+			"sap_bluecrystal"
+		],
+		"fullWidth": true
 	},
 	"sap.ui5": {
 		"_version": "1.1.0",

@@ -109,9 +109,9 @@ sap.ui.define([
 										text:"{text}",
 										icon:"{icon}"
 									});
-			if(selectedKey === "bi_folder"){
+			/*if(selectedKey === "bi_folder"){
 				window.open("https://sapwebdcbw.sap.convista.local:8444/BOE/BI?startFolder=AdKUWGHO7gRNhWMb5eUrOOE&noDetailsPanel=true&isCat=false");
-			}
+			}*/
         	navigationList.bindAggregation("items","/" + selectedKey, item);
 		},
 		
@@ -133,6 +133,28 @@ sap.ui.define([
 		handleActionClose: function(oEvent){
 			/*var oPopOver = oEvent.getSource();*/
 			this._actionSheet.close();
+		},
+		
+		onContactUsClicked: function(oEvent){
+			var oText = oEvent.getSource();
+			// create action sheet only once
+			if (!this._contactUs) {
+				this._contactUs = sap.ui.xmlfragment("convista.com.arp.demo.view.ContactUs",this);
+				this.getView().addDependent(this._contactUs);
+			}
+			if(this._contactUs.isOpen()){
+				this._contactUs.close();
+			}else{
+				this._contactUs.openBy(oText);	
+			}
+		},
+		
+		handleContactUsCloseButton: function(oEvent){
+			this._contactUs.close();
+		},
+		
+		onEmailClicked: function(oEvent){
+			sap.m.URLHelper.triggerEmail("Info_Cologne@ConVista.com", "Info Request");
 		}
 	});
 

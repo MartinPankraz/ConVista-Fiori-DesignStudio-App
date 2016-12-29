@@ -92,7 +92,7 @@
 			"key":"gl_summary",
 			"text":"General Ledger Summary",
 			"icon":"sap-icon://wallet",
-			"link":""
+			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AToBh7oCDUJHogI47A9o8Qc&noDetailsPanel=true"
 		},
 		{
 			"key":"gl_trial_balance",
@@ -163,5 +163,17 @@
 			"icon":"sap-icon://expand",
 			"tooltip":"Show/hide reports",
 			"link":""
+		},
+		{
+			"key":"bi1",
+			"text":"DesignStudio Dashboards",
+			"icon":"sap-icon://folder",
+			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/BI?startFolder=AdKUWGHO7gRNhWMb5eUrOOE&noDetailsPanel=true&isCat=false"
+		},
+		{
+			"key":"bi2",
+			"text":"WebI Reports",
+			"icon":"sap-icon://folder",
+			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/BI?startFolder=AeN4lEu0h_tAtnPEjFYxwi8&noDetailsPanel=true&isCat=false"
 		}]
 }
