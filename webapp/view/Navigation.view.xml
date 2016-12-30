@@ -43,7 +43,23 @@
 			                        icon="{icon}">
 			                </tnt:NavigationListItem>
 		                </tnt:NavigationList>
-					    <core:HTML id="html"/>
+		                <NavContainer
+							id="navCon"
+							width="100%"
+							height="100%">
+		                	<Page
+								id="home_landing"
+								title="Home Page"
+								showHeader="true"
+								class="myPageOverflow"
+								showNavButton="false">
+		                		<headerContent>
+		                			<Button icon="sap-icon://refresh"
+		                					press="handleHomeHtmlRefresh"/>
+		                		</headerContent>
+							    <core:HTML id="home_landing_html"/>
+							</Page>
+		                </NavContainer>
 					</l:HorizontalLayout>
 				</content>
 				<footer>

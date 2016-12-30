@@ -16,7 +16,7 @@
 			"key":"layout",
 			"text":"Layouts",
 			"icon":"sap-icon://business-by-design",
-			"link":""
+			"link":"view/test.html"
 		},
 		{
 			"key":"favorite",
@@ -46,37 +46,43 @@
 			"tooltip":"Show/hide reports"
 		},
 		{
-			"key":"holdings",
+			"key":"acc_1",
 			"text":"Portfolio Holdings",
 			"icon":"sap-icon://insurance-life",
 			"link":"http://cdsapbj.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AT8WcbrCtARIhFjoXZdMuwM&noDetailsPanel=true"
 		},
 		{
-			"key":"earned_income",
+			"key":"acc_2",
 			"text":"Earned Income Trend Analysis",
 			"icon":"sap-icon://insurance-life",
 			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AelowVN8pCxHi0ggNC5Olzk&noDetailsPanel=true"
 		},
 		{
 			"key":"acc_3",
+			"text":"Earned Income",
+			"icon":"sap-icon://insurance-life",
+			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AazEizuxCcJJruorv2H3i2o&noDetailsPanel=true"
+		},
+		{
+			"key":"acc_4",
 			"text":"Transactions Activity",
 			"icon":"sap-icon://insurance-life",
 			"link":""
 		},
 		{
-			"key":"acc_4",
+			"key":"acc_5",
 			"text":"Realized Gains & Losses",
 			"icon":"sap-icon://insurance-life",
 			"link":""
 		},
 		{
-			"key":"acc_5",
+			"key":"acc_6",
 			"text":"Holdings Multi Currency",
 			"icon":"sap-icon://insurance-life",
 			"link":""
 		},
 		{
-			"key":"acc_6",
+			"key":"acc_7",
 			"text":"Amortized Progression",
 			"icon":"sap-icon://insurance-life",
 			"link":""

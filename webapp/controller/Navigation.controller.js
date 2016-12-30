@@ -10,6 +10,8 @@ sap.ui.define([
 		onInit: function () {
 			jQuery.sap.require("sap.ui.core.format.DateFormat");
 			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
+			var that = this;
+			this.idPrefix = this.getView().getId()+"--";
 			
 			var footerBar = this.getView().byId("footerBar");
 			var oImage = new sap.m.Image();
@@ -31,7 +33,8 @@ sap.ui.define([
 			iconTabBar.bindAggregation("items","/NavigationItems", iconTabFilter);
 			
 			var navigationList = this.getView().byId("navigationList");
-			navigationList.setModel(sideNavigationModel.createSideNavigationModel());
+			var navigationListModel = sideNavigationModel.createSideNavigationModel();
+			navigationList.setModel(navigationListModel);
 			/*navigationList.attachItemSelect(this.onNavListItemSelect);*/
 			var navigationListItem = new sap.tnt.NavigationListItem({
 										key:"{key}",
@@ -40,14 +43,14 @@ sap.ui.define([
 										tooltip:"{tooltip}"
 									});
 			navigationList.bindAggregation("items","/home", navigationListItem);
-			
-			var html = this.getView().byId("html");
-			
-			//var src = [sRootPath,'view/test.html'].join("/");
-			var src = "http://cdsapbj.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AShpWcml_ydMhyDYk.wCuHg&noDetailsPanel=true";
-			/*html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");*/
-			html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
-			html.addStyleClass("bo_container");
+			//wait for model to complete json load
+			navigationListModel.attachRequestCompleted(function() {
+    			var html = that.getView().byId("home_landing_html");
+	        	//choose first link to be loaded as home page
+	        	var src = navigationListModel.getProperty("/home/1/link");
+				html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
+				html.addStyleClass("bo_container");
+		    });
 			
 			var timeInstance = sap.ui.core.format.DateFormat.getTimeInstance({style:"short"});
 			var clock1 = this.getView().byId("clock1");
@@ -61,26 +64,28 @@ sap.ui.define([
 			/*var userModel = new sap.ui.model.json.JSONModel("/services/userapi/currentUser");
 			var userView = this.getView().byId("username");
 			userView.setModel(userModel, "userapi");*/
-			
 		},
 		
 		onNavListItemSelect: function(oEvent){
+			var that = this;
 			var source = oEvent.getSource();
 			var expanded =source.getExpanded();
 			var item = oEvent.getParameters().item;
 			var selectedKey = item.getKey();
+			var selectedItemText = item.getText();
 			
 			if(selectedKey === "collapse"){
 				var sideNavigation = this.getView().byId("navigationList");
 				sideNavigation.setExpanded(!expanded);
 			}else{
 				//ToDo Use OData to retrieve BO OpenDocument links to fill IFrame
+				var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
 				var iconTabBar = this.getView().byId("idIconTabBarFiori1");
 				var selectedSection = iconTabBar.getSelectedKey();
 				var sourceModel = source.getModel().getData();
 				var workingSet = sourceModel[selectedSection];
 				var targetLink = "";
-				for(var i=0;i<workingSet.length;i++){
+				for(var i=0;i < workingSet.length; i++){
 					var currentItem = workingSet[i];
 					if(currentItem.key === selectedKey){
 						targetLink = currentItem.link;
@@ -88,14 +93,51 @@ sap.ui.define([
 						break;
 					}
 				}
-				var html = this.getView().byId("html");
-				var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
-				if(targetLink === ""){
-					var src = [sRootPath,'view/test.html'].join("/");
-					html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
+
+				var navContainer = this.getView().byId("navCon");
+				var pageId = this.idPrefix + selectedSection + "_" + selectedKey;
+				var page = navContainer.getPage(pageId);
+				var html = null;
+				if(page){
+					html = page.getContent()[0];
 				}else{
-					html.setContent("<iframe class='bo_container' src='"+targetLink+"'></iframe>");					
+					var newPage = new sap.m.Page({
+							id:pageId,
+							title:selectedItemText,
+							showHeader:true,
+							showNavButton:true,
+							navButtonPress: function(oNavButtonEvent){
+								var myNavContainer = that.getView().byId("navCon");
+								myNavContainer.back();
+							}
+					});
+					newPage.addHeaderContent(
+						new sap.m.Button({
+							icon:"sap-icon://refresh",
+		                	press: function (oRefreshButtonEvent) {
+								var currPage = that.getView().byId("navCon").getCurrentPage();
+								var currhtml = currPage.getContent()[0];
+								var iframe = currhtml.getContent();
+								var srcToReload = jQuery(iframe).attr("src");
+					
+								currhtml.setContent("<iframe class='bo_container' src='"+srcToReload+"'></iframe>");
+							}
+						})
+					);
+					newPage.addStyleClass("myPageOverflow");
+					html = new sap.ui.core.HTML({
+						id:selectedSection + "_" + selectedKey + "_html"
+					});
+					newPage.addContent(html);
+					navContainer.addPage(newPage);
+					if(targetLink === ""){
+						var src = [sRootPath,"view/test.html"].join("/");
+						html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
+					}else{
+						html.setContent("<iframe class='bo_container' src='"+targetLink+"'></iframe>");
+					}
 				}
+				navContainer.to(pageId, "slide");
 			}
 		},
  
@@ -167,6 +209,19 @@ sap.ui.define([
 		
 		onLinkedInIconPressed: function(oEvent){
 			sap.m.URLHelper.redirect("https://www.linkedin.com/company/convista-consulting", true);
+		},
+		
+		getSectionFromId: function(givenId){
+			var split = givenId.split("--")[1];
+			var section = split.split("_")[0];
+			return section;
+		},
+		
+		handleHomeHtmlRefresh: function(oEvent){
+			var currhtml = this.getView().byId("home_landing_html");
+			var iframe = currhtml.getContent();
+			var srcToReload = jQuery(iframe).attr("src");
+			currhtml.setContent("<iframe class='bo_container' src='" + srcToReload + "'></iframe>");
 		}
 	});
 

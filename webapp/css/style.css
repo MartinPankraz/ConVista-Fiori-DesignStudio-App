@@ -16,6 +16,15 @@ section[id="__page0-cont"] > div {
 	background:transparent;
 }
 
+.myPageOverflow > section {
+	overflow-y:hidden!important;
+}
+
+#__xmlview0--navCon header::before {
+	border-top:0.25rem solid rgb(211, 211, 211)!important;
+}
+
+
 /* Header Bar Styling */
 .ccMBar {
 	background-color:transparent!important;
