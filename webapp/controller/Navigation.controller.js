@@ -18,7 +18,7 @@ sap.ui.define([
 			oImage.setWidth("90px");
 			oImage.setDensityAware(false);
 			oImage.addStyleClass("ccImage");
-			footerBar.addContentRight(oImage);
+			footerBar.addContent(oImage);
 			
 			var iconTabBar = this.getView().byId("idIconTabBarFiori1");
 			// set the model
@@ -155,6 +155,18 @@ sap.ui.define([
 		
 		onEmailClicked: function(oEvent){
 			sap.m.URLHelper.triggerEmail("Info_Cologne@ConVista.com", "Info Request");
+		},
+		
+		onTwitterIconPressed: function(oEvent){
+			sap.m.URLHelper.redirect("https://twitter.com/hashtag/convista", true);
+		},
+		
+		onFacebookIconPressed: function(oEvent){
+			sap.m.URLHelper.redirect("https://www.facebook.com/ConVista", true);
+		},
+		
+		onLinkedInIconPressed: function(oEvent){
+			sap.m.URLHelper.redirect("https://www.linkedin.com/company/convista-consulting", true);
 		}
 	});
 

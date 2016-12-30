@@ -47,13 +47,16 @@
 					</l:HorizontalLayout>
 				</content>
 				<footer>
-					<Bar id="footerBar" >
-						<contentLeft>
-							<Text id="companyText" class="sapUiSmallMarginBeginEnd" text="2016 ConVista Consulting AG"/>
-							<Text class="sapUiSmallMarginBeginEnd" text="|"/>
-							<Link id="contactUs" class="sapUiSmallMarginBeginEnd" text="Contact Us" press="onContactUsClicked"/>
-						</contentLeft>
-					</Bar>
+					<OverflowToolbar id="footerBar">
+						<Text id="companyText" class="sapUiSmallMarginBeginEnd" text="2016 ConVista Consulting AG"/>
+						<ToolbarSeparator />
+						<Link id="contactUs" class="sapUiSmallMarginBeginEnd" text="Contact Us" press="onContactUsClicked"/>
+						<ToolbarSeparator />
+						<Image press="onTwitterIconPressed" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAxFJREFUSImllc1LI0kYxp+qDuIEgwmCxo8ZnSyKeHKNA3v04hw8eBNvghgG9bAueva25LCnGQTv+kf0OrkqAw4y4EEQL0tC7I/qTkrpJqNJV9UeXMV8dNT1gb68T9ev3vftt7oI2si27V8IIX8QQn6llCaUUp0AIKW8IYSUhRA/lFKf+/v7/2nHaZJlWSnGWI5zbgZBoMIUBIHinJuMsQPTNEeeBWeM/c45L0gpQ8GNEkIo13Xztm2vP5X5X77vl59NbpDv+yXGWDY089fA7+V5XrmpEsuyUpzzwmvh93Icp2AYxvDj7HMv6fnx8bHa29tTR0dHSimlarWaqlQqD74QQjHGDgDcjSLn3HwMuL29Vdvb26parTbBd3Z2VDqdfniWlpbU2tqaur6+rnuPc24YhjFMCSEbsVgs+bhlrutC13Wsrq6iWCw+xEulEvb39+vae3Z2BtM04bpuXTwWi/VrmrYRIYRMaZpWZyaTSfT29uL09BQLCwuYnZ3FzMwMCCGQUjYNSCaTQSqVqotpmgZK6YcIpTTRuKBcLmNychK5XA61Wg26rkPX9Razd6ehoaEwK0HVf8f/seLxOE5OTkKBjZmOjo629Aghb2grIxKJIJvNIpFoKq5J09PTiEajoT6VUt60MiYmJtDd3f3kBisrK6GeUuonJYSUW5nRaBSbm5vo6+sLBSwuLmJqaqrd/pwKIX4IIVq66XQay8vL6OjoaPLm5uawtbUVShZCQEr5nZim+b6zs/NbPB5/OAv5fB67u7s4PDxEtVqtWzgwMIBMJoP5+fl2mePq6sqsVCq/EQBgjH3t6en5SGn9N7+4uMD5+Tk8z0NXVxfGxsYwPj4OQkhbuJQSjuP8nUwm5wAApmmOuK6bf8H/rK1c180Xi8W3dbvatr3u+37ptXDP80qWZX1qWRpjLOt53v++EzzPK9m2/Wfb/tm2ve44TkEI8Wzw/ZUZmnmjDMMYZowdcM6NZ1z6hmVZ+uXl5btWrLbjYBjGsKZpG5TSDwAShJA3wN0JBcCllN+DIPgyODhYCGP8C+dG/TkIssLqAAAAAElFTkSuQmCC"></Image>
+						<Image press="onFacebookIconPressed" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAotJREFUSIm1lc9LG0EUx78zu6sRXNTspUmwlnortBBBD2LvPflnVPBQe/LsoXgoHvTW/iNVcghtDioiUgqexRQ3O+NuBtyFxmR+9KCGqtk1ten3NDzefN737fD2EWSIMTZNCHlPCClTSieMMTkA0Fq3CCFNpdSRMWazUCicZHHuKQiC55zzihCiIaU0aZJSGiFEg3O+02g0nvUF55y/E0LUtdap4LtSSpkwDE8ZY8sPOf+YJEmzb/IdJUkScc7XU53/C/xGcRw3/+yE3Hzz4eHhr+Pj45NZHdZqNVSrVSRJAmMM1tbW4LruvbwwDH92Op3XxWLx1AYASumnsbGxTHi1WsXq6uqtWLvd7pmbz+cnoyj6DOCNzRibdhznJSEki49KpdI9LywswPM85HK5nrmUUjiO88r3/SmbELLiuu6TTDqAi4uL7nljYwO2bWfmu65baLfbKzYhZMayrNTEVquF/f19CCG6sVqtBkop5ufnMTQ01POeZVmglM6SKIqO8/n8i7QCvu9jcXHxXpwQgt3dXTiOk2ouDMNj21yP/9+IUgrP8zLh1yZG6EOwYrGIw8NDzM3NdWN7e3vY3t7uz4zWutVX5iNkjPlFCSHN/1UAgKBKqSOl1MDJSilorQ+oMWYzjuNg0AXiOG5IKbdooVA46XQ6P7TWA4NrrXF5efm9VCrVbQBQSi0JIb55nvc07VK5XMbo6CiAqxnIkhCiLqVcuhVkjC0nSRIN4HcdBUHwtmdlzvl6HMeP3glxHEeMsQ+Z7THGls/Pz+tKqb7BNysz1fld+b4/xTnfEUL4fSx9PwiCL2dnZz3fL/O1fN+fsixrhVI6C2CCEDICXE0oAKG1PpBSbpVKpXoa4zf+fc0gTY/N6QAAAABJRU5ErkJggg=="></Image>
+						<Image press="onLinkedInIconPressed" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAu5JREFUSImllL9PG0kUx78za4xDxSGxAsVYIfQ+6UwTJEqEdMofgYiO5o4UaShoSJV0vh8l9LRIUQruLzhxBSUUoMAaZ3bGczvArgR4d96kiGJhxybey7cazbz9fN+893YYHlAYhk85568YYz96njdBRI8YY2CM3VhrI+fcobW2Pj09/eEhTl+wUmrfGCOzLHODlGWZM8aESql9IcSToeBKqZfGmICIBoJ7RUQuiqJASvnbt+BvkyQxQ5N7lCRJpJR6MzDz74HfN5FS/toFl1LOGWOC+4E7OztuY2PDHR0d5TYxxgRdPVFK/X2/5sfHx65Wq7larebW19dzG1hrnVJqHwB4GIZPi8VilTHWMZyZmcHs7Cw451hYWBhqOO6Lc46RkZGqEGIWSqk/+40iEbm7u7uBWRKRs9YOPM+yzEkp6wXG2E+e53VlEMcxVlZWAADLy8tYW1vD6uoqrq6uUK1W4fs+dnd3cXt7i/n5eWxtbcH3/S6G53ngnM8XOOc/9F7RWovz83MAgNYaAHBxcYEoiiCEQLvd7sQeHBxgc3MT29vbX5XKOTfBiehRnvoSEer1Ovb29jA3NwcAODw8RKvV6teLEmeMuTwG1WoVi4uLKJfLWFpa6uz3MwAA7py7yWNQKBQ669HR0c7aWvtVLBHdcABmGDAR5ckDAMAYizgR/dvPvVfO5aoksiwDER3wLMt+j+NY5E7vG0qS5GOapn8wAAjD8P3k5OTPnHMAn8txcnICABgfH4fv+zg9PYW1FmNjYyiXywAAY0ynuZVKBaVSqfN9q9V6PzU19RwA0Gw2K1rrs9yPzgBprc8ajUa560phGP6SJIn+Xvj19bUWQrzoWzcp5es4jv/7v/A4jrWUcuvB5gghXmitzx56yHplrXVa6w9CiNWhJqDRaJSllO+MMc00TQeC0zR1l5eXF1LKd0EQPO7HYv02vygIgsfFYnHd87xnzrkJz/NKwOc/FEBkrf2n3W7/ValUmoMYnwCgXhzVOcH0hQAAAABJRU5ErkJggg=="></Image>
+						<ToolbarSpacer />
+					</OverflowToolbar>
 				</footer>	
 			</Page>
 		</pages>

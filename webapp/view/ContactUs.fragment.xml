@@ -33,7 +33,7 @@
 				<Link	text="Show on Google Maps"
 						emphasized="true"
 						href="//www.google.de/maps/preview?saddr=&amp;daddr=Im%20Zollhafen%2015/17,+50678+Cologne"></Link>
-				<Link	text="sendEmail"
+				<Link	text="send Email"
 						emphasized="true"
 						press="onEmailClicked"></Link>
 				<FormattedText
