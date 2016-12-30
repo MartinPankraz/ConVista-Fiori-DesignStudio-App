@@ -51,12 +51,34 @@
 								id="home_landing"
 								title="Home Page"
 								showHeader="true"
+								showSubHeader="true"
 								class="myPageOverflow"
 								showNavButton="false">
 		                		<headerContent>
 		                			<Button icon="sap-icon://refresh"
 		                					press="handleHomeHtmlRefresh"/>
 		                		</headerContent>
+		                		<subHeader>
+		                			<OverflowToolbar>
+		                				<Text text="Acc Basis:"/>
+		                				<Select
+											forceSelection="true"
+											selectedKey="gaap"
+											width="150px">
+											<core:Item key="gaap" text="US GAAP" />
+										</Select>
+		                				<Text text="Company:"/>
+		                				<MultiInput id="multiInput2" valueHelpRequest="onSelectionScreenRequest" width="200px"/>
+		                				<Text text="Position Date:"/>
+		                				<DateRangeSelection id="drs" change="handleDateChange" width="150px"/>
+		                				<RadioButton groupName="GroupA" text="daily" selected="true" />
+										<RadioButton groupName="GroupA" text="periodic" />
+										<ToolbarSeparator />
+		                				<Text text="Security Account:"/>
+		                				<MultiInput id="multiInput4" valueHelpRequest="onSelectionScreenRequest" width="200px"/>
+		                				<Button type="Accept" text="Coming Soon" press="onPress" enabled="false"/>
+		                			</OverflowToolbar>
+		                		</subHeader>
 							    <core:HTML id="home_landing_html"/>
 							</Page>
 		                </NavContainer>

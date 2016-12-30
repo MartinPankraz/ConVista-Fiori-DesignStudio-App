@@ -16,7 +16,7 @@
 			"key":"layout",
 			"text":"Layouts",
 			"icon":"sap-icon://business-by-design",
-			"link":"view/test.html"
+			"link":""
 		},
 		{
 			"key":"favorite",
