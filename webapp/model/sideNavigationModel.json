@@ -49,19 +49,19 @@
 			"key":"acc_1",
 			"text":"Portfolio Holdings",
 			"icon":"sap-icon://insurance-life",
-			"link":"http://cdsapbj.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AT8WcbrCtARIhFjoXZdMuwM&noDetailsPanel=true"
+			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AUaeLfIV.SdLmRhRBMwvjfo&noDetailsPanel=true"
 		},
 		{
 			"key":"acc_2",
 			"text":"Earned Income Trend Analysis",
 			"icon":"sap-icon://insurance-life",
-			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AelowVN8pCxHi0ggNC5Olzk&noDetailsPanel=true"
+			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AZxhzIhdFRdPpF.EiAKaPbU&noDetailsPanel=true"
 		},
 		{
 			"key":"acc_3",
 			"text":"Earned Income",
 			"icon":"sap-icon://insurance-life",
-			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AazEizuxCcJJruorv2H3i2o&noDetailsPanel=true"
+			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=ATYY.awTJMBFsV4Eqy22vls&noDetailsPanel=true"
 		},
 		{
 			"key":"acc_4",
@@ -98,7 +98,7 @@
 			"key":"gl_summary",
 			"text":"General Ledger Summary",
 			"icon":"sap-icon://wallet",
-			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AToBh7oCDUJHogI47A9o8Qc&noDetailsPanel=true"
+			"link":"http://CDSAPBJ.sap.convista.local:50000/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=ATyKYNTAOhRKsrDoGYQgl.A&noDetailsPanel=true"
 		},
 		{
 			"key":"gl_trial_balance",
