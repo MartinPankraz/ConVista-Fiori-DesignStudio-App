@@ -90,7 +90,8 @@ sap.ui.define([
 			if(selectedKey === "collapse"){
 				var sideNavigation = this.getView().byId("navigationList");
 				sideNavigation.setExpanded(!expanded);
-			}else{
+			}
+			else{
 				//ToDo Use OData to retrieve BO OpenDocument links to fill IFrame
 				var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
 				var iconTabBar = this.getView().byId("idIconTabBarFiori1");
@@ -114,41 +115,55 @@ sap.ui.define([
 				if(page){
 					html = page.getContent()[0];
 				}else{
-					var newPage = new sap.m.Page({
-							id:pageId,
-							title:selectedItemText,
-							showHeader:true,
-							showNavButton:true,
-							navButtonPress: function(oNavButtonEvent){
-								var myNavContainer = that.getView().byId("navCon");
-								myNavContainer.back();
-							}
-					});
-					newPage.addHeaderContent(
-						new sap.m.Button({
-							icon:"sap-icon://refresh",
-		                	press: function (oRefreshButtonEvent) {
-								var currPage = that.getView().byId("navCon").getCurrentPage();
-								var currhtml = currPage.getContent()[0];
-								var iframe = currhtml.getContent();
-								var srcToReload = jQuery(iframe).attr("src");
 					
-								currhtml.setContent("<iframe class='bo_container' src='"+srcToReload+"'></iframe>");
-							}
-						})
-					);
-					newPage.addStyleClass("myPageOverflow");
-					html = new sap.ui.core.HTML({
-						id:selectedSection + "_" + selectedKey + "_html"
+					var newPage = new sap.m.Page({
+								id:pageId,
+								title:selectedItemText,
+								showHeader:true,
+								showNavButton:true,
+								navButtonPress: function(oNavButtonEvent){
+									var myNavContainer = that.getView().byId("navCon");
+									myNavContainer.back();
+								}
 					});
-					newPage.addContent(html);
-					navContainer.addPage(newPage);
-					if(targetLink === ""){
-						var src = [sRootPath,"view/test.html"].join("/");
-						html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
+					
+					if(selectedKey === "sched_1"){
+						var viewSched = new sap.ui.view({
+											viewName:"convista.com.arp.demo.view.schedulingOverview",
+											type: sap.ui.core.mvc.ViewType.XML,
+											height:"100%"
+							
+						});
+						newPage.addContent(viewSched);
+						
 					}else{
-						html.setContent("<iframe class='bo_container' src='"+targetLink+"'></iframe>");
+						
+						newPage.addHeaderContent(
+							new sap.m.Button({
+								icon:"sap-icon://refresh",
+			                	press: function (oRefreshButtonEvent) {
+									var currPage = that.getView().byId("navCon").getCurrentPage();
+									var currhtml = currPage.getContent()[0];
+									var iframe = currhtml.getContent();
+									var srcToReload = jQuery(iframe).attr("src");
+						
+									currhtml.setContent("<iframe class='bo_container' src='"+srcToReload+"'></iframe>");
+								}
+							})
+						);
+						html = new sap.ui.core.HTML({
+							id:selectedSection + "_" + selectedKey + "_html"
+						});
+						newPage.addContent(html);
+						if(targetLink === ""){
+							var src = [sRootPath,"view/test.html"].join("/");
+							html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
+						}else{
+							html.setContent("<iframe class='bo_container' src='"+targetLink+"'></iframe>");
+						}
 					}
+					newPage.addStyleClass("myPageOverflow");
+					navContainer.addPage(newPage);
 				}
 				navContainer.to(pageId, "slide");
 			}

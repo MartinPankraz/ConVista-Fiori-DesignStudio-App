@@ -1,0 +1,11 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		confirm="handleTableFilterConfirm">
+		<sortItems>
+			<ViewSettingsItem text="Report" key="SchedObjName" selected="true" />
+			<ViewSettingsItem text="Date" key="SchedDate" />
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

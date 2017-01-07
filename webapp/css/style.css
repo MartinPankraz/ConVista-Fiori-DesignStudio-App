@@ -24,6 +24,9 @@ section[id="__page0-cont"] > div {
 	border-top:0.25rem solid rgb(211, 211, 211)!important;
 }
 
+.ccPanelBG {
+	background-color:#30b9dc;
+}
 
 /* Header Bar Styling */
 .ccMBar {

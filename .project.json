@@ -7,7 +7,7 @@
     "targetFolder": "dist",
     "sourceFolder": "webapp",
     "buildRequired": false,
-    "lastBuildDateTime": "Mon, 02 Jan 2017 14:21:36 GMT"
+    "lastBuildDateTime": "Sat, 07 Jan 2017 09:31:17 GMT"
   },
   "generation": [
     {
@@ -18,7 +18,12 @@
     {
       "templateId": "ui5template.basicSAPUI5ApplicationComponent",
       "templateVersion": "1.4.0",
-      "dateTimeStamp": "Thu, 29 Dec 2016 13:34:47 GMT"
+      "dateTimeStamp": "Thu, 05 Jan 2017 13:47:46 GMT"
+    },
+    {
+      "templateId": "servicecatalog.connectivityComponent",
+      "templateVersion": "0.0.0",
+      "dateTimeStamp": "Thu, 05 Jan 2017 13:45:34 GMT"
     }
   ],
   "translation": {
@@ -43,5 +48,12 @@
   "deploy": {
     "destination": "CBW",
     "name": "ZBOARP"
+  },
+  "mockpreview": {
+    "mockUri": "/sap/opu/odata/sap/ZARP_SCHED_SRV/",
+    "metadataFilePath": "localService/metadata.xml",
+    "loadJSONFiles": false,
+    "loadCustomRequests": false,
+    "mockRequestsFilePath": ""
   }
 }
