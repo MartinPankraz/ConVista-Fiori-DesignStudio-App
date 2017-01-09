@@ -86,7 +86,7 @@
 				</content>
 				<footer>
 					<OverflowToolbar id="footerBar">
-						<Text id="companyText" class="sapUiSmallMarginBeginEnd" text="2016 ConVista Consulting AG"/>
+						<Text id="companyText" class="sapUiSmallMarginBeginEnd" text="2017 ConVista Consulting AG"/>
 						<ToolbarSeparator />
 						<Link id="contactUs" class="sapUiSmallMarginBeginEnd" text="Contact Us" press="onContactUsClicked"/>
 						<ToolbarSeparator />

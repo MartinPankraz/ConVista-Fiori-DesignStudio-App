@@ -5,11 +5,11 @@ body {
 }
 
 section[id="__page0-cont"] {
-	background: #def1f2; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#1cbcb3, #36b8e9); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#1cbcb3, #36b8e9); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#1cbcb3, #36b8e9); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#1cbcb3, #36b8e9); /* Standard syntax */
+	background: #b5cee4; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#b5cee4,#e7ecf0); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#b5cee4,#e7ecf0); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#b5cee4,#e7ecf0); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom,#b5cee4,#e7ecf0); /* Standard syntax */
 }
 
 section[id="__page0-cont"] > div {
@@ -25,7 +25,7 @@ section[id="__page0-cont"] > div {
 }
 
 .ccPanelBG {
-	background-color:#30b9dc;
+	background-color:#b5cee4;
 }
 
 /* Header Bar Styling */
@@ -81,7 +81,7 @@ div[id="__xmlview0--idIconTabBarFiori1--header-head"] > div > .sapMITBText {
 }
 
 div[aria-controls="__xmlview0--idIconTabBarFiori1-content"]:hover > div > span {
-	background-color: #03a0dc!important;
+	background-color: #c8d9e7!important;
 }
 
 div[aria-controls="__xmlview0--idIconTabBarFiori1-content"] > div > span {
@@ -102,15 +102,16 @@ div[aria-controls="__xmlview0--idIconTabBarFiori1-content"] > div > span {
 }
 /* Footer text */
 #__xmlview0--companyText {
-	color:white;
+	color:#cae4fb;
 }
 
 #__xmlview0--contactUs {
-	color:white;
+	color:#cae4fb;
 }
 
 #__xmlview0--contactUs:hover {
 	text-decoration:none!important;
+	color: white;
 }
 
 #__popover0-popover {

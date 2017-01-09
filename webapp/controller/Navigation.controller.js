@@ -60,6 +60,17 @@ sap.ui.define([
 				var time = timeInstance.format(new Date());
 				clock1.setText("Köln " + time);
 			}, 30000);
+			
+/*			var navContainer = this.getView().byId("navCon");
+			navContainer.attachAfterNavigate(function(){
+				var currPage = this.getCurrentPage();
+				var pageId = currPage.getPageId();
+				if(pageId === this.idPrefix + "home_landing"){
+					var navList = this.getView().byId("navigationList");
+					var oFirstItem = navigationList.getItems()[0].getItems()[1];
+					navList.setSelectedItem(oFirstItem);
+				}
+			});*/
 			//source: https://blogs.sap.com/2015/04/16/using-the-hcp-user-api-in-web-ide/
 			// {userapi>/ [name,firstName,lastName,displayName,email]
 			/*var userModel = new sap.ui.model.json.JSONModel("/services/userapi/currentUser");
@@ -179,6 +190,11 @@ sap.ui.define([
 										text:"{text}",
 										icon:"{icon}"
 									});
+			var navContainer = this.getView().byId("navCon");
+			var pageId = this.idPrefix + "home_landing";
+			if(selectedKey === "home"){
+				navContainer.to(pageId, "slide");
+			}
 			/*if(selectedKey === "bi_folder"){
 				window.open("https://sapwebdcbw.sap.convista.local:8444/BOE/BI?startFolder=AdKUWGHO7gRNhWMb5eUrOOE&noDetailsPanel=true&isCat=false");
 			}*/
