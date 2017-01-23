@@ -61,7 +61,7 @@ sap.ui.define([
 				clock1.setText("Köln " + time);
 			}, 30000);
 			
-/*			var navContainer = this.getView().byId("navCon");
+/*			var navContainer = this.getView().byId("myNavCon");
 			navContainer.attachAfterNavigate(function(){
 				var currPage = this.getCurrentPage();
 				var pageId = currPage.getPageId();
@@ -119,7 +119,7 @@ sap.ui.define([
 					}
 				}
 
-				var navContainer = this.getView().byId("navCon");
+				var navContainer = this.getView().byId("myNavCon");
 				var pageId = this.idPrefix + selectedSection + "_" + selectedKey;
 				var page = navContainer.getPage(pageId);
 				var html = null;
@@ -133,7 +133,7 @@ sap.ui.define([
 								showHeader:true,
 								showNavButton:true,
 								navButtonPress: function(oNavButtonEvent){
-									var myNavContainer = that.getView().byId("navCon");
+									var myNavContainer = that.getView().byId("myNavCon");
 									myNavContainer.back();
 								}
 					});
@@ -153,7 +153,7 @@ sap.ui.define([
 							new sap.m.Button({
 								icon:"sap-icon://refresh",
 			                	press: function (oRefreshButtonEvent) {
-									var currPage = that.getView().byId("navCon").getCurrentPage();
+									var currPage = that.getView().byId("myNavCon").getCurrentPage();
 									var currhtml = currPage.getContent()[0];
 									var iframe = currhtml.getContent();
 									var srcToReload = jQuery(iframe).attr("src");
@@ -190,7 +190,7 @@ sap.ui.define([
 										text:"{text}",
 										icon:"{icon}"
 									});
-			var navContainer = this.getView().byId("navCon");
+			var navContainer = this.getView().byId("myNavCon");
 			var pageId = this.idPrefix + "home_landing";
 			if(selectedKey === "home"){
 				navContainer.to(pageId, "slide");

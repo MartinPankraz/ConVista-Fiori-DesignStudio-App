@@ -82,6 +82,26 @@
 					"uri": "css/style.css"
 				}
 			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.ui.core.routing.Router",
+				"targets": {
+					"appHome": {
+						"viewType": "XML",
+						"viewPath": "convista.com.arp.demo.view",
+						"viewName": "Navigation",
+						"controlId": "app",
+						"controlAggregation": "pages",
+						"clearControlAggregation": true
+					}
+				}
+			},
+			"routes": [
+				{
+					"name": "appHome"
+				}
+			]
 		}
 	},
 	"sap.platform.abap": {

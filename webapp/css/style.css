@@ -1,5 +1,9 @@
 /* Enter your custom styles here */
 
+.ccBG{
+	background-image: linear-gradient(to bottom, #b5cee4, #e7ecf0)!important;
+}
+
 body {
 	height: calc(100% - 4px)!important;
 }
