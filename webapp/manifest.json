@@ -85,7 +85,7 @@
 		},
 		"routing": {
 			"config": {
-				"routerClass": "sap.ui.core.routing.Router",
+				"routerClass": "sap.m.routing.Router",
 				"targets": {
 					"appHome": {
 						"viewType": "XML",
@@ -93,7 +93,7 @@
 						"viewName": "Navigation",
 						"controlId": "app",
 						"controlAggregation": "pages",
-						"clearControlAggregation": true
+						"clearControlAggregation": false
 					}
 				}
 			},

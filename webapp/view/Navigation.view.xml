@@ -9,32 +9,13 @@
 				  showNavButton="true"
 				  enableScrolling="false">
 				<content>
-					<Bar 
-						id="idHeaderBar"
-						class="ccMBar"
-						design="SubHeader">
-						<contentLeft>
-							<IconTabBar
-								id="idIconTabBarFiori1"
-								upperCase="true"
-								showOverflowSelectList="true"
-								class="sapUiResponsiveContentPadding"
-								select="handleIconTabBarSelect">
-							</IconTabBar>
-						</contentLeft>
-						<contentRight>
-							<l:VerticalLayout id="layout_vertical_clock" class="sapUiSmallMargin">
-								<core:Icon src="sap-icon://favorite"
-									color="yellow"
-									width="50px"
-									height="50px"
-									class="roundedIcons"
-									press="onUserImagePressed"/>
-								<Text id="username" text="{userapi>/firstName}, {userapi>/lastName}"/>
-								<Text id="clock1" text="Köln 11:11 am"/>
-							</l:VerticalLayout>
-						</contentRight>
-					</Bar>
+					<IconTabBar
+						id="idIconTabBarFiori1"
+						upperCase="true"
+						showOverflowSelectList="true"
+						class="sapUiResponsiveContentPadding"
+						select="handleIconTabBarSelect">
+					</IconTabBar>
 					<l:HorizontalLayout id="layout_horizontal_sideNav" >
 			            <tnt:NavigationList id="navigationList"
 			            					itemSelect="onNavListItemSelect"
@@ -60,7 +41,7 @@
 		                			<Button icon="sap-icon://refresh"
 		                					press="handleHomeHtmlRefresh"/>
 		                		</headerContent>
-		                		<subHeader>
+		                		<!--<subHeader>
 		                			<OverflowToolbar>
 		                				<Text text="Acc Basis:"/>
 		                				<Select
@@ -80,7 +61,7 @@
 		                				<MultiInput id="multiInput4" valueHelpRequest="onSelectionScreenRequest" width="200px"/>
 		                				<Button type="Accept" text="Coming Soon" press="onPress" enabled="false"/>
 		                			</OverflowToolbar>
-		                		</subHeader>
+		                		</subHeader>-->
 							    <core:HTML id="home_landing_html"/>
 							</Page>
 		                </NavContainer>

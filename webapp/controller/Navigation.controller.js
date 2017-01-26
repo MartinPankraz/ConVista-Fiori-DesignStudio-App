@@ -5,11 +5,12 @@ sap.ui.define([
 ], function(Controller, iconBarModel, sideNavigationModel) {
 	"use strict";
 
+	jQuery.sap.require("sap.ui.core.format.DateFormat");
+	jQuery.sap.require("sap.ui.comp.valuehelpdialog.ValueHelpDialog");
+
 	return Controller.extend("convista.com.arp.demo.controller.Navigation", {
 
 		onInit: function () {
-			jQuery.sap.require("sap.ui.core.format.DateFormat");
-			jQuery.sap.require("sap.ui.comp.valuehelpdialog.ValueHelpDialog");
 			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
 			var that = this;
 			this.idPrefix = this.getView().getId()+"--";
@@ -51,33 +52,40 @@ sap.ui.define([
 	        	var src = navigationListModel.getProperty("/home/1/link");
 				html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
 				html.addStyleClass("bo_container");
+				
+				var oStartupParameters = that.getMyComponent().getComponentData().startupParameters;
+				var preSelectedSection = oStartupParameters.preselect[0];
+				if(preSelectedSection){
+					var barItems = iconTabBar.getItems();
+					for(var i=0;i < barItems.length;i++){
+						var targetItem = barItems[i];
+						var key = targetItem.getProperty("key");
+						if(key === preSelectedSection){
+							iconTabBar.setSelectedKey(preSelectedSection);
+							var mArguments = {
+								item: targetItem,
+								key: preSelectedSection,
+								selectedItem: targetItem,
+								selectedKey: preSelectedSection,
+								startupTrigger: true
+							};
+							//trigger select using startup parameter to change view
+							iconTabBar.fireSelect(mArguments);
+							break;
+						}
+					}
+				}
 		    });
 			
-			var timeInstance = sap.ui.core.format.DateFormat.getTimeInstance({style:"short"});
+		/*	var timeInstance = sap.ui.core.format.DateFormat.getTimeInstance({style:"short"});
 			var clock1 = this.getView().byId("clock1");
 			clock1.setText("Köln " + timeInstance.format(new Date()));
 			window.setInterval(function() {
 				var time = timeInstance.format(new Date());
 				clock1.setText("Köln " + time);
-			}, 30000);
+			}, 30000);*/
 			
-/*			var navContainer = this.getView().byId("myNavCon");
-			navContainer.attachAfterNavigate(function(){
-				var currPage = this.getCurrentPage();
-				var pageId = currPage.getPageId();
-				if(pageId === this.idPrefix + "home_landing"){
-					var navList = this.getView().byId("navigationList");
-					var oFirstItem = navigationList.getItems()[0].getItems()[1];
-					navList.setSelectedItem(oFirstItem);
-				}
-			});*/
-			//source: https://blogs.sap.com/2015/04/16/using-the-hcp-user-api-in-web-ide/
-			// {userapi>/ [name,firstName,lastName,displayName,email]
-			/*var userModel = new sap.ui.model.json.JSONModel("/services/userapi/currentUser");
-			var userView = this.getView().byId("username");
-			userView.setModel(userModel, "userapi");*/
-			
-			this.theTokenInput= this.getView().byId("multiInput2");
+/*			this.theTokenInput= this.getView().byId("multiInput2");
 			this.theTokenInput.setEnableMultiLineMode( sap.ui.Device.system.phone); 
 	 
 			this.aKeys= ["CompanyCode", "CompanyName"];
@@ -87,7 +95,7 @@ sap.ui.define([
 			var rangeToken3= new sap.m.Token({key: "e1", text: "ID: !(=foo)"}).data("range", { "exclude": true, "operation": "EQ", "keyField": "CompanyCode", "value1": "foo", "value2": ""});
 			this.aTokens= [rangeToken1, rangeToken2, rangeToken3];
 			
-			this.theTokenInput.setTokens(this.aTokens);
+			this.theTokenInput.setTokens(this.aTokens);*/
 		},
 		
 		onNavListItemSelect: function(oEvent){
@@ -181,8 +189,8 @@ sap.ui.define([
 		},
  
 		handleIconTabBarSelect : function (oEvent) {
-			var source = oEvent.getSource();
-			var selectedKey = source.getSelectedKey();
+			var params = oEvent.getParameters();
+			var selectedKey = params.selectedKey;
 			var navigationList = this.getView().byId("navigationList");
 			//navigationList.bindAggregation("items","/"+selectedKey, navigationListItem);
 			var item = new sap.tnt.NavigationListItem({
@@ -199,26 +207,11 @@ sap.ui.define([
 				window.open("https://sapwebdcbw.sap.convista.local:8444/BOE/BI?startFolder=AdKUWGHO7gRNhWMb5eUrOOE&noDetailsPanel=true&isCat=false");
 			}*/
         	navigationList.bindAggregation("items","/" + selectedKey, item);
-		},
-		
-		onUserImagePressed: function(oEvent){
-			var oImage = oEvent.getSource();
- 
-			// create action sheet only once
-			if (!this._actionSheet) {
-				this._actionSheet = sap.ui.xmlfragment("convista.com.arp.demo.view.ActionSheet",this);
-				this.getView().addDependent(this._actionSheet);
-			}
-			if(this._actionSheet.isOpen()){
-				this._actionSheet.close();
-			}else{
-				this._actionSheet.openBy(oImage);	
-			}
-		},
-		
-		handleActionClose: function(oEvent){
-			/*var oPopOver = oEvent.getSource();*/
-			this._actionSheet.close();
+        	//fire select to open first page for external navigation triggered by Fiori startup parameter
+        	if(params.startupTrigger){
+        		var firstItem = navigationList.getItems()[1];
+        		navigationList.fireItemSelect({item:firstItem});
+        	}
 		},
 		
 		onContactUsClicked: function(oEvent){
@@ -307,7 +300,13 @@ sap.ui.define([
 			}
 			
 			oValueHelpDialog.open();
-		}
+		},
+		
+		getMyComponent: function() {
+		    "use strict";
+		    var sComponentId = sap.ui.core.Component.getOwnerIdFor(this.getView());
+			return sap.ui.component(sComponentId);
+	    }
 	});
 
 });
