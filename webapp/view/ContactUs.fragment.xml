@@ -3,7 +3,7 @@
 	xmlns:core="sap.ui.core">
 	<ResponsivePopover
 		title="Contact Us"
-		class="sapUiPopupWithPadding"
+		class="sapUiPopupWithPadding ccPopover"
 		placement="Top" >
 		<endButton>
 			<Button text="Close" press="handleContactUsCloseButton" />

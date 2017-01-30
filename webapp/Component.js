@@ -26,11 +26,15 @@ sap.ui.define([
 			this.setModel(models.createDeviceModel(), "device");
 			
 			// create the views based on the url/hash
-            this.getRouter().initialize();
+            //this.getRouter().initialize();
             //Retrieve Shell to add custom functions to header bar
             var oRendererExtensions = jQuery.sap.getObject('sap.ushell.renderers.fiori2.RendererExtensions');
+            var oBundle = this.getModel("i18n").getResourceBundle();
+            var title = oBundle.getText("title");
             
-            oRendererExtensions.setHeaderTitle("Accounting Reporting Portal");
+            //running Fiori?
+            if(oRendererExtensions){
+            	oRendererExtensions.setHeaderTitle(title);
             
             that.oFavoriteHeaderItem = new sap.ushell.ui.shell.ShellHeadItem('supportFavorite', {
                 icon: sap.ui.core.IconPool.getIconURI( 'favorite' ),
@@ -41,12 +45,20 @@ sap.ui.define([
 
 			// add button to the right side of the shellbar
             oRendererExtensions.addHeaderEndItem(that.oFavoriteHeaderItem);
+            }
+
 		},
 		
 		exit: function(){
-			//clean up custom icon from bar
+			//running Fiori?
 			var oRendererExtensions = jQuery.sap.getObject('sap.ushell.renderers.fiori2.RendererExtensions');
-			oRendererExtensions.removeHeaderEndItem(that.oFavoriteHeaderItem);
+            if(oRendererExtensions){
+				//clean up custom icon from bar
+				oRendererExtensions.removeHeaderEndItem(that.oFavoriteHeaderItem);
+				that.oFavoriteHeaderItem.destroy();
+				//clean up custom title
+	            oRendererExtensions.setHeaderTitle("");
+            }
 		},
 		
 		onFavoritesHeaderItemPress: function(oEvent){

@@ -86,22 +86,23 @@
 		"routing": {
 			"config": {
 				"routerClass": "sap.m.routing.Router",
-				"targets": {
-					"appHome": {
-						"viewType": "XML",
-						"viewPath": "convista.com.arp.demo.view",
-						"viewName": "Navigation",
-						"controlId": "app",
-						"controlAggregation": "pages",
-						"clearControlAggregation": false
-					}
-				}
+				"viewType": "XML",
+				"viewPath": "convista.com.arp.demo.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"transition": "slide"
 			},
 			"routes": [
 				{
+					"pattern": "",
 					"name": "appHome"
 				}
-			]
+			],
+			"targets": {
+				"appHome": {
+					"viewName": "Navigation"
+				}
+			}
 		}
 	},
 	"sap.platform.abap": {

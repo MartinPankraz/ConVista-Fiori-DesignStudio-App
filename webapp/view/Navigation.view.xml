@@ -16,7 +16,7 @@
 						class="sapUiResponsiveContentPadding"
 						select="handleIconTabBarSelect">
 					</IconTabBar>
-					<l:HorizontalLayout id="layout_horizontal_sideNav" >
+					<l:HorizontalLayout id="layout_horizontal_sideNav" class="ccHorizontalSideNavCon">
 			            <tnt:NavigationList id="navigationList"
 			            					itemSelect="onNavListItemSelect"
 			            					expanded="true">
@@ -69,9 +69,9 @@
 				</content>
 				<footer>
 					<OverflowToolbar id="footerBar">
-						<Text id="companyText" class="sapUiSmallMarginBeginEnd" text="2017 ConVista Consulting AG"/>
+						<Text id="companyText" class="sapUiSmallMarginBeginEnd ccCompanyText" text="2017 ConVista Consulting AG"/>
 						<ToolbarSeparator />
-						<Link id="contactUs" class="sapUiSmallMarginBeginEnd" text="Contact Us" press="onContactUsClicked"/>
+						<Link id="contactUs" class="sapUiSmallMarginBeginEnd ccContactUsText" text="Contact Us" press="onContactUsClicked"/>
 						<ToolbarSeparator />
 						<Image press="onTwitterIconPressed" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAxFJREFUSImllc1LI0kYxp+qDuIEgwmCxo8ZnSyKeHKNA3v04hw8eBNvghgG9bAueva25LCnGQTv+kf0OrkqAw4y4EEQL0tC7I/qTkrpJqNJV9UeXMV8dNT1gb68T9ev3vftt7oI2si27V8IIX8QQn6llCaUUp0AIKW8IYSUhRA/lFKf+/v7/2nHaZJlWSnGWI5zbgZBoMIUBIHinJuMsQPTNEeeBWeM/c45L0gpQ8GNEkIo13Xztm2vP5X5X77vl59NbpDv+yXGWDY089fA7+V5XrmpEsuyUpzzwmvh93Icp2AYxvDj7HMv6fnx8bHa29tTR0dHSimlarWaqlQqD74QQjHGDgDcjSLn3HwMuL29Vdvb26parTbBd3Z2VDqdfniWlpbU2tqaur6+rnuPc24YhjFMCSEbsVgs+bhlrutC13Wsrq6iWCw+xEulEvb39+vae3Z2BtM04bpuXTwWi/VrmrYRIYRMaZpWZyaTSfT29uL09BQLCwuYnZ3FzMwMCCGQUjYNSCaTQSqVqotpmgZK6YcIpTTRuKBcLmNychK5XA61Wg26rkPX9Razd6ehoaEwK0HVf8f/seLxOE5OTkKBjZmOjo629Aghb2grIxKJIJvNIpFoKq5J09PTiEajoT6VUt60MiYmJtDd3f3kBisrK6GeUuonJYSUW5nRaBSbm5vo6+sLBSwuLmJqaqrd/pwKIX4IIVq66XQay8vL6OjoaPLm5uawtbUVShZCQEr5nZim+b6zs/NbPB5/OAv5fB67u7s4PDxEtVqtWzgwMIBMJoP5+fl2mePq6sqsVCq/EQBgjH3t6en5SGn9N7+4uMD5+Tk8z0NXVxfGxsYwPj4OQkhbuJQSjuP8nUwm5wAApmmOuK6bf8H/rK1c180Xi8W3dbvatr3u+37ptXDP80qWZX1qWRpjLOt53v++EzzPK9m2/Wfb/tm2ve44TkEI8Wzw/ZUZmnmjDMMYZowdcM6NZ1z6hmVZ+uXl5btWrLbjYBjGsKZpG5TSDwAShJA3wN0JBcCllN+DIPgyODhYCGP8C+dG/TkIssLqAAAAAElFTkSuQmCC"></Image>
 						<Image press="onFacebookIconPressed" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAotJREFUSIm1lc9LG0EUx78zu6sRXNTspUmwlnortBBBD2LvPflnVPBQe/LsoXgoHvTW/iNVcghtDioiUgqexRQ3O+NuBtyFxmR+9KCGqtk1ten3NDzefN737fD2EWSIMTZNCHlPCClTSieMMTkA0Fq3CCFNpdSRMWazUCicZHHuKQiC55zzihCiIaU0aZJSGiFEg3O+02g0nvUF55y/E0LUtdap4LtSSpkwDE8ZY8sPOf+YJEmzb/IdJUkScc7XU53/C/xGcRw3/+yE3Hzz4eHhr+Pj45NZHdZqNVSrVSRJAmMM1tbW4LruvbwwDH92Op3XxWLx1AYASumnsbGxTHi1WsXq6uqtWLvd7pmbz+cnoyj6DOCNzRibdhznJSEki49KpdI9LywswPM85HK5nrmUUjiO88r3/SmbELLiuu6TTDqAi4uL7nljYwO2bWfmu65baLfbKzYhZMayrNTEVquF/f19CCG6sVqtBkop5ufnMTQ01POeZVmglM6SKIqO8/n8i7QCvu9jcXHxXpwQgt3dXTiOk2ouDMNj21yP/9+IUgrP8zLh1yZG6EOwYrGIw8NDzM3NdWN7e3vY3t7uz4zWutVX5iNkjPlFCSHN/1UAgKBKqSOl1MDJSilorQ+oMWYzjuNg0AXiOG5IKbdooVA46XQ6P7TWA4NrrXF5efm9VCrVbQBQSi0JIb55nvc07VK5XMbo6CiAqxnIkhCiLqVcuhVkjC0nSRIN4HcdBUHwtmdlzvl6HMeP3glxHEeMsQ+Z7THGls/Pz+tKqb7BNysz1fld+b4/xTnfEUL4fSx9PwiCL2dnZz3fL/O1fN+fsixrhVI6C2CCEDICXE0oAKG1PpBSbpVKpXoa4zf+fc0gTY/N6QAAAABJRU5ErkJggg=="></Image>

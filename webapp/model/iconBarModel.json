@@ -2,8 +2,8 @@
 	"NavigationItems": [
 		{
 			"key":"home",
-			"text":"Home",
-			"icon":"sap-icon://home"
+			"text":"Overview",
+			"icon":"sap-icon://overview-chart"
 		},
 		{
 			"key":"dashboard",

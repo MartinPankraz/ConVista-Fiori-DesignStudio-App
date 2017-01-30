@@ -11,11 +11,12 @@ sap.ui.define([
 	return Controller.extend("convista.com.arp.demo.controller.Navigation", {
 
 		onInit: function () {
-			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
 			var that = this;
-			this.idPrefix = this.getView().getId()+"--";
 			
-			var footerBar = this.getView().byId("footerBar");
+			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
+			that.idPrefix = that.getView().getId()+"--";
+			
+			var footerBar = that.getView().byId("footerBar");
 			var oImage = new sap.m.Image();
 			oImage.setSrc([sRootPath,"css/images/cc-logo-white.png"].join("/"));
 			oImage.setAlt("Image not loaded");
@@ -24,7 +25,7 @@ sap.ui.define([
 			oImage.addStyleClass("ccImage");
 			footerBar.addContent(oImage);
 			
-			var iconTabBar = this.getView().byId("idIconTabBarFiori1");
+			var iconTabBar = that.getView().byId("idIconTabBarFiori1");
 			// set the model
 			iconTabBar.setModel(iconBarModel.createIconBarModel());
 			var iconTabFilter = new sap.m.IconTabFilter({
@@ -34,10 +35,10 @@ sap.ui.define([
 									});
 			iconTabBar.bindAggregation("items","/NavigationItems", iconTabFilter);
 			
-			var navigationList = this.getView().byId("navigationList");
+			var navigationList = that.getView().byId("navigationList");
 			var navigationListModel = sideNavigationModel.createSideNavigationModel();
 			navigationList.setModel(navigationListModel);
-			/*navigationList.attachItemSelect(this.onNavListItemSelect);*/
+			/*navigationList.attachItemSelect(that.onNavListItemSelect);*/
 			var navigationListItem = new sap.tnt.NavigationListItem({
 										key:"{key}",
 										text:"{text}",
@@ -52,28 +53,30 @@ sap.ui.define([
 	        	var src = navigationListModel.getProperty("/home/1/link");
 				html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
 				html.addStyleClass("bo_container");
-				
-				var oStartupParameters = that.getMyComponent().getComponentData().startupParameters;
-				var preSelectedSection = oStartupParameters.preselect[0];
-				if(preSelectedSection){
-					var barItems = iconTabBar.getItems();
-					for(var i=0;i < barItems.length;i++){
-						var targetItem = barItems[i];
-						var key = targetItem.getProperty("key");
-						if(key === preSelectedSection){
-							iconTabBar.setSelectedKey(preSelectedSection);
-							var mArguments = {
-								item: targetItem,
-								key: preSelectedSection,
-								selectedItem: targetItem,
-								selectedKey: preSelectedSection,
-								startupTrigger: true
-							};
-							//trigger select using startup parameter to change view
-							iconTabBar.fireSelect(mArguments);
-							break;
+				//using Fioir URL params?
+				if(that.getMyComponent().getComponentData()){
+					var oStartupParameters = that.getMyComponent().getComponentData().startupParameters;
+					var preSelectedSection = oStartupParameters.preselect[0];
+					if(preSelectedSection){
+						var barItems = iconTabBar.getItems();
+						for(var i=0;i < barItems.length;i++){
+							var targetItem = barItems[i];
+							var key = targetItem.getProperty("key");
+							if(key === preSelectedSection){
+								iconTabBar.setSelectedKey(preSelectedSection);
+								var mArguments = {
+									item: targetItem,
+									key: preSelectedSection,
+									selectedItem: targetItem,
+									selectedKey: preSelectedSection,
+									startupTrigger: true
+								};
+								//trigger select using startup parameter to change view
+								iconTabBar.fireSelect(mArguments);
+								break;
+							}
 						}
-					}
+					}	
 				}
 		    });
 			
@@ -209,8 +212,29 @@ sap.ui.define([
         	navigationList.bindAggregation("items","/" + selectedKey, item);
         	//fire select to open first page for external navigation triggered by Fiori startup parameter
         	if(params.startupTrigger){
-        		var firstItem = navigationList.getItems()[1];
-        		navigationList.fireItemSelect({item:firstItem});
+        		var oStartupParameters = this.getMyComponent().getComponentData().startupParameters;
+        		var param = oStartupParameters.report;
+        		if(param){
+	        		var preSelectedReport = oStartupParameters.report[0];
+					var items = navigationList.getItems();
+					var targetItem = null;
+					if(preSelectedReport){
+						for(var i=0;i<items.length;i++){
+							var currentKey = items[i].getKey();
+							if(currentKey === preSelectedReport){
+								targetItem = items[i];
+								break;
+							}
+						}
+						if(!targetItem){
+							jQuery.sap.log.error("No target report found. Check key "+preSelectedReport);
+						}
+					}
+        		}else{
+					targetItem = navigationList.getItems()[1];	
+				}
+				navigationList.setSelectedItem(targetItem);
+        		navigationList.fireItemSelect({item:targetItem});
         	}
 		},
 		

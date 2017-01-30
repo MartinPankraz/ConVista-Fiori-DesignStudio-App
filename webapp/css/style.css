@@ -8,87 +8,48 @@ body {
 	height: calc(100% - 4px)!important;
 }
 
-section[id="__page0-cont"] {
-	background: #b5cee4; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#b5cee4,#e7ecf0); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#b5cee4,#e7ecf0); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#b5cee4,#e7ecf0); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom,#b5cee4,#e7ecf0); /* Standard syntax */
+.ccPanelBG {
+	background-color:#b5cee4;
 }
 
-section[id="__page0-cont"] > div {
-	background:transparent;
+/* Header Bar Styling */
+
+.sapMITBSelected span{
+	border-color:#7d3496;
+	color:#7d3496!important;
 }
 
 .myPageOverflow > section {
 	overflow-y:hidden!important;
 }
 
-#__xmlview0--navCon header::before {
-	border-top:0.25rem solid rgb(211, 211, 211)!important;
-}
-
-.ccPanelBG {
-	background-color:#b5cee4;
-}
-
-/* Header Bar Styling */
-.ccMBar {
-	background-color:transparent!important;
-	height: 7rem!important;
-}
-
-.sapMITBSelected span{
-	border-color:#7d3496;
-	color:#7d3496;
-}
-
-.roundedIcons {
-	border-radius: 50%;
-	border: 1px solid white;
-}
-
-.roundedIcons:hover {
-	border: 1px solid #7d3496;
-}
-
-.ccMBar > div:nth-child(1) {
-	height: 7rem!important;
-}
-.ccMBar > div:nth-child(3) {
-	height: 7rem!important;
-}
-
-#__xmlview0--layout_vertical_clock > div {
-	line-height:1rem;
-}
-
 /***************** CSS for setting the IconTabBar distances and text wrap in the tab bar correctly ************************************/
-#__xmlview0--idIconTabBarFiori1--header {
+
+div[id*="--idIconTabBarFiori1--header"] {
 	box-shadow: none!important;
 }
 
-div[id="__xmlview0--idIconTabBarFiori1--header-head"] > div {
+div[id*="--idIconTabBarFiori1--header-head"] > div {
 	width:6rem;
 	height:5.8rem;
 }
 
-#__xmlview0--idIconTabBarFiori1--header-head > div > div {
-	width:6rem;
+div[id*="--idIconTabBarFiori1--header-head"] > div > div {
+	width:6rem!important;
 }
 
-div[id="__xmlview0--idIconTabBarFiori1--header-head"] > div > .sapMITBText {
+div[id*="--idIconTabBarFiori1--header-head"] > div > .sapMITBText {
 	white-space:normal;
 	overflow:visible;
 	height:1.7rem;
 	color:white;
 }
 
-div[aria-controls="__xmlview0--idIconTabBarFiori1-content"]:hover > div > span {
+div[aria-controls*="--idIconTabBarFiori1-content"]:hover > div > span {
 	background-color: #c8d9e7!important;
 }
 
-div[aria-controls="__xmlview0--idIconTabBarFiori1-content"] > div > span {
+div[aria-controls*="--idIconTabBarFiori1-content"] > div > span {
 	background-color: transparent!important;
 	color:white;
 }
@@ -101,59 +62,38 @@ div[aria-controls="__xmlview0--idIconTabBarFiori1-content"] > div > span {
 	color:#666666;
 }
 
-#__xmlview0--clock1 {
-	color:white;
-}
-/* Footer text */
-#__xmlview0--companyText {
-	color:#cae4fb;
-}
-
-#__xmlview0--contactUs {
-	color:#cae4fb;
-}
-
-#__xmlview0--contactUs:hover {
-	text-decoration:none!important;
-	color: white;
-}
-
-#__popover0-popover {
-	max-width:700px;
-}
-
-#__xmlview0--idIconTabBarFiori1-containerContent {
+div[id*="--idIconTabBarFiori1-containerContent"] {
 	display:none;
 }
 /***************** Setting horizontal sideNav position  ************************************/
 
-div[id="__xmlview0--layout_horizontal_sideNav"]{
+.ccHorizontalSideNavCon{
 /*	margin-left:0!important;*/
 	display: table;
 	width: 100%;
 	height: calc(100% - 112px);
 }
 
-div[id="__xmlview0--layout_vertical_sideNav"]{
+.ccHorizontalSideNavCon{
 	/*margin-top:0!important;
 	margin-left:0!important;*/
-	height:100%;
+	height:calc(100% - 112px);
 }
 
-div[id="__xmlview0--layout_horizontal_sideNav"] > div{
+.ccHorizontalSideNavCon > div{
 	 display: table-cell;
 }
 
-div[id="__xmlview0--layout_horizontal_sideNav"] > div:nth-child(1){
+.ccHorizontalSideNavCon > div:nth-child(1){
 	 width: 2rem;
 	 height:100%;
 }
 
-div[id="__xmlview0--layout_horizontal_sideNav"] > div:nth-child(2){
+.ccHorizontalSideNavCon > div:nth-child(2){
      height:100%;
 }
 
-div[id="__xmlview0--layout_horizontal_sideNav"] > div > ul{
+.ccHorizontalSideNavCon > div > ul{
 	overflow-y:scroll;
 	overflow-x:hidden;
 	height: 100%;
@@ -161,7 +101,7 @@ div[id="__xmlview0--layout_horizontal_sideNav"] > div > ul{
 	background-color:white;
 }
 
-div[id="__xmlview0--layout_horizontal_sideNav"] > div > ul > li > div{
+.ccHorizontalSideNavCon > div > ul > li > div{
 	margin-right: 10px;
 }
 
@@ -169,7 +109,7 @@ div[id="__xmlview0--layout_horizontal_sideNav"] > div > ul > li > div{
 
 .bo_container {
 	width:calc(100% - 3.2px);
-	height:calc(100%);
+	height: 100%;
 	border-color:transparent;
 }
 
@@ -177,4 +117,21 @@ div[id="__xmlview0--layout_horizontal_sideNav"] > div > ul > li > div{
 .ccImage{
 	margin-bottom: 4px;
 	margin-right: 10px!important;
+}
+/* Footer text */
+.ccCompanyText {
+	color:#cae4fb;
+}
+
+.ccContactUsText {
+	color:#cae4fb;
+}
+
+.ccContactUsText:hover {
+	text-decoration:none!important;
+	color: white;
+}
+
+.ccPopover {
+	max-width:700px;
 }
