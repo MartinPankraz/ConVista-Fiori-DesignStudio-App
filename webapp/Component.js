@@ -36,15 +36,15 @@ sap.ui.define([
             if(oRendererExtensions){
             	oRendererExtensions.setHeaderTitle(title);
             
-            that.oFavoriteHeaderItem = new sap.ushell.ui.shell.ShellHeadItem('supportFavorite', {
-                icon: sap.ui.core.IconPool.getIconURI( 'favorite' ),
-                tooltip:'My Favorites',
-                showSeparator: true,
-                press: that.onFavoritesHeaderItemPress
-            });
-
-			// add button to the right side of the shellbar
-            oRendererExtensions.addHeaderEndItem(that.oFavoriteHeaderItem);
+	            that.oFavoriteHeaderItem = new sap.ushell.ui.shell.ShellHeadItem('supportFavorite', {
+	                icon: sap.ui.core.IconPool.getIconURI( 'favorite' ),
+	                tooltip:'My Favorites',
+	                showSeparator: true,
+	                press: that.onFavoritesHeaderItemPress
+	            });
+	
+				// add button to the right side of the shellbar
+	            oRendererExtensions.addHeaderEndItem(that.oFavoriteHeaderItem);
             }
 
 		},

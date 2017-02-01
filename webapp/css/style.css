@@ -19,65 +19,128 @@ body {
 	color:#7d3496!important;
 }
 
+.sapMText{
+	color:#666666;
+}
+/***************** Setting tab strip Container  ************************************/
+
+.ccTabContainer {
+	height:100%;
+	background-color:#eff4f9;
+}
+
+/*.ccTabContainer div[class="sapMTabStripItem"]{
+	background-color: #e6ebf0!important;	
+}*/
+
+.ccTabContainer > div{
+	background-color: transparent;
+}
+
+.ccTabContainer > div[class="sapMTabStrip"]{
+	height: 2.5rem!important;	
+}
+
+.ccTabContainer > div[class="sapMTabContainerContent"] {
+	height:calc(100% - 41px);
+}
+
+.sapMTabContainerInnerContent {
+	top:0!important;
+	height:100%;
+}
+
+.ccTabContainer button span{
+    line-height: 1rem!important;
+    color:#346187!important;
+}
+
+.sapMTabStrip .sapMTSTabsContainer .sapMTSTabs .sapMTabStripItem .sapMTabStripItemLabel{
+    line-height: 2rem!important;
+    color:#346187!important;
+}
+
+.ccTabContainer div[class="sapMTabContainerContent"]{
+	display:none;
+}
+
+/***************** Setting NavContainer  ************************************/
+.ccVerticalNavCon{
+	width: 100%;
+	height: 100%;
+}
+
+.ccVerticalNavCon > div:nth-child(2){
+	display:inline;
+}
+
+.ccNavCon {
+	height: calc(100% - 41px);
+}
+
 .myPageOverflow > section {
 	overflow-y:hidden!important;
 }
 
-/***************** CSS for setting the IconTabBar distances and text wrap in the tab bar correctly ************************************/
-
-div[id*="--idIconTabBarFiori1--header"] {
-	box-shadow: none!important;
-}
-
-div[id*="--idIconTabBarFiori1--header-head"] > div {
-	width:6rem;
-	height:5.8rem;
-}
-
-div[id*="--idIconTabBarFiori1--header-head"] > div > div {
-	width:6rem!important;
-}
-
-div[id*="--idIconTabBarFiori1--header-head"] > div > .sapMITBText {
-	white-space:normal;
-	overflow:visible;
-	height:1.7rem;
-	color:white;
-}
-
-div[aria-controls*="--idIconTabBarFiori1-content"]:hover > div > span {
-	background-color: #c8d9e7!important;
-}
-
-div[aria-controls*="--idIconTabBarFiori1-content"] > div > span {
-	background-color: transparent!important;
-	color:white;
-}
-
-.sapMITBFilterIcon {
-	border:1px solid white;
-}
-
-.sapMText{
-	color:#666666;
-}
-
-div[id*="--idIconTabBarFiori1-containerContent"] {
-	display:none;
-}
 /***************** Setting horizontal sideNav position  ************************************/
 
-.ccHorizontalSideNavCon{
-/*	margin-left:0!important;*/
-	display: table;
-	width: 100%;
-	height: calc(100% - 112px);
+.ccTntSideNav{
+	background: #3f5161;
+    border-right: 1px solid #536b80;
+}
+
+.ccTntSideNav div{
+	background-color: #3f5161;
+	border-bottom: 1px solid #4d6377;
+}
+
+div[class="sapMPopoverScroll"] li[class*="sapTntNavLIItemSelected"] {
+	background-color: #e6f2f9!important;
+    border-bottom: 1px solid #e5e5e5!important;
+}
+
+div[class="sapMPopoverScroll"] li[class*="sapTntNavLIItemSelected"] > div {
+	background-color: #e6f2f9!important;
+    border-bottom: 1px solid #e5e5e5!important;
+}
+
+li[class="sapTntNavLIItemSelected"] > div {
+	background-color: #496b8a!important;
+	border-bottom: 1px solid #4d6377!important;
+}
+
+.ccTntSideNav div:hover{
+	background-color: #45596a!important;
+	border-bottom: 1px solid #4d6377!important;
+}
+
+.ccTntSideNav span[class*="sapMText"]{
+	color: white!important;
+}
+
+.ccTntSideNav span[class*="sapUiIcon"]{
+	color: #cae4fb!important;
+}
+
+.ccTntSideNav li > ul > li{
+    background-color: #394958;
+    border:none;
+}
+
+.ccTntSideNav li > ul > li:hover{
+	background-color: #45596a!important;
+	border:none!important;
+}
+
+li[class*="sapTntNavLIItemSelected"]{
+	background-color: #496b8a!important;
+	border-bottom: 1px solid #4d6377!important;
 }
 
 .ccHorizontalSideNavCon{
-	/*margin-top:0!important;
-	margin-left:0!important;*/
-	height:calc(100% - 112px);
+	display: table;
+	width: 100%;
+	height: 100%;
 }
 
 .ccHorizontalSideNavCon > div{
@@ -85,32 +148,32 @@ div[id*="--idIconTabBarFiori1-containerContent"] {
 }
 
 .ccHorizontalSideNavCon > div:nth-child(1){
-	 width: 2rem;
+	 width: 3rem;
 	 height:100%;
 }
 
 .ccHorizontalSideNavCon > div:nth-child(2){
      height:100%;
+     display: block;
 }
 
 .ccHorizontalSideNavCon > div > ul{
-	overflow-y:scroll;
+	overflow-y:auto;
 	overflow-x:hidden;
 	height: 100%;
-	min-width:3rem!important;
-	background-color:white;
 }
 
-.ccHorizontalSideNavCon > div > ul > li > div{
+.ccHorizontalSideNavCon > div > ul > li > ul > li > span{
 	margin-right: 10px;
 }
 
 /***************** Setting bo container iframe width and height  ************************************/
 
 .bo_container {
-	width:calc(100% - 3.2px);
+	width: 100%;
 	height: 100%;
 	border-color:transparent;
+	border:none;
 }
 
 /**************** Footer ***************************************************************/

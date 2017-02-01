@@ -1,6 +1,6 @@
 sap.ui.define([
 	"sap/ui/model/json/JSONModel"
-], function(JSONModel, Device) {
+], function(JSONModel) {
 	"use strict";
 
 	return {
@@ -8,8 +8,8 @@ sap.ui.define([
 		createSideNavigationModel: function() {
 			
 			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
-			
-			var oModel = new JSONModel([sRootPath,"model/sideNavigationModel.json"].join("/"));
+
+			var oModel = new JSONModel([sRootPath,'model/sideNavigationModel.json'].join("/"));
 			oModel.setDefaultBindingMode("OneWay");
 			return oModel;
 		}

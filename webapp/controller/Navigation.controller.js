@@ -1,8 +1,7 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"convista/com/arp/demo/model/iconBarModel",
 	"convista/com/arp/demo/model/sideNavigationModel"
-], function(Controller, iconBarModel, sideNavigationModel) {
+], function(Controller, sideNavigationModel) {
 	"use strict";
 
 	jQuery.sap.require("sap.ui.core.format.DateFormat");
@@ -25,68 +24,41 @@ sap.ui.define([
 			oImage.addStyleClass("ccImage");
 			footerBar.addContent(oImage);
 			
-			var iconTabBar = that.getView().byId("idIconTabBarFiori1");
-			// set the model
-			iconTabBar.setModel(iconBarModel.createIconBarModel());
-			var iconTabFilter = new sap.m.IconTabFilter({
-										key:"{key}",
-										text:"{text}",
-										icon:"{icon}"
-									});
-			iconTabBar.bindAggregation("items","/NavigationItems", iconTabFilter);
-			
 			var navigationList = that.getView().byId("navigationList");
-			var navigationListModel = sideNavigationModel.createSideNavigationModel();
+			var navigationListModel = sideNavigationModel.createSideNavigationModel();//sideNavigationModel.createSideNavigationModel();
 			navigationList.setModel(navigationListModel);
-			/*navigationList.attachItemSelect(that.onNavListItemSelect);*/
-			var navigationListItem = new sap.tnt.NavigationListItem({
-										key:"{key}",
-										text:"{text}",
-										icon:"{icon}",
-										tooltip:"{tooltip}"
-									});
-			navigationList.bindAggregation("items","/home", navigationListItem);
+			navigationList.bindAggregation("items","/NavigationItems", this.navigationListItemFactory.bind(this));
 			//wait for model to complete json load
 			navigationListModel.attachRequestCompleted(function() {
-    			var html = that.getView().byId("home_landing_html");
+    			var html = that.getView().byId("firstItem_page_html");
 	        	//choose first link to be loaded as home page
-	        	var src = navigationListModel.getProperty("/home/1/link");
+	        	var src = navigationListModel.getProperty("/NavigationItems/1/subitems/0/link");
 				html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
 				html.addStyleClass("bo_container");
 				//using Fioir URL params?
 				if(that.getMyComponent().getComponentData()){
 					var oStartupParameters = that.getMyComponent().getComponentData().startupParameters;
-					var preSelectedSection = oStartupParameters.preselect[0];
-					if(preSelectedSection){
-						var barItems = iconTabBar.getItems();
-						for(var i=0;i < barItems.length;i++){
-							var targetItem = barItems[i];
-							var key = targetItem.getProperty("key");
-							if(key === preSelectedSection){
-								iconTabBar.setSelectedKey(preSelectedSection);
-								var mArguments = {
-									item: targetItem,
-									key: preSelectedSection,
-									selectedItem: targetItem,
-									selectedKey: preSelectedSection,
-									startupTrigger: true
-								};
-								//trigger select using startup parameter to change view
-								iconTabBar.fireSelect(mArguments);
-								break;
+					if(oStartupParameters.report){
+						var preSelectedSection = oStartupParameters.report[0];
+						var listItems = navigationList.getItems();
+						for(var i=0;i < listItems.length;i++){
+							var currentItem = listItems[i].getItems();
+							for(var j=0;j < currentItem.length;j++){
+								var targetItem = currentItem[j];
+								var key = targetItem.getProperty("key");
+								if(key === preSelectedSection){
+									targetItem.getParent().setExpanded(true);
+									navigationList.setSelectedItem(targetItem);
+									//trigger select using startup parameter to change view
+									navigationList.fireItemSelect({item:targetItem});
+									break;
+								}	
 							}
+							
 						}
 					}	
 				}
 		    });
-			
-		/*	var timeInstance = sap.ui.core.format.DateFormat.getTimeInstance({style:"short"});
-			var clock1 = this.getView().byId("clock1");
-			clock1.setText("Köln " + timeInstance.format(new Date()));
-			window.setInterval(function() {
-				var time = timeInstance.format(new Date());
-				clock1.setText("Köln " + time);
-			}, 30000);*/
 			
 /*			this.theTokenInput= this.getView().byId("multiInput2");
 			this.theTokenInput.setEnableMultiLineMode( sap.ui.Device.system.phone); 
@@ -101,48 +73,104 @@ sap.ui.define([
 			this.theTokenInput.setTokens(this.aTokens);*/
 		},
 		
+		navigationListItemFactory: function(sId,oContext) {
+			var myPath = oContext.getPath();
+			var myModel = oContext.getModel();
+			var property = myModel.getProperty(myPath);
+			var subItems = property.subitems;
+			
+			var navigationListItem = new sap.tnt.NavigationListItem({
+							key:"{key}",
+							text:"{text}",
+							icon:"{icon}",
+							tooltip:"{tooltip}",
+							expanded: false
+						});
+			if(subItems){
+				for(var i=0;i<subItems.length;i++){
+					var currItem = subItems[i];
+					var subItem = new sap.tnt.NavigationListItem({
+							key:currItem.key,
+							text:currItem.text,
+							icon:currItem.icon,
+							tooltip:currItem.tooltip,
+							expanded: false
+						});
+					navigationListItem.addItem(subItem);
+				}
+			}			
+		
+			return navigationListItem;
+		},
+		
 		onNavListItemSelect: function(oEvent){
-			var that = this;
 			var source = oEvent.getSource();
-			var expanded =source.getExpanded();
+			var expanded = source.getExpanded();
 			var item = oEvent.getParameters().item;
+			var itemExpanded = item.getExpanded();
 			var selectedKey = item.getKey();
 			var selectedItemText = item.getText();
+			var myPath = item.getBindingContext().getPath();
+			var hasParent = item.getParent().getBindingContext();
 			
 			if(selectedKey === "collapse"){
 				var sideNavigation = this.getView().byId("navigationList");
 				sideNavigation.setExpanded(!expanded);
 			}
-			else{
-				//ToDo Use OData to retrieve BO OpenDocument links to fill IFrame
-				var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
-				var iconTabBar = this.getView().byId("idIconTabBarFiori1");
-				var selectedSection = iconTabBar.getSelectedKey();
-				var sourceModel = source.getModel().getData();
-				var workingSet = sourceModel[selectedSection];
+			
+			if(hasParent){
+				var tabContainer = this.getView().byId("myTabCon");
+				var tabContainerItem = new sap.m.TabContainerItem({
+					key: selectedKey + "_tabItem",
+					name: selectedItemText
+				});
+				//workaround to remember path for loosely coupled navigation with NavContainer in hidden text
+				tabContainerItem.addContent(new sap.m.Text({text:myPath}));
+				tabContainer.addItem(tabContainerItem);
+				//select new tab right away
+				tabContainer.setSelectedItem(tabContainerItem);
+			}else{
+				item.setExpanded(!itemExpanded);
+			}
+		},
+		
+		tabItemSelectHandler: function(oEvent){
+			var that = this;
+			var item = oEvent.getParameters().item;
+			var selectedTabKey = item.getKey();
+			var selectedTabText = item.getName();
+			var navigationList = this.getView().byId("navigationList");
+			var navlistModel = navigationList.getModel();
+			var myPath = item.getContent()[0].getText();
+
+			var data = navlistModel.getProperty(myPath);
+			if(data){
+				var selectedKey = selectedTabKey.split("_tabItem")[0];
 				var targetLink = "";
-				for(var i=0;i < workingSet.length; i++){
-					var currentItem = workingSet[i];
-					if(currentItem.key === selectedKey){
-						targetLink = currentItem.link;
-						//quit loop since we found the object
+				for(var i=0;i<data.subitems.length;i++){
+					var currItem = data.subitems[i];
+					if(currItem.key === selectedKey){
+						targetLink = currItem.link;
 						break;
 					}
 				}
-
-				var navContainer = this.getView().byId("myNavCon");
-				var pageId = this.idPrefix + selectedSection + "_" + selectedKey;
+				var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
+				//make sure to identify tabs by their unique IDs, keys are the same for the same reports to match
+				//the navigationlist model and their corresponding iframe links
+				var selectedTabId = item.getId();
+				
+				var navContainer = that.getView().byId("myNavCon");
+				var pageId = selectedTabId + "_page";
 				var page = navContainer.getPage(pageId);
 				var html = null;
 				if(page){
 					html = page.getContent()[0];
 				}else{
-					
 					var newPage = new sap.m.Page({
-								id:pageId,
-								title:selectedItemText,
-								showHeader:true,
-								showNavButton:true,
+								id: pageId,
+								title: selectedTabText,
+								showHeader: false,
+								showNavButton: true,
 								navButtonPress: function(oNavButtonEvent){
 									var myNavContainer = that.getView().byId("myNavCon");
 									myNavContainer.back();
@@ -157,24 +185,10 @@ sap.ui.define([
 							
 						});
 						newPage.addContent(viewSched);
-						
+					
 					}else{
-						
-						newPage.addHeaderContent(
-							new sap.m.Button({
-								icon:"sap-icon://refresh",
-			                	press: function (oRefreshButtonEvent) {
-									var currPage = that.getView().byId("myNavCon").getCurrentPage();
-									var currhtml = currPage.getContent()[0];
-									var iframe = currhtml.getContent();
-									var srcToReload = jQuery(iframe).attr("src");
-						
-									currhtml.setContent("<iframe class='bo_container' src='"+srcToReload+"'></iframe>");
-								}
-							})
-						);
 						html = new sap.ui.core.HTML({
-							id:selectedSection + "_" + selectedKey + "_html"
+							id: pageId + "_html"
 						});
 						newPage.addContent(html);
 						if(targetLink === ""){
@@ -187,55 +201,21 @@ sap.ui.define([
 					newPage.addStyleClass("myPageOverflow");
 					navContainer.addPage(newPage);
 				}
-				navContainer.to(pageId, "slide");
+				navContainer.to(pageId, "show");
 			}
 		},
- 
-		handleIconTabBarSelect : function (oEvent) {
-			var params = oEvent.getParameters();
-			var selectedKey = params.selectedKey;
-			var navigationList = this.getView().byId("navigationList");
-			//navigationList.bindAggregation("items","/"+selectedKey, navigationListItem);
-			var item = new sap.tnt.NavigationListItem({
-										key:"{key}",
-										text:"{text}",
-										icon:"{icon}"
-									});
-			var navContainer = this.getView().byId("myNavCon");
-			var pageId = this.idPrefix + "home_landing";
-			if(selectedKey === "home"){
-				navContainer.to(pageId, "slide");
+		
+		tabItemCloseHandler: function(oEvent){
+			var that = this;
+			var item = oEvent.getParameters().item;
+			var selectedTabId = item.getId();
+			
+			var navContainer = that.getView().byId("myNavCon");
+			var pageId = selectedTabId + "_page";
+			var pageToBeRemoved = navContainer.getPage(pageId);
+			if(pageToBeRemoved){
+				navContainer.removePage();
 			}
-			/*if(selectedKey === "bi_folder"){
-				window.open("https://sapwebdcbw.sap.convista.local:8444/BOE/BI?startFolder=AdKUWGHO7gRNhWMb5eUrOOE&noDetailsPanel=true&isCat=false");
-			}*/
-        	navigationList.bindAggregation("items","/" + selectedKey, item);
-        	//fire select to open first page for external navigation triggered by Fiori startup parameter
-        	if(params.startupTrigger){
-        		var oStartupParameters = this.getMyComponent().getComponentData().startupParameters;
-        		var param = oStartupParameters.report;
-        		if(param){
-	        		var preSelectedReport = oStartupParameters.report[0];
-					var items = navigationList.getItems();
-					var targetItem = null;
-					if(preSelectedReport){
-						for(var i=0;i<items.length;i++){
-							var currentKey = items[i].getKey();
-							if(currentKey === preSelectedReport){
-								targetItem = items[i];
-								break;
-							}
-						}
-						if(!targetItem){
-							jQuery.sap.log.error("No target report found. Check key "+preSelectedReport);
-						}
-					}
-        		}else{
-					targetItem = navigationList.getItems()[1];	
-				}
-				navigationList.setSelectedItem(targetItem);
-        		navigationList.fireItemSelect({item:targetItem});
-        	}
 		},
 		
 		onContactUsClicked: function(oEvent){
@@ -330,6 +310,10 @@ sap.ui.define([
 		    "use strict";
 		    var sComponentId = sap.ui.core.Component.getOwnerIdFor(this.getView());
 			return sap.ui.component(sComponentId);
+	    },
+	    
+	    exit: function(){
+
 	    }
 	});
 

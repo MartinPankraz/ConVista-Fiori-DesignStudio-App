@@ -1,5 +1,5 @@
 <mvc:View controllerName="convista.com.arp.demo.controller.Navigation" xmlns:html="http://www.w3.org/1999/xhtml"  xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
-	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" height="100%" class="sapUiSizeCompact">
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" height="100%">
 	<App id="app" class="ccBG"><!-- id="app" left out intentionally for bug tracking purpose-->
 		<pages>
 			<Page 
@@ -9,62 +9,42 @@
 				  showNavButton="true"
 				  enableScrolling="false">
 				<content>
-					<IconTabBar
-						id="idIconTabBarFiori1"
-						upperCase="true"
-						showOverflowSelectList="true"
-						class="sapUiResponsiveContentPadding"
-						select="handleIconTabBarSelect">
-					</IconTabBar>
 					<l:HorizontalLayout id="layout_horizontal_sideNav" class="ccHorizontalSideNavCon">
 			            <tnt:NavigationList id="navigationList"
 			            					itemSelect="onNavListItemSelect"
-			            					expanded="true">
-			                <tnt:NavigationListItem
-			                        key="{key}"
-			                        text="{text}"
-			                        icon="{icon}">
-			                </tnt:NavigationListItem>
+			            					expanded="false"
+			            					class="ccTntSideNav">
 		                </tnt:NavigationList>
-		                <NavContainer
-							id="myNavCon"
-							width="100%"
-							height="100%">
-		                	<Page
-								id="home_landing"
-								title="Home Page"
-								showHeader="true"
-								showSubHeader="true"
-								class="myPageOverflow"
-								showNavButton="false">
-		                		<headerContent>
-		                			<Button icon="sap-icon://refresh"
-		                					press="handleHomeHtmlRefresh"/>
-		                		</headerContent>
-		                		<!--<subHeader>
-		                			<OverflowToolbar>
-		                				<Text text="Acc Basis:"/>
-		                				<Select
-											forceSelection="true"
-											selectedKey="gaap"
-											width="150px">
-											<core:Item key="gaap" text="US GAAP" />
-										</Select>
-		                				<Text text="Company:"/>
-		                				<MultiInput id="multiInput2" valueHelpRequest="onSelectionScreenRequest" width="200px"/>
-		                				<Text text="Position Date:"/>
-		                				<DateRangeSelection id="drs" change="handleDateChange" width="150px"/>
-		                				<RadioButton groupName="GroupA" text="daily" selected="true" />
-										<RadioButton groupName="GroupA" text="periodic" />
-										<ToolbarSeparator />
-		                				<Text text="Security Account:"/>
-		                				<MultiInput id="multiInput4" valueHelpRequest="onSelectionScreenRequest" width="200px"/>
-		                				<Button type="Accept" text="Coming Soon" press="onPress" enabled="false"/>
-		                			</OverflowToolbar>
-		                		</subHeader>-->
-							    <core:HTML id="home_landing_html"/>
-							</Page>
-		                </NavContainer>
+		                <l:VerticalLayout id="layout_vartical_Nav" class="ccVerticalNavCon">
+			                <TabContainer
+								id="myTabCon"
+								width="100%"
+								showAddNewButton="false"
+								itemClose="tabItemCloseHandler"
+								itemSelect="tabItemSelectHandler"
+								class="ccTabContainer">
+			                	<items>
+			                		<TabContainerItem id="firstItem" name="ARP Home" key="landing_tabItem">
+			                			<content><Text text="/NavigationItems/1"/></content>
+			                		</TabContainerItem>
+			                	</items>
+			                </TabContainer>
+			                <NavContainer
+								id="myNavCon"
+								width="100%"
+								height="100%"
+								class="ccNavCon">
+			                	<Page
+									id="firstItem_page"
+									title="Home Page"
+									showHeader="false"
+									showSubHeader="false"
+									class="myPageOverflow"
+									showNavButton="false">
+			                		<core:HTML id="firstItem_page_html" height="100%"/>
+								</Page>
+			                </NavContainer>
+		                </l:VerticalLayout>
 					</l:HorizontalLayout>
 				</content>
 				<footer>
