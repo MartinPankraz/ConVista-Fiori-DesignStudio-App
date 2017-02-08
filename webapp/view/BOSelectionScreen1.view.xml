@@ -1,0 +1,84 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	controllerName="convista.com.arp.demo.controller.BOSelectionScreen1">
+	<VBox class="sapUiSmallMargin">
+		<f:SimpleForm
+			id="myForm"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			ariaLabelledBy="SelectionScreen1">
+			<f:toolbar>
+				<Toolbar>
+					<Title text="Runtime Options" level="H4" titleStyle="H4"/>
+				</Toolbar>
+			</f:toolbar>
+			<f:content>
+				<Label text="{i18n>valuationAreaText}"/>
+					<Select
+						id="valuationArea"
+						forceSelection="true"
+						selectedKey="001"
+						required="true"
+						width="400px">
+						<items>
+							<core:Item key="001" text="US GAAP" />
+							<core:Item key="002" text="US STAT" />
+						</items>
+					</Select>
+				<Label text="{i18n>companyCodeText}"/>
+					<MultiComboBox
+						id="companyCode"
+						required="false"
+						width="400px">
+						<items>
+							<core:Item key="001" text="Dummy" />
+						</items>
+					</MultiComboBox>
+				<Label text="{i18n>dateText}"/>
+					<DatePicker
+						id="datePicker1"
+						placeholder="Enter Date ..."
+						displayFormat="d MMM y"
+						valueFormat="yyyyMMdd"
+						required="true"
+						width="400px">
+						<layoutData>
+							<l:GridData span="L3 M4 S4" />
+						</layoutData>
+					</DatePicker>
+					<!--<DatePicker
+						placeholder="Enter Date ..."
+						displayFormat="long"/>-->
+						<RadioButtonGroup id="rbg1" columns="2" width="300px">
+							<buttons>
+								<RadioButton text="{i18n>dateOption1}" selected="true" />
+								<RadioButton text="{i18n>dateOption2}" />
+							</buttons>
+						</RadioButtonGroup>
+				<Label text="{i18n>securityAccountText}"/>
+					<MultiComboBox
+						id="securityAccount"
+						required="false"
+						width="400px">
+						<items>
+							<core:Item text="Test1" key="001"/>
+							<core:Item text="Test2" key="002"/>
+							<core:Item text="Test3" key="003"/>
+						</items>
+					</MultiComboBox>
+				<Label text=""/>
+					<Button
+						id="executeButton"
+						text="{i18n>buttonExecute}"
+						press="onSelectionScreenExecutePress"
+						ariaDescribedBy="defaultButtonDescription genericButtonDescription"
+						width="400px"/>
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+</mvc:View>

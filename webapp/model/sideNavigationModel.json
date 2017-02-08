@@ -6,31 +6,6 @@
 			"icon":"sap-icon://expand"
 		},
 		{
-			"key":"home",
-			"text":"Overview",
-			"icon":"sap-icon://overview-chart",
-			"subitems":[
-				{
-					"key":"landing",
-					"text":"ARP Home",
-					"icon":"sap-icon://home",
-					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AShpWcml_ydMhyDYk.wCuHg&noDetailsPanel=true"
-				},
-				{
-					"key":"layout",
-					"text":"Layouts",
-					"icon":"sap-icon://business-by-design",
-					"link":""
-				},
-				{
-					"key":"favorite",
-					"text":"Favorites",
-					"icon":"sap-icon://favorite",
-					"link":""
-				}
-			]
-		},
-		{
 			"key":"dashboard",
 			"text":"Dashboards",
 			"icon":"sap-icon://area-chart",
@@ -39,7 +14,7 @@
 					"key":"lib",
 					"text":"Dashboard Library",
 					"icon":"sap-icon://business-by-design",
-					"link":""
+					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AaaRsIWAb8JIj2Vd2OmT0mM&noDetailsPanel=true"
 				}
 			]
 		},
@@ -52,7 +27,8 @@
 					"key":"acc_1",
 					"text":"Portfolio Holdings",
 					"icon":"sap-icon://insurance-life",
-					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AUaeLfIV.SdLmRhRBMwvjfo&noDetailsPanel=true"
+					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AUaeLfIV.SdLmRhRBMwvjfo&noDetailsPanel=true",
+					"selectionscreen":"BOSelectionScreen1"
 				},
 				{
 					"key":"acc_2",
@@ -165,25 +141,6 @@
 					"text":"Scheduling History",
 					"icon":"sap-icon://calendar",
 					"link":""
-				}
-			]
-		},
-		{
-			"key":"bi_folder",
-			"text":"BI Folder",
-			"icon":"sap-icon://open-folder",
-			"subitems":[
-				{
-					"key":"bi1",
-					"text":"DesignStudio Dashboards",
-					"icon":"sap-icon://folder",
-					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/BI?startFolder=AdKUWGHO7gRNhWMb5eUrOOE&noDetailsPanel=true&isCat=false"
-				},
-				{
-					"key":"bi2",
-					"text":"WebI Reports",
-					"icon":"sap-icon://folder",
-					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/BI?startFolder=AeN4lEu0h_tAtnPEjFYxwi8&noDetailsPanel=true&isCat=false"
 				}
 			]
 		}]

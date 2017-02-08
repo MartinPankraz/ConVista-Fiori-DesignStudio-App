@@ -4,9 +4,6 @@ sap.ui.define([
 ], function(Controller, sideNavigationModel) {
 	"use strict";
 
-	jQuery.sap.require("sap.ui.core.format.DateFormat");
-	jQuery.sap.require("sap.ui.comp.valuehelpdialog.ValueHelpDialog");
-
 	return Controller.extend("convista.com.arp.demo.controller.Navigation", {
 
 		onInit: function () {
@@ -14,6 +11,15 @@ sap.ui.define([
 			
 			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
 			that.idPrefix = that.getView().getId()+"--";
+			
+			var params= {
+				"mainViewId": that.getView().getId(),
+				"selectedTab":"",
+				"selectedListItem":"",
+				"targetLink":""
+			};
+			var globalModel = new sap.ui.model.json.JSONModel(params);
+			sap.ui.getCore().setModel(globalModel, "globalParameters");
 			
 			var footerBar = that.getView().byId("footerBar");
 			var oImage = new sap.m.Image();
@@ -59,18 +65,6 @@ sap.ui.define([
 					}	
 				}
 		    });
-			
-/*			this.theTokenInput= this.getView().byId("multiInput2");
-			this.theTokenInput.setEnableMultiLineMode( sap.ui.Device.system.phone); 
-	 
-			this.aKeys= ["CompanyCode", "CompanyName"];
-	 
-			var rangeToken1= new sap.m.Token({key: "i1", text: "ID: a..z"}).data("range", { "exclude": false, "operation": "BT", "keyField": "CompanyCode", "value1": "a", "value2": "z"});
-			var rangeToken2= new sap.m.Token({key: "i2", text: "ID: =foo"}).data("range", { "exclude": false, "operation": "EQ", "keyField": "CompanyCode", "value1": "foo", "value2": ""});
-			var rangeToken3= new sap.m.Token({key: "e1", text: "ID: !(=foo)"}).data("range", { "exclude": true, "operation": "EQ", "keyField": "CompanyCode", "value1": "foo", "value2": ""});
-			this.aTokens= [rangeToken1, rangeToken2, rangeToken3];
-			
-			this.theTokenInput.setTokens(this.aTokens);*/
 		},
 		
 		navigationListItemFactory: function(sId,oContext) {
@@ -147,10 +141,14 @@ sap.ui.define([
 			if(data){
 				var selectedKey = selectedTabKey.split("_tabItem")[0];
 				var targetLink = "";
+				var selectionScreen = "";
+				var listItem = "";
 				for(var i=0;i<data.subitems.length;i++){
 					var currItem = data.subitems[i];
 					if(currItem.key === selectedKey){
 						targetLink = currItem.link;
+						selectionScreen = currItem.selectionscreen;
+						listItem = selectedKey;
 						break;
 					}
 				}
@@ -187,21 +185,38 @@ sap.ui.define([
 						newPage.addContent(viewSched);
 					
 					}else{
-						html = new sap.ui.core.HTML({
-							id: pageId + "_html"
-						});
-						newPage.addContent(html);
-						if(targetLink === ""){
-							var src = [sRootPath,"view/test.html"].join("/");
-							html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
-						}else{
-							html.setContent("<iframe class='bo_container' src='"+targetLink+"'></iframe>");
+						if(selectionScreen){//use selection screen in case it is defined
+							var selView = new sap.ui.view({
+								viewName:"convista.com.arp.demo.view." + selectionScreen,
+								type: sap.ui.core.mvc.ViewType.XML
+							});
+							newPage.addContent(selView);
+						}
+						else{
+							html = new sap.ui.core.HTML({
+								id: pageId + "_html"
+							});
+							newPage.addContent(html);
+							if(targetLink === ""){
+								var src = [sRootPath,"view/test.html"].join("/");
+								html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
+							}else{
+								html.setContent("<iframe class='bo_container' src='"+targetLink+"'></iframe>");
+							}
 						}
 					}
 					newPage.addStyleClass("myPageOverflow");
 					navContainer.addPage(newPage);
 				}
 				navContainer.to(pageId, "show");
+				//Remember selections for selection screen controller. Global model ensures correct state handling!
+				var params= {
+					"mainViewId": that.getView().getId(),
+					"selectedTab":selectedTabKey,
+					"selectedListItem":listItem,
+					"targetLink":targetLink
+				};
+				sap.ui.getCore().getModel("globalParameters").setData(params);
 			}
 		},
 		
@@ -265,55 +280,14 @@ sap.ui.define([
 			currhtml.setContent("<iframe class='bo_container' src='" + srcToReload + "'></iframe>");
 		},
 		
-		onSelectionScreenRequest: function(oEvent){
-			var that= this;
-		
-			var oValueHelpDialog = new sap.ui.comp.valuehelpdialog.ValueHelpDialog({
-				basicSearchText: this.theTokenInput.getValue(), 
-				title: "Company",
-				supportRanges: true,
-				supportRangesOnly: true, 
-				key: this.aKeys[0],				
-				descriptionKey: this.aKeys[1],
-				stretch: sap.ui.Device.system.phone, 
-	 
-				ok: function(oControlEvent) {
-					that.aTokens = oControlEvent.getParameter("tokens");
-					that.theTokenInput.setTokens(that.aTokens);
-	 
-					oValueHelpDialog.close();
-				},
-	 
-				cancel: function(oControlEvent) {
-					sap.m.MessageToast.show("Cancel pressed!");
-					oValueHelpDialog.close();
-				},
-	 
-				afterClose: function() {
-					oValueHelpDialog.destroy();
-				}
-			});
-			
-			oValueHelpDialog.setRangeKeyFields([{label: "Company Code", key: "CompanyCode"}, {label : "Company Name", key:"CompanyName"}]); 
-			oValueHelpDialog.setTokens(this.theTokenInput.getTokens());
-			
-			if (this.theTokenInput.$().closest(".sapUiSizeCompact").length > 0) { // check if the Token field runs in Compact mode
-				oValueHelpDialog.addStyleClass("sapUiSizeCompact");
-			} else {
-				oValueHelpDialog.addStyleClass("sapUiSizeCozy");			
-			}
-			
-			oValueHelpDialog.open();
-		},
-		
 		getMyComponent: function() {
 		    "use strict";
 		    var sComponentId = sap.ui.core.Component.getOwnerIdFor(this.getView());
 			return sap.ui.component(sComponentId);
 	    },
 	    
-	    exit: function(){
-
+	    onExit: function(){
+			
 	    }
 	});
 

@@ -26,7 +26,7 @@ sap.ui.define([
 			this.setModel(models.createDeviceModel(), "device");
 			
 			// create the views based on the url/hash
-            //this.getRouter().initialize();
+            this.getRouter().initialize();
             //Retrieve Shell to add custom functions to header bar
             var oRendererExtensions = jQuery.sap.getObject('sap.ushell.renderers.fiori2.RendererExtensions');
             var oBundle = this.getModel("i18n").getResourceBundle();

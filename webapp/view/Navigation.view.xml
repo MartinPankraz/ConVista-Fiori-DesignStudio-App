@@ -1,6 +1,6 @@
 <mvc:View controllerName="convista.com.arp.demo.controller.Navigation" xmlns:html="http://www.w3.org/1999/xhtml"  xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
 	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" height="100%">
-	<App id="app" class="ccBG"><!-- id="app" left out intentionally for bug tracking purpose-->
+	<App id="app" class="ccBG">
 		<pages>
 			<Page 
 				  id="homePage"
@@ -24,7 +24,7 @@
 								itemSelect="tabItemSelectHandler"
 								class="ccTabContainer">
 			                	<items>
-			                		<TabContainerItem id="firstItem" name="ARP Home" key="landing_tabItem">
+			                		<TabContainerItem id="firstItem" name="Dashboard Library" key="landing_tabItem">
 			                			<content><Text text="/NavigationItems/1"/></content>
 			                		</TabContainerItem>
 			                	</items>

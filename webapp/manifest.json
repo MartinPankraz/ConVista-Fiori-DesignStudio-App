@@ -95,12 +95,14 @@
 			"routes": [
 				{
 					"pattern": "",
-					"name": "appHome"
+					"name": "appHome",
+					"target": "home"
 				}
 			],
 			"targets": {
-				"appHome": {
-					"viewName": "Navigation"
+				"home": {
+					"viewName": "Navigation",
+					"viewId": "myMainNavigation"
 				}
 			}
 		}
