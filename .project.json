@@ -7,7 +7,7 @@
     "targetFolder": "dist",
     "sourceFolder": "webapp",
     "buildRequired": false,
-    "lastBuildDateTime": "Wed, 08 Feb 2017 14:50:44 GMT"
+    "lastBuildDateTime": "Thu, 09 Feb 2017 12:50:29 GMT"
   },
   "generation": [
     {
@@ -23,7 +23,7 @@
     {
       "templateId": "servicecatalog.connectivityComponent",
       "templateVersion": "0.0.0",
-      "dateTimeStamp": "Thu, 05 Jan 2017 13:45:34 GMT"
+      "dateTimeStamp": "Thu, 09 Feb 2017 11:32:58 GMT"
     }
   ],
   "translation": {
@@ -50,7 +50,7 @@
     "name": "ZBOARP"
   },
   "mockpreview": {
-    "mockUri": "/sap/opu/odata/sap/ZARP_SCHED_SRV/",
+    "mockUri": "/sap/opu/odata/sap/ZARP_COMPCODE_SRV",
     "metadataFilePath": "localService/metadata.xml",
     "loadJSONFiles": false,
     "loadCustomRequests": false,

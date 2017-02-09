@@ -12,6 +12,10 @@ sap.ui.define([
 		 * @memberOf convista.com.arp.demo.view.BOSelectionScreen1
 		 */
 		onInit: function() {
+			var oModel = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV", true);
+			this.getView().byId("companyCode").setModel(oModel);
+			this.getView().byId("securityAccount").setModel(oModel);
+			
 			this.getView().byId("datePicker1").setDateValue(new Date());
 		},
 
@@ -34,34 +38,17 @@ sap.ui.define([
 				var currentPage = navContainer.getCurrentPage();
 				var pageId = currentPage.getId();
 				
-				var va = "", cc = "", date = "", dateVar = "", sec = "";
-				
-				var oForm = this.getView().byId("myForm");
-				// get the content (as array)
-				var content = oForm.getContent();
-				// check every single control
-				for (var i in content) {
-					var control = content[i];
-					if(i === "1"){
-						va = "&X_VA=" + control.getSelectedKey();
-					}
-					if(i === "3"){
-						cc = "&X_CC=" + control.getSelectedKeys();
-					}
-					if(i === "5"){
-						date = "&X_DATE=" + control.getValue();
-					}
-					if(i === "6"){
-						if(control.getSelectedIndex() === 0){
-							dateVar = "&X_DATEVAR=POSTING";	
-						}else{
-							dateVar = "&X_DATEVAR=POSITION";	
-						}
-					}
-					if(i === "8"){
-						sec = "&X_SEC=" + control.getSelectedKeys();
-					}
+				var va = "&X_VA=" + this.getView().byId("valuationArea").getSelectedKey();
+				var cc = "&X_CC=" + this.getBExReadyFormatString(this.getView().byId("companyCode").getSelectedKeys());
+				var date = "&X_DATE=" + this.getView().byId("datePicker1").getValue();
+				var dateswitch = this.getView().byId("rbg1").getSelectedIndex();
+				var dateVar = "";
+				if(dateswitch === 0){
+					dateVar = "&X_DATEVAR=POSTING";	
+				}else{
+					dateVar = "&X_DATEVAR=POSITION";	
 				}
+				var sec = "&X_SEC=" + this.getBExReadyFormatString(this.getView().byId("securityAccount").getSelectedKeys());
 				//clear page from selection screen
 				currentPage.removeAllContent();
 				var html = new sap.ui.core.HTML({
@@ -98,6 +85,38 @@ sap.ui.define([
 				}
 			}
 			return validated;
+		},
+		
+		onCompanySelectionFinish: function(oEvent) {
+			var selectedCompanies = this.getView().byId("companyCode").getSelectedKeys();
+			var filters = [];
+			for(var i=0;i<selectedCompanies.length;i++){
+				var key = selectedCompanies[i];
+				filters.push(
+					new sap.ui.model.Filter({
+			          path: 'Compcode',
+			          operator: sap.ui.model.FilterOperator.EQ,
+			          value1: key
+			    	})
+			     );
+			}
+			// invoking entity by passing parameters
+			/*oModel.read("/securityAccountSet", {
+			     filters: filters
+			});*/
+			this.getView().byId("securityAccount").getBinding("items").filter(filters);
+		},
+		
+		getBExReadyFormatString: function(values){
+			var result = "";
+			for(var i=0;i<values.length;i++){
+				if(i<values.length-1){
+					result += values[i] + ";";	
+				}else{
+					result += values[i];	
+				}
+			}
+			return result;
 		}
 
 	});

@@ -22,6 +22,14 @@
 					"odataVersion": "2.0",
 					"localUri": "localService/metadata.xml"
 				}
+			},
+			"ZARP_COMPCODE_SRV": {
+				"uri": "/sap/opu/odata/sap/ZARP_COMPCODE_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/ZARP_COMPCODE_SRV/metadata.xml"
+				}
 			}
 		}
 	},
@@ -29,7 +37,7 @@
 		"_version": "1.1.0",
 		"technology": "UI5",
 		"icons": {
-			"icon": "",
+			"icon": "sap-icon://business-by-design",
 			"favIcon": "",
 			"phone": "",
 			"phone@2": "",
@@ -42,8 +50,8 @@
 			"phone": true
 		},
 		"supportedThemes": [
-			"sap_hcb",
-			"sap_bluecrystal"
+			"sap_bluecrystal",
+			"sap_hcb"
 		],
 		"fullWidth": true
 	},
@@ -95,14 +103,15 @@
 			"routes": [
 				{
 					"pattern": "",
-					"name": "appHome",
+					"name": "home",
 					"target": "home"
 				}
 			],
 			"targets": {
 				"home": {
 					"viewName": "Navigation",
-					"viewId": "myMainNavigation"
+					"viewId": "myMainNavigation",
+					"viewLevel": 1
 				}
 			}
 		}

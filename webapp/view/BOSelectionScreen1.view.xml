@@ -28,16 +28,17 @@
 						<items>
 							<core:Item key="001" text="US GAAP" />
 							<core:Item key="002" text="US STAT" />
+							<core:Item key="003" text="US TAX" />
 						</items>
 					</Select>
 				<Label text="{i18n>companyCodeText}"/>
 					<MultiComboBox
 						id="companyCode"
 						required="false"
-						width="400px">
-						<items>
-							<core:Item key="001" text="Dummy" />
-						</items>
+						width="400px"
+						items="{/companySet}"
+						selectionFinish="onCompanySelectionFinish">
+						<core:Item key="{Compcode}" text="{Txtmd}" />
 					</MultiComboBox>
 				<Label text="{i18n>dateText}"/>
 					<DatePicker
@@ -64,12 +65,9 @@
 					<MultiComboBox
 						id="securityAccount"
 						required="false"
-						width="400px">
-						<items>
-							<core:Item text="Test1" key="001"/>
-							<core:Item text="Test2" key="002"/>
-							<core:Item text="Test3" key="003"/>
-						</items>
+						width="400px"
+						items="{/securityAccountSet}">
+							<core:Item text="{Cfmsecac} | {Txtmd}" key="{Cfmsecac}"/>
 					</MultiComboBox>
 				<Label text=""/>
 					<Button

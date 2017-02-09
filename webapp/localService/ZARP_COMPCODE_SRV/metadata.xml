@@ -1,0 +1,34 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZARP_COMPCODE_SRV" xml:lang="de" sap:schema-version="1">
+            <EntityType Name="company" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Compcode"/>
+                </Key>
+                <Property Name="Compcode" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Buchungskreis" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Txtmd" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Beschreibung mittel" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="securityAccount" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Compcode"/>
+                    <PropertyRef Name="Cfmsecac"/>
+                </Key>
+                <Property Name="Compcode" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Buchungskreis" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Cfmsecac" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Depot" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Txtmd" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Beschreibung mittel" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZARP_COMPCODE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="companySet" EntityType="ZARP_COMPCODE_SRV.company" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="securityAccountSet" EntityType="ZARP_COMPCODE_SRV.securityAccount" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZARP_COMPCODE_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZARP_COMPCODE_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

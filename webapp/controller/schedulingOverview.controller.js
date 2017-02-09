@@ -15,7 +15,6 @@ sap.ui.define([
 		 * @memberOf convista.com.arp.demo.view.schedulingOverview
 		 */
 		onInit: function() {
-			// set explored app's demo model on this sample
 			var oModel = new ODataModel("/sap/opu/odata/sap/ZARP_SCHED_SRV", true);
 			var oTable = this.getView().byId("idSchedulingTable");
 			oTable.setModel(oModel);
