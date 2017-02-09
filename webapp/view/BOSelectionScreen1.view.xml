@@ -52,15 +52,23 @@
 							<l:GridData span="L3 M4 S4" />
 						</layoutData>
 					</DatePicker>
-					<!--<DatePicker
+					<DatePicker
+						id="datePicker2"
 						placeholder="Enter Date ..."
-						displayFormat="long"/>-->
-						<RadioButtonGroup id="rbg1" columns="2" width="300px">
-							<buttons>
-								<RadioButton text="{i18n>dateOption1}" selected="true" />
-								<RadioButton text="{i18n>dateOption2}" />
-							</buttons>
-						</RadioButtonGroup>
+						displayFormat="d MMM y"
+						valueFormat="yyyyMMdd"
+						required="true"
+						width="400px">
+						<layoutData>
+							<l:GridData span="L3 M4 S4" />
+						</layoutData>
+					</DatePicker>
+					<RadioButtonGroup id="rbg1" columns="2" width="300px">
+						<buttons>
+							<RadioButton text="{i18n>dateOption1}" selected="true" />
+							<RadioButton text="{i18n>dateOption2}" />
+						</buttons>
+					</RadioButtonGroup>
 				<Label text="{i18n>securityAccountText}"/>
 					<MultiComboBox
 						id="securityAccount"

@@ -3,6 +3,8 @@ sap.ui.define([
 	"sap/ui/model/odata/ODataModel"
 ], function(Controller, ODataModel) {
 	"use strict";
+	
+     jQuery.sap.require("sap.ui.core.format.DateFormat");
 
 	return Controller.extend("convista.com.arp.demo.controller.BOSelectionScreen1", {
 
@@ -16,7 +18,24 @@ sap.ui.define([
 			this.getView().byId("companyCode").setModel(oModel);
 			this.getView().byId("securityAccount").setModel(oModel);
 			
-			this.getView().byId("datePicker1").setDateValue(new Date());
+			var globalParams = sap.ui.getCore().getModel("globalParameters").getData();
+			var itemsToHide = globalParams.hiddenItems;
+			if(itemsToHide){
+				for(var i=0;i<itemsToHide.length;i++){
+					var itemId = itemsToHide[i];
+					this.getView().byId(itemId).setVisible(false);
+				}
+			}
+			if(this.getView().byId("datePicker2").getVisible()){
+				var date = new Date(), y = date.getFullYear();//, m = date.getMonth();
+				var firstDay = new Date(y, 0, 1);
+				//var lastDay = new Date(y, m + 1, 0);
+				this.getView().byId("datePicker1").setDateValue(firstDay);
+				this.getView().byId("datePicker2").setDateValue(new Date());
+			}else{
+				this.getView().byId("datePicker1").setDateValue(new Date());
+				this.getView().byId("datePicker2").setDateValue(new Date());	
+			}
 		},
 
 		/**
@@ -40,7 +59,11 @@ sap.ui.define([
 				
 				var va = "&X_VA=" + this.getView().byId("valuationArea").getSelectedKey();
 				var cc = "&X_CC=" + this.getBExReadyFormatString(this.getView().byId("companyCode").getSelectedKeys());
-				var date = "&X_DATE=" + this.getView().byId("datePicker1").getValue();
+				var date = "&X_DATE=" + this.formatDateForBEx(this.getView().byId("datePicker1").getDateValue());
+				//create date range in case second date picker is used
+				if(this.getView().byId("datePicker2").getVisible()){
+					date += " - " + this.formatDateForBEx(this.getView().byId("datePicker2").getDateValue());
+				}
 				var dateswitch = this.getView().byId("rbg1").getSelectedIndex();
 				var dateVar = "";
 				if(dateswitch === 0){
@@ -117,6 +140,12 @@ sap.ui.define([
 				}
 			}
 			return result;
+		},
+		
+		formatDateForBEx : function(v) {
+		     var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({pattern: "MM/dd/YYYY"});
+		     var result = oDateFormat.format(new Date(v));
+		     return result;
 		}
 
 	});

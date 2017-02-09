@@ -28,19 +28,24 @@
 					"text":"Portfolio Holdings",
 					"icon":"sap-icon://insurance-life",
 					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AUaeLfIV.SdLmRhRBMwvjfo&noDetailsPanel=true",
-					"selectionscreen":"BOSelectionScreen1"
+					"selectionscreen":"BOSelectionScreen1",
+					"hiddenscreenparts":["datePicker2"]
 				},
 				{
 					"key":"acc_2",
 					"text":"Earned Income Trend Analysis",
 					"icon":"sap-icon://insurance-life",
-					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AZxhzIhdFRdPpF.EiAKaPbU&noDetailsPanel=true"
+					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AelZUb2.pjdKngK03KAk_3E&noDetailsPanel=true",
+					"selectionscreen":"BOSelectionScreen1",
+					"hiddenscreenparts":["datePicker2"]
 				},
 				{
 					"key":"acc_3",
 					"text":"Earned Income",
 					"icon":"sap-icon://insurance-life",
-					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=ATYY.awTJMBFsV4Eqy22vls&noDetailsPanel=true"
+					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AemWo9Efn7xDgpYCD1.7nwA&noDetailsPanel=true",
+					"selectionscreen":"BOSelectionScreen1",
+					"hiddenscreenparts":[]
 				},
 				{
 					"key":"acc_4",

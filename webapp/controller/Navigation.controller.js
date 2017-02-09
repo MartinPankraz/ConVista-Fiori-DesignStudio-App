@@ -15,6 +15,7 @@ sap.ui.define([
 			var params= {
 				"mainViewId": that.getView().getId(),
 				"selectedTab":"",
+				"hiddenItems":[],
 				"selectedListItem":"",
 				"targetLink":""
 			};
@@ -133,6 +134,7 @@ sap.ui.define([
 			var item = oEvent.getParameters().item;
 			var selectedTabKey = item.getKey();
 			var selectedTabText = item.getName();
+			var hiddenItems = [];
 			var navigationList = this.getView().byId("navigationList");
 			var navlistModel = navigationList.getModel();
 			var myPath = item.getContent()[0].getText();
@@ -149,9 +151,20 @@ sap.ui.define([
 						targetLink = currItem.link;
 						selectionScreen = currItem.selectionscreen;
 						listItem = selectedKey;
+						hiddenItems = currItem.hiddenscreenparts;                         
 						break;
 					}
 				}
+								//Remember selections for selection screen controller. Global model ensures correct state handling!
+				var params= {
+					"mainViewId": that.getView().getId(),
+					"selectedTab":selectedTabKey,
+					"selectedListItem":listItem,
+					"hiddenItems":hiddenItems,
+					"targetLink":targetLink
+				};
+				sap.ui.getCore().getModel("globalParameters").setData(params);
+				
 				var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
 				//make sure to identify tabs by their unique IDs, keys are the same for the same reports to match
 				//the navigationlist model and their corresponding iframe links
@@ -209,14 +222,6 @@ sap.ui.define([
 					navContainer.addPage(newPage);
 				}
 				navContainer.to(pageId, "show");
-				//Remember selections for selection screen controller. Global model ensures correct state handling!
-				var params= {
-					"mainViewId": that.getView().getId(),
-					"selectedTab":selectedTabKey,
-					"selectedListItem":listItem,
-					"targetLink":targetLink
-				};
-				sap.ui.getCore().getModel("globalParameters").setData(params);
 			}
 		},
 		
