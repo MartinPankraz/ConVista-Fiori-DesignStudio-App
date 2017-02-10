@@ -93,11 +93,13 @@
                                 <form:fields>
                                     <Select
 										forceSelection="false"
-										selectedKey="{/entries/0/jobcount}"
-										items="{
-											path: '/entries'
-										}">
-										<core:Item key="{jobcount}" text="{jobcount}" />
+										selectedKey="N">
+                                    	<items>
+											<core:Item key="N" text="{i18n>sapSchedOnce}" />
+											<core:Item key="D" text="{i18n>sapSchedDaily}" />
+											<core:Item key="W" text="{i18n>sapSchedWeekly}" />
+											<core:Item key="M" text="{i18n>sapSchedMonthly}" />
+                                    	</items>
 									</Select>
                                 </form:fields>
                             </form:FormElement>
@@ -105,11 +107,13 @@
                                 <form:fields>
                                     <Select
 										forceSelection="false"
-										selectedKey="{/entries/0/jobcount}"
-										items="{
-											path: '/entries'
-										}">
-										<core:Item key="{jobcount}" text="{jobcount}" />
+										selectedKey="BTC_PROCESS_ALWAYS">
+										<items>
+											<core:Item key="BTC_DONT_PROCESS_ON_HOLIDAY" text="{i18n>sapSchedNoHoliday}" />
+											<core:Item key="BTC_PROCESS_BEFORE_HOLIDAY" text="{i18n>sapSchedBeforeHoliday}" />
+											<core:Item key="BTC_PROCESS_AFTER_HOLIDAY" text="{i18n>sapSchedAfterHoliday}" />
+											<core:Item key="BTC_PROCESS_ALWAYS" text="{i18n>sapSchedAlways}" />
+                                    	</items>
 									</Select>
                                 </form:fields>
                             </form:FormElement>
@@ -181,11 +185,11 @@
                                 <form:fields>
 									<Select
 										forceSelection="false"
-										selectedKey="{/entries/0/jobcount}"
-										items="{
-											path: '/entries'
-										}">
-										<core:Item key="{jobcount}" text="{jobcount}" />
+										selectedKey="{/entries/0/jobcount}">
+										<items>
+											<core:Item key="compact" text="Compact" />
+											<core:Item key="expanded" text="Expanded" />
+										</items>
 									</Select>
                                 </form:fields>
                             </form:FormElement>
