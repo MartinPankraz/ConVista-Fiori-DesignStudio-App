@@ -1,64 +1,367 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:model="sap.ui.model"
-	controllerName="convista.com.arp.demo.controller.schedulingOverview" xmlns:html="http://www.w3.org/1999/xhtml">
-	<Panel
-	    width="100%"
-	    height="100%"
-	    class="ccPanelBG">
-    	<content>
-			<Table id="idSchedulingTable"
-				items="{path:'/schedSet' }"
-				height="100%">
-				<headerToolbar>
-					<Toolbar>
-						<Title text="Scheduled Reports" level="H6"/>
-						<ToolbarSpacer></ToolbarSpacer>
-						<Button tooltip="Refresh" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
-						<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
-					</Toolbar>
-				</headerToolbar>
-				<infoToolbar>
-					<Toolbar
-						id="vsdFilterBar"
-						active="true"
-						visible="false"
-						press="[handleViewSettingsDialogFilterBarPressed, views.control.tableViewSettingsDialog]">
-						<Label id="vsdFilterLabel" text="?" />
-					</Toolbar>
-				</infoToolbar>
-				<columns>
-					<Column width="18em"><Text text="Report" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" sortProperty="SchedObjName"><Text text="Date" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" sortProperty="SchedDate"><Text text="Next Run" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Status" /></Column>
-				</columns>
-				<items>
-					<ColumnListItem>
-						<cells>
-							<ObjectIdentifier title="{SchedObjName}" text="{Jobname}" />
-							<Text text="{
-								path:'SchedDate',
-								type: 'sap.ui.model.type.DateTime',
-						        formatOptions: {
-    								style: 'long'
-						        },
-						        relative: true
-							}"/>
-							<Text text="{
-								parts: [{path:'JobDate',type: 'sap.ui.model.type.Date'}],
-						        formatOptions: {
-    								style: 'long'
-						        }
-							}"/>
-							<core:Icon
-								src="{
-									path:'SchedStatus',
-									formatter:'.formatStatusIcon'
-								}"
-							/>
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
-  		</content>
-	</Panel>
+	controllerName="convista.com.arp.demo.controller.schedulingOverview" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:form="sap.ui.layout.form"
+	class="sapUiSizeCompact">
+	<Page
+      id="pageSchedulingOverview"
+      class="html_container"
+      showHeader="false">
+      <content>
+	
+	
+		<Panel expandable="true" expanded="true" headerText="Job Settings" width="auto" class="ccPanelBG">
+			<content>
+				<!-- Beginning of first Form -->
+				<form:Form  editable="true">
+					<form:layout>
+                    <form:ResponsiveGridLayout 
+                    	visible="true" 
+                		labelSpanL="3" 
+                		labelSpanM="4" 
+                		labelSpanS="5" 
+                		emptySpanL="3" 
+                		emptySpanM="0" 
+                		emptySpanS="0" 
+                		columnsL="3" 
+                		columnsM="1" 
+                		columnsS="1" 
+                		breakpointL="800" 
+                		breakpointM="400">
+                    </form:ResponsiveGridLayout>
+                </form:layout>
+                
+                <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="Report Group">
+                                <form:fields>
+									<Select
+										forceSelection="false"
+										selectedKey="{/entries/0/jobcount}"
+										items="{
+											path: '/entries'
+										}">
+										<core:Item key="{jobcount}" text="{jobcount}" />
+									</Select>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="Single Reports">
+                                <form:fields>
+									<Select
+										forceSelection="false"
+										selectedKey="{/entries/0/jobcount}"
+										items="{
+											path: '/entries'
+										}">
+										<core:Item key="{jobcount}" text="{jobcount}" />
+									</Select>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                
+                <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="First Start Date">
+                                <form:fields>
+                                    <DatePicker value="2014-03-26" valueFormat="yyyy-MM-dd" displayFormat="short"/>
+									<CheckBox text="Immediately" />
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="Start time">
+                                <form:fields>
+                                    <TimePicker
+										value="00:00"
+										valueFormat="HH:mm"
+										displayFormat="HH:mm"
+										placeholder="Enter meeting start time"/>
+									<CheckBox text="ZIP report set" />
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                
+                <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="Execution Rule">
+                                <form:fields>
+                                    <Select
+										forceSelection="false"
+										selectedKey="{/entries/0/jobcount}"
+										items="{
+											path: '/entries'
+										}">
+										<core:Item key="{jobcount}" text="{jobcount}" />
+									</Select>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="Restriction (NWD)">
+                                <form:fields>
+                                    <Select
+										forceSelection="false"
+										selectedKey="{/entries/0/jobcount}"
+										items="{
+											path: '/entries'
+										}">
+										<core:Item key="{jobcount}" text="{jobcount}" />
+									</Select>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                
+            </form:Form>
+			<!-- End of first Form -->
+			</content>
+		</Panel>
+		<Panel expandable="true" expanded="true" headerText="Reporting Parameters" width="auto" class="ccPanelBG">
+			<content>
+				<!-- Beginning of second Form -->
+				<form:Form  editable="true">
+					<form:layout>
+                    <form:ResponsiveGridLayout 
+                    	visible="true" 
+                		labelSpanL="3" 
+                		labelSpanM="4" 
+                		labelSpanS="5" 
+                		emptySpanL="1" 
+                		emptySpanM="0" 
+                		emptySpanS="0" 
+                		columnsL="3" 
+                		columnsM="1" 
+                		columnsS="1" 
+                		breakpointL="800" 
+                		breakpointM="400">
+                    </form:ResponsiveGridLayout>
+                </form:layout>
+                
+                <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="Date As of">
+                                <form:fields>
+									<DatePicker value="2014-03-26" valueFormat="yyyy-MM-dd" displayFormat="short"/>
+									<CheckBox />
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="Date through">
+                                <form:fields>
+									<DatePicker value="2014-03-26" valueFormat="yyyy-MM-dd" displayFormat="short"/>
+									<CheckBox />
+									<DatePicker value="2014-03-26" valueFormat="yyyy-MM-dd" displayFormat="short"/>
+									<CheckBox />
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="Legal Entity">
+                                <form:fields>
+									<Select
+										forceSelection="false"
+										selectedKey="{/entries/0/jobcount}"
+										items="{
+											path: '/entries'
+										}">
+										<core:Item key="{jobcount}" text="{jobcount}" />
+									</Select>
+									<RadioButtonGroup columns="3" selectedIndex="0">
+										<buttons>
+											<RadioButton text="periodic"/>
+											<RadioButton text="daily"/>
+										</buttons>
+									</RadioButtonGroup>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="View type">
+                                <form:fields>
+									<Select
+										forceSelection="false"
+										selectedKey="{/entries/0/jobcount}"
+										items="{
+											path: '/entries'
+										}">
+										<core:Item key="{jobcount}" text="{jobcount}" />
+									</Select>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                
+                <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="Accounting Basis">
+                                <form:fields>
+                                    <Select
+										forceSelection="false"
+										selectedKey="{/entries/0/jobcount}"
+										items="{
+											path: '/entries'
+										}">
+										<core:Item key="{jobcount}" text="{jobcount}" />
+									</Select>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="Custody Account">
+                                <form:fields>
+                                    <Select
+										forceSelection="false"
+										selectedKey="{/entries/0/jobcount}"
+										items="{
+											path: '/entries'
+										}">
+										<core:Item key="{jobcount}" text="{jobcount}" />
+									</Select>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="Ledger Basis">
+                                <form:fields>
+                                    <Select
+										forceSelection="false"
+										selectedKey="{/entries/0/jobcount}"
+										items="{
+											path: '/entries'
+										}">
+										<core:Item key="{jobcount}" text="{jobcount}" />
+									</Select>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="GL Account">
+                                <form:fields>
+                                    <Select
+										forceSelection="false"
+										selectedKey="{/entries/0/jobcount}"
+										items="{
+											path: '/entries'
+										}">
+										<core:Item key="{jobcount}" text="{jobcount}" />
+									</Select>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                
+                <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="NAIC Key Date">
+                                <form:fields>
+                                    <DatePicker value="2014-03-26" valueFormat="yyyy-MM-dd" displayFormat="short"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="NAIC List Type">
+                                <form:fields>
+                                    <Select
+										forceSelection="false"
+										selectedKey="{/entries/0/jobcount}"
+										items="{
+											path: '/entries'
+										}">
+										<core:Item key="{jobcount}" text="{jobcount}" />
+									</Select>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                
+            </form:Form>
+			<!-- End of second Form -->	
+				
+			</content>
+		</Panel>
+		<Panel
+		    width="100%"
+		    class="ccPanelBG">
+	    	<content>
+	    		<!-- Beginning of table -->	
+				<Table id="idSchedulingTable"
+					items="{path:'/entries'}"
+					growing="true"
+    				growingThreshold="8">
+					<headerToolbar>
+						<Toolbar>
+							<Title text="Current and future jobs" level="H6"/>
+							<ToolbarSpacer></ToolbarSpacer>
+							<Button text="Refresh" tooltip="Refresh" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
+							<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
+						</Toolbar>
+					</headerToolbar>
+					<infoToolbar>
+						<Toolbar
+							id="vsdFilterBar"
+							active="true"
+							visible="false"
+							press="[handleViewSettingsDialogFilterBarPressed, views.control.tableViewSettingsDialog]">
+							<Label id="vsdFilterLabel" text="?" />
+						</Toolbar>
+					</infoToolbar>
+					<columns>
+						<Column width="17em"><Text text="SAP Job Identifier" /></Column>
+						<!--<Column minScreenWidth="Large" demandPopin="true" sortProperty="SchedObjName"><Text text="Date" /></Column>
+						<Column minScreenWidth="Large" demandPopin="true" sortProperty="SchedDate"><Text text="Next Run" /></Column>-->
+						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline"><Text text="Scheduled Object" /></Column>
+						<Column ><Text text="Job Type" /></Column>
+						<Column ><Text text="Status" /></Column>
+						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline"><Text text="Next Start Date" /></Column>
+						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline"><Text text="Created at" /></Column>
+						<Column minScreenWidth="1300px" ><Text text="Start Type" /></Column>
+						<Column minScreenWidth="1300px" ><Text text="ZIP" /></Column>
+						<Column ><Text text="Frequency" /></Column>
+						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline"><Text text="NWD Handling" /></Column>
+						<Column minScreenWidth="Large" demandPopin="true" popinDisplay="Inline" ><Text text="Job Count" /></Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ObjectIdentifier title="{jobname}" />
+								<!--<Text text="{schedDate}"/>
+								<Text text="{jobDate}"/>-->
+								<Text text="{schedObjNameDesc}"/>
+								<Text text="{schedObjTypeDesc}"/>
+								<core:Icon
+									src="{
+										path:'schedStatus',
+										formatter:'.formatStatusIcon'
+									}"
+								/>
+								<Text text="{jobDatetime}"/>
+								<Text text="{createdAt}"/>
+								<Text text="{jobStartTypeDesc}"/>
+								<Text text="{jobZip}"/>
+								<Text text="{jobPeriodicDesc}"/>
+								<Text text="{jobDelayHolidayDesc}"/>
+								<Text text="{jobcount}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<!-- End of table -->	
+	  		</content>
+		</Panel>
+		</content>
+	</Page>
+	
+	<!--<Text text="{
+			path:'schedDate',
+			type: 'sap.ui.model.type.Date',
+	        formatOptions: {
+				style: 'long'
+	        },
+	        relative: true
+		}"/>
+		<Text text="{
+			parts: [{path:'jobDate',type: 'sap.ui.model.type.Date'}],
+	        formatOptions: {
+				style: 'long'
+	        }
+		}"/>-->
+	
 </mvc:View>

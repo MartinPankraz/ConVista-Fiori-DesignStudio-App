@@ -1,0 +1,68 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:model="sap.ui.model"
+	controllerName="convista.com.arp.demo.controller.schedulingOverview" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel
+	    width="100%"
+	    height="100%"
+	    class="ccPanelBG">
+    	<content>
+			<Table id="idSchedulingTable"
+				items="{path:'/entries'}">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="Your Available Documents" level="H6"/>
+						<ToolbarSpacer></ToolbarSpacer>
+						<Button text="Refresh" tooltip="Refresh" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
+						<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
+					</Toolbar>
+				</headerToolbar>
+				<infoToolbar>
+					<Toolbar
+						id="vsdFilterBar"
+						active="true"
+						visible="false"
+						press="[handleViewSettingsDialogFilterBarPressed, views.control.tableViewSettingsDialog]">
+						<Label id="vsdFilterLabel" text="?" />
+					</Toolbar>
+				</infoToolbar>
+				<columns>
+					<Column width="18em"><Text text="Filename" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" sortProperty="SchedDate"><Text text="Type" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Scheduling Object" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Job Type" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Created at" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Report Type" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Counter" /></Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier title="{jobname}" />
+							<Text text="PDF"/>
+							<Text text="{schedObjName}"/>
+							<Text text="{schedObjTypeDesc}"/>
+							<Text text="{createdAt}"/>
+							<Text text="{schedObjType}"/>
+							<Text text="{jobcount}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+  		</content>
+	</Panel>
+	
+	<!--<Text text="{
+			path:'schedDate',
+			type: 'sap.ui.model.type.Date',
+	        formatOptions: {
+				style: 'long'
+	        },
+	        relative: true
+		}"/>
+		<Text text="{
+			parts: [{path:'jobDate',type: 'sap.ui.model.type.Date'}],
+	        formatOptions: {
+				style: 'long'
+	        }
+		}"/>-->
+	
+</mvc:View>

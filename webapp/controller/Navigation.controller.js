@@ -197,6 +197,30 @@ sap.ui.define([
 						});
 						newPage.addContent(viewSched);
 					
+					}else if(selectedKey === "sched_2"){
+						var viewSched2 = new sap.ui.view({
+											viewName:"convista.com.arp.demo.view.schedulingManageGroups",
+											type: sap.ui.core.mvc.ViewType.XML,
+											height:"100%"
+							
+						});
+						newPage.addContent(viewSched2);
+					}else if(selectedKey === "sched_3"){
+						var viewSched3 = new sap.ui.view({
+											viewName:"convista.com.arp.demo.view.schedulingMyFiles",
+											type: sap.ui.core.mvc.ViewType.XML,
+											height:"100%"
+							
+						});
+						newPage.addContent(viewSched3);
+					}else if(selectedKey === "sched_4"){
+						var viewSched4 = new sap.ui.view({
+											viewName:"convista.com.arp.demo.view.schedulingHistory",
+											type: sap.ui.core.mvc.ViewType.XML,
+											height:"100%"
+							
+						});
+						newPage.addContent(viewSched4);
 					}else{
 						if(selectionScreen){//use selection screen in case it is defined
 							var selView = new sap.ui.view({
@@ -212,13 +236,13 @@ sap.ui.define([
 							newPage.addContent(html);
 							if(targetLink === ""){
 								var src = [sRootPath,"view/test.html"].join("/");
-								html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
+								html.setContent("<iframe class='html_container' src='"+src+"'></iframe>");
 							}else{
 								html.setContent("<iframe class='bo_container' src='"+targetLink+"'></iframe>");
 							}
 						}
 					}
-					newPage.addStyleClass("myPageOverflow");
+					//newPage.addStyleClass("myPageOverflow");
 					navContainer.addPage(newPage);
 				}
 				navContainer.to(pageId, "show");

@@ -7,7 +7,8 @@
 				  showHeader="false"
 				  title="{i18n>title}"
 				  showNavButton="true"
-				  enableScrolling="false">
+				  enableScrolling="true"
+				  class="testCSS">
 				<content>
 					<l:HorizontalLayout id="layout_horizontal_sideNav" class="ccHorizontalSideNavCon">
 			            <tnt:NavigationList id="navigationList"
@@ -32,16 +33,14 @@
 			                <NavContainer
 								id="myNavCon"
 								width="100%"
-								height="100%"
 								class="ccNavCon">
 			                	<Page
 									id="firstItem_page"
 									title="Home Page"
 									showHeader="false"
 									showSubHeader="false"
-									class="myPageOverflow"
 									showNavButton="false">
-			                		<core:HTML id="firstItem_page_html" height="100%"/>
+			                		<core:HTML id="firstItem_page_html"/>
 								</Page>
 			                </NavContainer>
 		                </l:VerticalLayout>

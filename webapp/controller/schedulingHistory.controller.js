@@ -6,13 +6,13 @@ sap.ui.define([
 ], function(Controller,ODataModel,Filter,Sorter) {
 	"use strict";
 
-	return Controller.extend("convista.com.arp.demo.controller.schedulingOverview", {
+	return Controller.extend("convista.com.arp.demo.controller.schedulingHistory", {
 		
 		_oDialog: null,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf convista.com.arp.demo.view.schedulingOverview
+		 * @memberOf convista.com.arp.demo.view.schedulingHistory
 		 */
 		onInit: function() {
 			// set explored app's demo model on this sample
@@ -21,6 +21,7 @@ sap.ui.define([
 			//oTable.setModel(oModel);
 			//var url = "http://cdsapbw.sap.convista.local:8000/sap/bc/cs67_ds_com?_method=get_user_info&_datasrc=sched_future&_ccid=2853333914";
 			//var oTable = this.getView().byId("idSchedulingTable");
+			this._objSorter = new Sorter("schedObjName",false);
 			
 			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
 			var oModel = new sap.ui.model.json.JSONModel();
@@ -35,11 +36,12 @@ sap.ui.define([
 			    this.getView().setModel(oModel);
 				//sap.ui.getCore().setModel(oModel);
 			}.bind(this));
+			
 		},
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
-		 * @memberOf convista.com.arp.demo.view.schedulingOverview
+		 * @memberOf convista.com.arp.demo.view.schedulingHistory
 		 */
 		onExit: function() {
 			if (this._oDialog) {
@@ -57,7 +59,7 @@ sap.ui.define([
 		},
 		
 		handleRefreshButtonPressed: function (oEvent) {
-			var oTable = this.getView().byId("idSchedulingTable");
+			var oTable = this.getView().byId("idSchedulingHistoryTable");
 			var oModel = oTable.getModel();
 			oModel.refresh(true);
 		},
@@ -65,7 +67,7 @@ sap.ui.define([
 		handleTableFilterConfirm: function(oEvent) {
  
 			var oView = this.getView();
-			var oTable = oView.byId("idSchedulingTable");
+			var oTable = oView.byId("idSchedulingHistoryTable");
  
 			var mParams = oEvent.getParameters();
 			var oBinding = oTable.getBinding("items");
@@ -100,6 +102,11 @@ sap.ui.define([
 			// update filter bar
 			/*oView.byId("vsdFilterBar").setVisible(aFilters.length > 0);
 			oView.byId("vsdFilterLabel").setText(mParams.filterString);*/
+		},
+		
+		onSortObjectName: function(){
+			this._objSorter.bDescending = !this._objSorter.bDescending;
+			this.byId("idSchedulingHistoryTable").getBinding("items").sort(this._objSorter);
 		},
 		
 		formatStatusIcon: function (sStatus) {
