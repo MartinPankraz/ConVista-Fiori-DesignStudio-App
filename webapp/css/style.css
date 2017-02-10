@@ -172,7 +172,7 @@ li[class*="sapTntNavLIItemSelected"]{
 /***************** Setting bo container iframe width and height  ************************************/
 
 .bo_container {
-	height:calc(100% - 2rem)!important;
+	height:calc(100% - 2.5rem)!important;
 	overflow-y:scroll!important;
 	width: 100%;
 	border-color:transparent;

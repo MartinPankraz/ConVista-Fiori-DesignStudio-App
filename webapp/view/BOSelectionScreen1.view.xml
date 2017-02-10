@@ -24,18 +24,29 @@
 						forceSelection="true"
 						selectedKey="001"
 						required="true"
-						width="400px">
+						width="300px">
 						<items>
 							<core:Item key="001" text="US GAAP" />
 							<core:Item key="002" text="US STAT" />
 							<core:Item key="003" text="US TAX" />
 						</items>
 					</Select>
+					<Select
+						id="ledgerBasis"
+						forceSelection="true"
+						selectedKey="0L"
+						required="true"
+						width="300px">
+						<items>
+							<core:Item key="0L" text="Leading Ledger STAT" />
+							<core:Item key="1L" text="GAAP" />
+						</items>
+					</Select>
 				<Label text="{i18n>companyCodeText}"/>
 					<MultiComboBox
 						id="companyCode"
 						required="false"
-						width="400px"
+						width="300px"
 						items="{/companySet}"
 						selectionFinish="onCompanySelectionFinish">
 						<core:Item key="{Compcode}" text="{Txtmd}" />
@@ -47,7 +58,7 @@
 						displayFormat="d MMM y"
 						valueFormat="yyyyMMdd"
 						required="true"
-						width="400px">
+						width="300px">
 						<layoutData>
 							<l:GridData span="L3 M4 S4" />
 						</layoutData>
@@ -58,7 +69,7 @@
 						displayFormat="d MMM y"
 						valueFormat="yyyyMMdd"
 						required="true"
-						width="400px">
+						width="300px">
 						<layoutData>
 							<l:GridData span="L3 M4 S4" />
 						</layoutData>
@@ -69,11 +80,42 @@
 							<RadioButton text="{i18n>dateOption2}" />
 						</buttons>
 					</RadioButtonGroup>
-				<Label text="{i18n>securityAccountText}"/>
+				<Label id="periodLabel" text="{i18n>periodText}"/>
+					<Select
+						id="period"
+						forceSelection="false"
+						selectedKey="001"
+						required="true"
+						width="300px">
+						<items>
+							<core:Item key="<empty>" text="<all>" />
+							<core:Item key="001" text="Jan" />
+							<core:Item key="002" text="Feb" />
+							<core:Item key="003" text="Mar" />
+							<core:Item key="004" text="Apr" />
+							<core:Item key="005" text="May" />
+							<core:Item key="006" text="Jun" />
+							<core:Item key="007" text="Jul" />
+							<core:Item key="008" text="Aug" />
+							<core:Item key="009" text="Sep" />
+							<core:Item key="010" text="Oct" />
+							<core:Item key="011" text="Nov" />
+							<core:Item key="012" text="Dec" />
+						</items>
+					</Select>
+				<Label id="secAccLabel" text="{i18n>securityAccountText}"/>
 					<MultiComboBox
 						id="securityAccount"
 						required="false"
-						width="400px"
+						width="300px"
+						items="{/securityAccountSet}">
+							<core:Item text="{Cfmsecac} | {Txtmd}" key="{Cfmsecac}"/>
+					</MultiComboBox>
+				<Label id="glAccText" text="{i18n>generalLedgerAccountText}"/>
+					<MultiComboBox
+						id="glAccount"
+						required="false"
+						width="300px"
 						items="{/securityAccountSet}">
 							<core:Item text="{Cfmsecac} | {Txtmd}" key="{Cfmsecac}"/>
 					</MultiComboBox>
@@ -83,7 +125,7 @@
 						text="{i18n>buttonExecute}"
 						press="onSelectionScreenExecutePress"
 						ariaDescribedBy="defaultButtonDescription genericButtonDescription"
-						width="400px"/>
+						width="300px"/>
 			</f:content>
 		</f:SimpleForm>
 	</VBox>

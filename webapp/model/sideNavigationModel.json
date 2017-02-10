@@ -29,7 +29,7 @@
 					"icon":"sap-icon://insurance-life",
 					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AUaeLfIV.SdLmRhRBMwvjfo&noDetailsPanel=true",
 					"selectionscreen":"BOSelectionScreen1",
-					"hiddenscreenparts":["datePicker2"]
+					"hiddenscreenparts":["datePicker2","ledgerBasis","periodLabel","period","glAccText","glAccount"]
 				},
 				{
 					"key":"acc_2",
@@ -37,7 +37,7 @@
 					"icon":"sap-icon://insurance-life",
 					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AelZUb2.pjdKngK03KAk_3E&noDetailsPanel=true",
 					"selectionscreen":"BOSelectionScreen1",
-					"hiddenscreenparts":["datePicker2"]
+					"hiddenscreenparts":["datePicker2","ledgerBasis","periodLabel","period","glAccText","glAccount"]
 				},
 				{
 					"key":"acc_3",
@@ -45,7 +45,7 @@
 					"icon":"sap-icon://insurance-life",
 					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AemWo9Efn7xDgpYCD1.7nwA&noDetailsPanel=true",
 					"selectionscreen":"BOSelectionScreen1",
-					"hiddenscreenparts":[]
+					"hiddenscreenparts":["ledgerBasis","periodLabel","period","glAccText","glAccount"]
 				},
 				{
 					"key":"acc_4",
@@ -82,7 +82,9 @@
 					"key":"gl_summary",
 					"text":"General Ledger Summary",
 					"icon":"sap-icon://wallet",
-					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=ATyKYNTAOhRKsrDoGYQgl.A&noDetailsPanel=true"
+					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=ATyKYNTAOhRKsrDoGYQgl.A&noDetailsPanel=true",
+					"selectionscreen":"BOSelectionScreen1",
+					"hiddenscreenparts":["valuationArea","secAccLabel","securityAccount"]
 				},
 				{
 					"key":"gl_trial_balance",
