@@ -285,15 +285,21 @@ sap.ui.define([
 		},
 		
 		onTwitterIconPressed: function(oEvent){
+			/* eslint-disable */
 			sap.m.URLHelper.redirect("https://twitter.com/hashtag/convista", true);
+			/* eslint-enable */
 		},
 		
 		onFacebookIconPressed: function(oEvent){
+			/* eslint-disable */
 			sap.m.URLHelper.redirect("https://www.facebook.com/ConVista", true);
+			/* eslint-enable */
 		},
 		
 		onLinkedInIconPressed: function(oEvent){
+			/* eslint-disable */
 			sap.m.URLHelper.redirect("https://www.linkedin.com/company/convista-consulting", true);
+			/* eslint-enable */
 		},
 		
 		getSectionFromId: function(givenId){
