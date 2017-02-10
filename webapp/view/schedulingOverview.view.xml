@@ -38,24 +38,24 @@
                             <form:FormElement label="Report Group">
                                 <form:fields>
 									<Select
+										id="reportGroupSelection"
 										forceSelection="false"
-										selectedKey="{/entries/0/jobcount}"
 										items="{
 											path: '/entries'
 										}">
-										<core:Item key="{jobcount}" text="{jobcount}" />
+										<core:Item key="{groupKey}" text="{groupDesc}" />
 									</Select>
                                 </form:fields>
                             </form:FormElement>
                             <form:FormElement label="Single Reports">
                                 <form:fields>
 									<Select
+										id="reportSelection"
 										forceSelection="false"
-										selectedKey="{/entries/0/jobcount}"
 										items="{
 											path: '/entries'
 										}">
-										<core:Item key="{jobcount}" text="{jobcount}" />
+										<core:Item key="{query}" text="{descr}" />
 									</Select>
                                 </form:fields>
                             </form:FormElement>

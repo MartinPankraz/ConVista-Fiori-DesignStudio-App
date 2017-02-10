@@ -15,6 +15,7 @@ sap.ui.define([
 		 * @memberOf convista.com.arp.demo.view.schedulingHistory
 		 */
 		onInit: function() {
+			var that = this;
 			// set explored app's demo model on this sample
 			//var oModel = new ODataModel("/sap/opu/odata/sap/ZARP_SCHED_SRV", true);
 			//var oTable = this.getView().byId("idSchedulingTable");
@@ -23,19 +24,21 @@ sap.ui.define([
 			//var oTable = this.getView().byId("idSchedulingTable");
 			this._objSorter = new Sorter("schedObjName",false);
 			
-			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
+			//var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
 			var oModel = new sap.ui.model.json.JSONModel();
 			
-			var sServiceUrl = ([sRootPath,'model/schedulingOverviewModel.json'].join("/"));
-			 $.ajax({
-			            url : sServiceUrl,
-			            //type : "GET",
-			            dataType : "json"
-			  }).done(function(data) {
-			    oModel.setData(data);
-			    this.getView().setModel(oModel);
-				//sap.ui.getCore().setModel(oModel);
-			}.bind(this));
+			//var sServiceUrl = ([sRootPath,'model/schedulingOverviewModel.json'].join("/"));
+			var sServiceUrl = "https://sapwebdcbw.sap.convista.local:8443/sap/bc/cs67_ds_com?_method=get_user_info&_datasrc=sched_hist";
+			$.ajax({
+				url: sServiceUrl,
+				dataType: "jsonp",
+				jsonp: "callback",
+				success: function(json) {
+					oModel.setData(json);
+					that.getView().setModel(oModel);
+					//sap.ui.getCore().setModel(oModel);
+				}
+			});
 			
 		},
 

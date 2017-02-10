@@ -17,6 +17,7 @@ sap.ui.define([
 			var oModel = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV", true);
 			this.getView().byId("companyCode").setModel(oModel);
 			this.getView().byId("securityAccount").setModel(oModel);
+			this.getView().byId("glAccount").setModel(oModel);
 			
 			var globalParams = sap.ui.getCore().getModel("globalParameters").getData();
 			var itemsToHide = globalParams.hiddenItems;
@@ -58,6 +59,7 @@ sap.ui.define([
 				var pageId = currentPage.getId();
 				
 				var va = "&X_VA=" + this.getView().byId("valuationArea").getSelectedKey();
+				var ld = "&X_LD=" + this.getView().byId("ledgerBasis").getSelectedKey();
 				var cc = "&X_CC=" + this.getBExReadyFormatString(this.getView().byId("companyCode").getSelectedKeys());
 				var date = "&X_DATE=" + this.formatDateForBEx(this.getView().byId("datePicker1").getDateValue());
 				//create date range in case second date picker is used
@@ -72,6 +74,9 @@ sap.ui.define([
 					dateVar = "&X_DATEVAR=POSITION";	
 				}
 				var sec = "&X_SEC=" + this.getBExReadyFormatString(this.getView().byId("securityAccount").getSelectedKeys());
+				var gla = "&X_GLA=" + this.getBExReadyFormatString(this.getView().byId("glAccount").getSelectedKeys());
+				
+				var period = "&X_PERIOD=" + this.getView().byId("period").getSelectedKey();
 				//clear page from selection screen
 				currentPage.removeAllContent();
 				var html = new sap.ui.core.HTML({
@@ -82,7 +87,7 @@ sap.ui.define([
 					var src = [sRootPath, "view/test.html"].join("/");
 					html.setContent("<iframe class='bo_container' src='" + src + "'></iframe>");
 				} else {
-					targetLink += va + cc + date + dateVar + sec;
+					targetLink += va + cc + date + dateVar + sec + ld + gla + period;
 					html.setContent("<iframe class='bo_container' src='" + targetLink + "'></iframe>");
 				}
 			}

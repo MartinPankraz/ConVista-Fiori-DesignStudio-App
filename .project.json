@@ -7,7 +7,7 @@
     "targetFolder": "dist",
     "sourceFolder": "webapp",
     "buildRequired": true,
-    "lastBuildDateTime": "Fri, 10 Feb 2017 09:37:07 GMT"
+    "lastBuildDateTime": "Fri, 10 Feb 2017 14:43:34 GMT"
   },
   "generation": [
     {
@@ -23,7 +23,7 @@
     {
       "templateId": "servicecatalog.connectivityComponent",
       "templateVersion": "0.0.0",
-      "dateTimeStamp": "Thu, 09 Feb 2017 11:32:58 GMT"
+      "dateTimeStamp": "Fri, 10 Feb 2017 13:53:40 GMT"
     }
   ],
   "translation": {

@@ -84,11 +84,11 @@
 					<Select
 						id="period"
 						forceSelection="false"
-						selectedKey="001"
+						selectedKey=""
 						required="true"
 						width="300px">
 						<items>
-							<core:Item key="<empty>" text="<all>" />
+							<core:Item key="" text="{i18n>textAll}" />
 							<core:Item key="001" text="Jan" />
 							<core:Item key="002" text="Feb" />
 							<core:Item key="003" text="Mar" />
@@ -116,8 +116,8 @@
 						id="glAccount"
 						required="false"
 						width="300px"
-						items="{/securityAccountSet}">
-							<core:Item text="{Cfmsecac} | {Txtmd}" key="{Cfmsecac}"/>
+						items="{/glaccountSet}">
+							<core:Item text="{Chrtacct} | {Glaccont}" key="{Glaccont}"/>
 					</MultiComboBox>
 				<Label text=""/>
 					<Button

@@ -82,7 +82,7 @@
 					"key":"gl_summary",
 					"text":"General Ledger Summary",
 					"icon":"sap-icon://wallet",
-					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=ATyKYNTAOhRKsrDoGYQgl.A&noDetailsPanel=true",
+					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=Ab4YZ0UoB7NOk8KJJpE6MdY&noDetailsPanel=true",
 					"selectionscreen":"BOSelectionScreen1",
 					"hiddenscreenparts":["valuationArea","secAccLabel","securityAccount"]
 				},

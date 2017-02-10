@@ -17,13 +17,22 @@
                     <PropertyRef Name="Compcode"/>
                     <PropertyRef Name="Cfmsecac"/>
                 </Key>
-                <Property Name="Compcode" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Buchungskreis" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Compcode" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Buchungskreis" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                 <Property Name="Cfmsecac" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Depot" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Txtmd" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Beschreibung mittel" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="glaccount" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Chrtacct"/>
+                    <PropertyRef Name="Glaccont"/>
+                </Key>
+                <Property Name="Chrtacct" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Kontenplan" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Glaccont" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Sachkonto" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
             <EntityContainer Name="ZARP_COMPCODE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
                 <EntitySet Name="companySet" EntityType="ZARP_COMPCODE_SRV.company" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="securityAccountSet" EntityType="ZARP_COMPCODE_SRV.securityAccount" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="glaccountSet" EntityType="ZARP_COMPCODE_SRV.glaccount" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
             </EntityContainer>
             <atom:link
                 xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZARP_COMPCODE_SRV/$metadata"/>
