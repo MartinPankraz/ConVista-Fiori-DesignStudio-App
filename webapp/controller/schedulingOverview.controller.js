@@ -191,16 +191,16 @@ sap.ui.define([
 			};
 
 			$.ajax({
-				url: this.sServiceUrl + "_method=schedule_job&" +
-										"_sched_first_start_date=" + MyFormatter.getSAPInternatlDate(this.getView().byId("firstStartDate").getDateValue()) +
-										"_sched_first_start_time=" + MyFormatter.getSAPInternatlTime(this.getView().byId("firstStartTime").getDateValue()) +
-										"_rule=" + this.getView().byId("execRule").getSelectedKey() +
-										"_immediate=" + this.getView().byId("immediate").getSelected() +
-										"_skip_holiday=" + this.getView().byId("skipHoliday").getSelectedKey() +
-										"zip=false" + this.getView().byId("zip").getSelected() +
-										"_shift_asof=" + this.getView().byId("shiftAsOf").getSelected() +
-										"_shift_from=" + this.getView().byId("shiftFrom").getSelected() +
-										"_shift_to=" + this.getView().byId("shiftTo").getSelected(),
+				url: this.sServiceUrl + "_method=schedule_job" +
+										"&_sched_first_start_date=" + MyFormatter.getSAPInternatlDate(this.getView().byId("firstStartDate").getDateValue()) +
+										"&_sched_first_start_time=" + MyFormatter.getSAPInternatlTime(this.getView().byId("firstStartTime").getDateValue()) +
+										"&_rule=" + this.getView().byId("execRule").getSelectedKey() +
+										"&_immediate=" + this.getView().byId("immediate").getSelected() +
+										"&_skip_holiday=" + this.getView().byId("skipHoliday").getSelectedKey() +
+										"&_zip=" + this.getView().byId("zip").getSelected() +
+										"&_shift_asof=" + this.getView().byId("shiftAsOf").getSelected() +
+										"&_shift_from=" + this.getView().byId("shiftFrom").getSelected() +
+										"&_shift_to=" + this.getView().byId("shiftTo").getSelected(),
 				type: "POST",
 				cache: false,
 				processData: false,//avoid URL parsing of payload!
