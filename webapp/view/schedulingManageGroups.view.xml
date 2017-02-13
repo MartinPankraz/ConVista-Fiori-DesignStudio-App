@@ -27,7 +27,6 @@
 				</headerToolbar>
 				<infoToolbar>
 					<Toolbar
-						id="vsdFilterBar"
 						active="true"
 						visible="false"
 						press="[handleViewSettingsDialogFilterBarPressed, views.control.tableViewSettingsDialog]">

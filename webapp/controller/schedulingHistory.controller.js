@@ -1,7 +1,6 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/Filter",
-	"sap/ui/model/Sorter"
+	"sap/ui/model/Filter"
 ], function(Controller,ODataModel,Filter,Sorter) {
 	"use strict";
 
@@ -15,8 +14,6 @@ sap.ui.define([
 		 */
 		onInit: function() {
 			var that = this;
-			
-			this._objSorter = new Sorter("schedObjName",false);
 			
 			var oModel = new sap.ui.model.json.JSONModel();
 			/* eslint-disable */
@@ -99,11 +96,7 @@ sap.ui.define([
 			/*oView.byId("vsdFilterBar").setVisible(aFilters.length > 0);
 			oView.byId("vsdFilterLabel").setText(mParams.filterString);*/
 		},
-		
-		onSortObjectName: function(){
-			this._objSorter.bDescending = !this._objSorter.bDescending;
-			this.byId("idSchedulingHistoryTable").getBinding("items").sort(this._objSorter);
-		},
+
 		
 		formatStatusIcon: function (sStatus) {
 			var result = "sap-icon://";

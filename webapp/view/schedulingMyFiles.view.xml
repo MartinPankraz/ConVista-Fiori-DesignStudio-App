@@ -1,14 +1,14 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:model="sap.ui.model"
 	controllerName="convista.com.arp.demo.controller.schedulingMyFiles" xmlns:html="http://www.w3.org/1999/xhtml" class="sapUiSizeCompact">
 	<Page
-      id="pageSchedulingHistory"
+      id="pageSchedulingFiles"
       class="html_container"
       showHeader="false">
 	<Panel
 	    width="100%"
 	    class="ccPanelBG">
     	<content>
-			<Table id="idSchedulingTable"
+			<Table id="idSchedulingMyFiles"
 				items="{path:'/entries'}">
 				<headerToolbar>
 					<Toolbar>
@@ -20,7 +20,6 @@
 				</headerToolbar>
 				<infoToolbar>
 					<Toolbar
-						id="vsdFilterBar"
 						active="true"
 						visible="false"
 						press="[handleViewSettingsDialogFilterBarPressed, views.control.tableViewSettingsDialog]">
