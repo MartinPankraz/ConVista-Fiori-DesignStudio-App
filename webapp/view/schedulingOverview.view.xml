@@ -55,12 +55,10 @@
                                 <form:fields>
 									<MultiComboBox
 										id="reportSelection"
-										forceSelection="true"
 										selectedKey="none"
-										items="{
-											path: '/entries'
-										}">
-										<core:Item key="{query}" text="{descr}" />
+										forceSelection="true"
+										items="{reportSelection>/entries}">
+											<core:Item text="{reportSelection>query}" key="{reportSelection>descr}"/>
 									</MultiComboBox>
                                 </form:fields>
                             </form:FormElement>
@@ -189,15 +187,9 @@
 										id="companyCode"
 										required="false"
 										width="300px"
-										items="{/companySet}">
-										<core:Item key="{Compcode}" text="{Txtmd}" />
+										items="{compCode>/companySet}">
+										<core:Item key="{compCode>Compcode}" text="{compCode>Txtmd}" />
 									</MultiComboBox>
-									<RadioButtonGroup columns="3" selectedIndex="0">
-										<buttons>
-											<RadioButton text="{i18n>sapSchedPeriodic}"/>
-											<RadioButton text="{i18n>sapSchedDailyEntity}"/>
-										</buttons>
-									</RadioButtonGroup>
                                 </form:fields>
                             </form:FormElement>
                             <form:FormElement label="{i18n>sapSchedViewType}">
@@ -225,7 +217,7 @@
                         			<Title text="{i18n>sapSchedFAM}" class="titleScheduleForm"/>
                         		</form:fields> 
                         	</form:FormElement>
-                            <form:FormElement label="{i18n>sapSchedAccountingBasis}">
+                            <form:FormElement label="{i18n>valuationAreaText}">
                                 <form:fields>
                                     <Select
                                     	id="valuationArea"
@@ -245,8 +237,8 @@
 										id="securityAccount"
 										required="false"
 										width="300px"
-										items="{/securityAccountSet}">
-											<core:Item text="{Cfmsecac} | {Txtmd}" key="{Cfmsecac}"/>
+										items="{compCode>/securityAccountSet}">
+											<core:Item text="{compCode>Cfmsecac} | {compCode>Txtmd}" key="{compCode>Cfmsecac}"/>
 									</MultiComboBox>
                                 </form:fields>
                             </form:FormElement>
@@ -275,8 +267,8 @@
 										id="glAccount"
 										required="false"
 										width="300px"
-										items="{/glaccountSet}">
-											<core:Item text="{Chrtacct} | {Glaccont}" key="{Glaccont}"/>
+										items="{compCode>/glaccountSet}">
+											<core:Item text="{compCode>Chrtacct} | {compCode>Glaccont}" key="{compCode>Glaccont}"/>
 									</MultiComboBox>
                                 </form:fields>
                             </form:FormElement>

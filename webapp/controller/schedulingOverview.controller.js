@@ -19,17 +19,11 @@ sap.ui.define([
 		onInit: function() {
 			var that = this;
 
-			var oMasterDataModel = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV", {defaultBindingMode: "TwoWay",defaultCountMode: "Inline"});
-			this.getView().byId("companyCode").setModel(oMasterDataModel);
-			this.getView().byId("securityAccount").setModel(oMasterDataModel);
-			this.getView().byId("glAccount").setModel(oMasterDataModel);
-			
-			
-			var oModel2 = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV",{
+			var oModelCompCode = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV",{
 				defaultBindingMode: "TwoWay",
 				defaultCountMode: "Inline"
 			});
-			this.getView().setModel(oModel2, "odataCcSa");
+			this.getView().setModel(oModelCompCode, "compCode");
 
 			var oModel = new sap.ui.model.json.JSONModel();
 
@@ -52,6 +46,7 @@ sap.ui.define([
 				jsonp: "callback",
 				success: function(json) {
 					oReportModel.setData(json);
+					that.getView().setModel(oReportModel, "reportSelection");
 				}
 			});
 			
