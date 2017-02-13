@@ -24,6 +24,13 @@ sap.ui.define([
 			this.getView().byId("securityAccount").setModel(oMasterDataModel);
 			this.getView().byId("glAccount").setModel(oMasterDataModel);
 			
+			
+			var oModel2 = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV",{
+				defaultBindingMode: "TwoWay",
+				defaultCountMode: "Inline"
+			});
+			this.getView().setModel(oModel2, "odataCcSa");
+
 			var oModel = new sap.ui.model.json.JSONModel();
 
 			this.sServiceUrl = "https://sapwebdcbw.sap.convista.local:8443/sap/bc/cs67_ds_com?";

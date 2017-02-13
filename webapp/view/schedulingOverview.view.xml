@@ -11,10 +11,12 @@
       <content>
 	
 	
-		<Panel expandable="true" expanded="true" headerText="Job Settings" width="auto" class="ccPanelBG">
+		<Panel expandable="true" expanded="true" headerText="{i18n>sapSchedJobSettings}" width="auto" class="ccPanelBG">
 			<content>
 				<!-- Beginning of first Form -->
-				<form:Form  editable="true">
+				<form:Form 
+					id="jobSettingsForm"
+					editable="true">
 					<form:layout>
                     <form:ResponsiveGridLayout 
                     	visible="true" 
@@ -35,7 +37,7 @@
                 <form:formContainers>
                     <form:FormContainer>
                         <form:formElements>
-                            <form:FormElement label="Report Group">
+                            <form:FormElement label="{i18n>sapSchedReportGroup}">
                                 <form:fields>
 									<Select
 										id="reportGroupSelection"
@@ -49,7 +51,7 @@
 									</Select>
                                 </form:fields>
                             </form:FormElement>
-                            <form:FormElement label="Single Reports">
+                            <form:FormElement label="{i18n>sapSchedSingleReports}">
                                 <form:fields>
 									<MultiComboBox
 										id="reportSelection"
@@ -69,21 +71,20 @@
                 <form:formContainers>
                     <form:FormContainer>
                         <form:formElements>
-                            <form:FormElement label="First Start Date">
+                            <form:FormElement label="{i18n>sapSchedFirstStartDate}">
                                 <form:fields>
                                     <DatePicker id="firstStartDate" valueFormat="yyyyMMdd" displayFormat="d MMM y"/>
-									<CheckBox id="immediate" text="Immediately" select="immediateSelect" />
+									<CheckBox id="immediate" text="{i18n>sapSchedImmediately}" select="immediateSelect" />
                                 </form:fields>
                             </form:FormElement>
-                            <form:FormElement label="Start time">
+                            <form:FormElement label="{i18n>sapSchedStartTime}">
                                 <form:fields>
                                     <TimePicker
                                     	id="firstStartTime"
 										value="00:00"
 										valueFormat="HH:mm"
-										displayFormat="HH:mm"
-										placeholder="Enter job start time"/>
-									<CheckBox id="zip" text="ZIP report set" />
+										displayFormat="HH:mm"/>
+									<CheckBox id="zip" text="{i18n>sapSchedZIPReport}" />
                                 </form:fields>
                             </form:FormElement>
                         </form:formElements>
@@ -93,7 +94,7 @@
                 <form:formContainers>
                     <form:FormContainer>
                         <form:formElements>
-                            <form:FormElement label="Execution Rule">
+                            <form:FormElement label="{i18n>sapSchedExecutionRule}">
                                 <form:fields>
                                     <Select
                                     	id="execRule"
@@ -108,7 +109,7 @@
 									</Select>
                                 </form:fields>
                             </form:FormElement>
-                            <form:FormElement label="Restriction (NWD)">
+                            <form:FormElement label="{i18n>sapSchedRestriction}">
                                 <form:fields>
                                     <Select
                                     	id="skipHoliday"
@@ -134,10 +135,12 @@
 			<!-- End of first Form -->
 			</content>
 		</Panel>
-		<Panel expandable="true" expanded="true" headerText="Reporting Parameters" width="auto" class="ccPanelBG">
+		<Panel expandable="true" expanded="true" headerText="{i18n>sapSchedReportingParameters}" width="auto" class="ccPanelBG">
 			<content>
 				<!-- Beginning of second Form -->
-				<form:Form  editable="true">
+				<form:Form  
+					id="reportingParametersForm"
+					editable="true">
 					<form:layout>
                     <form:ResponsiveGridLayout 
                     	visible="true" 
@@ -158,13 +161,13 @@
                 <form:formContainers>
                     <form:FormContainer>
                         <form:formElements>
-                            <form:FormElement label="Date As of">
+                            <form:FormElement label="{i18n>sapSchedDateAsOf}">
                                 <form:fields>
 									<DatePicker id="dateAsOf" valueFormat="yyyyMMdd" displayFormat="d MMM y"/>
 									<CheckBox id="shiftAsOf" />
                                 </form:fields>
                             </form:FormElement>
-                            <form:FormElement label="Date through">
+                            <form:FormElement label="{i18n>sapSchedDateThrough}">
                                 <form:fields>
 									<DatePicker id="dateRangeFrom" valueFormat="yyyyMMdd" displayFormat="d MMM y"/>
 									<CheckBox id="shiftFrom" />
@@ -189,17 +192,23 @@
 										items="{/companySet}">
 										<core:Item key="{Compcode}" text="{Txtmd}" />
 									</MultiComboBox>
+									<RadioButtonGroup columns="3" selectedIndex="0">
+										<buttons>
+											<RadioButton text="{i18n>sapSchedPeriodic}"/>
+											<RadioButton text="{i18n>sapSchedDailyEntity}"/>
+										</buttons>
+									</RadioButtonGroup>
                                 </form:fields>
                             </form:FormElement>
-                            <form:FormElement label="View type">
+                            <form:FormElement label="{i18n>sapSchedViewType}">
                                 <form:fields>
 									<Select
 										id="viewType"
 										forceSelection="true"
 										selectedKey="compact">
 										<items>
-											<core:Item key="compact" text="Compact" />
-											<core:Item key="expanded" text="Expanded" />
+											<core:Item key="compact" text="{i18n>sapSchedCompact}" />
+											<core:Item key="expanded" text="{i18n>sapSchedExpanded}" />
 										</items>
 									</Select>
                                 </form:fields>
@@ -213,10 +222,10 @@
                         <form:formElements>
                         	<form:FormElement>
                         		<form:fields>
-                        			<Title text="FAM" class="titleScheduleForm"/>
+                        			<Title text="{i18n>sapSchedFAM}" class="titleScheduleForm"/>
                         		</form:fields> 
                         	</form:FormElement>
-                            <form:FormElement label="Accounting Basis">
+                            <form:FormElement label="{i18n>sapSchedAccountingBasis}">
                                 <form:fields>
                                     <Select
                                     	id="valuationArea"
@@ -244,10 +253,10 @@
                     
                     		<form:FormElement>
                         		<form:fields>
-	                        		<Title text="GL" class="titleScheduleForm"></Title>
+	                        		<Title text="{i18n>sapSchedGL}" class="titleScheduleForm"></Title>
                         		</form:fields> 
                         	</form:FormElement>
-                            <form:FormElement label="Ledger Basis">
+                            <form:FormElement label="{i18n>sapSchedLedgerBasis}">
                                 <form:fields>
                                     <Select
                                     	id="ledgerBasis"
@@ -280,15 +289,15 @@
                         <form:formElements>
                         	<form:FormElement>
                         		<form:fields>
-	                        		<Title text="SR"  class="titleScheduleForm"/>
+	                        		<Title text="{i18n>sapSchedSR}"  class="titleScheduleForm"/>
                         		</form:fields> 
                         	</form:FormElement>
-                            <form:FormElement label="NAIC Key Date">
+                            <form:FormElement label="{i18n>sapSchedNAICKeyDate}">
                                 <form:fields>
                                     <DatePicker enabled="false" value="Enter Date..." valueFormat="yyyy-MM-dd" displayFormat="short"/>
                                 </form:fields>
                             </form:FormElement>
-                            <form:FormElement label="NAIC List Type">
+                            <form:FormElement label="{i18n>sapSchedNAICListType}">
                                 <form:fields>
                                     <Select
                                     	enabled="false"
@@ -301,16 +310,74 @@
                 </form:formContainers>
 			
             </form:Form>
-			<!-- End of second Form -->	
-			<l:HorizontalLayout>
-				<l:HorizontalLayout>
-					<Button text="Delete" />
-	                <Button text="Cancel Running Job" />
-				</l:HorizontalLayout>
-				<l:HorizontalLayout>
-					<Button type="Accept" icon="sap-icon://accept" text="Schedule new Job" />
-				</l:HorizontalLayout>
-			</l:HorizontalLayout>
+            <!-- End of second Form -->
+            <!-- Beginning of third (buttons) Form -->
+            <form:Form  
+            	editable="true"
+            	id="formButtonsForm">
+					<form:layout>
+                    <form:ResponsiveGridLayout 
+                    	visible="true" 
+                		labelSpanL="4" 
+                		labelSpanM="4" 
+                		labelSpanS="12" 
+                		emptySpanL="0" 
+                		emptySpanM="0" 
+                		emptySpanS="0" 
+                		columnsL="2" 
+                		columnsM="1" 
+                		columnsS="1" 
+                		breakpointL="800" 
+                		breakpointM="400">
+                    </form:ResponsiveGridLayout>
+                </form:layout>
+                
+                	<form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                        	<form:FormElement>
+                        		<form:fields>
+									<Button text="{i18n>sapSchedDelete}">
+										<layoutData>
+											<l:GridData span="L3 M6 S6" />
+										</layoutData>
+									</Button>
+					                <Button text="{i18n>sapSchedCancel}" >
+						                <layoutData>
+											<l:GridData span="L5 M6 S6" />
+										</layoutData>
+									</Button>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                
+                <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                        	<form:FormElement>
+                        		<form:fields>
+                        			<ToolbarSpacer></ToolbarSpacer>
+									<Button 
+										id="scheduleButton"
+										press="onSchedulingPress"
+										type="Accept" 
+										icon="sap-icon://accept" 
+										text="{i18n>sapSchedSchedule}" >
+										<layoutData>
+											<l:GridData span="L5 M12 S12" />
+										</layoutData>
+									</Button>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+			
+            </form:Form>
+			<!-- End of third (buttons) Form -->	
+			
 				
 			</content>
 		</Panel>
@@ -323,9 +390,9 @@
 					items="{path:'/entries'}">
 					<headerToolbar>
 						<Toolbar>
-							<Title text="Current and future jobs" level="H6"/>
+							<Title text="{i18n>sapSchedCurrentFutureJobs}Current and future jobs" level="H6"/>
 							<ToolbarSpacer></ToolbarSpacer>
-							<Button text="Refresh" tooltip="Refresh" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
+							<Button text="{i18n>sapSchedRefresh}" tooltip="{i18n>sapSchedRefresh}" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
 							<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
 						</Toolbar>
 					</headerToolbar>
@@ -339,19 +406,39 @@
 						</Toolbar>
 					</infoToolbar>
 					<columns>
-						<Column width="17em"><Text text="SAP Job Identifier" /></Column>
+						<Column width="17em"><Text text="{i18n>sapSchedJobIdentifier}" /></Column>
 						<!--<Column minScreenWidth="Large" demandPopin="true" sortProperty="SchedObjName"><Text text="Date" /></Column>
 						<Column minScreenWidth="Large" demandPopin="true" sortProperty="SchedDate"><Text text="Next Run" /></Column>-->
-						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline"><Text text="Scheduled Object" /></Column>
-						<Column ><Text text="Job Type" /></Column>
-						<Column ><Text text="Status" /></Column>
-						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline"><Text text="Next Start Date" /></Column>
-						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline"><Text text="Created at" /></Column>
-						<Column minScreenWidth="1300px" ><Text text="Start Type" /></Column>
-						<Column minScreenWidth="1300px" ><Text text="ZIP" /></Column>
-						<Column ><Text text="Frequency" /></Column>
-						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline"><Text text="NWD Handling" /></Column>
-						<Column minScreenWidth="Large" demandPopin="true" popinDisplay="Inline" ><Text text="Job Count" /></Column>
+						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
+							<Text text="{i18n>sapSchedScheduledObject}" />
+						</Column>
+						<Column >
+							<Text text="{i18n>sapSchedJobType}" />
+						</Column>
+						<Column >
+							<Text text="{i18n>sapSchedStatus}" />
+						</Column>
+						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
+							<Text text="{i18n>sapSchedNextStartDate}" />
+						</Column>
+						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
+							<Text text="{i18n>sapSchedCreatedAt}" />
+						</Column>
+						<Column minScreenWidth="1300px" >
+							<Text text="{i18n>sapSchedStartType}" />
+						</Column>
+						<Column minScreenWidth="1300px" >
+							<Text text="{i18n>sapSchedZIP}" />
+						</Column>
+						<Column >
+							<Text text="{i18n>sapSchedFrequency}" />
+						</Column>
+						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
+							<Text text="{i18n>sapSchedNWDHandling}" />
+						</Column>
+						<Column minScreenWidth="Large" demandPopin="true" popinDisplay="Inline" >
+							<Text text="{i18n>sapSchedJobCount}" />
+						</Column>
 					</columns>
 					<items>
 						<ColumnListItem>
