@@ -18,7 +18,7 @@
     		<Label text="Key Date"/>
     		<DatePicker
 				id="datePicker1"
-				placeholder="Enter Date ..."
+				value="20161231"
 				displayFormat="d MMM y"
 				valueFormat="yyyyMMdd"
 				required="true"

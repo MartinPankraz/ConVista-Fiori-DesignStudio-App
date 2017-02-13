@@ -1,10 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/odata/ODataModel",
 	"sap/ui/model/Filter",
 	"sap/ui/model/Sorter",
     "convista/com/arp/demo/view/utils/BExHelperFunctions"
-], function(Controller,ODataModel,Filter,Sorter,BExHelper) {
+], function(Controller,Filter,Sorter,BExHelper) {
 	"use strict";
 
 	return Controller.extend("convista.com.arp.demo.controller.NAICReports", {
@@ -29,8 +28,6 @@ sap.ui.define([
 					oModel.setData(json);
 				}
 			});
-			
-			this.getView().byId("datePicker1").setDateValue(new Date());
 		},
 
 		/**
@@ -45,7 +42,7 @@ sap.ui.define([
 		
 		runNAICReport: function(oEvent){
 			var naicCompany = this.getView().byId("naicCompany").getSelectedKey();
-			var keyDate = BExHelper.getBExReadyFormatString(this.getView().byId("datePicker1").getDateValue());
+			var keyDate = this.getView().byId("datePicker1").getValue();
 			var listType = this.getView().byId("schedule").getSelectedKey();
 
 			$.ajax({
@@ -58,8 +55,20 @@ sap.ui.define([
 				jsonp: "callback",
 				cache: false,
 				success: function(json) {
-					var oModel = this.getView().byId("idNAICTable").getModel();
-					oModel.setData(json);
+					sap.m.MessageToast.show(json.msg+" New filename:"+json.filename, {
+					    duration: 3000,                  // default
+					    width: "15em",                   // default
+					    my: "center bottom",             // default
+					    at: "center bottom",             // default
+					    of: window,                      // default
+					    offset: "0 0",                   // default
+					    collision: "fit fit",            // default
+					    onClose: null,                   // default
+					    autoClose: true,                 // default
+					    animationTimingFunction: "ease", // default
+					    animationDuration: 1000,         // default
+					    closeOnBrowserNavigation: true   // default
+					});
 				}
 			});
 		},
@@ -74,13 +83,14 @@ sap.ui.define([
 		},
 		
 		handleRefreshButtonPressed: function (oEvent) {
+			var that = this;
 			$.ajax({
 				url: this.sServiceUrl+"_method=list_all&exportType=FS-SR",
 				dataType: "jsonp",
 				jsonp: "callback",
 				cache: false,
 				success: function(json) {
-					var oModel = this.getView().byId("idNAICTable").getModel();
+					var oModel = that.getView().byId("idNAICTable").getModel();
 					oModel.setData(json);
 				}
 			});
@@ -129,28 +139,6 @@ sap.ui.define([
 		onSortObjectName: function(){
 			this._objSorter.bDescending = !this._objSorter.bDescending;
 			this.byId("idNAICTable").getBinding("items").sort(this._objSorter);
-		},
-		
-		formatStatusIcon: function (sStatus) {
-			var result = "sap-icon://";
-			switch (sStatus) {
-				case 'P':
-	            	 return result+"status-positive";//preliminary
-	        	case 'S':
-	            	return result+"calendar";//scheduled
-	        	case 'Y':
-	            	return result+"status-in-process";//ready
-	        	case 'R':
-	            	return result+"physical-activity";//running
-	        	case 'F':
-	            	return result+"complete";//finished
-	        	case 'A':
-	            	return result+"sys-cancel-2";//aborted
-	        	case 'Z':
-	            	return result+"alert";//suspended
-				default:
-					return result+"message-information";//default
-			}
 		}
 
 	});

@@ -1,9 +1,11 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/odata/ODataModel",
+	"sap/ui/model/odata/v2/ODataModel",
 	"sap/ui/model/Filter",
-	"sap/ui/model/Sorter"
-], function(Controller, ODataModel, Filter, Sorter) {
+	"sap/ui/model/Sorter",
+    "convista/com/arp/demo/view/utils/BExHelperFunctions",
+    "convista/com/arp/demo/view/utils/MyFormatter"
+], function(Controller, ODataModel, Filter, Sorter, BExHelper, MyFormatter) {
 	"use strict";
 
 	return Controller.extend("convista.com.arp.demo.controller.schedulingOverview", {
@@ -16,7 +18,7 @@ sap.ui.define([
 		 */
 		onInit: function() {
 			var that = this;
-			var oMasterDataModel = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV", true);
+			var oMasterDataModel = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV", {defaultBindingMode: "TwoWay",defaultCountMode: "Inline"});
 			this.getView().byId("companyCode").setModel(oMasterDataModel);
 			this.getView().byId("securityAccount").setModel(oMasterDataModel);
 			this.getView().byId("glAccount").setModel(oMasterDataModel);
@@ -25,38 +27,45 @@ sap.ui.define([
 
 			this.sServiceUrl = "https://sapwebdcbw.sap.convista.local:8443/sap/bc/cs67_ds_com?";
 			$.ajax({
-				url: this.sServiceUrl+"_method=get_user_info&_datasrc=sched_future",
+				url: this.sServiceUrl + "_method=get_user_info&_datasrc=sched_future",
 				dataType: "jsonp",
 				jsonp: "callback",
 				success: function(json) {
 					oModel.setData(json);
 					that.getView().setModel(oModel);
-					//sap.ui.getCore().setModel(oModel);
 				}
 			});
 			
 			var oReportModel = new sap.ui.model.json.JSONModel();
+			this.getView().byId("reportSelection").setModel(oReportModel);
 			$.ajax({
-				url: this.sServiceUrl+"_method=get_user_info&_datasrc=REP",
+				url: this.sServiceUrl + "_method=get_user_info&_datasrc=REP",
 				dataType: "jsonp",
 				jsonp: "callback",
 				success: function(json) {
 					oReportModel.setData(json);
-					that.getView().byId("reportSelection").setModel(oReportModel);
 				}
 			});
 			
 			var oReportGroupModel = new sap.ui.model.json.JSONModel();
+			this.getView().byId("reportGroupSelection").setModel(oReportGroupModel);
 			$.ajax({
-				url: this.sServiceUrl+"_method=get_user_info&_datasrc=GRP_REP",
+				url: this.sServiceUrl + "_method=get_user_info&_datasrc=GRP_REP",
 				dataType: "jsonp",
 				jsonp: "callback",
 				success: function(json) {
 					json.entries = that.filterGrpStructureForGroups(json.entries);
 					oReportGroupModel.setData(json);
-					that.getView().byId("reportGroupSelection").setModel(oReportGroupModel);
+					that.getView().byId("reportGroupSelection").addItem(new sap.ui.core.Item({key:"none",text:"None"}));
 				}
 			});
+			
+			this.getView().byId("firstStartDate").setDateValue(new Date());
+			this.getView().byId("dateAsOf").setDateValue(new Date());
+			var date = new Date(), y = date.getFullYear();//, m = date.getMonth();
+			var firstDay = new Date(y, 0, 1);
+			this.getView().byId("dateRangeFrom").setDateValue(firstDay);
+			this.getView().byId("dateRangeTo").setDateValue(new Date());
 		},
 
 		/**
@@ -79,12 +88,13 @@ sap.ui.define([
 		},
 
 		handleRefreshButtonPressed: function(oEvent) {
+			var that = this;
 			$.ajax({
 				url: this.sServiceUrl+"_method=get_user_info&_datasrc=sched_future",
 				dataType: "jsonp",
 				jsonp: "callback",
 				success: function(json) {
-					var oModel = this.getView().byId("idSchedulingTable").getModel();
+					var oModel = that.getView().byId("idSchedulingTable").getModel();
 					oModel.setData(json);
 				}
 			});
@@ -129,6 +139,102 @@ sap.ui.define([
 			/*oView.byId("vsdFilterBar").setVisible(aFilters.length > 0);
 			oView.byId("vsdFilterLabel").setText(mParams.filterString);*/
 		},
+		
+		scheduleReports: function(oEvent){
+			var that = this;
+			var dateAsOf = MyFormatter.getSAPInternatlDate(this.getView().byId("dateAsOf").getDateValue());
+			var fiscalYear = ("" + dateAsOf).substring(0,4);
+			var dateType = "";
+			if(this.getView().byId("dateType").getSelectedIndex() === 0){
+				dateType = "periodic";
+			}else{
+				dateType = "daily";
+			}
+			var dateRange = MyFormatter.getSAPInternatlDate(this.getView().byId("dateRangeFrom").getDateValue()) +
+							"." +
+							MyFormatter.getSAPInternatlDate(this.getView().byId("dateRangeTo").getDateValue());
+			var data = {"report_filters":[{
+				    "filter_name": "_va",
+				    "filter_value": this.getView().byId("valuationArea").getSelectedKey()
+				},{
+				    "filter_name": "_ld",
+				    "filter_value": this.getView().byId("ledgerBasis").getSelectedKey()
+				},{
+				    "filter_name": "_cc",
+				    "filter_value": BExHelper.getAllStringForEmptySelection(this.getView().byId("companyCode").getSelectedKeys())
+				},{
+				    "filter_name": "_sa",
+				    "filter_value": BExHelper.getAllStringForEmptySelection(this.getView().byId("securityAccount").getSelectedKeys())
+				},{
+				    "filter_name": "_gla",
+				    "filter_value": BExHelper.getAllStringForEmptySelection(this.getView().byId("glAccount").getSelectedKeys())
+				},{
+				    "filter_name": "_fy",
+				    "filter_value": fiscalYear
+				},{
+				    "filter_name": "_date",
+				    "filter_value": dateAsOf
+				},{
+				    "filter_name": "_date_range",
+				    "filter_value": dateRange
+				},{
+				    "filter_name": "_date_type",
+				    "filter_value": dateType
+				},{
+				    "filter_name": "_view",
+				    "filter_value": this.getView().byId("viewType").getSelectedKey()
+				}],"to_be_scheduled": this.getToBeScheduledReports()
+			};
+
+			$.ajax({
+				url: this.sServiceUrl + "_method=schedule_job&" +
+										"_sched_first_start_date=" + MyFormatter.getSAPInternatlDate(this.getView().byId("firstStartDate").getDateValue()) +
+										"_sched_first_start_time=" + MyFormatter.getSAPInternatlTime(this.getView().byId("firstStartTime").getDateValue()) +
+										"_rule=" + this.getView().byId("execRule").getSelectedKey() +
+										"_immediate=" + this.getView().byId("immediate").getSelected() +
+										"_skip_holiday=" + this.getView().byId("skipHoliday").getSelectedKey() +
+										"zip=false" + this.getView().byId("zip").getSelected() +
+										"_shift_asof=" + this.getView().byId("shiftAsOf").getSelected() +
+										"_shift_from=" + this.getView().byId("shiftFrom").getSelected() +
+										"_shift_to=" + this.getView().byId("shiftTo").getSelected(),
+				type: "POST",
+				cache: false,
+				processData: false,//avoid URL parsing of payload!
+				data: JSON.stringify(data),
+				dataType: "json",
+				contentType: "application/json",
+				success: function(json) {
+					var oModel = that.getView().byId("idSchedulingTable").getModel();
+					oModel.setData(json);
+				}
+			});
+		},
+		
+		getToBeScheduledReports: function(){
+			var result = [];
+			var reportSelection = this.getView().byId("reportSelection");
+			if(reportSelection.getEnabled()){
+				var items = reportSelection.getSelectedItems();
+				for(var i = 0; i < items.length; i++){
+					var report = items[i];
+					result.push({
+						type:"rep",
+						key: MyFormatter.getTimeStamp(),
+						name: report.getKey()
+					});
+				}
+			}
+			else{
+				var reportGroupSelection = this.getView().byId("reportGroupSelection");
+				var item = reportGroupSelection.getSelectedItem();
+				result.push({
+						type:"grp",
+						key: MyFormatter.getTimeStamp(),
+						name: item.getKey()
+					});
+			}
+			return result;
+		},
 
 		formatStatusIcon: function(sStatus) {
 			var result = "sap-icon://";
@@ -165,6 +271,34 @@ sap.ui.define([
 		         }
 		    }
 		    return out;
+		},
+		
+		groupSelectionChanged: function(oEvent){
+			var item = oEvent.getParameter("selectedItem");
+			var key = item.getKey();
+			if(key === 'none'){
+				this.getView().byId("reportSelection").setEnabled(true);
+			}else{
+				this.getView().byId("reportSelection").setEnabled(false);
+				this.getView().byId("reportSelection").setSelectedKeys([]);
+			}
+		},
+		
+		immediateSelect: function(oEvent){
+			var selected = oEvent.getParameter("selected");
+			if(selected){
+				this.getView().byId("firstStartDate").setEnabled(false);
+				this.getView().byId("firstStartTime").setEnabled(false);  
+				this.getView().byId("shiftAsOf").setSelected(false).setEnabled(false);
+				this.getView().byId("shiftFrom").setSelected(false).setEnabled(false);
+				this.getView().byId("shiftTo").setSelected(false).setEnabled(false);
+			}else{
+				this.getView().byId("firstStartDate").setEnabled(true);
+				this.getView().byId("firstStartTime").setEnabled(true);
+				this.getView().byId("shiftAsOf").setEnabled(true);
+				this.getView().byId("shiftFrom").setEnabled(true);
+				this.getView().byId("shiftTo").setEnabled(true);
+			}
 		}
 
 	});

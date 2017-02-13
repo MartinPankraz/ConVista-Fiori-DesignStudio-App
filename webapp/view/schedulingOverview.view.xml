@@ -39,7 +39,9 @@
                                 <form:fields>
 									<Select
 										id="reportGroupSelection"
-										forceSelection="false"
+										forceSelection="true"
+										selectedKey="none"
+										change="groupSelectionChanged"
 										items="{
 											path: '/entries'
 										}">
@@ -49,14 +51,15 @@
                             </form:FormElement>
                             <form:FormElement label="Single Reports">
                                 <form:fields>
-									<Select
+									<MultiComboBox
 										id="reportSelection"
-										forceSelection="false"
+										forceSelection="true"
+										selectedKey="none"
 										items="{
 											path: '/entries'
 										}">
 										<core:Item key="{query}" text="{descr}" />
-									</Select>
+									</MultiComboBox>
                                 </form:fields>
                             </form:FormElement>
                         </form:formElements>
@@ -68,18 +71,19 @@
                         <form:formElements>
                             <form:FormElement label="First Start Date">
                                 <form:fields>
-                                    <DatePicker value="2014-03-26" valueFormat="yyyy-MM-dd" displayFormat="short"/>
-									<CheckBox text="Immediately" />
+                                    <DatePicker id="firstStartDate" valueFormat="yyyyMMdd" displayFormat="d MMM y"/>
+									<CheckBox id="immediate" text="Immediately" select="immediateSelect" />
                                 </form:fields>
                             </form:FormElement>
                             <form:FormElement label="Start time">
                                 <form:fields>
                                     <TimePicker
+                                    	id="firstStartTime"
 										value="00:00"
 										valueFormat="HH:mm"
 										displayFormat="HH:mm"
-										placeholder="Enter meeting start time"/>
-									<CheckBox text="ZIP report set" />
+										placeholder="Enter job start time"/>
+									<CheckBox id="zip" text="ZIP report set" />
                                 </form:fields>
                             </form:FormElement>
                         </form:formElements>
@@ -92,6 +96,7 @@
                             <form:FormElement label="Execution Rule">
                                 <form:fields>
                                     <Select
+                                    	id="execRule"
 										forceSelection="false"
 										selectedKey="N">
                                     	<items>
@@ -106,6 +111,7 @@
                             <form:FormElement label="Restriction (NWD)">
                                 <form:fields>
                                     <Select
+                                    	id="skipHoliday"
 										forceSelection="false"
 										selectedKey="BTC_PROCESS_ALWAYS">
 										<items>
@@ -116,6 +122,9 @@
                                     	</items>
 									</Select>
                                 </form:fields>
+                            </form:FormElement>
+                            <form:FormElement>
+                            	<Button text="{i18n>buttonExecute}" press="scheduleReports"/>
                             </form:FormElement>
                         </form:formElements>
                     </form:FormContainer>
@@ -151,20 +160,20 @@
                         <form:formElements>
                             <form:FormElement label="Date As of">
                                 <form:fields>
-									<DatePicker value="2014-03-26" valueFormat="yyyy-MM-dd" displayFormat="short"/>
-									<CheckBox />
+									<DatePicker id="dateAsOf" valueFormat="yyyyMMdd" displayFormat="d MMM y"/>
+									<CheckBox id="shiftAsOf" />
                                 </form:fields>
                             </form:FormElement>
                             <form:FormElement label="Date through">
                                 <form:fields>
-									<DatePicker value="2014-03-26" valueFormat="yyyy-MM-dd" displayFormat="short"/>
-									<CheckBox />
-									<DatePicker value="2014-03-26" valueFormat="yyyy-MM-dd" displayFormat="short"/>
-									<CheckBox />
+									<DatePicker id="dateRangeFrom" valueFormat="yyyyMMdd" displayFormat="d MMM y"/>
+									<CheckBox id="shiftFrom" />
+									<DatePicker id="dateRangeTo" valueFormat="yyyyMMdd" displayFormat="d MMM y"/>
+									<CheckBox id="shiftTo" />
                                 </form:fields>
                             </form:FormElement>
                             <form:FormElement label="{i18n>dateType}">
-                            	<RadioButtonGroup columns="3" selectedIndex="0">
+                            	<RadioButtonGroup id="dateType" columns="3" selectedIndex="0">
 									<buttons>
 										<RadioButton text="periodic"/>
 										<RadioButton text="daily"/>
@@ -185,6 +194,7 @@
                             <form:FormElement label="View type">
                                 <form:fields>
 									<Select
+										id="viewType"
 										forceSelection="true"
 										selectedKey="compact">
 										<items>
@@ -204,6 +214,7 @@
                             <form:FormElement label="Accounting Basis">
                                 <form:fields>
                                     <Select
+                                    	id="valuationArea"
 										forceSelection="true"
 										selectedKey="001">
                                     	<items>
@@ -228,6 +239,7 @@
                             <form:FormElement label="Ledger Basis">
                                 <form:fields>
                                     <Select
+                                    	id="ledgerBasis"
 										forceSelection="true"
 										selectedKey="0L">
 										<items>

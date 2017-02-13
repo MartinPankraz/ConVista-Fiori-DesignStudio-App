@@ -1,6 +1,6 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/odata/ODataModel",
+	"sap/ui/model/odata/v2/ODataModel",
     "convista/com/arp/demo/view/utils/BExHelperFunctions"
 ], function(Controller, ODataModel, BExHelper) {
 	"use strict";
@@ -15,7 +15,7 @@ sap.ui.define([
 		 * @memberOf convista.com.arp.demo.view.BOSelectionScreen1
 		 */
 		onInit: function() {
-			var oModel = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV", true);
+			var oModel = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV", {defaultBindingMode: "TwoWay",defaultCountMode: "Inline"});
 			this.getView().byId("companyCode").setModel(oModel);
 			this.getView().byId("securityAccount").setModel(oModel);
 			this.getView().byId("glAccount").setModel(oModel);

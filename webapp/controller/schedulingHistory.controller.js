@@ -1,6 +1,5 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/odata/ODataModel",
 	"sap/ui/model/Filter",
 	"sap/ui/model/Sorter"
 ], function(Controller,ODataModel,Filter,Sorter) {
