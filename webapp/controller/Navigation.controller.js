@@ -188,12 +188,19 @@ sap.ui.define([
 								}
 					});
 					
-					if(selectedKey === "sched_1"){
+					if(selectedKey === "naic_sr"){
+						var viewReg = new sap.ui.view({
+											viewName:"convista.com.arp.demo.view.NAICReports",
+											type: sap.ui.core.mvc.ViewType.XML,
+											height:"100%"
+						});
+						newPage.addContent(viewReg);
+					}
+					else if(selectedKey === "sched_1"){
 						var viewSched = new sap.ui.view({
 											viewName:"convista.com.arp.demo.view.schedulingOverview",
 											type: sap.ui.core.mvc.ViewType.XML,
 											height:"100%"
-							
 						});
 						newPage.addContent(viewSched);
 					
@@ -202,7 +209,6 @@ sap.ui.define([
 											viewName:"convista.com.arp.demo.view.schedulingManageGroups",
 											type: sap.ui.core.mvc.ViewType.XML,
 											height:"100%"
-							
 						});
 						newPage.addContent(viewSched2);
 					}else if(selectedKey === "sched_3"){
@@ -210,7 +216,6 @@ sap.ui.define([
 											viewName:"convista.com.arp.demo.view.schedulingMyFiles",
 											type: sap.ui.core.mvc.ViewType.XML,
 											height:"100%"
-							
 						});
 						newPage.addContent(viewSched3);
 					}else if(selectedKey === "sched_4"){
@@ -218,7 +223,6 @@ sap.ui.define([
 											viewName:"convista.com.arp.demo.view.schedulingHistory",
 											type: sap.ui.core.mvc.ViewType.XML,
 											height:"100%"
-							
 						});
 						newPage.addContent(viewSched4);
 					}else{

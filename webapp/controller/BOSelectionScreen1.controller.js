@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/odata/ODataModel"
-], function(Controller, ODataModel) {
+	"sap/ui/model/odata/ODataModel",
+    "convista/com/arp/demo/view/utils/BExHelperFunctions"
+], function(Controller, ODataModel, BExHelper) {
 	"use strict";
 	
      jQuery.sap.require("sap.ui.core.format.DateFormat");
@@ -60,11 +61,11 @@ sap.ui.define([
 				
 				var va = "&X_VA=" + this.getView().byId("valuationArea").getSelectedKey();
 				var ld = "&X_LD=" + this.getView().byId("ledgerBasis").getSelectedKey();
-				var cc = "&X_CC=" + this.getBExReadyFormatString(this.getView().byId("companyCode").getSelectedKeys());
-				var date = "&X_DATE=" + this.formatDateForBEx(this.getView().byId("datePicker1").getDateValue());
+				var cc = "&X_CC=" + BExHelper.getBExReadyFormatString(this.getView().byId("companyCode").getSelectedKeys());
+				var date = "&X_DATE=" + BExHelper.formatDateForBEx(this.getView().byId("datePicker1").getDateValue());
 				//create date range in case second date picker is used
 				if(this.getView().byId("datePicker2").getVisible()){
-					date += " - " + this.formatDateForBEx(this.getView().byId("datePicker2").getDateValue());
+					date += " - " + BExHelper.formatDateForBEx(this.getView().byId("datePicker2").getDateValue());
 				}
 				var dateswitch = this.getView().byId("rbg1").getSelectedIndex();
 				var dateVar = "";
@@ -73,8 +74,8 @@ sap.ui.define([
 				}else{
 					dateVar = "&X_DATEVAR=POSITION";	
 				}
-				var sec = "&X_SEC=" + this.getBExReadyFormatString(this.getView().byId("securityAccount").getSelectedKeys());
-				var gla = "&X_GLA=" + this.getBExReadyFormatString(this.getView().byId("glAccount").getSelectedKeys());
+				var sec = "&X_SEC=" + BExHelper.getBExReadyFormatString(this.getView().byId("securityAccount").getSelectedKeys());
+				var gla = "&X_GLA=" + BExHelper.getBExReadyFormatString(this.getView().byId("glAccount").getSelectedKeys());
 				
 				var period = "&X_PERIOD=" + this.getView().byId("period").getSelectedKey();
 				//clear page from selection screen
@@ -133,26 +134,7 @@ sap.ui.define([
 			     filters: filters
 			});*/
 			this.getView().byId("securityAccount").getBinding("items").filter(filters);
-		},
-		
-		getBExReadyFormatString: function(values){
-			var result = "";
-			for(var i=0;i<values.length;i++){
-				if(i<values.length-1){
-					result += values[i] + ";";	
-				}else{
-					result += values[i];	
-				}
-			}
-			return result;
-		},
-		
-		formatDateForBEx : function(v) {
-		     var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({pattern: "MM/dd/YYYY"});
-		     var result = oDateFormat.format(new Date(v));
-		     return result;
 		}
-
 	});
 
 });
