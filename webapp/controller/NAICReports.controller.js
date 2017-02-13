@@ -74,9 +74,16 @@ sap.ui.define([
 		},
 		
 		handleRefreshButtonPressed: function (oEvent) {
-			var oTable = this.getView().byId("idNAICTable");
-			var oModel = oTable.getModel();
-			oModel.refresh(true);
+			$.ajax({
+				url: this.sServiceUrl+"_method=list_all&exportType=FS-SR",
+				dataType: "jsonp",
+				jsonp: "callback",
+				cache: false,
+				success: function(json) {
+					var oModel = this.getView().byId("idNAICTable").getModel();
+					oModel.setData(json);
+				}
+			});
 		},
  
 		handleTableFilterConfirm: function(oEvent) {

@@ -16,20 +16,16 @@ sap.ui.define([
 		 */
 		onInit: function() {
 			var that = this;
-			// set explored app's demo model on this sample
-			//var oModel = new ODataModel("/sap/opu/odata/sap/ZARP_SCHED_SRV", true);
-			//var oTable = this.getView().byId("idSchedulingTable");
-			//oTable.setModel(oModel);
-			//var url = "http://cdsapbw.sap.convista.local:8000/sap/bc/cs67_ds_com?_method=get_user_info&_datasrc=sched_future&_ccid=2853333914";
-			//var oTable = this.getView().byId("idSchedulingTable");
-
-			//var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
+			var oMasterDataModel = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV", true);
+			this.getView().byId("companyCode").setModel(oMasterDataModel);
+			this.getView().byId("securityAccount").setModel(oMasterDataModel);
+			this.getView().byId("glAccount").setModel(oMasterDataModel);
+			
 			var oModel = new sap.ui.model.json.JSONModel();
 
-			//var sServiceUrl = ([sRootPath,'model/schedulingOverviewModel.json'].join("/"));
-			var sServiceUrl = "https://sapwebdcbw.sap.convista.local:8443/sap/bc/cs67_ds_com?";
+			this.sServiceUrl = "https://sapwebdcbw.sap.convista.local:8443/sap/bc/cs67_ds_com?";
 			$.ajax({
-				url: sServiceUrl+"_method=get_user_info&_datasrc=sched_future",
+				url: this.sServiceUrl+"_method=get_user_info&_datasrc=sched_future",
 				dataType: "jsonp",
 				jsonp: "callback",
 				success: function(json) {
@@ -41,7 +37,7 @@ sap.ui.define([
 			
 			var oReportModel = new sap.ui.model.json.JSONModel();
 			$.ajax({
-				url: sServiceUrl+"_method=get_user_info&_datasrc=REP",
+				url: this.sServiceUrl+"_method=get_user_info&_datasrc=REP",
 				dataType: "jsonp",
 				jsonp: "callback",
 				success: function(json) {
@@ -52,7 +48,7 @@ sap.ui.define([
 			
 			var oReportGroupModel = new sap.ui.model.json.JSONModel();
 			$.ajax({
-				url: sServiceUrl+"_method=get_user_info&_datasrc=GRP_REP",
+				url: this.sServiceUrl+"_method=get_user_info&_datasrc=GRP_REP",
 				dataType: "jsonp",
 				jsonp: "callback",
 				success: function(json) {
@@ -83,9 +79,15 @@ sap.ui.define([
 		},
 
 		handleRefreshButtonPressed: function(oEvent) {
-			var oTable = this.getView().byId("idSchedulingTable");
-			var oModel = oTable.getModel();
-			oModel.refresh(true);
+			$.ajax({
+				url: this.sServiceUrl+"_method=get_user_info&_datasrc=sched_future",
+				dataType: "jsonp",
+				jsonp: "callback",
+				success: function(json) {
+					var oModel = this.getView().byId("idSchedulingTable").getModel();
+					oModel.setData(json);
+				}
+			});
 		},
 
 		handleTableFilterConfirm: function(oEvent) {

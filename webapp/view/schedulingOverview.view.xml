@@ -163,29 +163,30 @@
 									<CheckBox />
                                 </form:fields>
                             </form:FormElement>
-                            <form:FormElement label="Legal Entity">
+                            <form:FormElement label="{i18n>dateType}">
+                            	<RadioButtonGroup columns="3" selectedIndex="0">
+									<buttons>
+										<RadioButton text="periodic"/>
+										<RadioButton text="daily"/>
+									</buttons>
+								</RadioButtonGroup>
+                            </form:FormElement>
+                            <form:FormElement label="{i18n>companyCodeText}">
                                 <form:fields>
-									<Select
-										forceSelection="false"
-										selectedKey="{/entries/0/jobcount}"
-										items="{
-											path: '/entries'
-										}">
-										<core:Item key="{jobcount}" text="{jobcount}" />
-									</Select>
-									<RadioButtonGroup columns="3" selectedIndex="0">
-										<buttons>
-											<RadioButton text="periodic"/>
-											<RadioButton text="daily"/>
-										</buttons>
-									</RadioButtonGroup>
+									<MultiComboBox
+										id="companyCode"
+										required="false"
+										width="300px"
+										items="{/companySet}">
+										<core:Item key="{Compcode}" text="{Txtmd}" />
+									</MultiComboBox>
                                 </form:fields>
                             </form:FormElement>
                             <form:FormElement label="View type">
                                 <form:fields>
 									<Select
-										forceSelection="false"
-										selectedKey="{/entries/0/jobcount}">
+										forceSelection="true"
+										selectedKey="compact">
 										<items>
 											<core:Item key="compact" text="Compact" />
 											<core:Item key="expanded" text="Expanded" />
@@ -203,49 +204,48 @@
                             <form:FormElement label="Accounting Basis">
                                 <form:fields>
                                     <Select
-										forceSelection="false"
-										selectedKey="{/entries/0/jobcount}"
-										items="{
-											path: '/entries'
-										}">
-										<core:Item key="{jobcount}" text="{jobcount}" />
+										forceSelection="true"
+										selectedKey="001">
+                                    	<items>
+											<core:Item key="001" text="US GAAP" />
+											<core:Item key="002" text="US STAT" />
+											<core:Item key="003" text="US TAX" />
+										</items>
 									</Select>
                                 </form:fields>
                             </form:FormElement>
-                            <form:FormElement label="Custody Account">
+                            <form:FormElement label="{i18n>securityAccountText}">
                                 <form:fields>
-                                    <Select
-										forceSelection="false"
-										selectedKey="{/entries/0/jobcount}"
-										items="{
-											path: '/entries'
-										}">
-										<core:Item key="{jobcount}" text="{jobcount}" />
-									</Select>
+                                    <MultiComboBox
+										id="securityAccount"
+										required="false"
+										width="300px"
+										items="{/securityAccountSet}">
+											<core:Item text="{Cfmsecac} | {Txtmd}" key="{Cfmsecac}"/>
+									</MultiComboBox>
                                 </form:fields>
                             </form:FormElement>
                             <form:FormElement label="Ledger Basis">
                                 <form:fields>
                                     <Select
-										forceSelection="false"
-										selectedKey="{/entries/0/jobcount}"
-										items="{
-											path: '/entries'
-										}">
-										<core:Item key="{jobcount}" text="{jobcount}" />
+										forceSelection="true"
+										selectedKey="0L">
+										<items>
+											<core:Item key="0L" text="Leading Ledger STAT" />
+											<core:Item key="1L" text="GAAP" />
+										</items>
 									</Select>
                                 </form:fields>
                             </form:FormElement>
-                            <form:FormElement label="GL Account">
+                            <form:FormElement label="{i18n>generalLedgerAccountText}">
                                 <form:fields>
-                                    <Select
-										forceSelection="false"
-										selectedKey="{/entries/0/jobcount}"
-										items="{
-											path: '/entries'
-										}">
-										<core:Item key="{jobcount}" text="{jobcount}" />
-									</Select>
+                                    <MultiComboBox
+										id="glAccount"
+										required="false"
+										width="300px"
+										items="{/glaccountSet}">
+											<core:Item text="{Chrtacct} | {Glaccont}" key="{Glaccont}"/>
+									</MultiComboBox>
                                 </form:fields>
                             </form:FormElement>
                         </form:formElements>
@@ -257,18 +257,14 @@
                         <form:formElements>
                             <form:FormElement label="NAIC Key Date">
                                 <form:fields>
-                                    <DatePicker value="2014-03-26" valueFormat="yyyy-MM-dd" displayFormat="short"/>
+                                    <DatePicker enabled="false" value="Enter Date..." valueFormat="yyyy-MM-dd" displayFormat="short"/>
                                 </form:fields>
                             </form:FormElement>
                             <form:FormElement label="NAIC List Type">
                                 <form:fields>
                                     <Select
-										forceSelection="false"
-										selectedKey="{/entries/0/jobcount}"
-										items="{
-											path: '/entries'
-										}">
-										<core:Item key="{jobcount}" text="{jobcount}" />
+                                    	enabled="false"
+										forceSelection="false">
 									</Select>
                                 </form:fields>
                             </form:FormElement>
