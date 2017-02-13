@@ -18,6 +18,7 @@ sap.ui.define([
 		 */
 		onInit: function() {
 			var that = this;
+
 			var oMasterDataModel = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV", {defaultBindingMode: "TwoWay",defaultCountMode: "Inline"});
 			this.getView().byId("companyCode").setModel(oMasterDataModel);
 			this.getView().byId("securityAccount").setModel(oMasterDataModel);
@@ -258,6 +259,7 @@ sap.ui.define([
 			}
 		},
 		
+
 		filterGrpStructureForGroups: function(array){
 			var seen = {};
 		    var out = [];

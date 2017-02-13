@@ -1,8 +1,11 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:model="sap.ui.model"
-	controllerName="convista.com.arp.demo.controller.schedulingHistory" xmlns:html="http://www.w3.org/1999/xhtml">
+	controllerName="convista.com.arp.demo.controller.schedulingHistory" xmlns:html="http://www.w3.org/1999/xhtml" class="sapUiSizeCompact">
+	<Page
+      id="pageSchedulingHistory"
+      class="html_container"
+      showHeader="false">
 	<Panel
 	    width="100%"
-	    height="100%"
 	    class="ccPanelBG">
     	<content>
 			<Table id="idSchedulingHistoryTable"
@@ -27,18 +30,23 @@
 				<columns>
 					<Column width="18em"><Text text="SAP Job Identifier" /></Column>
 					<Column minScreenWidth="Large" demandPopin="true" sortProperty="SchedObjName">
-						<Toolbar>
 							<Text text="Scheduled Object Name" />
-						<Button
-							icon="sap-icon://sort"
-							press="onSortObjectName"/>
-						</Toolbar>
 					</Column>
-					<Column minScreenWidth="Large" demandPopin="true" sortProperty="SchedDate"><Text text="Job Type" /></Column>
-					<Column minScreenWidth="Large" demandPopin="true"><Text text="Status" /></Column>
-					<Column minScreenWidth="Large" demandPopin="true"><Text text="Date" /></Column>
-					<Column minScreenWidth="Large" demandPopin="true"><Text text="Start Type" /></Column>
-					<Column minScreenWidth="Large" demandPopin="true"><Text text="Frequency" /></Column>
+					<Column minScreenWidth="Large" demandPopin="true" sortProperty="SchedDate">
+						<Text text="Job Type" />
+					</Column>
+					<Column minScreenWidth="Large" demandPopin="true">
+						<Text text="Status" />
+					</Column>
+					<Column minScreenWidth="Large" demandPopin="true">
+						<Text text="Date" />
+					</Column>
+					<Column minScreenWidth="Large" demandPopin="true">
+						<Text text="Start Type" />
+					</Column>
+					<Column minScreenWidth="Large" demandPopin="true">
+						<Text text="Frequency" />
+					</Column>
 				</columns>
 				<items>
 					<ColumnListItem>
@@ -76,5 +84,5 @@
 				style: 'long'
 	        }
 		}"/>-->
-	
+	</Page>
 </mvc:View>

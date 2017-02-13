@@ -186,8 +186,16 @@ li[class*="sapTntNavLIItemSelected"]{
 	width: 100%;
 	border-color:transparent;
 	border:none;
+	background-color:#f0f5f9;
 }
+/**************** Scheduling overview styles ***************************************************************/
 
+.titleScheduleForm{
+	font-size : 1rem;
+	color:#65bee4;
+	margin-left: 1rem;
+	border-bottom: 1px dotted #65bee4;
+}
 /**************** Footer ***************************************************************/
 .ccImage{
 	margin-bottom: 4px;

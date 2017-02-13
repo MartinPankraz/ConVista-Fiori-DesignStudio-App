@@ -18,10 +18,10 @@
 					<form:layout>
                     <form:ResponsiveGridLayout 
                     	visible="true" 
-                		labelSpanL="3" 
+                		labelSpanL="4" 
                 		labelSpanM="4" 
-                		labelSpanS="5" 
-                		emptySpanL="3" 
+                		labelSpanS="12" 
+                		emptySpanL="0" 
                 		emptySpanM="0" 
                 		emptySpanS="0" 
                 		columnsL="3" 
@@ -141,10 +141,10 @@
 					<form:layout>
                     <form:ResponsiveGridLayout 
                     	visible="true" 
-                		labelSpanL="3" 
+                		labelSpanL="4" 
                 		labelSpanM="4" 
-                		labelSpanS="5" 
-                		emptySpanL="1" 
+                		labelSpanS="12" 
+                		emptySpanL="0" 
                 		emptySpanM="0" 
                 		emptySpanS="0" 
                 		columnsL="3" 
@@ -211,6 +211,11 @@
                 <form:formContainers>
                     <form:FormContainer>
                         <form:formElements>
+                        	<form:FormElement>
+                        		<form:fields>
+                        			<Title text="FAM" class="titleScheduleForm"/>
+                        		</form:fields> 
+                        	</form:FormElement>
                             <form:FormElement label="Accounting Basis">
                                 <form:fields>
                                     <Select
@@ -236,6 +241,12 @@
 									</MultiComboBox>
                                 </form:fields>
                             </form:FormElement>
+                    
+                    		<form:FormElement>
+                        		<form:fields>
+	                        		<Title text="GL" class="titleScheduleForm"></Title>
+                        		</form:fields> 
+                        	</form:FormElement>
                             <form:FormElement label="Ledger Basis">
                                 <form:fields>
                                     <Select
@@ -267,6 +278,11 @@
                 <form:formContainers>
                     <form:FormContainer>
                         <form:formElements>
+                        	<form:FormElement>
+                        		<form:fields>
+	                        		<Title text="SR"  class="titleScheduleForm"/>
+                        		</form:fields> 
+                        	</form:FormElement>
                             <form:FormElement label="NAIC Key Date">
                                 <form:fields>
                                     <DatePicker enabled="false" value="Enter Date..." valueFormat="yyyy-MM-dd" displayFormat="short"/>
@@ -283,9 +299,18 @@
                         </form:formElements>
                     </form:FormContainer>
                 </form:formContainers>
-                
+			
             </form:Form>
 			<!-- End of second Form -->	
+			<l:HorizontalLayout>
+				<l:HorizontalLayout>
+					<Button text="Delete" />
+	                <Button text="Cancel Running Job" />
+				</l:HorizontalLayout>
+				<l:HorizontalLayout>
+					<Button type="Accept" icon="sap-icon://accept" text="Schedule new Job" />
+				</l:HorizontalLayout>
+			</l:HorizontalLayout>
 				
 			</content>
 		</Panel>
@@ -295,9 +320,7 @@
 	    	<content>
 	    		<!-- Beginning of table -->	
 				<Table id="idSchedulingTable"
-					items="{path:'/entries'}"
-					growing="true"
-    				growingThreshold="8">
+					items="{path:'/entries'}">
 					<headerToolbar>
 						<Toolbar>
 							<Title text="Current and future jobs" level="H6"/>
