@@ -1,95 +1,94 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:model="sap.ui.model"
-	controllerName="convista.com.arp.demo.controller.schedulingOverview" xmlns:html="http://www.w3.org/1999/xhtml">
-	<Panel expandable="true" expanded="true" headerText="Job Settings" width="auto" class="ccPanelBG">
-		<content>
-			<Text text="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat" />
-		</content>
-	</Panel>
-	<Panel expandable="true" expanded="true" headerText="Reporting Parameters" width="auto" class="ccPanelBG">
-		<content>
-			<Text text="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat" />
-		</content>
-	</Panel>
-	<Panel
-	    width="100%"
+	controllerName="convista.com.arp.demo.controller.schedulingManageGroups" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:form="sap.ui.layout.form" class="sapUiSizeCompact">
+	<Page
+      id="pageSchedulingManageGroups"
+      class="html_container"
+      showHeader="false">
+		
+		<Panel
+	    width="50%"
 	    class="ccPanelBG">
     	<content>
-			<Table id="idManageProducts"
-				items="{path:'/entries'}"
-				height="100%">
-				<headerToolbar>
-					<Toolbar>
-						<Title text="Current and future jobs" level="H6"/>
-						<ToolbarSpacer></ToolbarSpacer>
-						<Button text="Refresh" tooltip="Refresh" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
-						<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
-					</Toolbar>
-				</headerToolbar>
-				<infoToolbar>
-					<Toolbar
-						active="true"
-						visible="false"
-						press="[handleViewSettingsDialogFilterBarPressed, views.control.tableViewSettingsDialog]">
-						<Label id="vsdFilterLabel" text="?" />
-					</Toolbar>
-				</infoToolbar>
-				<columns>
-					<Column width="18em"><Text text="SAP Job Identifier" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" sortProperty="SchedObjName"><Text text="Date" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" sortProperty="SchedDate"><Text text="Next Run" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Scheduled Object" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Job Type" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Status" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Next Start Date" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Created at" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Start Type" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="ZIP" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Frequency" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="NWD Handling" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Job Count" /></Column>
-				</columns>
-				<items>
-					<ColumnListItem>
-						<cells>
-							<ObjectIdentifier title="{schedObjName}" text="{jobname}" />
-							<Text text="{schedDate}"/>
-							<Text text="{jobDate}"/>
-							<Text text="{schedObjNameDesc}"/>
-							<Text text="{schedObjTypeDesc}"/>
-							<core:Icon
-								src="{
-									path:'schedStatus',
-									formatter:'.formatStatusIcon'
-								}"
-							/>
-							<Text text="{schedObjNameDesc}"/>
-							<Text text="{jobDatetime}"/>
-							<Text text="{createdAt}"/>
-							<Text text="{jobStartTypeDesc}"/>
-							<Text text="{jobZip}"/>
-							<Text text="{jobPeriodicDesc}"/>
-							<Text text="{jobDelayHolidayDesc}"/>
-							<Text text="{jobcount}"/>
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
+    		<l:VerticalLayout>
+    		<form:Form 
+					id="manageGroupsForm"
+					editable="true">
+					<form:layout>
+                    <form:ResponsiveGridLayout 
+                    	visible="true" 
+                		labelSpanL="4" 
+                		labelSpanM="4" 
+                		labelSpanS="12" 
+                		emptySpanL="0" 
+                		emptySpanM="0" 
+                		emptySpanS="0" 
+                		columnsL="3" 
+                		columnsM="2" 
+                		columnsS="1" 
+                		breakpointL="800" 
+                		breakpointM="500">
+                    </form:ResponsiveGridLayout>
+                </form:layout>
+                
+                 <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="{i18n>manageNewGroupName}">
+                                <form:fields>
+									<Input 
+										type="Text"
+										placeholder="Enter group name ..." />
+										<Button text="Save as new Group" />
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="{i18n>manageYourGroups}">
+                                <form:fields>
+									<Select
+										id="yourGroups"
+										forceSelection="true"
+										selectedKey="0L"
+										required="true"
+										width="300px">
+										<items>
+											<core:Item key="0L" text="Leading Ledger STAT" />
+											<core:Item key="1L" text="GAAP" />
+										</items>
+									</Select>
+									<Button text="Delete Existing Group" />
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                
+            </form:Form>
+            
+            <l:HorizontalLayout>
+            	<l:VerticalLayout>
+            		<SelectList
+						items="{
+							path: '/entries'
+						}">
+						<core:Item key="{schedObjName}" text="{jobname}" />
+					</SelectList>
+					<SelectList
+						items="{
+							path: '/entries'
+						}">
+						<core:Item key="{schedObjName}" text="{jobname}" />
+					</SelectList>
+            	</l:VerticalLayout>
+	            	<SelectList
+						items="{
+							path: '/entries'
+						}">
+						<core:Item key="{schedObjName}" text="{jobname}" />
+					</SelectList>
+            </l:HorizontalLayout>
+            </l:VerticalLayout>
   		</content>
 	</Panel>
+		
 	
-	<!--<Text text="{
-			path:'schedDate',
-			type: 'sap.ui.model.type.Date',
-	        formatOptions: {
-				style: 'long'
-	        },
-	        relative: true
-		}"/>
-		<Text text="{
-			parts: [{path:'jobDate',type: 'sap.ui.model.type.Date'}],
-	        formatOptions: {
-				style: 'long'
-	        }
-		}"/>-->
-	
+	</Page>
 </mvc:View>

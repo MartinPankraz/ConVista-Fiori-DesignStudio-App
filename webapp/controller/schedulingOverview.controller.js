@@ -278,6 +278,26 @@ sap.ui.define([
 		    return out;
 		},
 		
+		onCompanySelectionFinish: function(oEvent) {
+			var selectedCompanies = this.getView().byId("companyCode").getSelectedKeys();
+			var filters = [];
+			for(var i=0;i<selectedCompanies.length;i++){
+				var key = selectedCompanies[i];
+				filters.push(
+					new sap.ui.model.Filter({
+			          path: 'Compcode',
+			          operator: sap.ui.model.FilterOperator.EQ,
+			          value1: key
+			    	})
+			     );
+			}
+			// invoking entity by passing parameters
+			/*oModel.read("/securityAccountSet", {
+			     filters: filters
+			});*/
+			this.getView().byId("securityAccount").getBinding("items").filter(filters);
+		},
+		
 		groupSelectionChanged: function(oEvent){
 			var item = oEvent.getParameter("selectedItem");
 			var key = item.getKey();

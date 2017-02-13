@@ -122,9 +122,7 @@
 									</Select>
                                 </form:fields>
                             </form:FormElement>
-                            <form:FormElement>
-                            	<Button text="{i18n>buttonExecute}" press="scheduleReports"/>
-                            </form:FormElement>
+                            
                         </form:formElements>
                     </form:FormContainer>
                 </form:formContainers>
@@ -187,7 +185,8 @@
 										id="companyCode"
 										required="false"
 										width="300px"
-										items="{compCode>/companySet}">
+										items="{compCode>/companySet}"
+										selectionFinish="onCompanySelectionFinish">
 										<core:Item key="{compCode>Compcode}" text="{compCode>Txtmd}" />
 									</MultiComboBox>
                                 </form:fields>
@@ -300,11 +299,21 @@
                         </form:formElements>
                     </form:FormContainer>
                 </form:formContainers>
+                
+                <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement>
+                            	<Button text="{i18n>buttonExecute}" press="scheduleReports"/>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
 			
             </form:Form>
             <!-- End of second Form -->
             <!-- Beginning of third (buttons) Form -->
-            <form:Form  
+            <!--<form:Form  
             	editable="true"
             	id="formButtonsForm">
 					<form:layout>
@@ -367,7 +376,7 @@
                     </form:FormContainer>
                 </form:formContainers>
 			
-            </form:Form>
+            </form:Form>-->
 			<!-- End of third (buttons) Form -->	
 			
 				
@@ -379,11 +388,14 @@
 	    	<content>
 	    		<!-- Beginning of table -->	
 				<Table id="idSchedulingTable"
-					items="{path:'/entries'}">
+					items="{path:'/entries'}"
+					mode= "SingleSelectMaster" >
 					<headerToolbar>
 						<Toolbar>
 							<Title text="{i18n>sapSchedCurrentFutureJobs}Current and future jobs" level="H6"/>
 							<ToolbarSpacer></ToolbarSpacer>
+							<Button text="{i18n>sapSchedDelete}"  tooltip="{i18n>sapSchedDelete}" icon="sap-icon://delete" press="" />
+							<Button text="{i18n>sapSchedCancel}" tooltip="{i18n>sapSchedCancel}" icon="sap-icon://decline" press="" />
 							<Button text="{i18n>sapSchedRefresh}" tooltip="{i18n>sapSchedRefresh}" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
 							<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
 						</Toolbar>
