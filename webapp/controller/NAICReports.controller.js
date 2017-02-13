@@ -17,8 +17,9 @@ sap.ui.define([
 		onInit: function() {
 			var oModel = new sap.ui.model.json.JSONModel();
 			this.getView().byId("idNAICTable").setModel(oModel);
-			
+			/* eslint-disable */
 			this.sServiceUrl = "https://sapwebdcbw.sap.convista.local:8443/sap/bc/cs67_ds_com?";
+			/* eslint-enable */
 			$.ajax({
 				url: this.sServiceUrl+"_method=list_all&exportType=FS-SR",
 				dataType: "jsonp",

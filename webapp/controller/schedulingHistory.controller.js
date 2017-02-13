@@ -19,8 +19,9 @@ sap.ui.define([
 			this._objSorter = new Sorter("schedObjName",false);
 			
 			var oModel = new sap.ui.model.json.JSONModel();
-			
+			/* eslint-disable */
 			var sServiceUrl = "https://sapwebdcbw.sap.convista.local:8443/sap/bc/cs67_ds_com?_method=get_user_info&_datasrc=sched_hist";
+			/* eslint-enable */
 			$.ajax({
 				url: sServiceUrl,
 				dataType: "jsonp",

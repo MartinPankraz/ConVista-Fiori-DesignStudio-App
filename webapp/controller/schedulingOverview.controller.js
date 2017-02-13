@@ -26,8 +26,9 @@ sap.ui.define([
 			this.getView().setModel(oModelCompCode, "compCode");
 
 			var oModel = new sap.ui.model.json.JSONModel();
-
+			/* eslint-disable */
 			this.sServiceUrl = "https://sapwebdcbw.sap.convista.local:8443/sap/bc/cs67_ds_com?";
+			/* eslint-enable */
 			$.ajax({
 				url: this.sServiceUrl + "_method=get_user_info&_datasrc=sched_future",
 				dataType: "jsonp",
