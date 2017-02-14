@@ -214,6 +214,57 @@ sap.ui.define([
 			});
 		},
 		
+		deleteReport: function(){
+			var that = this;
+			if(this.byId("idSchedulingTable").getSelectedItem() === null){
+				sap.m.MessageToast.show("Select one item from the table");
+			}else{
+				var sJobName = this.byId("idSchedulingTable").getSelectedItem().getBindingContext().getProperty("jobname");
+				var sJobCount = this.byId("idSchedulingTable").getSelectedItem().getBindingContext().getProperty("jobcount");
+				
+				$.ajax({
+					url: this.sServiceUrl + "_method=delete_job&_jobname=" + sJobName + "&_jobcount=" + sJobCount,
+					type: "POST",
+					cache: false,
+					processData: false,//avoid URL parsing of payload!
+					dataType: "jsonp",
+					contentType: "application/json",
+					success: function(json) {
+						var oModel = that.getView().byId("idSchedulingTable").getModel();
+						oModel.setData(json);
+						that.byId("idSchedulingTable").removeSelections(true);
+						sap.m.MessageToast.show("Item deleted succesfully");
+					}
+				});
+			}
+		},
+		
+		cancelReport: function(){
+			var that = this;
+			if(this.byId("idSchedulingTable").getSelectedItem() === null){
+				sap.m.MessageToast.show("Select one item from the table");
+			}else{
+				var sJobName = this.byId("idSchedulingTable").getSelectedItem().getBindingContext().getProperty("jobname");
+				var sJobCount = this.byId("idSchedulingTable").getSelectedItem().getBindingContext().getProperty("jobcount");
+				
+				$.ajax({
+					url: this.sServiceUrl + "_method=cancel_job&_jobname=" + sJobName + "&_jobcount=" + sJobCount,
+					type: "POST",
+					cache: false,
+					processData: false,//avoid URL parsing of payload!
+					dataType: "jsonp",
+					contentType: "application/json",
+					success: function(json) {
+						var oModel = that.getView().byId("idSchedulingTable").getModel();
+						oModel.setData(json);
+						that.byId("idSchedulingTable").removeSelections(true);
+						sap.m.MessageToast.show("Item canceled succesfully");
+					}
+				});
+			}
+			
+		},
+		
 		getToBeScheduledReports: function(){
 			var result = [];
 			var reportSelection = this.getView().byId("reportSelection");
