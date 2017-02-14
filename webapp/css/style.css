@@ -196,6 +196,27 @@ li[class*="sapTntNavLIItemSelected"]{
 	margin-left: 1rem;
 	border-bottom: 1px dotted #65bee4;
 }
+
+/**************** Scheduling manage groups styles ***************************************************************/
+.selectionList{
+	border:1px solid #dddddd;
+	background-color:#ffffff;
+}
+
+/*.imageResponsive{
+	max-height:700px;
+	width:100%;
+}*/
+.imageResponsive {
+  background-image: url('https://cdn0.vox-cdn.com/uploads/chorus_asset/file/6269301/10788865656_e9bfc7826e_k.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.backgroundManage{
+	background-color:#eff4f9;
+}
+
 /**************** Footer ***************************************************************/
 .ccImage{
 	margin-bottom: 4px;

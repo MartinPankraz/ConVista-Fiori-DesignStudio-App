@@ -2,28 +2,64 @@
 	controllerName="convista.com.arp.demo.controller.schedulingManageGroups" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:form="sap.ui.layout.form" class="sapUiSizeCompact">
 	<Page
       id="pageSchedulingManageGroups"
-      class="html_container"
+      class="html_container imageResponsive"
       showHeader="false">
-		
-		<Panel
-	    width="50%"
-	    class="ccPanelBG">
     	<content>
-    		<l:VerticalLayout>
-    		<form:Form 
-					id="manageGroupsForm"
-					editable="true">
+    		<l:HorizontalLayout class="sapUiContentPadding sapUiSmallMargin  backgroundManage">
+    		<l:VerticalLayout
+    			width="100%">
+    		<form:SimpleForm
+    			id="manageGroupsForm"
+    			labelSpanXL="12"
+    			labelSpanL="12"
+    			labelSpanM="12"
+    			labelSpanS="12"
+    			editable="true"
+    			layout="ResponsiveGridLayout"
+    			singleContainerFullSize="false"
+    			class="ccPanelBG">
+    			<form:content>
+    				<Label text="{i18n>manageNewGroupName}">
+    				</Label>
+    				<Input 
+    					type="Text"
+    					placeholder="{i18n>manageInputPlaceholder}">
+    				</Input>
+    				<Button text="{i18n>manageSaveNewGroup}">
+    				</Button>
+    				<Label text="{i18n>manageYourGroups}">
+    				</Label>
+    				<Select
+						id="yourGroups"
+						forceSelection="true"
+						selectedKey="0L"
+						required="true">
+						<items>
+							<core:Item key="0L" text="Leading Ledger STAT" />
+							<core:Item key="1L" text="GAAP" />
+						</items>
+					</Select>
+					<Button text="{i18n>manageDeleteExistingGroup}" >
+					</Button>
+    			</form:content>
+    			
+    		</form:SimpleForm>
+    		<!--<form:Form 
+					id=""
+					editable="true"
+					class="ccPanelBG">
 					<form:layout>
                     <form:ResponsiveGridLayout 
-                    	visible="true" 
-                		labelSpanL="4" 
-                		labelSpanM="4" 
+                    	visible="true"
+                    	singleContainerFullSize="false"
+                		labelSpanL="12" 
+                		labelSpanM="12" 
                 		labelSpanS="12" 
                 		emptySpanL="0" 
                 		emptySpanM="0" 
                 		emptySpanS="0" 
-                		columnsL="3" 
-                		columnsM="2" 
+                		columnsL="1" 
+                		columnsM="1" 
                 		columnsS="1" 
                 		breakpointL="800" 
                 		breakpointM="500">
@@ -41,14 +77,13 @@
 										<Button text="Save as new Group" />
                                 </form:fields>
                             </form:FormElement>
-                            <form:FormElement label="{i18n>manageYourGroups}">
+                            <form:FormElement  label="{i18n>manageYourGroups}">
                                 <form:fields>
 									<Select
 										id="yourGroups"
 										forceSelection="true"
 										selectedKey="0L"
-										required="true"
-										width="300px">
+										required="true">
 										<items>
 											<core:Item key="0L" text="Leading Ledger STAT" />
 											<core:Item key="1L" text="GAAP" />
@@ -61,34 +96,73 @@
                     </form:FormContainer>
                 </form:formContainers>
                 
-            </form:Form>
+            </form:Form>-->
             
-            <l:HorizontalLayout>
-            	<l:VerticalLayout>
-            		<SelectList
-						items="{
-							path: '/entries'
-						}">
-						<core:Item key="{schedObjName}" text="{jobname}" />
-					</SelectList>
-					<SelectList
-						items="{
-							path: '/entries'
-						}">
-						<core:Item key="{schedObjName}" text="{jobname}" />
-					</SelectList>
+            <l:HorizontalLayout class="sapUiSmallMargin">
+            	<l:VerticalLayout class="sapUiSmallMarginEnd">
+            		<Label text="{i18n>manageReportsSelectedGroup}" class="sapUiTinyMarginBottom"></Label>
+            		<l:HorizontalLayout>
+            			<ScrollContainer
+            				class="selectionList"
+            				width="270px"
+            				height="200px"
+            				horizontal="false"
+							vertical="true">
+            				<SelectList
+								id="reportsSelectedGroup"
+								items="{
+									path: '/entries'
+								}">
+							<core:Item key="{schedObjName}" text="{jobname}" />
+							</SelectList>
+            			</ScrollContainer>
+						<l:VerticalLayout class="sapUiSmallMarginBegin sapUiLargeMarginTop">
+							<Button icon="sap-icon://close-command-field" press="moveToReportSelectedGroup"/>
+							<Button icon="sap-icon://open-command-field" press="moveToSelectionList"/>
+						</l:VerticalLayout>
+					</l:HorizontalLayout>
+					<Label text="{i18n>manageAllAvailableReports}" class="sapUiSmallMarginTop sapUiTinyMarginBottom"></Label>
+					<l:HorizontalLayout>
+						<ScrollContainer
+            				class="selectionList"
+            				width="270px"
+            				height="290px"
+            				horizontal="false"
+							vertical="true">
+							<SelectList
+								id="availableReports"
+								items="{
+									path: '/entries'
+								}">
+								<core:Item key="{schedObjName}" text="{jobname}" />
+							</SelectList>
+						</ScrollContainer>
+						<l:VerticalLayout class="sapUiSmallMarginBegin sapUiLargeMarginTop">
+							<Button icon="sap-icon://close-command-field" press="moveToReportSelectedGroup"/>
+							<Button icon="sap-icon://open-command-field" press="moveToSelectionList"/>
+						</l:VerticalLayout>
+					</l:HorizontalLayout>
             	</l:VerticalLayout>
-	            	<SelectList
-						items="{
-							path: '/entries'
-						}">
-						<core:Item key="{schedObjName}" text="{jobname}" />
-					</SelectList>
+            	<l:VerticalLayout>
+            		<Label text="{i18n>manageSelectedReports}" class="sapUiTinyMarginBottom"></Label>
+            		<ScrollContainer
+            				class="selectionList"
+            				width="270px"
+            				height="534px"
+            				horizontal="false"
+							vertical="true">
+		            	<SelectList
+		            		id="selectedReports"
+							items="{
+								path: '/entries'
+							}">
+							<core:Item key="{schedObjName}" text="{jobname}" />
+						</SelectList>
+					</ScrollContainer>
+				</l:VerticalLayout>
             </l:HorizontalLayout>
             </l:VerticalLayout>
+            </l:HorizontalLayout>
   		</content>
-	</Panel>
-		
-	
 	</Page>
 </mvc:View>

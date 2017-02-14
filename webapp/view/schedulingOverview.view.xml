@@ -166,9 +166,17 @@
                             <form:FormElement label="{i18n>sapSchedDateThrough}">
                                 <form:fields>
 									<DatePicker id="dateRangeFrom" valueFormat="yyyyMMdd" displayFormat="d MMM y"/>
-									<CheckBox id="shiftFrom" />
+									<CheckBox id="shiftFrom" >
+										<layoutData>
+											<l:GridData span="L1 M1 S1" />
+										</layoutData>
+									</CheckBox>
 									<DatePicker id="dateRangeTo" valueFormat="yyyyMMdd" displayFormat="d MMM y"/>
-									<CheckBox id="shiftTo" />
+									<CheckBox id="shiftTo" >
+										<layoutData>
+											<l:GridData span="L1 M1 S1" />
+										</layoutData>
+									</CheckBox>
                                 </form:fields>
                             </form:FormElement>
                             <form:FormElement label="{i18n>dateType}">
@@ -299,18 +307,15 @@
                         </form:formElements>
                     </form:FormContainer>
                 </form:formContainers>
-                
-                <form:formContainers>
-                    <form:FormContainer>
-                        <form:formElements>
-                            <form:FormElement>
-                            	<Button text="{i18n>buttonExecute}" press="scheduleReports"/>
-                            </form:FormElement>
-                        </form:formElements>
-                    </form:FormContainer>
-                </form:formContainers>
 			
             </form:Form>
+            
+            <FlexBox 
+            	justifyContent="End">
+            	<items>
+            		<Button text="{i18n>buttonExecute}" type="Accept" width="20rem" class="sapUiTinyMarginTop sapUiTinyMarginBottom" press="scheduleReports"/>
+            	</items>
+        	</FlexBox>
             <!-- End of second Form -->
             <!-- Beginning of third (buttons) Form -->
             <!--<form:Form  
@@ -394,9 +399,9 @@
 						<Toolbar>
 							<Title text="{i18n>sapSchedCurrentFutureJobs}" level="H6"/>
 							<ToolbarSpacer></ToolbarSpacer>
-							<Button text="{i18n>sapSchedDelete}"  tooltip="{i18n>sapSchedDelete}" icon="sap-icon://delete" press="deleteReport" />
-							<Button text="{i18n>sapSchedCancel}" tooltip="{i18n>sapSchedCancel}" icon="sap-icon://decline" press="cancelReport" />
-							<Button text="{i18n>sapSchedRefresh}" tooltip="{i18n>sapSchedRefresh}" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
+							<Button tooltip="{i18n>sapSchedDelete}" icon="sap-icon://delete" press="deleteReport" />
+							<Button tooltip="{i18n>sapSchedCancel}" icon="sap-icon://decline" press="cancelReport" />
+							<Button tooltip="{i18n>sapSchedRefresh}" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
 							<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
 						</Toolbar>
 					</headerToolbar>
