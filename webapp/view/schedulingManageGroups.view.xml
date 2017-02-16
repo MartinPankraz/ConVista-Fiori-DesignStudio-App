@@ -21,26 +21,25 @@
     			<form:content>
     				<Label text="{i18n>manageNewGroupName}">
     				</Label>
-    				<Input 
+    				<Input    
+    					id="newGrpInput"
     					type="Text"
     					placeholder="{i18n>manageInputPlaceholder}">
     				</Input>
-    				<Button text="{i18n>manageSaveNewGroup}">
-    				</Button>
+    				<Button text="{i18n>manageSaveNewGroup}" press="handleButtonSavePressed"/>
     				<Label text="{i18n>manageYourGroups}">
     				</Label>
     				<Select
 						id="yourGroups"
 						forceSelection="true"
-						selectedKey="0L"
-						required="true">
-						<items>
-							<core:Item key="0L" text="Leading Ledger STAT" />
-							<core:Item key="1L" text="GAAP" />
-						</items>
+						required="true"
+						change="groupSelectChange"
+						items="{
+								path: '/groups'
+							}">
+						<core:Item key="{groupKey}" text="{groupDesc}" />
 					</Select>
-					<Button text="{i18n>manageDeleteExistingGroup}" >
-					</Button>
+					<Button text="{i18n>manageDeleteExistingGroup}" press="handleButtonDeletePressed" />
     			</form:content>
     			
     		</form:SimpleForm>
@@ -109,16 +108,12 @@
             				horizontal="false"
 							vertical="true">
             				<SelectList
-								id="reportsSelectedGroup"
-								items="{
-									path: '/entries'
-								}">
-							<core:Item key="{schedObjName}" text="{jobname}" />
+								id="reportsSelectedGroup">
 							</SelectList>
             			</ScrollContainer>
 						<l:VerticalLayout class="sapUiSmallMarginBegin sapUiLargeMarginTop">
-							<Button icon="sap-icon://close-command-field" press="moveToReportSelectedGroup"/>
-							<Button icon="sap-icon://open-command-field" press="moveToSelectionList"/>
+							<Button icon="sap-icon://close-command-field" press="deleteFromList"/>
+							<Button icon="sap-icon://open-command-field" press="moveGroupReportsToSelectedGroup"/>
 						</l:VerticalLayout>
 					</l:HorizontalLayout>
 					<Label text="{i18n>manageAllAvailableReports}" class="sapUiSmallMarginTop sapUiTinyMarginBottom"></Label>
@@ -132,14 +127,14 @@
 							<SelectList
 								id="availableReports"
 								items="{
-									path: '/entries'
+									path: '/reports'
 								}">
-								<core:Item key="{schedObjName}" text="{jobname}" />
+								<core:Item key="{query}" text="{descr}" />
 							</SelectList>
 						</ScrollContainer>
 						<l:VerticalLayout class="sapUiSmallMarginBegin sapUiLargeMarginTop">
-							<Button icon="sap-icon://close-command-field" press="moveToReportSelectedGroup"/>
-							<Button icon="sap-icon://open-command-field" press="moveToSelectionList"/>
+							<Button icon="sap-icon://close-command-field" press="deleteFromList"/>
+							<Button icon="sap-icon://open-command-field" press="moveExistingReportsToSelectedGroup"/>
 						</l:VerticalLayout>
 					</l:HorizontalLayout>
             	</l:VerticalLayout>
@@ -151,13 +146,7 @@
             				height="534px"
             				horizontal="false"
 							vertical="true">
-		            	<SelectList
-		            		id="selectedReports"
-							items="{
-								path: '/entries'
-							}">
-							<core:Item key="{schedObjName}" text="{jobname}" />
-						</SelectList>
+		            	<SelectList id="selectedReports"/>
 					</ScrollContainer>
 				</l:VerticalLayout>
             </l:HorizontalLayout>

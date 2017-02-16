@@ -55,11 +55,11 @@ sap.ui.define([
 
 		handleRefreshButtonPressed: function(oEvent) {
 			$.ajax({
-				url: this.sServiceUrl+"_method=get_user_info&_datasrc=sched_future",
+				url: this.sServiceUrl+"_method=list_all&exportType=",
 				dataType: "jsonp",
 				jsonp: "callback",
 				success: function(json) {
-					var oModel = this.getView().byId("idSchedulingTable").getModel();
+					var oModel = this.getView().getModel();
 					oModel.setData(json);
 				}
 			});
@@ -68,7 +68,7 @@ sap.ui.define([
 		handleTableFilterConfirm: function(oEvent) {
 
 			var oView = this.getView();
-			var oTable = oView.byId("idSchedulingTable");
+			var oTable = oView.byId("idSchedulingMyFiles");
 
 			var mParams = oEvent.getParameters();
 			var oBinding = oTable.getBinding("items");

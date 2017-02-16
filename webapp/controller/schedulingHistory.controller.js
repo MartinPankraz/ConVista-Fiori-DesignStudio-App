@@ -52,9 +52,15 @@ sap.ui.define([
 		},
 		
 		handleRefreshButtonPressed: function (oEvent) {
-			var oTable = this.getView().byId("idSchedulingHistoryTable");
-			var oModel = oTable.getModel();
-			oModel.refresh(true);
+			$.ajax({
+				url: this.sServiceUrl+"_method=get_user_info&_datasrc=sched_hist",
+				dataType: "jsonp",
+				jsonp: "callback",
+				success: function(json) {
+					var oModel = this.getView().byId("idSchedulingHistoryTable").getModel();
+					oModel.setData(json);
+				}
+			});
 		},
  
 		handleTableFilterConfirm: function(oEvent) {

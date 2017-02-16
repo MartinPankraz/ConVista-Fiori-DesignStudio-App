@@ -227,7 +227,7 @@ sap.ui.define([
 					type: "POST",
 					cache: false,
 					processData: false,//avoid URL parsing of payload!
-					dataType: "jsonp",
+					dataType: "json",
 					contentType: "application/json",
 					success: function(json) {
 						var oModel = that.getView().byId("idSchedulingTable").getModel();
@@ -252,7 +252,7 @@ sap.ui.define([
 					type: "POST",
 					cache: false,
 					processData: false,//avoid URL parsing of payload!
-					dataType: "jsonp",
+					dataType: "json",
 					contentType: "application/json",
 					success: function(json) {
 						var oModel = that.getView().byId("idSchedulingTable").getModel();

@@ -9,7 +9,7 @@
 	    class="ccPanelBG">
     	<content>
 			<Table id="idSchedulingMyFiles"
-				items="{path:'/entries'}">
+				items="{path:'/'}">
 				<headerToolbar>
 					<Toolbar>
 						<Title text="Your Available Documents" level="H6"/>
@@ -28,7 +28,7 @@
 				</infoToolbar>
 				<columns>
 					<Column width="18em"><Text text="Filename" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" sortProperty="SchedDate"><Text text="Type" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" sortProperty="type"><Text text="Type" /></Column>
 					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Scheduling Object" /></Column>
 					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Job Type" /></Column>
 					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Created at" /></Column>
@@ -38,13 +38,13 @@
 				<items>
 					<ColumnListItem>
 						<cells>
-							<ObjectIdentifier title="{jobname}" />
-							<Text text="PDF"/>
-							<Text text="{schedObjName}"/>
-							<Text text="{schedObjTypeDesc}"/>
-							<Text text="{createdAt}"/>
-							<Text text="{schedObjType}"/>
-							<Text text="{jobcount}"/>
+							<ObjectIdentifier title="{filename}" />
+							<Text text="{type}"/>
+							<Text text="{schedobj}"/>
+							<Text text="{jobtype}"/>
+							<Text text="{createdate}"/>
+							<Text text="{exportType}"/>
+							<Text text="{counter}"/>
 						</cells>
 					</ColumnListItem>
 				</items>
