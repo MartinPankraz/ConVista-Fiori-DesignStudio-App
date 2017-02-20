@@ -46,6 +46,9 @@ sap.ui.define([
 				// add button to the right side of the shellbar
 	            oRendererExtensions.addHeaderEndItem(that.oFavoriteHeaderItem);
             }
+            
+            /*var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
+            jQuery.sap.registerModulePath("FileSaver",sRootPath + "/lib/FileSaver.min");*/
 
 		},
 		

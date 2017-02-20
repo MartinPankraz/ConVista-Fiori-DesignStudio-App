@@ -9,7 +9,10 @@
 	    class="ccPanelBG">
     	<content>
 			<Table id="idSchedulingMyFiles"
-				items="{path:'/'}">
+				items="{path:'/'}"
+				mode= "SingleSelectMaster"
+				select="onRowSelect"
+				enableBusyIndicator="true">
 				<headerToolbar>
 					<Toolbar>
 						<Title text="Your Available Documents" level="H6"/>

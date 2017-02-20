@@ -2,8 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/odata/v2/ODataModel",
 	"sap/ui/model/Filter",
-	"sap/ui/model/Sorter"
-], function(Controller, ODataModel, Filter, Sorter) {
+	"sap/ui/model/Sorter",
+	"convista/com/arp/demo/lib/FileSaver.min"
+], function(Controller, ODataModel, Filter, Sorter, FileSaver) {
 	"use strict";
 
 	return Controller.extend("convista.com.arp.demo.controller.schedulingMyFiles", {
@@ -15,6 +16,7 @@ sap.ui.define([
 		 * @memberOf convista.com.arp.demo.view.schedulingOverview
 		 */
 		onInit: function() {
+			//jQuery.sap.require("FileSaver");
 			var that = this;
 
 			var oModel = new sap.ui.model.json.JSONModel();
@@ -31,7 +33,6 @@ sap.ui.define([
 					//sap.ui.getCore().setModel(oModel);
 				}
 			});
-			
 		},
 
 		/**
@@ -103,6 +104,50 @@ sap.ui.define([
 			// update filter bar
 			/*oView.byId("vsdFilterBar").setVisible(aFilters.length > 0);
 			oView.byId("vsdFilterLabel").setText(mParams.filterString);*/
+		},
+		
+		onRowSelect: function(oEvent){
+			var that = this;
+			var oSelectedListItem = oEvent.getParameter("listItem");            //Get Hold of List Item selected.
+			var oBindingContext = oSelectedListItem.getBindingContext();     //Get Hold Binding Context of Selected List Item.
+			var oPath = oBindingContext.getPath();              //Get Hold of Binding Context Path
+			var oModel = this.getView().getModel().getProperty(oPath);          //Get the binding model.
+			var fileName = oModel.filename;
+			//nee xhr for filesaver blob. Not able to figure out how to use ajax likewise yet
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', this.sServiceUrl+"_method=single&_file="+fileName, true);
+			xhr.responseType = 'blob';
+			xhr.onreadystatechange = function(e) {
+				if (this.readyState === 4){
+				  if (this.status === 200) {
+				  	var blob = new Blob([this.response]/*, {type: that.mimetype()'application/pdf'}*/);
+			    	/* eslint-disable */
+			    	saveAs(blob, fileName);	
+			    	/* eslint-enable */
+				  }else{
+					sap.m.MessageToast.show("File could not be downloaded!");
+				  }
+				  that.getView().byId("idSchedulingMyFiles").setBusy(false);
+				}
+			};
+			this.getView().byId("idSchedulingMyFiles").setBusy(true);
+			xhr.send();
+			
+			/*$.ajax({
+				url: this.sServiceUrl+"_method=single&_file="+fileName,
+				contentType: "application/pdf",
+				cache: false,
+				dataType: 'blob',
+				success: function(response){
+					var blob = new Blob([response]/*, {type: that.mimetype()'application/pdf'}*);
+			    	/* eslint-disable 
+			    	saveAs(blob, fileName);	
+			    	/* eslint-enable 
+				},
+				error: function(json) {
+					sap.m.MessageToast.show("File could not be downloaded!");
+				}
+			});*/
 		},
 
 		formatStatusIcon: function(sStatus) {
