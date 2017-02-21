@@ -58,7 +58,7 @@
 										selectedKey="none"
 										forceSelection="true"
 										items="{reportSelection>/entries}">
-											<core:Item text="{reportSelection>query}" key="{reportSelection>descr}"/>
+											<core:Item key="{reportSelection>query}" text="{reportSelection>descr}"/>
 									</MultiComboBox>
                                 </form:fields>
                             </form:FormElement>
