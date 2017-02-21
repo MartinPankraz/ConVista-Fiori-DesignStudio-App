@@ -317,73 +317,6 @@
             	</items>
         	</FlexBox>
             <!-- End of second Form -->
-            <!-- Beginning of third (buttons) Form -->
-            <!--<form:Form  
-            	editable="true"
-            	id="formButtonsForm">
-					<form:layout>
-                    <form:ResponsiveGridLayout 
-                    	visible="true" 
-                		labelSpanL="4" 
-                		labelSpanM="4" 
-                		labelSpanS="12" 
-                		emptySpanL="0" 
-                		emptySpanM="0" 
-                		emptySpanS="0" 
-                		columnsL="2" 
-                		columnsM="1" 
-                		columnsS="1" 
-                		breakpointL="800" 
-                		breakpointM="400">
-                    </form:ResponsiveGridLayout>
-                </form:layout>
-                
-                	<form:formContainers>
-                    <form:FormContainer>
-                        <form:formElements>
-                        	<form:FormElement>
-                        		<form:fields>
-									<Button text="{i18n>sapSchedDelete}">
-										<layoutData>
-											<l:GridData span="L3 M6 S6" />
-										</layoutData>
-									</Button>
-					                <Button text="{i18n>sapSchedCancel}" >
-						                <layoutData>
-											<l:GridData span="L5 M6 S6" />
-										</layoutData>
-									</Button>
-                                </form:fields>
-                            </form:FormElement>
-                        </form:formElements>
-                    </form:FormContainer>
-                </form:formContainers>
-                
-                <form:formContainers>
-                    <form:FormContainer>
-                        <form:formElements>
-                        	<form:FormElement>
-                        		<form:fields>
-                        			<ToolbarSpacer></ToolbarSpacer>
-									<Button 
-										id="scheduleButton"
-										press="onSchedulingPress"
-										type="Accept" 
-										icon="sap-icon://accept" 
-										text="{i18n>sapSchedSchedule}" >
-										<layoutData>
-											<l:GridData span="L5 M12 S12" />
-										</layoutData>
-									</Button>
-                                </form:fields>
-                            </form:FormElement>
-                        </form:formElements>
-                    </form:FormContainer>
-                </form:formContainers>
-			
-            </form:Form>-->
-			<!-- End of third (buttons) Form -->	
-			
 				
 			</content>
 		</Panel>
@@ -417,34 +350,34 @@
 						<Column width="17em"><Text text="{i18n>sapSchedJobIdentifier}" /></Column>
 						<!--<Column minScreenWidth="Large" demandPopin="true" sortProperty="SchedObjName"><Text text="Date" /></Column>
 						<Column minScreenWidth="Large" demandPopin="true" sortProperty="SchedDate"><Text text="Next Run" /></Column>-->
-						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
+						<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
 							<Text text="{i18n>sapSchedScheduledObject}" />
 						</Column>
-						<Column >
+						<Column hAlign="Center" minScreenWidth="700px" demandPopin="true" popinDisplay="Inline" >
 							<Text text="{i18n>sapSchedJobType}" />
 						</Column>
-						<Column >
+						<Column hAlign="Center" minScreenWidth="600px" demandPopin="true" popinDisplay="Inline">
 							<Text text="{i18n>sapSchedStatus}" />
 						</Column>
-						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
+						<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
 							<Text text="{i18n>sapSchedNextStartDate}" />
 						</Column>
-						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
+						<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
 							<Text text="{i18n>sapSchedCreatedAt}" />
 						</Column>
-						<Column minScreenWidth="1300px" >
+						<Column hAlign="Center" minScreenWidth="1300px" >
 							<Text text="{i18n>sapSchedStartType}" />
 						</Column>
-						<Column minScreenWidth="1300px" >
+						<Column hAlign="Center" minScreenWidth="1300px" >
 							<Text text="{i18n>sapSchedZIP}" />
 						</Column>
-						<Column >
+						<Column hAlign="Center"  minScreenWidth="600px" demandPopin="true" popinDisplay="Inline" >
 							<Text text="{i18n>sapSchedFrequency}" />
 						</Column>
-						<Column minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
+						<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
 							<Text text="{i18n>sapSchedNWDHandling}" />
 						</Column>
-						<Column minScreenWidth="Large" demandPopin="true" popinDisplay="Inline" >
+						<Column hAlign="Center" minScreenWidth="Large" demandPopin="true" popinDisplay="Inline" >
 							<Text text="{i18n>sapSchedJobCount}" />
 						</Column>
 					</columns>

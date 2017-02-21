@@ -30,13 +30,25 @@
 					</Toolbar>
 				</infoToolbar>
 				<columns>
-					<Column width="18em"><Text text="Filename" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" sortProperty="type"><Text text="Type" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Scheduling Object" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Job Type" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Created at" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Report Type" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Counter" /></Column>
+					<Column width="24em"><Text text="Filename" /></Column>
+					<Column hAlign="Center" minScreenWidth="700px" demandPopin="true" popinDisplay="Inline" sortProperty="type">
+						<Text text="Type" />
+					</Column>
+					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
+						<Text text="Scheduling Object" />
+					</Column>
+					<Column hAlign="Center" minScreenWidth="1000px" demandPopin="true" popinDisplay="Inline">
+						<Text text="Job Type" />
+					</Column>
+					<Column hAlign="Center" minScreenWidth="600px" demandPopin="true" popinDisplay="Inline">
+						<Text text="Created at" />
+					</Column>
+					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
+						<Text text="Report Type" />
+					</Column>
+					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
+						<Text text="Counter" />
+					</Column>
 				</columns>
 				<items>
 					<ColumnListItem>

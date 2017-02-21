@@ -12,9 +12,9 @@
 				items="{path:'/entries'}">
 				<headerToolbar>
 					<Toolbar>
-						<Title text="Job History" level="H6"/>
+						<Title text="{i18n>schedJobHistory}" level="H6"/>
 						<ToolbarSpacer></ToolbarSpacer>
-						<Button text="Refresh" tooltip="Refresh" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
+						<Button text="{i18n>sapSchedRefresh}" tooltip="Refresh" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
 						<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
 					</Toolbar>
 				</headerToolbar>
@@ -27,24 +27,24 @@
 					</Toolbar>
 				</infoToolbar>
 				<columns>
-					<Column width="18em"><Text text="SAP Job Identifier" /></Column>
-					<Column minScreenWidth="Large" demandPopin="true" sortProperty="SchedObjName">
-							<Text text="Scheduled Object Name" />
+					<Column width="17em"><Text text="{i18n>sapSchedJobIdentifier}" /></Column>
+					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline" sortProperty="SchedObjName">
+							<Text text="{i18n>sapSchedScheduledObject}" />
 					</Column>
-					<Column minScreenWidth="Large" demandPopin="true" sortProperty="SchedDate">
-						<Text text="Job Type" />
+					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline" sortProperty="SchedDate">
+						<Text text="{i18n>sapSchedJobType}" />
 					</Column>
-					<Column minScreenWidth="Large" demandPopin="true">
-						<Text text="Status" />
+					<Column hAlign="Center" minScreenWidth="600px" demandPopin="true" popinDisplay="Inline">
+						<Text text="{i18n>sapSchedStatus}" />
 					</Column>
-					<Column minScreenWidth="Large" demandPopin="true">
-						<Text text="Date" />
+					<Column hAlign="Center" minScreenWidth="400px" demandPopin="true" popinDisplay="Inline">
+						<Text text="{i18n>histDate}" />
 					</Column>
-					<Column minScreenWidth="Large" demandPopin="true">
-						<Text text="Start Type" />
+					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
+						<Text text="{i18n>sapSchedStartType}" />
 					</Column>
-					<Column minScreenWidth="Large" demandPopin="true">
-						<Text text="Frequency" />
+					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
+						<Text text="{i18n>sapSchedFrequency}" />
 					</Column>
 				</columns>
 				<items>
@@ -68,20 +68,6 @@
 			</Table>
   		</content>
 	</Panel>
-	
-	<!--<Text text="{
-			path:'schedDate',
-			type: 'sap.ui.model.type.Date',
-	        formatOptions: {
-				style: 'long'
-	        },
-	        relative: true
-		}"/>
-		<Text text="{
-			parts: [{path:'jobDate',type: 'sap.ui.model.type.Date'}],
-	        formatOptions: {
-				style: 'long'
-	        }
-		}"/>-->
+
 	</Page>
 </mvc:View>
