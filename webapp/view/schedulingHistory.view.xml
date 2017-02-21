@@ -28,10 +28,10 @@
 				</infoToolbar>
 				<columns>
 					<Column width="17em"><Text text="{i18n>sapSchedJobIdentifier}" /></Column>
-					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline" sortProperty="SchedObjName">
+					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
 							<Text text="{i18n>sapSchedScheduledObject}" />
 					</Column>
-					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline" sortProperty="SchedDate">
+					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
 						<Text text="{i18n>sapSchedJobType}" />
 					</Column>
 					<Column hAlign="Center" minScreenWidth="600px" demandPopin="true" popinDisplay="Inline">

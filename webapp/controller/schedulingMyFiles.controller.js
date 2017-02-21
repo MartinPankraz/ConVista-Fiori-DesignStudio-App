@@ -55,12 +55,13 @@ sap.ui.define([
 		},
 
 		handleRefreshButtonPressed: function(oEvent) {
+			var that = this;
 			$.ajax({
 				url: this.sServiceUrl+"_method=list_all&exportType=",
 				dataType: "jsonp",
 				jsonp: "callback",
 				success: function(json) {
-					var oModel = this.getView().getModel();
+					var oModel = that.getView().byId("idSchedulingMyFiles").getModel();
 					oModel.setData(json);
 				}
 			});

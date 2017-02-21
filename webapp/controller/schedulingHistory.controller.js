@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/Filter"
-], function(Controller,ODataModel,Filter,Sorter) {
+	"sap/ui/model/Filter",
+	"sap/ui/model/Sorter"
+], function(Controller,Filter,Sorter) {
 	"use strict";
 
 	return Controller.extend("convista.com.arp.demo.controller.schedulingHistory", {
@@ -52,12 +53,13 @@ sap.ui.define([
 		},
 		
 		handleRefreshButtonPressed: function (oEvent) {
+			var that = this;
 			$.ajax({
 				url: this.sServiceUrl+"_method=get_user_info&_datasrc=sched_hist",
 				dataType: "jsonp",
 				jsonp: "callback",
 				success: function(json) {
-					var oModel = this.getView().byId("idSchedulingHistoryTable").getModel();
+					var oModel = that.getView().byId("idSchedulingHistoryTable").getModel();
 					oModel.setData(json);
 				}
 			});

@@ -4,8 +4,9 @@
 	<ViewSettingsDialog
 		confirm="handleTableFilterConfirm">
 		<sortItems>
-			<ViewSettingsItem text="Report" key="SchedObjName" selected="true" />
-			<ViewSettingsItem text="Date" key="SchedDate" />
+			<ViewSettingsItem text="{i18n>filterReport}" key="jobname" selected="true" />
+			<ViewSettingsItem text="{i18n>filterCreatedAt}" key="createdAt" />
+			<ViewSettingsItem text="{i18n>filterJobDate}" key="jobDate" />
 		</sortItems>
 	</ViewSettingsDialog>
 </core:FragmentDefinition>

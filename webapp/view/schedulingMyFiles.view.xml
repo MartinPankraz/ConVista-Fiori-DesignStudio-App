@@ -15,7 +15,7 @@
 				enableBusyIndicator="true">
 				<headerToolbar>
 					<Toolbar>
-						<Title text="Your Available Documents" level="H6"/>
+						<Title text="{i18n>filesAvailableDocs}" level="H6"/>
 						<ToolbarSpacer></ToolbarSpacer>
 						<Button text="Refresh" tooltip="Refresh" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
 						<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
@@ -30,24 +30,24 @@
 					</Toolbar>
 				</infoToolbar>
 				<columns>
-					<Column width="24em"><Text text="Filename" /></Column>
-					<Column hAlign="Center" minScreenWidth="700px" demandPopin="true" popinDisplay="Inline" sortProperty="type">
-						<Text text="Type" />
+					<Column width="24em"><Text text="{i18n>filesName}" /></Column>
+					<Column hAlign="Center" minScreenWidth="700px" demandPopin="true" popinDisplay="Inline">
+						<Text text="{i18n>filesType}" />
 					</Column>
 					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
-						<Text text="Scheduling Object" />
+						<Text text="{i18n>sapSchedScheduledObject}" />
 					</Column>
 					<Column hAlign="Center" minScreenWidth="1000px" demandPopin="true" popinDisplay="Inline">
-						<Text text="Job Type" />
+						<Text text="{i18n>sapSchedJobType}" />
 					</Column>
 					<Column hAlign="Center" minScreenWidth="600px" demandPopin="true" popinDisplay="Inline">
-						<Text text="Created at" />
+						<Text text="{i18n>sapSchedCreatedAt}" />
 					</Column>
 					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
-						<Text text="Report Type" />
+						<Text text="{i18n>filesReportType}" />
 					</Column>
 					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">
-						<Text text="Counter" />
+						<Text text="{i18n>filesCounter}" />
 					</Column>
 				</columns>
 				<items>
