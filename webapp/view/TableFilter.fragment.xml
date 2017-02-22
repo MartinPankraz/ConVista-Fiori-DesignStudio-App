@@ -4,9 +4,12 @@
 	<ViewSettingsDialog
 		confirm="handleTableFilterConfirm">
 		<sortItems>
-			<ViewSettingsItem text="{i18n>filterReport}" key="jobname" selected="true" />
+			<ViewSettingsItem text="{i18n>sapSchedJobIdentifier}" key="jobname" selected="true" />
+			<ViewSettingsItem text="{i18n>sapSchedScheduledObject}" key="schedObjNameDesc" />
+			<ViewSettingsItem text="{i18n>sapSchedJobType}" key="schedObjTypeDesc" />
 			<ViewSettingsItem text="{i18n>filterCreatedAt}" key="createdAt" />
-			<ViewSettingsItem text="{i18n>filterJobDate}" key="jobDate" />
+			<ViewSettingsItem text="{i18n>sapSchedStartType}" key="jobStartTypeDesc" />
+			<ViewSettingsItem text="{i18n>sapSchedFrequency}" key="jobPeriodicDesc" />
 		</sortItems>
 	</ViewSettingsDialog>
 </core:FragmentDefinition>

@@ -9,7 +9,13 @@
 	    class="ccPanelBG">
     	<content>
 			<Table id="idSchedulingMyFiles"
-				items="{path:'/'}"
+				items="{
+				path:'/',
+				sorter: {
+						path : 'counter',
+						descending: true
+					}
+				}"
 				mode= "SingleSelectMaster"
 				select="onRowSelect"
 				enableBusyIndicator="true">
@@ -17,18 +23,10 @@
 					<Toolbar>
 						<Title text="{i18n>filesAvailableDocs}" level="H6"/>
 						<ToolbarSpacer></ToolbarSpacer>
-						<Button text="Refresh" tooltip="Refresh" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
-						<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
+						<Button text="{i18n>sapSchedRefresh}" tooltip="{i18n>sapSchedRefresh}" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
+						<Button tooltip="{i18n>sapSchedViewSettings}" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
 					</Toolbar>
 				</headerToolbar>
-				<infoToolbar>
-					<Toolbar
-						active="true"
-						visible="false"
-						press="[handleViewSettingsDialogFilterBarPressed, views.control.tableViewSettingsDialog]">
-						<Label id="vsdFilterLabel" text="?" />
-					</Toolbar>
-				</infoToolbar>
 				<columns>
 					<Column width="24em"><Text text="{i18n>filesName}" /></Column>
 					<Column hAlign="Center" minScreenWidth="700px" demandPopin="true" popinDisplay="Inline">

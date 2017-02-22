@@ -9,23 +9,21 @@
 	    class="ccPanelBG">
     	<content>
 			<Table id="idSchedulingHistoryTable"
-				items="{path:'/entries'}">
+				items="{
+					path:'/entries',
+					sorter:{
+						path: 'createdAt',
+						descending: true
+					}
+				}">
 				<headerToolbar>
 					<Toolbar>
 						<Title text="{i18n>schedJobHistory}" level="H6"/>
 						<ToolbarSpacer></ToolbarSpacer>
-						<Button text="{i18n>sapSchedRefresh}" tooltip="Refresh" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
-						<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
+						<Button text="{i18n>sapSchedRefresh}" tooltip="{i18n>sapSchedRefresh}" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>
+						<Button tooltip="{i18n>sapSchedViewSettings}" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
 					</Toolbar>
 				</headerToolbar>
-				<infoToolbar>
-					<Toolbar
-						active="true"
-						visible="false"
-						press="[handleViewSettingsDialogFilterBarPressed, views.control.tableViewSettingsDialog]">
-						<Label id="vsdFilterLabel" text="?" />
-					</Toolbar>
-				</infoToolbar>
 				<columns>
 					<Column width="17em"><Text text="{i18n>sapSchedJobIdentifier}" /></Column>
 					<Column hAlign="Center" minScreenWidth="1300px" demandPopin="true" popinDisplay="Inline">

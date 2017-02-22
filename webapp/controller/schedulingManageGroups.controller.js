@@ -3,7 +3,7 @@ sap.ui.define([
 	"sap/ui/model/Filter"
 ], function(Controller,ODataModel,Filter,Sorter) {
 	"use strict";
-
+	
 	return Controller.extend("convista.com.arp.demo.controller.schedulingManageGroups", {
 		
 		_oDialog: null,
@@ -13,6 +13,14 @@ sap.ui.define([
 		 * @memberOf convista.com.arp.demo.view.schedulingHistory
 		 */
 		onInit: function() {
+			
+			$.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-core');
+		     $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-widget');
+		     $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-mouse');
+		     $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-sortable');
+		     $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-droppable');
+		     $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-draggable');
+			
 			var that = this;
 			
 			var oModel = new sap.ui.model.json.JSONModel();
@@ -37,91 +45,64 @@ sap.ui.define([
 							var entries = that.filterGrpStructureForGroups(jsonGrpRep.entries);
 							oModel.setProperty("/groups", entries);
 							//make sure first value is always selected!
-							var selectedGroupKey = jsonGrpRep.entries[0].groupKey;
-							var queriesWithinGroupBox = that.getView().byId("reportsSelectedGroup");
-							for(var i = 0; i < jsonGrpRep.entries.length; i++){
-								var grpEntry = jsonGrpRep.entries[i];
-								if(grpEntry.groupKey === selectedGroupKey){
-									for(var j = 0; j < json.entries.length; j++){
-										var entry = json.entries[j];	
-										if(entry.query === grpEntry.query){
-											queriesWithinGroupBox.addItem(new sap.ui.core.Item({key: entry.query, text: entry.descr}));
-											break;
-										}
-									}	
+							if(typeof jsonGrpRep.entries[0] !== "undefined"){
+								var selectedGroupKey = jsonGrpRep.entries[0].groupKey;
+								var queriesWithinGroupBox = that.getView().byId("reportsSelectedGroup");
+								for(var i = 0; i < jsonGrpRep.entries.length; i++){
+									var grpEntry = jsonGrpRep.entries[i];
+									if(grpEntry.groupKey === selectedGroupKey){
+										for(var j = 0; j < json.entries.length; j++){
+											var entry = json.entries[j];	
+											if(entry.query === grpEntry.query){
+												queriesWithinGroupBox.addItem(new sap.ui.core.Item({key: entry.query, text: entry.descr}));
+												break;
+											}
+										}	
+									}
 								}
 							}
+							
 						}
 					});
 				}
 			});
 			
+			var oSortableList = this.getView().byId("availableReports");
+			  var listId = oSortableList.getId();
+			  var oDropableList = this.getView().byId("reportsSelectedGroup");
+			  var listDropId = oDropableList.getId();
+
+			  oSortableList.onAfterRendering = function() {
+			        if (sap.m.SelectList.prototype.onAfterRendering) {
+			             sap.m.SelectList.prototype.onAfterRendering.apply(this);
+			         }
+			         
+					$("#"+listId+" li").draggable({
+			            helper : "clone"
+			        });
+			        
+			  };
+			  
+			  /*oDropableList.onAfterRendering = function() {
+			        if (sap.m.SelectList.prototype.onAfterRendering) {
+			             sap.m.SelectList.prototype.onAfterRendering.apply(this);
+			         }
+			         
+					$("#"+listDropId).droppable({
+						drop: function (event,ui){
+							var listElementId = ui.draggable.context.id;
+    						var draggedElement = sap.ui.getCore().byId(listElementId);
+    						console.log(draggedElement);
+							//var item = this.getView().byId("reportsSelectedGroup").getSelectedItem();
+							
+						oDropableList.addItem(new sap.ui.core.Item({key: draggedElement.getKey(),text: draggedElement.getText()}));
+						
+						}
+			        });
+			        
+			  };*/
 		},
 
-		/**
-		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
-		 * @memberOf convista.com.arp.demo.view.schedulingHistory
-		 */
-		onExit: function() {
-			if (this._oDialog) {
-				this._oDialog.destroy();
-			}
-		},
-		
-		handleViewSettingsDialogButtonPressed: function (oEvent) {
-			if (!this._oDialog) {
-				this._oDialog = sap.ui.xmlfragment("convista.com.arp.demo.view.TableFilter", this);
-			}
-			// toggle compact style
-			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
-			this._oDialog.open();
-		},
-		
-		handleRefreshButtonPressed: function (oEvent) {
-			var oTable = this.getView().byId("idSchedulingHistoryTable");
-			var oModel = oTable.getModel();
-			oModel.refresh(true);
-		},
- 
-		handleTableFilterConfirm: function(oEvent) {
- 
-			var oView = this.getView();
-			var oTable = oView.byId("idSchedulingHistoryTable");
- 
-			var mParams = oEvent.getParameters();
-			var oBinding = oTable.getBinding("items");
- 
-			// apply sorter to binding
-			// (grouping comes before sorting)
-			var aSorters = [];
-/*			if (mParams.groupItem) {
-				var sPath = mParams.groupItem.getKey();
-				var bDescending = mParams.groupDescending;
-				var vGroup = this.mGroupFunctions[sPath];
-				aSorters.push(new Sorter(sPath, bDescending, vGroup));
-			}*/
-			var sPath = mParams.sortItem.getKey();
-			var bDescending = mParams.sortDescending;
-			aSorters.push(new Sorter(sPath, bDescending));
-			oBinding.sort(aSorters);
- 
-			// apply filters to binding
-			/*var aFilters = [];
-			jQuery.each(mParams.filterItems, function (i, oItem) {
-				var aSplit = oItem.getKey().split("___");
-				var sPath = aSplit[0];
-				var sOperator = aSplit[1];
-				var sValue1 = aSplit[2];
-				var sValue2 = aSplit[3];
-				var oFilter = new Filter(sPath, sOperator, sValue1, sValue2);
-				aFilters.push(oFilter);
-			});
-			oBinding.filter(aFilters);*/
- 
-			// update filter bar
-			/*oView.byId("vsdFilterBar").setVisible(aFilters.length > 0);
-			oView.byId("vsdFilterLabel").setText(mParams.filterString);*/
-		},
 		//update done by overriding (always sending all values to simplify update logic on backend)
 		handleButtonSavePressed: function(oEvent){
 			var newGrpText = this.getView().byId("newGrpInput").getValue();

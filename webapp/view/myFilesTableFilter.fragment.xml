@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		confirm="handleTableFilterConfirm">
+		<sortItems>
+			<ViewSettingsItem text="{i18n>filesName}" key="filename" selected="true" />
+			<ViewSettingsItem text="{i18n>filesType}" key="type" />
+			<ViewSettingsItem text="{i18n>sapSchedScheduledObject}" key="schedobj"  />
+			<ViewSettingsItem text="{i18n>filterCreatedAt}" key="createdate" />
+			<ViewSettingsItem text="{i18n>sapSchedJobType}" key="jobtype" />
+			<ViewSettingsItem text="{i18n>filesReportType}" key="exportType" />
+			<ViewSettingsItem text="{i18n>filesCounter}" key="counter" />
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

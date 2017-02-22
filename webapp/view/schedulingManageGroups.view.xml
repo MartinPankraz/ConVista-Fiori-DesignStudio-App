@@ -97,7 +97,7 @@
                 
             </form:Form>-->
             
-            <l:HorizontalLayout class="sapUiSmallMargin">
+            <l:HorizontalLayout id="hBox" class="sapUiSmallMargin">
             	<l:VerticalLayout class="sapUiSmallMarginEnd">
             		<Label text="{i18n>manageReportsSelectedGroup}" class="sapUiTinyMarginBottom"></Label>
             		<l:HorizontalLayout>
@@ -119,6 +119,7 @@
 					<Label text="{i18n>manageAllAvailableReports}" class="sapUiSmallMarginTop sapUiTinyMarginBottom"></Label>
 					<l:HorizontalLayout>
 						<ScrollContainer
+							id="availableReportsContainer"
             				class="selectionList"
             				width="270px"
             				height="290px"
@@ -126,10 +127,13 @@
 							vertical="true">
 							<SelectList
 								id="availableReports"
+								class="connectedSortable"
 								items="{
 									path: '/reports'
 								}">
-								<core:Item key="{query}" text="{descr}" />
+								<core:Item
+									text="{descr}"
+									key="{query}"/>
 							</SelectList>
 						</ScrollContainer>
 						<l:VerticalLayout class="sapUiSmallMarginBegin sapUiLargeMarginTop">
@@ -146,7 +150,8 @@
             				height="534px"
             				horizontal="false"
 							vertical="true">
-		            	<SelectList id="selectedReports"/>
+		            	<SelectList id="selectedReports" class="connectedSortable" >
+		            	</SelectList>	
 					</ScrollContainer>
 				</l:VerticalLayout>
             </l:HorizontalLayout>

@@ -4,20 +4,186 @@
 	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form"
+	xmlns:form="sap.ui.layout.form"
 	controllerName="convista.com.arp.demo.controller.BOSelectionScreen1">
 	<VBox class="sapUiSmallMargin">
-		<f:SimpleForm
+		<form:Form 
+			class="sapUiLargeMarginTop"
+			id="myForm"
+			editable="true"
+			>
+			<form:title>
+				<core:Title text="Runtime Options" level="H4" />
+			</form:title>
+			<form:layout>
+            <form:ResponsiveGridLayout 
+            	class="paddingForm"
+            	visible="true" 
+        		labelSpanL="12" 
+        		labelSpanM="12" 
+        		labelSpanS="12" 
+        		emptySpanL="0" 
+        		emptySpanM="0" 
+        		emptySpanS="0" 
+        		columnsL="1" 
+        		columnsM="1" 
+        		columnsS="1" 
+        		breakpointL="1000" 
+        		breakpointM="760"
+        		singleContainerFullSize="false">
+            </form:ResponsiveGridLayout>
+        </form:layout>
+        
+			<form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="{i18n>valuationAreaText}">
+                                <form:fields>
+									<Select
+										id="valuationArea"
+										forceSelection="true"
+										selectedKey="001"
+										required="true">
+										<items>
+											<core:Item key="001" text="US GAAP" />
+											<core:Item key="002" text="US STAT" />
+											<core:Item key="003" text="US TAX" />
+										</items>
+									</Select>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement>
+                            	<form:fields>
+                            		<Select
+										id="ledgerBasis"
+										forceSelection="true"
+										selectedKey="0L"
+										required="true">
+										<items>
+											<core:Item key="0L" text="Leading Ledger STAT" />
+											<core:Item key="1L" text="GAAP" />
+										</items>
+									</Select>
+                            	</form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="{i18n>companyCodeText}">
+                            	<form:fields>
+                            		<MultiComboBox
+										id="companyCode"
+										required="false"
+										items="{/companySet}"
+										selectionFinish="onCompanySelectionFinish">
+										<core:Item key="{Compcode}" text="{Txtmd}" />
+									</MultiComboBox>
+                            	</form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="{i18n>dateText}">
+                            	<form:fields>
+                            		<DatePicker
+										id="datePicker1"
+										placeholder="Enter Date ..."
+										displayFormat="d MMM y"
+										valueFormat="yyyyMMdd"
+										required="true">
+									</DatePicker>
+									<RadioButtonGroup id="rbg1" columns="2">
+										<buttons>
+											<RadioButton text="{i18n>dateOption1}" selected="true" />
+											<RadioButton text="{i18n>dateOption2}" />
+										</buttons>
+									</RadioButtonGroup>
+                            	</form:fields>
+                            </form:FormElement>
+                            <form:FormElement>
+                            	<form:fields>
+                            		<DatePicker
+										id="datePicker2"
+										placeholder="Enter Date ..."
+										displayFormat="d MMM y"
+										valueFormat="yyyyMMdd"
+										required="true">
+										<layoutData>
+											<l:GridData span="L3 M4 S4" />
+										</layoutData>
+									</DatePicker>
+                            	</form:fields>
+                            </form:FormElement>
+                            <form:FormElement id="periodLabel" label="{i18n>periodText}">
+                            	<form:fields>
+                            		<Select
+										id="period"
+										forceSelection="false"
+										selectedKey=""
+										required="true">
+										<items>
+											<core:Item key="" text="{i18n>textAll}" />
+											<core:Item key="001" text="Jan" />
+											<core:Item key="002" text="Feb" />
+											<core:Item key="003" text="Mar" />
+											<core:Item key="004" text="Apr" />
+											<core:Item key="005" text="May" />
+											<core:Item key="006" text="Jun" />
+											<core:Item key="007" text="Jul" />
+											<core:Item key="008" text="Aug" />
+											<core:Item key="009" text="Sep" />
+											<core:Item key="010" text="Oct" />
+											<core:Item key="011" text="Nov" />
+											<core:Item key="012" text="Dec" />
+										</items>
+									</Select>
+                            	</form:fields>
+                            </form:FormElement>
+                            <form:FormElement id="secAccLabel" label="{i18n>securityAccountText}">
+                            	<form:fields>
+                            		<MultiComboBox
+										id="securityAccount"
+										required="false"
+										items="{/securityAccountSet}">
+											<core:Item text="{Cfmsecac} | {Txtmd}" key="{Cfmsecac}"/>
+									</MultiComboBox>
+                            	</form:fields>
+                            </form:FormElement>
+                            <form:FormElement id="glAccText" label="{i18n>generalLedgerAccountText}">
+                            	<form:fields>
+									<MultiComboBox
+										id="glAccount"
+										required="false"
+										items="{/glaccountSet}">
+											<core:Item text="{Chrtacct} | {Glaccont}" key="{Glaccont}"/>
+									</MultiComboBox>
+                            	</form:fields>
+                            </form:FormElement> 
+                            <form:FormElement>
+                            	<form:fields>
+                            		<Button
+                            			class="sapUiMediumMarginTop"
+										id="executeButton"
+										text="{i18n>buttonExecute}"
+										press="onSelectionScreenExecutePress"
+										ariaDescribedBy="defaultButtonDescription genericButtonDescription">
+                            		</Button>
+                            	</form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                
+                
+		
+		
+		</form:Form>
+
+		<!--<form:SimpleForm
 			id="myForm"
 			editable="true"
 			layout="ResponsiveGridLayout"
 			ariaLabelledBy="SelectionScreen1">
-			<f:toolbar>
+			<form:toolbar>
 				<Toolbar>
 					<Title text="Runtime Options" level="H4" titleStyle="H4"/>
 				</Toolbar>
-			</f:toolbar>
-			<f:content>
+			</form:toolbar>
+			<form:content>
 				<Label text="{i18n>valuationAreaText}"/>
 					<Select
 						id="valuationArea"
@@ -126,7 +292,7 @@
 						press="onSelectionScreenExecutePress"
 						ariaDescribedBy="defaultButtonDescription genericButtonDescription"
 						width="300px"/>
-			</f:content>
-		</f:SimpleForm>
+			</form:content>
+		</form:SimpleForm>-->
 	</VBox>
 </mvc:View>

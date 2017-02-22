@@ -326,7 +326,13 @@
 	    	<content>
 	    		<!-- Beginning of table -->	
 				<Table id="idSchedulingTable"
-					items="{path:'/entries'}"
+					items="{
+						path:'/entries',
+						sorter:{
+							path: 'createdAt',
+							descending: true
+						}
+					}"
 					mode= "SingleSelectMaster" >
 					<headerToolbar>
 						<Toolbar>

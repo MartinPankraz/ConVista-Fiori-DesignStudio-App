@@ -85,6 +85,7 @@ sap.ui.define([
 		handleViewSettingsDialogButtonPressed: function(oEvent) {
 			if (!this._oDialog) {
 				this._oDialog = sap.ui.xmlfragment("convista.com.arp.demo.view.TableFilter", this);
+				this.getView().addDependent(this._oDialog);
 			}
 			// toggle compact style
 			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);

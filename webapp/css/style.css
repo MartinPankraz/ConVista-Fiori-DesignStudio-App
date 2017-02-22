@@ -177,6 +177,11 @@ li[class*="sapTntNavLIItemSelected"]{
 	width: 100%;
 	border-color:transparent;
 	border:none;
+	background-color:#f0f5f9;
+}
+
+.ccNavCon {
+	background-color:#f0f5f9;
 }
 
 /***************** Setting bo container iframe width and height  ************************************/
@@ -216,6 +221,19 @@ li[class*="sapTntNavLIItemSelected"]{
 .backgroundManage{
 	background-color:#eff4f9;
 }
+/**************** BO Selection Screen Styles ***************************************************************/
+.paddingForm{
+	padding-left: 20%;
+	padding-right: 20%;
+}
+
+@media (max-width: 800px) {
+  .paddingForm {
+    padding-left: 5%;
+	padding-right: 5%;
+  }
+}
+
 
 /**************** Footer ***************************************************************/
 .ccImage{
