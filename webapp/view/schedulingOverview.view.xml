@@ -157,21 +157,42 @@
                 <form:formContainers>
                     <form:FormContainer>
                         <form:formElements>
+                        	<form:FormElement>
+                        		<form:fields>
+                        			<Title text=" " />
+                        		</form:fields> 
+                        	</form:FormElement>
                             <form:FormElement label="{i18n>sapSchedDateAsOf}">
                                 <form:fields>
-									<DatePicker id="dateAsOf" valueFormat="yyyyMMdd" displayFormat="d MMM y"/>
-									<CheckBox id="shiftAsOf" />
+									<DatePicker id="dateAsOf" valueFormat="yyyyMMdd" displayFormat="d MMM y">
+										<layoutData>
+											<l:GridData span="L3 M3 S3" />
+										</layoutData>
+									</DatePicker>
+									<CheckBox id="shiftAsOf" >
+										<layoutData>
+											<l:GridData span="L1 M1 S1" />
+										</layoutData>
+									</CheckBox>
                                 </form:fields>
                             </form:FormElement>
                             <form:FormElement label="{i18n>sapSchedDateThrough}">
                                 <form:fields>
-									<DatePicker id="dateRangeFrom" valueFormat="yyyyMMdd" displayFormat="d MMM y"/>
+									<DatePicker id="dateRangeFrom" valueFormat="yyyyMMdd" displayFormat="d MMM y">
+										<layoutData>
+											<l:GridData span="L3 M3 S3" />
+										</layoutData>
+									</DatePicker>
 									<CheckBox id="shiftFrom" >
 										<layoutData>
 											<l:GridData span="L1 M1 S1" />
 										</layoutData>
 									</CheckBox>
-									<DatePicker id="dateRangeTo" valueFormat="yyyyMMdd" displayFormat="d MMM y"/>
+									<DatePicker id="dateRangeTo" valueFormat="yyyyMMdd" displayFormat="d MMM y">
+										<layoutData>
+											<l:GridData span="L3 M3 S3" />
+										</layoutData>
+									</DatePicker>
 									<CheckBox id="shiftTo" >
 										<layoutData>
 											<l:GridData span="L1 M1 S1" />
@@ -192,7 +213,6 @@
 									<MultiComboBox
 										id="companyCode"
 										required="false"
-										width="300px"
 										items="{compCode>/companySet}"
 										selectionFinish="onCompanySelectionFinish">
 										<core:Item key="{compCode>Compcode}" text="{compCode>Txtmd}" />
@@ -243,7 +263,6 @@
                                     <MultiComboBox
 										id="securityAccount"
 										required="false"
-										width="300px"
 										items="{compCode>/securityAccountSet}">
 											<core:Item text="{compCode>Cfmsecac} | {compCode>Txtmd}" key="{compCode>Cfmsecac}"/>
 									</MultiComboBox>
@@ -273,7 +292,6 @@
                                     <MultiComboBox
 										id="glAccount"
 										required="false"
-										width="300px"
 										items="{compCode>/glaccountSet}">
 											<core:Item text="{compCode>Chrtacct} | {compCode>Glaccont}" key="{compCode>Glaccont}"/>
 									</MultiComboBox>

@@ -208,6 +208,18 @@ li[class*="sapTntNavLIItemSelected"]{
 	background-color:#ffffff;
 }
 
+.ui-draggable-helper {
+ border: 1px dotted #bfbfbf;
+ background: #f5f5f5;
+ list-style-type: none;
+ border-radius:10px;
+}
+.ui-droppable-hover {
+	background:yellow;
+}
+.ui-droppable-active{
+	background:red;
+}
 /*.imageResponsive{
 	max-height:700px;
 	width:100%;

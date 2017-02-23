@@ -102,6 +102,7 @@
             		<Label text="{i18n>manageReportsSelectedGroup}" class="sapUiTinyMarginBottom"></Label>
             		<l:HorizontalLayout>
             			<ScrollContainer
+            				id="reportsSelectedGroupContainer"
             				class="selectionList"
             				width="270px"
             				height="200px"
@@ -127,7 +128,6 @@
 							vertical="true">
 							<SelectList
 								id="availableReports"
-								class="connectedSortable"
 								items="{
 									path: '/reports'
 								}">
@@ -145,12 +145,13 @@
             	<l:VerticalLayout>
             		<Label text="{i18n>manageSelectedReports}" class="sapUiTinyMarginBottom"></Label>
             		<ScrollContainer
+            				id = "selectedReportsContainer"
             				class="selectionList"
             				width="270px"
             				height="534px"
             				horizontal="false"
 							vertical="true">
-		            	<SelectList id="selectedReports" class="connectedSortable" >
+		            	<SelectList id="selectedReports" >
 		            	</SelectList>	
 					</ScrollContainer>
 				</l:VerticalLayout>

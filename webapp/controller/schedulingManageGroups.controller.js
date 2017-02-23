@@ -1,6 +1,13 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/Filter"
+	"sap/ui/model/Filter",
+	"sap/ui/thirdparty/jqueryui/jquery-ui-effect",
+    "sap/ui/thirdparty/jqueryui/jquery-ui-core",
+    "sap/ui/thirdparty/jqueryui/jquery-ui-widget",
+    "sap/ui/thirdparty/jqueryui/jquery-ui-mouse",
+    "sap/ui/thirdparty/jqueryui/jquery-ui-sortable",
+    "sap/ui/thirdparty/jqueryui/jquery-ui-draggable",
+    "sap/ui/thirdparty/jqueryui/jquery-ui-droppable"
 ], function(Controller,ODataModel,Filter,Sorter) {
 	"use strict";
 	
@@ -13,13 +20,6 @@ sap.ui.define([
 		 * @memberOf convista.com.arp.demo.view.schedulingHistory
 		 */
 		onInit: function() {
-			
-			$.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-core');
-		     $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-widget');
-		     $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-mouse');
-		     $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-sortable');
-		     $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-droppable');
-		     $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-draggable');
 			
 			var that = this;
 			
@@ -66,43 +66,147 @@ sap.ui.define([
 					});
 				}
 			});
+			this.makeAvailableReportsListDragAndDrop();
+			this.makeSelectedReportsListDragAndDrop();
+			this.makeSelectedGroupsListDragAndDrop();
+		},
+		
+		makeSelectedGroupsListDragAndDrop: function () {
+			var that = this;
+			var selGrpList = this.getView().byId("reportsSelectedGroup");
+			var selGrpListId = "#" + selGrpList.getId() + " li";
+			var selGrpContainer = this.getView().byId("reportsSelectedGroupContainer");
+			var selGrpContainerId = "#" + selGrpContainer.getId();
+			var selRepList = this.getView().byId("selectedReports");
+			var selRepListId = "#" + selRepList.getId() + " li";
 			
-			var oSortableList = this.getView().byId("availableReports");
-			  var listId = oSortableList.getId();
-			  var oDropableList = this.getView().byId("reportsSelectedGroup");
-			  var listDropId = oDropableList.getId();
-
-			  oSortableList.onAfterRendering = function() {
-			        if (sap.m.SelectList.prototype.onAfterRendering) {
-			             sap.m.SelectList.prototype.onAfterRendering.apply(this);
-			         }
-			         
-					$("#"+listId+" li").draggable({
-			            helper : "clone"
-			        });
-			        
-			  };
-			  
-			  /*oDropableList.onAfterRendering = function() {
-			        if (sap.m.SelectList.prototype.onAfterRendering) {
-			             sap.m.SelectList.prototype.onAfterRendering.apply(this);
-			         }
-			         
-					$("#"+listDropId).droppable({
-						drop: function (event,ui){
-							var listElementId = ui.draggable.context.id;
-    						var draggedElement = sap.ui.getCore().byId(listElementId);
-    						console.log(draggedElement);
-							//var item = this.getView().byId("reportsSelectedGroup").getSelectedItem();
-							
-						oDropableList.addItem(new sap.ui.core.Item({key: draggedElement.getKey(),text: draggedElement.getText()}));
-						
+			selGrpList.addEventDelegate({
+				onAfterRendering: function (){
+					//jQuery(avRepListId).addClass("ui-draggable");
+					jQuery(selGrpListId).draggable({
+						appendTo: "body",
+						scroll: false,
+						zIndex: 100,
+						revert: "invalid",
+						helper:"clone",
+						start: function(e, ui)
+						 {
+						  $(ui.helper).addClass("ui-draggable-helper");
+						 }
+					}).disableSelection();
+				}
+			});
+			
+			selGrpContainer.addEventDelegate({
+				onAfterRendering: function (){
+					jQuery(selGrpContainerId).droppable({
+						accept: selRepListId,
+						drop: function( event, ui ) {
+							var sender = that.getView().byId("selectedReports");
+							var receiver = that.getView().byId("reportsSelectedGroup");
+							that.removeItem(ui.draggable, receiver, sender);
 						}
-			        });
-			        
-			  };*/
+					}).disableSelection();
+				}
+			});
+		},
+		
+		makeAvailableReportsListDragAndDrop: function(){
+			var that = this;
+			var avRepList = this.getView().byId("availableReports");
+			var avRepListId = "#" + avRepList.getId() + " li";
+			var avRepContainer = this.getView().byId("availableReportsContainer");
+			var avRepContainerId = "#" + avRepContainer.getId();
+			var selRepList = this.getView().byId("selectedReports");
+			var selRepListId = "#" + selRepList.getId() + " li";
+			
+			
+			avRepList.addEventDelegate({
+				onAfterRendering: function (){
+					//jQuery(avRepListId).addClass("ui-draggable");
+					jQuery(avRepListId).draggable({
+						appendTo: "body",
+						scroll: false,
+						zIndex: 100,
+						revert: "invalid",
+						helper:"clone",
+						start: function(e, ui)
+						 {
+						  $(ui.helper).addClass("ui-draggable-helper");
+						 }
+					}).disableSelection();
+				}
+			});
+			
+			avRepContainer.addEventDelegate({
+				onAfterRendering: function (){
+					jQuery(avRepContainerId).droppable({
+						accept: selRepListId,
+						drop: function( event, ui ) {
+							var sender = that.getView().byId("selectedReports");
+							var receiver = that.getView().byId("availableReports");
+							that.removeItem(ui.draggable, receiver, sender);
+						}
+					}).disableSelection();
+				}
+			});
+			
+		},
+		
+		makeSelectedReportsListDragAndDrop: function(){
+			var that = this;
+			var selRepList = this.getView().byId("selectedReports");
+			var selRepListId = "#" + selRepList.getId() + " li";
+			var selRepContainer = this.getView().byId("selectedReportsContainer");
+			var selRepContainerId = "#" + selRepContainer.getId();
+			var avRepList = this.getView().byId("availableReports");
+			var selGrpList = this.getView().byId("reportsSelectedGroup");
+			
+			selRepList.addEventDelegate({
+				onAfterRendering: function (){
+					//jQuery(selRepListId).addClass("special");
+					jQuery(selRepListId).draggable({
+						appendTo: "body",
+						scroll: false,
+						zIndex: 100,
+						revert: "invalid",
+						helper:"clone",
+						start: function(e, ui)
+						 {
+						  $(ui.helper).addClass("ui-draggable-helper");
+						 }
+					}).disableSelection();
+				}
+			});
+			
+			
+			selRepList.addEventDelegate({
+				onAfterRendering: function (){
+					jQuery(selRepContainerId).droppable({
+						accept: "#" + avRepList.getId() + " li, #" + selGrpList.getId() + " li" ,
+						drop: function( event, ui ) {
+							var receiver = that.getView().byId("selectedReports");
+							that.addNewItem(ui.draggable, receiver);
+						}
+					}).disableSelection();
+				}
+			});
 		},
 
+		addNewItem: function(item, receiver){
+			var listElementId = item.context.id;
+			var draggedElement = sap.ui.getCore().byId(listElementId);
+			receiver.addItem(new sap.ui.core.Item({key: draggedElement.getKey(),text: draggedElement.getText()}));
+			sap.ui.getCore().byId(item.parent()[0].id).removeItem(draggedElement);
+		},
+		
+		removeItem: function(item, receiver, sender){
+			var listElementId = item.context.id;
+			var draggedElement = sap.ui.getCore().byId(listElementId);
+			receiver.addItem(new sap.ui.core.Item({key: draggedElement.getKey(),text: draggedElement.getText()}));
+			sender.removeItem(draggedElement);
+		},
+		
 		//update done by overriding (always sending all values to simplify update logic on backend)
 		handleButtonSavePressed: function(oEvent){
 			var newGrpText = this.getView().byId("newGrpInput").getValue();
@@ -132,6 +236,7 @@ sap.ui.define([
 			});
 			
 			this.getView().byId("yourGroups").addItem(new sap.ui.core.Item({key: newGrpText, text: newGrpText}));
+			this.getView().byId("newGrpInput").setValue("");
 			//this.getView().byId("yourGroups").setSelectedItemId(newGrpText);
 		},
 		//update done by overriding (always sending all values to simplify update logic on backend)
@@ -167,14 +272,16 @@ sap.ui.define([
 		moveGroupReportsToSelectedGroup: function(oEvent){
 			var item = this.getView().byId("reportsSelectedGroup").getSelectedItem();
 			if(item){
-				this.getView().byId("selectedReports").addItem(new sap.ui.core.Item({key: item.getKey(),text: item.getText()}));	
+				this.getView().byId("selectedReports").addItem(new sap.ui.core.Item({key: item.getKey(),text: item.getText()}));
+				this.getView().byId("reportsSelectedGroup").removeItem(item);
 			}
 		},
 		
 		moveExistingReportsToSelectedGroup: function(oEvent){
 			var item = this.getView().byId("availableReports").getSelectedItem();
 			if(item){
-				this.getView().byId("selectedReports").addItem(new sap.ui.core.Item({key: item.getKey(),text: item.getText()}));	
+				this.getView().byId("selectedReports").addItem(new sap.ui.core.Item({key: item.getKey(),text: item.getText()}));
+				this.getView().byId("availableReports").removeItem(item);
 			}
 		},
 		
