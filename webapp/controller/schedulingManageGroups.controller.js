@@ -66,19 +66,22 @@ sap.ui.define([
 					});
 				}
 			});
-			this.makeAvailableReportsListDragAndDrop();
-			this.makeSelectedReportsListDragAndDrop();
-			this.makeSelectedGroupsListDragAndDrop();
+			this.makeDragAndDropAvailable();
 		},
-
-		makeSelectedGroupsListDragAndDrop: function () {
+		
+		// Make the selected Reports List draggable and droppable
+		makeDragAndDropAvailable:  function(){
 			var that = this;
-			var selGrpList = this.getView().byId("reportsSelectedGroup");
-			var selGrpListId = "#" + selGrpList.getId() + " li";
-			var selGrpContainer = this.getView().byId("reportsSelectedGroupContainer");
-			var selGrpContainerId = "#" + selGrpContainer.getId();
 			var selRepList = this.getView().byId("selectedReports");
 			var selRepListId = "#" + selRepList.getId() + " li";
+			var avRepList = this.getView().byId("availableReports");
+			var avRepListId = "#" + avRepList.getId() + " li";
+			var selGrpList = this.getView().byId("reportsSelectedGroup");
+			var selGrpListId = "#" + selGrpList.getId() + " li";
+			var selRepContainer = this.getView().byId("selectedReportsContainer");
+			var selRepContainerId = "#" + selRepContainer.getId();
+			var garbageContainer = this.getView().byId("garbageContainer");
+			var garbageContainerId = "#" + garbageContainer.getId();
 			
 			selGrpList.addEventDelegate({
 				onAfterRendering: function (){
@@ -96,29 +99,6 @@ sap.ui.define([
 					}).disableSelection();
 				}
 			});
-			
-			selGrpContainer.addEventDelegate({
-				onAfterRendering: function (){
-					jQuery(selGrpContainerId).droppable({
-						accept: selRepListId,
-						drop: function( event, ui ) {
-							var sender = that.getView().byId("selectedReports");
-							var receiver = that.getView().byId("reportsSelectedGroup");
-							that.removeItem(ui.draggable, receiver, sender);
-						}
-					}).disableSelection();
-				}
-			});
-		},
-		
-		makeAvailableReportsListDragAndDrop: function(){
-			var that = this;
-			var avRepList = this.getView().byId("availableReports");
-			var avRepListId = "#" + avRepList.getId() + " li";
-			var avRepContainer = this.getView().byId("availableReportsContainer");
-			var avRepContainerId = "#" + avRepContainer.getId();
-			var selRepList = this.getView().byId("selectedReports");
-			var selRepListId = "#" + selRepList.getId() + " li";
 			
 			
 			avRepList.addEventDelegate({
@@ -138,29 +118,6 @@ sap.ui.define([
 				}
 			});
 			
-			avRepContainer.addEventDelegate({
-				onAfterRendering: function (){
-					jQuery(avRepContainerId).droppable({
-						accept: selRepListId,
-						drop: function( event, ui ) {
-							var sender = that.getView().byId("selectedReports");
-							var receiver = that.getView().byId("availableReports");
-							that.removeItem(ui.draggable, receiver, sender);
-						}
-					}).disableSelection();
-				}
-			});
-			
-		},
-		
-		makeSelectedReportsListDragAndDrop: function(){
-			var that = this;
-			var selRepList = this.getView().byId("selectedReports");
-			var selRepListId = "#" + selRepList.getId() + " li";
-			var selRepContainer = this.getView().byId("selectedReportsContainer");
-			var selRepContainerId = "#" + selRepContainer.getId();
-			var avRepList = this.getView().byId("availableReports");
-			var selGrpList = this.getView().byId("reportsSelectedGroup");
 			
 			selRepList.addEventDelegate({
 				onAfterRendering: function (){
@@ -185,33 +142,44 @@ sap.ui.define([
 					jQuery(selRepContainerId).droppable({
 						accept: "#" + avRepList.getId() + " li, #" + selGrpList.getId() + " li" ,
 						drop: function( event, ui ) {
-							var receiver = that.getView().byId("selectedReports");
-							that.addNewItem(ui.draggable, receiver);
+							that.addNewItem(ui.draggable);
+						}
+					}).disableSelection();
+				}
+			});
+			
+			garbageContainer.addEventDelegate({
+				onAfterRendering: function (){
+					jQuery(garbageContainerId).droppable({
+						accept: selRepListId,
+						drop: function( event, ui ) {
+							that.removeItem(ui.draggable);
 						}
 					}).disableSelection();
 				}
 			});
 		},
-
-		addNewItem: function(item, receiver){
+		// Add new item when dropped
+		addNewItem: function(item){
 			var listElementId = item.context.id;
 			var draggedElement = sap.ui.getCore().byId(listElementId);
-			receiver.addItem(new sap.ui.core.Item({key: draggedElement.getKey(),text: draggedElement.getText()}));
-			sap.ui.getCore().byId(item.parent()[0].id).removeItem(draggedElement);
+			this.getView().byId("selectedReports").addItem(new sap.ui.core.Item({key: draggedElement.getKey(),text: draggedElement.getText()}));
+			//sap.ui.getCore().byId(item.parent()[0].id).removeItem(draggedElement);
 		},
-		
-		removeItem: function(item, receiver, sender){
+		// Add new item when dropped
+		removeItem: function(item,  sender){
 			var listElementId = item.context.id;
 			var draggedElement = sap.ui.getCore().byId(listElementId);
-			receiver.addItem(new sap.ui.core.Item({key: draggedElement.getKey(),text: draggedElement.getText()}));
-			sender.removeItem(draggedElement);
+			this.getView().byId("selectedReports").removeItem(draggedElement);
 		},
 		
 		//update done by overriding (always sending all values to simplify update logic on backend)
 		handleButtonSavePressed: function(oEvent){
 			var newGrpText = this.getView().byId("newGrpInput").getValue();
-			if(newGrpText === "" || this.getView().byId("selectedReports").getItems() === []){
-				sap.m.MessageToast.show("Enter a group name and add reports");
+			if(newGrpText === ""){
+				sap.m.MessageToast.show("Enter a group name");
+			}else if(this.getView().byId("selectedReports").getItems().length === 0){
+				sap.m.MessageToast.show("Add at least one report to the list");
 			}else{
 				var items = this.getView().byId("selectedReports").getItems();
 				var data = this.getView().getModel().getProperty("/grp_rep");

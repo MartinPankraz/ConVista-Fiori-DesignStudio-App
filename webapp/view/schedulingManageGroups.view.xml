@@ -5,9 +5,8 @@
       class="html_container imageResponsive"
       showHeader="false">
     	<content>
-    		<l:HorizontalLayout class="sapUiContentPadding sapUiSmallMargin  backgroundManage">
-    		<l:VerticalLayout
-    			width="100%">
+    		<l:VerticalLayout class="sapUiContentPadding sapUiSmallMargin backgroundManage">
+    		<l:HorizontalLayout>
     		<form:SimpleForm
     			id="manageGroupsForm"
     			labelSpanXL="12"
@@ -15,6 +14,7 @@
     			labelSpanM="12"
     			labelSpanS="12"
     			editable="true"
+    			width="250px"
     			layout="ResponsiveGridLayout"
     			singleContainerFullSize="false"
     			class="ccPanelBG">
@@ -26,8 +26,8 @@
     					type="Text"
     					placeholder="{i18n>manageInputPlaceholder}">
     				</Input>
-    				<Button text="{i18n>manageSaveNewGroup}" press="handleButtonSavePressed"/>
-    				<Label text="{i18n>manageYourGroups}">
+    				<Button text="{i18n>manageSaveNewGroup}" press="handleButtonSavePressed" />
+    				<Label text="{i18n>manageYourGroups}" class="sapUiTinyMarginTop">
     				</Label>
     				<Select
 						id="yourGroups"
@@ -41,43 +41,33 @@
 					</Select>
 					<Button text="{i18n>manageDeleteExistingGroup}" press="handleButtonDeletePressed" />
     			</form:content>
-    			
     		</form:SimpleForm>
-    		<Title text="Drag &amp; Drop your reports" class="sapUiSmallMarginBegin  titleScheduleForm" width="95%"></Title>
-            <l:HorizontalLayout class="sapUiSmallMargin">
-            	<l:VerticalLayout class="sapUiSmallMarginEnd">
-            		
-            		<Label text="{i18n>manageReportsSelectedGroup}" class="sapUiTinyMarginBottom"></Label>
-            		<l:HorizontalLayout>
-            			<ScrollContainer
-            				id="reportsSelectedGroupContainer"
+    		<l:VerticalLayout class="sapUiSmallMargin">
+    		<Label text="{i18n>manageReportsSelectedGroup}" class="sapUiTinyMarginBottom"></Label>
+    		<ScrollContainer
+        				id="reportsSelectedGroupContainer"
+        				class="selectionList"
+        				width="270px"
+        				height="200px"
+        				horizontal="false"
+						vertical="true">
+        				<SelectList
+							id="reportsSelectedGroup" class="listItem">
+						</SelectList>
+        			</ScrollContainer>
+        	</l:VerticalLayout>
+        	<l:VerticalLayout class="sapUiSmallMargin">
+    		<Label text="{i18n>manageAllAvailableReports}" class="sapUiTinyMarginBottom"></Label>
+						<ScrollContainer
+							id="availableReportsContainer"
             				class="selectionList"
             				width="270px"
             				height="200px"
             				horizontal="false"
 							vertical="true">
-            				<SelectList
-								id="reportsSelectedGroup">
-							</SelectList>
-            			</ScrollContainer>
-						<l:VerticalLayout class="sapUiSmallMarginBegin sapUiLargeMarginTop">
-							<!--<Button icon="sap-icon://close-command-field" press="deleteFromList"/>
-							<Button icon="sap-icon://open-command-field" press="moveGroupReportsToSelectedGroup"/>-->
-							<core:Icon src="sap-icon://navigation-left-arrow"/>
-							<core:Icon src="sap-icon://navigation-right-arrow" />
-						</l:VerticalLayout>
-					</l:HorizontalLayout>
-					<Label text="{i18n>manageAllAvailableReports}" class="sapUiSmallMarginTop sapUiTinyMarginBottom"></Label>
-					<l:HorizontalLayout>
-						<ScrollContainer
-							id="availableReportsContainer"
-            				class="selectionList"
-            				width="270px"
-            				height="290px"
-            				horizontal="false"
-							vertical="true">
 							<SelectList
 								id="availableReports"
+								class="listItem"
 								items="{
 									path: '/reports'
 								}">
@@ -86,30 +76,39 @@
 									key="{query}"/>
 							</SelectList>
 						</ScrollContainer>
-						<l:VerticalLayout class="sapUiSmallMarginBegin sapUiLargeMarginTop">
-							<!--<Button icon="sap-icon://close-command-field" press="deleteFromList"/>
-							<Button icon="sap-icon://open-command-field" press="moveExistingReportsToSelectedGroup"/>-->
-							<core:Icon src="sap-icon://navigation-left-arrow"/>
-							<core:Icon src="sap-icon://navigation-right-arrow" />
-						</l:VerticalLayout>
-					</l:HorizontalLayout>
-            	</l:VerticalLayout>
-            	<l:VerticalLayout>
-            		<Label text="{i18n>manageSelectedReports}" class="sapUiTinyMarginBottom"></Label>
+			</l:VerticalLayout>
+			</l:HorizontalLayout>
+				<Title text="Drag &amp; Drop your reports" class="sapUiSmallMarginBegin  titleScheduleForm" width="95%"></Title>
+			<l:HorizontalLayout>
+				<l:VerticalLayout class="sapUiSmallMargin">
+				<Label text=" " class="sapUiTinyMarginBottom"></Label>
             		<ScrollContainer
-            				id = "selectedReportsContainer"
-            				class="selectionList"
-            				width="270px"
-            				height="534px"
+            				id = "garbageContainer"
+            				class="garbageContainer"
+            				width="215px"
+            				height="400px"
             				horizontal="false"
 							vertical="true">
-		            	<SelectList id="selectedReports" >
+            			<content>
+            				<core:Icon src="sap-icon://delete" class="garbageIcon"></core:Icon>
+            			</content>
+					</ScrollContainer>
+				</l:VerticalLayout>
+				<l:VerticalLayout class="sapUiSmallMargin">
+				<Label text="{i18n>manageSelectedReports}" class="sapUiTinyMarginBottom"></Label>
+            		<ScrollContainer
+            				id = "selectedReportsContainer"
+            				class="selectedContainer"
+            				width="575px"
+            				height="400px"
+            				horizontal="false"
+							vertical="true">
+		            	<SelectList id="selectedReports" class="listItem" >
 		            	</SelectList>	
 					</ScrollContainer>
 				</l:VerticalLayout>
-            </l:HorizontalLayout>
-            </l:VerticalLayout>
-            </l:HorizontalLayout>
+				</l:HorizontalLayout>
+    		</l:VerticalLayout>
   		</content>
 	</Page>
 </mvc:View>

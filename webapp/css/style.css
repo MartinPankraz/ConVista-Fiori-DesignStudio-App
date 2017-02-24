@@ -208,6 +208,37 @@ li[class*="sapTntNavLIItemSelected"]{
 	background-color:#ffffff;
 }
 
+ul.listItem li{
+	background:none !important;
+	color:black !important;
+	user-select:none;
+}
+
+ul.listItem li:hover{
+	background:#f0f0f0 !important;
+	color:black !important;
+}
+.garbageContainer{
+	border:1px dashed #65bee4;
+	border-radius: 30px;
+	background-color:#f7f9fc;
+	margin-top:8px;
+	position:relative;
+}
+.garbageIcon{
+	color: #65bee4;
+	font-size : 3rem;
+	position:absolute;
+	left:40%;
+	top:50%;
+}
+
+.selectedContainer{
+	border:1px dashed #65bee4;
+	border-radius: 30px;
+	background-color:#ffffff;
+}
+
 .ui-draggable-helper {
  border: 1px dotted #bfbfbf;
  background: #f5f5f5;
