@@ -263,12 +263,11 @@ sap.ui.define([
 			}else{
 				var selectedGroupItemKey = selectedGroupItem.getKey();
 				var grp_rep = this.getView().getModel().getProperty("/grp_rep");
-				var data = [];
 				
 				for(var i = 0; i < grp_rep.length; i++){
 					var groupKey = grp_rep[i].groupKey;
-					if(groupKey !== selectedGroupItemKey ){
-						data.push(grp_rep[i]);		
+					if(groupKey === selectedGroupItemKey ){
+						grp_rep.splice(i,1);
 					}
 				}
 				
@@ -277,7 +276,7 @@ sap.ui.define([
 					type: "POST",
 					cache: false,
 					processData: false,//avoid URL parsing of payload!
-					data: JSON.stringify(data),
+					data: JSON.stringify(grp_rep),
 					dataType: "json",
 					contentType: "application/json",
 					success: function(json) {
