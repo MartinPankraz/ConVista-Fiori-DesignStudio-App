@@ -70,7 +70,7 @@ sap.ui.define([
 			this.makeSelectedReportsListDragAndDrop();
 			this.makeSelectedGroupsListDragAndDrop();
 		},
-		
+
 		makeSelectedGroupsListDragAndDrop: function () {
 			var that = this;
 			var selGrpList = this.getView().byId("reportsSelectedGroup");
@@ -210,63 +210,85 @@ sap.ui.define([
 		//update done by overriding (always sending all values to simplify update logic on backend)
 		handleButtonSavePressed: function(oEvent){
 			var newGrpText = this.getView().byId("newGrpInput").getValue();
-			var items = this.getView().byId("selectedReports").getItems();
-			var data = this.getView().getModel().getProperty("/grp_rep");
-			
-			for(var i = 0; i < items.length; i++){
-				var query = items[i].getKey();
-				data.push({
-					groupDesc:newGrpText,
-					groupKey:newGrpText,
-					query:query
-				});	
+			if(newGrpText === "" || this.getView().byId("selectedReports").getItems() === []){
+				sap.m.MessageToast.show("Enter a group name and add reports");
+			}else{
+				var items = this.getView().byId("selectedReports").getItems();
+				var data = this.getView().getModel().getProperty("/grp_rep");
+				
+				for(var i = 0; i < items.length; i++){
+					var query = items[i].getKey();
+					data.push({
+						groupDesc:newGrpText,
+						groupKey:newGrpText,
+						query:query
+					});	
+				}
+				
+				$.ajax({
+					url: this.sServiceUrl + "_method=update_user_groups",
+					type: "POST",
+					cache: false,
+					processData: false,//avoid URL parsing of payload!
+					data: JSON.stringify(data),
+					dataType: "json",
+					contentType: "application/json",
+					success: function(json) {
+						sap.m.MessageToast.show("Group saved succesfully");
+					}
+				});
+				
+				this.getView().byId("yourGroups").addItem(new sap.ui.core.Item({key: newGrpText, text: newGrpText}));
+				this.getView().byId("newGrpInput").setValue("");
+				this.groupSelectChange();
+				this.getView().byId("selectedReports").removeAllItems();
+				this.getView().byId("availableReports").unbindItems();
+				var oTemplate = new sap.ui.core.Item({
+				   key: "{query}",
+				   text: "{descr}"
+				  });
+				this.getView().byId("availableReports").bindAggregation("items",{
+					path:"/reports",
+					template: oTemplate
+				});
+				
 			}
 			
-			$.ajax({
-				url: this.sServiceUrl + "_method=update_user_groups",
-				type: "POST",
-				cache: false,
-				processData: false,//avoid URL parsing of payload!
-				data: JSON.stringify(data),
-				dataType: "json",
-				contentType: "application/json",
-				success: function(json) {
-					sap.m.MessageToast.show("Group saved succesfully");
-				}
-			});
-			
-			this.getView().byId("yourGroups").addItem(new sap.ui.core.Item({key: newGrpText, text: newGrpText}));
-			this.getView().byId("newGrpInput").setValue("");
-			//this.getView().byId("yourGroups").setSelectedItemId(newGrpText);
 		},
 		//update done by overriding (always sending all values to simplify update logic on backend)
 		handleButtonDeletePressed: function(oEvent){
 			var selectedGroupItem = this.getView().byId("yourGroups").getSelectedItem();
-			var selectedGroupItemKey = selectedGroupItem.getKey();
-			var grp_rep = this.getView().getModel().getProperty("/grp_rep");
-			var data = [];
-			
-			for(var i = 0; i < grp_rep.length; i++){
-				var groupKey = grp_rep[i].groupKey;
-				if(groupKey !== selectedGroupItemKey ){
-					data.push(grp_rep[i]);		
+			if(selectedGroupItem === null){
+				sap.m.MessageToast.show("Select or create a group first");
+			}else{
+				var selectedGroupItemKey = selectedGroupItem.getKey();
+				var grp_rep = this.getView().getModel().getProperty("/grp_rep");
+				var data = [];
+				
+				for(var i = 0; i < grp_rep.length; i++){
+					var groupKey = grp_rep[i].groupKey;
+					if(groupKey !== selectedGroupItemKey ){
+						data.push(grp_rep[i]);		
+					}
 				}
+				
+				$.ajax({
+					url: this.sServiceUrl + "_method=update_user_groups",
+					type: "POST",
+					cache: false,
+					processData: false,//avoid URL parsing of payload!
+					data: JSON.stringify(data),
+					dataType: "json",
+					contentType: "application/json",
+					success: function(json) {
+						sap.m.MessageToast.show("Group deleted succesfully");
+					}
+				});
+				
+				this.getView().byId("yourGroups").removeItem(selectedGroupItem);
+				this.groupSelectChange();
 			}
 			
-			$.ajax({
-				url: this.sServiceUrl + "_method=update_user_groups",
-				type: "POST",
-				cache: false,
-				processData: false,//avoid URL parsing of payload!
-				data: JSON.stringify(data),
-				dataType: "json",
-				contentType: "application/json",
-				success: function(json) {
-					sap.m.MessageToast.show("Group deleted succesfully");
-				}
-			});
-			
-			this.getView().byId("yourGroups").removeItem(selectedGroupItem);
 		},
 		
 		moveGroupReportsToSelectedGroup: function(oEvent){
@@ -292,23 +314,28 @@ sap.ui.define([
 			}
 		},
 		
-		groupSelectChange: function(oEvent){
-			var itemKey = oEvent.getParameter("selectedItem").getKey();
+		groupSelectChange: function(){
+			var item = this.getView().byId("yourGroups").getSelectedItem();
 			var queryListForGroup = this.getView().byId("reportsSelectedGroup");
-			queryListForGroup.removeAllItems();
-			var jsonGrpRep = this.getView().getModel().getProperty("/grp_rep");
-			var reports = this.getView().getModel().getProperty("/reports");
-			
-			for(var i = 0; i < jsonGrpRep.length; i++){
-				var grpEntry = jsonGrpRep[i];
-				if(grpEntry.groupKey === itemKey){
-					for(var j = 0; j < reports.length; j++){
-						var entry = reports[j];	
-						if(entry.query === grpEntry.query){
-							queryListForGroup.addItem(new sap.ui.core.Item({key: entry.query, text: entry.descr}));
-							break;
-						}
-					}	
+			if(item === null){
+				queryListForGroup.removeAllItems();
+			}else{
+				var itemKey = item.getKey();
+				queryListForGroup.removeAllItems();
+				var jsonGrpRep = this.getView().getModel().getProperty("/grp_rep");
+				var reports = this.getView().getModel().getProperty("/reports");
+				
+				for(var i = 0; i < jsonGrpRep.length; i++){
+					var grpEntry = jsonGrpRep[i];
+					if(grpEntry.groupKey === itemKey){
+						for(var j = 0; j < reports.length; j++){
+							var entry = reports[j];	
+							if(entry.query === grpEntry.query){
+								queryListForGroup.addItem(new sap.ui.core.Item({key: entry.query, text: entry.descr}));
+								break;
+							}
+						}	
+					}
 				}
 			}
 		},

@@ -43,62 +43,10 @@
     			</form:content>
     			
     		</form:SimpleForm>
-    		<!--<form:Form 
-					id=""
-					editable="true"
-					class="ccPanelBG">
-					<form:layout>
-                    <form:ResponsiveGridLayout 
-                    	visible="true"
-                    	singleContainerFullSize="false"
-                		labelSpanL="12" 
-                		labelSpanM="12" 
-                		labelSpanS="12" 
-                		emptySpanL="0" 
-                		emptySpanM="0" 
-                		emptySpanS="0" 
-                		columnsL="1" 
-                		columnsM="1" 
-                		columnsS="1" 
-                		breakpointL="800" 
-                		breakpointM="500">
-                    </form:ResponsiveGridLayout>
-                </form:layout>
-                
-                 <form:formContainers>
-                    <form:FormContainer>
-                        <form:formElements>
-                            <form:FormElement label="{i18n>manageNewGroupName}">
-                                <form:fields>
-									<Input 
-										type="Text"
-										placeholder="Enter group name ..." />
-										<Button text="Save as new Group" />
-                                </form:fields>
-                            </form:FormElement>
-                            <form:FormElement  label="{i18n>manageYourGroups}">
-                                <form:fields>
-									<Select
-										id="yourGroups"
-										forceSelection="true"
-										selectedKey="0L"
-										required="true">
-										<items>
-											<core:Item key="0L" text="Leading Ledger STAT" />
-											<core:Item key="1L" text="GAAP" />
-										</items>
-									</Select>
-									<Button text="Delete Existing Group" />
-                                </form:fields>
-                            </form:FormElement>
-                        </form:formElements>
-                    </form:FormContainer>
-                </form:formContainers>
-                
-            </form:Form>-->
-            
-            <l:HorizontalLayout id="hBox" class="sapUiSmallMargin">
+    		<Title text="Drag &amp; Drop your reports" class="sapUiSmallMarginBegin  titleScheduleForm" width="95%"></Title>
+            <l:HorizontalLayout class="sapUiSmallMargin">
             	<l:VerticalLayout class="sapUiSmallMarginEnd">
+            		
             		<Label text="{i18n>manageReportsSelectedGroup}" class="sapUiTinyMarginBottom"></Label>
             		<l:HorizontalLayout>
             			<ScrollContainer
@@ -113,8 +61,10 @@
 							</SelectList>
             			</ScrollContainer>
 						<l:VerticalLayout class="sapUiSmallMarginBegin sapUiLargeMarginTop">
-							<Button icon="sap-icon://close-command-field" press="deleteFromList"/>
-							<Button icon="sap-icon://open-command-field" press="moveGroupReportsToSelectedGroup"/>
+							<!--<Button icon="sap-icon://close-command-field" press="deleteFromList"/>
+							<Button icon="sap-icon://open-command-field" press="moveGroupReportsToSelectedGroup"/>-->
+							<core:Icon src="sap-icon://navigation-left-arrow"/>
+							<core:Icon src="sap-icon://navigation-right-arrow" />
 						</l:VerticalLayout>
 					</l:HorizontalLayout>
 					<Label text="{i18n>manageAllAvailableReports}" class="sapUiSmallMarginTop sapUiTinyMarginBottom"></Label>
@@ -137,8 +87,10 @@
 							</SelectList>
 						</ScrollContainer>
 						<l:VerticalLayout class="sapUiSmallMarginBegin sapUiLargeMarginTop">
-							<Button icon="sap-icon://close-command-field" press="deleteFromList"/>
-							<Button icon="sap-icon://open-command-field" press="moveExistingReportsToSelectedGroup"/>
+							<!--<Button icon="sap-icon://close-command-field" press="deleteFromList"/>
+							<Button icon="sap-icon://open-command-field" press="moveExistingReportsToSelectedGroup"/>-->
+							<core:Icon src="sap-icon://navigation-left-arrow"/>
+							<core:Icon src="sap-icon://navigation-right-arrow" />
 						</l:VerticalLayout>
 					</l:HorizontalLayout>
             	</l:VerticalLayout>
