@@ -98,18 +98,21 @@ sap.ui.define([
 			var validated = true;
 			var oForm = this.getView().byId("myForm");
 			// get the content (as array)
-			var content = oForm.getContent();
+			var content = oForm.getFormContainers()[0].getFormElements();
 			// check every single control
 			for (var i in content) {
-				var control = content[i];
-				// check control only if it has the function getValue
-				// a rather primitive way to filter the TextFields
-				if (control.getValue) {
-					// check the value on empty text
-					if (control.getValue() === "" && control.getRequired() === true) {
-						// do whatever you want to show the user he has to provide more input
-						control.setValueState(sap.ui.core.ValueState.Error);
-						validated = false;
+				var fields = content[i].getFields();
+				for(var j in fields){
+					var control = fields[j];
+					// check control only if it has the function getValue
+					// a rather primitive way to filter the TextFields
+					if (control.getValue) {
+						// check the value on empty text
+						if (control.getValue() === "" && control.getRequired() === true) {
+							// do whatever you want to show the user he has to provide more input
+							control.setValueState(sap.ui.core.ValueState.Error);
+							validated = false;
+						}
 					}
 				}
 			}
