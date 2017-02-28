@@ -203,6 +203,11 @@ li[class*="sapTntNavLIItemSelected"]{
 }
 
 /**************** Scheduling manage groups styles ***************************************************************/
+
+div.manageTitle h4{
+	background-color:#f0f5f9!important;
+}
+
 .selectionList{
 	border:1px solid #dddddd;
 	background-color:#ffffff;
@@ -221,26 +226,44 @@ ul.listItem li:hover{
 }
 .garbageContainer{
 	border:1px dashed #65bee4;
-	border-radius: 30px;
+	border-radius: 15px;
 	background-color:#f7f9fc;
 	margin-top:8px;
 	position:relative;
-	width:215px!important;
+	width:100%!important;
 }
 .garbageIcon{
 	color: #65bee4;
-	font-size : 3rem;
+	font-size : 2rem;
 	position:absolute;
-	left:40%;
-	top:50%;
+	left:45%;
+	top:35%;
+}
+.garbageText{
+	color: #65bee4;
 }
 
 .selectedContainer{
 	border:1px dashed #65bee4;
-	border-radius: 30px;
+	border-radius: 15px;
 	background-color:#ffffff;
 }
 
+.selectedText{
+	color: #65bee4;
+	margin-top: 35%;
+}
+
+.selectedIcon{
+	color: #65bee4;
+	font-size : 2rem;
+	position:absolute;
+	left:45%;
+	top:45%;
+}
+.invisible{
+	display:none!important;
+}
 .ui-draggable-helper {
  border: 1px dotted #bfbfbf;
  background: #f5f5f5 !important;
@@ -259,20 +282,21 @@ ul.listItem li:hover{
 	width:100%;
 }*/
 .imageResponsive {
-  background-image: url('https://cdn0.vox-cdn.com/uploads/chorus_asset/file/6269301/10788865656_e9bfc7826e_k.jpg');
+ /* background-image: url('https://cdn0.vox-cdn.com/uploads/chorus_asset/file/6269301/10788865656_e9bfc7826e_k.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position:relative;
+  position:relative;*/
+  background-color:#eff4f9;
 }
 .backgroundManage{
+	width:900px;
 	background-color:#eff4f9;
 	border-radius: 30px;
 	margin: auto !important;
 	  position: absolute !important;
 	  left: 50%!important;
-	  margin-left: -445px!important;
-	  margin-top:1rem!important;
+	  margin-left: -450px!important;
 }
 @media (max-width: 1024px) {
   .backgroundManage {
@@ -282,16 +306,6 @@ ul.listItem li:hover{
 	  margin-left: 0!important;
 	  margin-top:0!important;
   }
-
-	.selectedContainer{
-	border:1px dashed #65bee4;
-	border-radius: 30px;
-	background-color:#ffffff;
-	width:475px!important;
-	}
-	.garbageContainer{
-		width:115px!important;
-	}
 }
 
 

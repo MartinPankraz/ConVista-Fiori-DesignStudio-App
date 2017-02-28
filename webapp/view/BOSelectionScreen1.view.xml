@@ -79,13 +79,18 @@
                             </form:FormElement>
                             <form:FormElement label="{i18n>dateText}">
                             	<form:fields>
-                            		<DatePicker
+                            		<DateRangeSelection
+										id="datePicker1"
+										required="true"
+										displayFormat="dd/MM/yyyy"
+									/>
+                            		<!--<DatePicker
 										id="datePicker1"
 										placeholder="Enter Date ..."
 										displayFormat="d MMM y"
 										valueFormat="yyyyMMdd"
 										required="true">
-									</DatePicker>
+									</DatePicker>-->
 									<RadioButtonGroup id="rbg1" columns="2">
 										<buttons>
 											<RadioButton text="{i18n>dateOption1}" selected="true" />
@@ -94,7 +99,7 @@
 									</RadioButtonGroup>
                             	</form:fields>
                             </form:FormElement>
-                            <form:FormElement>
+                            <!--<form:FormElement>
                             	<form:fields>
                             		<DatePicker
 										id="datePicker2"
@@ -107,7 +112,7 @@
 										</layoutData>
 									</DatePicker>
                             	</form:fields>
-                            </form:FormElement>
+                            </form:FormElement>-->
                             <form:FormElement id="periodLabel" label="{i18n>periodText}">
                             	<form:fields>
                             		<Select

@@ -7,11 +7,15 @@
     	<content>
     		<l:VerticalLayout class="sapUiContentPadding backgroundManage">
     			<form:Form 
-					id="manageGroupsForm"
+					id="yourGroupsForm"
 					editable="true"
 					class="ccPanelBG">
+    				<form:title >
+						<core:Title text="Existing groups"/>
+					</form:title>
 					<form:layout>
                     <form:ResponsiveGridLayout 
+	                    class="manageTitle"
                     	visible="true" 
                 		labelSpanL="12" 
                 		labelSpanM="12" 
@@ -27,42 +31,7 @@
     			 <form:formContainers>
                     <form:FormContainer>
                         <form:formElements>
-                            <form:FormElement label="{i18n>manageNewGroupName}">
-                                <form:fields>
-									<Input    
-				    					id="newGrpInput"
-				    					type="Text"
-				    					placeholder="{i18n>manageInputPlaceholder}">
-				    				</Input>
-                                </form:fields>
-                            </form:FormElement>
-                            <form:FormElement>
-                                <form:fields>
-									<Button text="{i18n>manageSaveNewGroup}" press="handleButtonSavePressed" />
-                                </form:fields>
-                            </form:FormElement>
-                            <form:FormElement label="{i18n>manageReportsSelectedGroup}" class="sapUiSmallMarginTop sapUiTinyMarginBottom">
-                                <form:fields>
-                                	<ScrollContainer
-				        				id="reportsSelectedGroupContainer"
-				        				class="selectionList"
-				        				height="200px"
-				        				horizontal="false"
-										vertical="true">
-				        				<SelectList
-											id="reportsSelectedGroup" class="listItem">
-										</SelectList>
-				        			</ScrollContainer>
-                                </form:fields>
-                            </form:FormElement>
-                        </form:formElements>
-                    </form:FormContainer>
-                </form:formContainers>
-    			
-    			<form:formContainers>
-                    <form:FormContainer>
-                        <form:formElements>
-                            <form:FormElement label="{i18n>manageYourGroups}" class="sapUiTinyMarginTop">
+                        	<form:FormElement label="{i18n>manageYourGroups}" class="sapUiTinyMarginTop">
                                 <form:fields>
 									<Select
 										id="yourGroups"
@@ -81,12 +50,100 @@
 										<Button text="{i18n>manageDeleteExistingGroup}" press="handleButtonDeletePressed" />
                                 </form:fields>
                             </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                
+                <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="{i18n>manageReportsSelectedGroup}" class="sapUiSmallMarginTop sapUiTinyMarginBottom">
+                                <form:fields>
+                                	<ScrollContainer
+				        				id="reportsSelectedGroupContainer"
+				        				class="selectionList"
+				        				height="100px"
+				        				horizontal="false"
+										vertical="true">
+				        				<SelectList
+											id="reportsSelectedGroup" class="listItem">
+										</SelectList>
+				        			</ScrollContainer>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                
+                </form:Form>
+                <form:Form 
+					id="selectedReportsForm"
+					editable="true"
+					class="ccPanelBG">
+                	<form:title>
+						<core:Title text="Create new group"  />
+					</form:title>
+					<form:layout>
+                    <form:ResponsiveGridLayout 
+                	  class="manageTitle"
+                    	visible="true" 
+                		labelSpanL="12" 
+                		labelSpanM="12" 
+                		labelSpanS="12" 
+                		columnsL="2" 
+                		columnsM="2" 
+                		columnsS="2" 
+                		breakpointL="800" 
+                		breakpointM="400">
+                    </form:ResponsiveGridLayout>
+                </form:layout>
+                
+    			
+    			<form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="{i18n>manageNewGroupName}">
+                                <form:fields>
+									<Input    
+				    					id="newGrpInput"
+				    					type="Text"
+				    					placeholder="{i18n>manageInputPlaceholder}">
+				    				</Input>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement>
+                                <form:fields>
+									<Button text="{i18n>manageSaveNewGroup}" press="handleButtonSavePressed" class="sapUiTinyMarginBottom"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="{i18n>manageSelectedReports}" class="sapUiTinyMarginBottom">
+                                <form:fields>
+                                	<ScrollContainer
+				            				id = "selectedReportsContainer"
+				            				class="selectedContainer"
+				            				height="400px"
+				            				horizontal="false"
+											vertical="true">
+						            	<SelectList id="selectedReports" class="listItem" >
+						            	</SelectList>	
+						            	<Text id="selectedText" text="DROP REPORTS HERE" class="selectedText" textAlign="Center"></Text>
+						            	<core:Icon id="selectedIcon" src="sap-icon://add" class="selectedIcon"></core:Icon>
+									</ScrollContainer>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                
+                <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
                             <form:FormElement label="{i18n>manageAllAvailableReports}" class="sapUiSmallMarginTop sapUiTinyMarginBottom">
                                 <form:fields>
                                 	<ScrollContainer
 										id="availableReportsContainer"
-			            				class="selectionList"
-			            				height="200px"
+			            				class="selectionList sapUiSmallMarginBottom"
+			            				height="377px"
 			            				horizontal="false"
 										vertical="true">
 										<SelectList
@@ -99,6 +156,21 @@
 												text="{descr}"
 												key="{query}"/>
 										</SelectList>
+									</ScrollContainer>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement>
+                                <form:fields>
+                                	<ScrollContainer
+				            				id = "garbageContainer"
+				            				class="garbageContainer"
+				            				height="100px"
+				            				horizontal="false"
+											vertical="false">
+				            			<content>
+				            				<core:Icon src="sap-icon://delete" class="garbageIcon"></core:Icon>
+				            				<Text text="DROP TO REMOVE SELECTED REPORT" textAlign="Center" class="garbageText"></Text>
+				            			</content>
 									</ScrollContainer>
                                 </form:fields>
                             </form:FormElement>
@@ -183,7 +255,7 @@
 							</SelectList>
 						</ScrollContainer>
 			</l:VerticalLayout>
-			</l:HorizontalLayout>-->
+			</l:HorizontalLayout>
 			
 			
 			<l:HorizontalLayout>
@@ -212,7 +284,7 @@
 		            	</SelectList>	
 					</ScrollContainer>
 				</l:VerticalLayout>
-				</l:HorizontalLayout>
+				</l:HorizontalLayout>-->
     		</l:VerticalLayout>
   		</content>
 	</Page>

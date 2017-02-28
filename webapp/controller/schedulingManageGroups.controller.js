@@ -139,29 +139,10 @@ sap.ui.define([
 			var selRepListId = "#" + selRepList.getId() + " li";
 			var avRepList = this.getView().byId("availableReports");
 			var avRepListId = "#" + avRepList.getId() + " li";
-			var selGrpList = this.getView().byId("reportsSelectedGroup");
-			var selGrpListId = "#" + selGrpList.getId() + " li";
 			var selRepContainer = this.getView().byId("selectedReportsContainer");
 			var selRepContainerId = "#" + selRepContainer.getId();
 			var garbageContainer = this.getView().byId("garbageContainer");
 			var garbageContainerId = "#" + garbageContainer.getId();
-			
-			selGrpList.addEventDelegate({
-				onAfterRendering: function (){
-					//jQuery(avRepListId).addClass("ui-draggable");
-					jQuery(selGrpListId).draggable({
-						appendTo: "body",
-						scroll: false,
-						zIndex: 100,
-						revert: "invalid",
-						helper:"clone",
-						start: function(e, ui)
-						 {
-						  $(ui.helper).addClass("ui-draggable-helper");
-						 }
-					}).disableSelection();
-				}
-			});
 			
 			
 			avRepList.addEventDelegate({
@@ -252,14 +233,32 @@ sap.ui.define([
 		addNewItem: function(item){
 			var listElementId = item.context.id;
 			var draggedElement = sap.ui.getCore().byId(listElementId);
-			this.getView().byId("selectedReports").addItem(new sap.ui.core.Item({key: draggedElement.getKey(),text: draggedElement.getText()}));
+			var selectedIcon = this.getView().byId("selectedIcon");
+			var selectedText = this.getView().byId("selectedText");
+			var selectedReportsList = this.getView().byId("selectedReports");
+			if(selectedReportsList.getItems().length === 0){
+				selectedIcon.addStyleClass("invisible");
+				selectedText.addStyleClass("invisible");
+				selectedReportsList.addItem(new sap.ui.core.Item({key: draggedElement.getKey(),text: draggedElement.getText()}));
+			}else{
+				selectedReportsList.addItem(new sap.ui.core.Item({key: draggedElement.getKey(),text: draggedElement.getText()}));
+			}
+			
 			//sap.ui.getCore().byId(item.parent()[0].id).removeItem(draggedElement);
 		},
 		// Remove item when dragged to the garbage
-		removeItem: function(item,  sender){
+		removeItem: function(item){
 			var listElementId = item.context.id;
 			var draggedElement = sap.ui.getCore().byId(listElementId);
-			this.getView().byId("selectedReports").removeItem(draggedElement);
+			var selectedIcon = this.getView().byId("selectedIcon");
+			var selectedText = this.getView().byId("selectedText");
+			var selectedReportsList = this.getView().byId("selectedReports");
+			
+			selectedReportsList.removeItem(draggedElement);
+			if(selectedReportsList.getItems().length === 0){
+				selectedIcon.removeStyleClass("invisible");
+				selectedText.removeStyleClass("invisible");
+			}
 		},
 		
 		//update done by overriding (always sending all values to simplify update logic on backend)

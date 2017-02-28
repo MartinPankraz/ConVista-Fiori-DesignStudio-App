@@ -6,11 +6,12 @@
       showHeader="false">
 		<Panel
 		    width="100%"
-		    class="ccPanelBG">
+		    class="ccPanelBG"
+		    headerText="{i18n>naicParametersTitle}">
 	    	<content>
 	    		<form:Form 
 					id="naicReportsForm"
-					editable="true">
+					editable="true"	>
 					<form:layout>
                     <form:ResponsiveGridLayout 
                     	visible="true" 
@@ -88,7 +89,8 @@
                 </form:Form>
                 
 				<Table id="idNAICTable"
-					items="{path:'/'}">
+					items="{path:'/'}"
+					class="sapUiMediumMarginTop sapUiSmallMarginBottom">
 					<headerToolbar>
 						<Toolbar>
 							<Title text="{i18n>naicYourDocuments}" level="H6"/>

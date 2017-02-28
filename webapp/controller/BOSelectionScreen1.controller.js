@@ -22,22 +22,35 @@ sap.ui.define([
 			
 			var globalParams = sap.ui.getCore().getModel("globalParameters").getData();
 			var itemsToHide = globalParams.hiddenItems;
+			var dateRangeSelection = this.getView().byId("datePicker1");
 			if(itemsToHide){
 				for(var i=0;i<itemsToHide.length;i++){
 					var itemId = itemsToHide[i];
-					this.getView().byId(itemId).setVisible(false);
+					if(itemId !== "datePicker2"){
+						this.getView().byId(itemId).setVisible(false);
+					}
 				}
 			}
-			if(this.getView().byId("datePicker2").getVisible()){
+			
+			var date = new Date(), y = date.getFullYear();//, m = date.getMonth();
+			var firstDay = new Date(y, 0, 1);
+			//var lastDay = new Date(y, m + 1, 0);
+			dateRangeSelection.setDateValue(firstDay);
+			dateRangeSelection.setSecondDateValue(new Date());
+			//this.getView().byId("datePicker2").setDateValue(ne
+			
+			/*if(this.getView().byId("datePicker2").getVisible()){
 				var date = new Date(), y = date.getFullYear();//, m = date.getMonth();
 				var firstDay = new Date(y, 0, 1);
 				//var lastDay = new Date(y, m + 1, 0);
-				this.getView().byId("datePicker1").setDateValue(firstDay);
-				this.getView().byId("datePicker2").setDateValue(new Date());
+				dateRangeSelection.setDateValue(firstDay);
+				dateRangeSelection.setSecondDateValue(new Date());
+				//this.getView().byId("datePicker2").setDateValue(new Date());
 			}else{
-				this.getView().byId("datePicker1").setDateValue(new Date());
-				this.getView().byId("datePicker2").setDateValue(new Date());	
-			}
+				dateRangeSelection.setDateValue(new Date());
+				dateRangeSelection.setSecondDateValue(new Date());
+				//this.getView().byId("datePicker2").setDateValue(new Date());	
+			}*/
 		},
 
 		/**
@@ -62,11 +75,19 @@ sap.ui.define([
 				var va = "&X_VA=" + this.getView().byId("valuationArea").getSelectedKey();
 				var ld = "&X_LD=" + this.getView().byId("ledgerBasis").getSelectedKey();
 				var cc = "&X_CC=" + BExHelper.getBExReadyFormatString(this.getView().byId("companyCode").getSelectedKeys());
-				var date = "&X_DATE=" + BExHelper.formatDateForBEx(this.getView().byId("datePicker1").getDateValue());
-				//create date range in case second date picker is used
-				if(this.getView().byId("datePicker2").getVisible()){
-					date += " - " + BExHelper.formatDateForBEx(this.getView().byId("datePicker2").getDateValue());
+				//var date = "&X_DATE=" + BExHelper.formatDateForBEx(this.getView().byId("datePicker1").getDateValue());
+				var date;
+				var date1 = BExHelper.formatDateForBEx(this.getView().byId("datePicker1").getDateValue());
+				var date2 = BExHelper.formatDateForBEx(this.getView().byId("datePicker1").getSecondDateValue());
+				if(date1 === date2){
+					date = "&X_DATE=" + date1;
+				}else{
+					date = "&X_DATE=" + date1 + " - " + date2;
 				}
+				//create date range in case second date picker is used
+				/*if(this.getView().byId("datePicker2").getVisible()){
+					date += " - " + BExHelper.formatDateForBEx(this.getView().byId("datePicker2").getDateValue());
+				}*/
 				var dateswitch = this.getView().byId("rbg1").getSelectedIndex();
 				var dateVar = "";
 				if(dateswitch === 0){
