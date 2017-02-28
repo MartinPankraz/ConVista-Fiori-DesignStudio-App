@@ -42,18 +42,18 @@
 	background-color: transparent;
 }
 
-.ccTabContainer > div[class="sapMTabStrip"]{
+/*.ccTabContainer > div[class="sapMTabStrip"]{
 	height: 2.5rem!important;	
-}
+}*/
 
 /*.ccTabContainer > div[class="sapMTabContainerContent"] {
 	height:calc(100% - 41px);
 }*/
 
-.sapMTabContainerInnerContent {
+/*.sapMTabContainerInnerContent {
 	top:0!important;
 	height:100%;
-}
+}*/
 
 .ccTabContainer button span{
     line-height: 1rem!important;
@@ -172,8 +172,8 @@ li[class*="sapTntNavLIItemSelected"]{
 /***************** Setting bo container iframe width and height  ************************************/
 
 .bo_container {
-	height:calc(100% - 2.5rem)!important;
-	overflow-y:scroll!important;
+	height:calc(100% - 3rem)!important;
+	/*overflow-y:scroll!important;*/
 	width: 100%;
 	border-color:transparent;
 	border:none;
@@ -187,7 +187,7 @@ li[class*="sapTntNavLIItemSelected"]{
 /***************** Setting bo container iframe width and height  ************************************/
 
 .html_container {
-	height:calc(100% - 2.5rem)!important;
+	height:calc(100% - 3rem)!important;
 	width: 100%;
 	border-color:transparent;
 	border:none;
@@ -206,6 +206,7 @@ li[class*="sapTntNavLIItemSelected"]{
 .selectionList{
 	border:1px solid #dddddd;
 	background-color:#ffffff;
+	width:100%!important;
 }
 
 ul.listItem li{
@@ -224,6 +225,7 @@ ul.listItem li:hover{
 	background-color:#f7f9fc;
 	margin-top:8px;
 	position:relative;
+	width:215px!important;
 }
 .garbageIcon{
 	color: #65bee4;
@@ -241,7 +243,8 @@ ul.listItem li:hover{
 
 .ui-draggable-helper {
  border: 1px dotted #bfbfbf;
- background: #f5f5f5;
+ background: #f5f5f5 !important;
+ color: black !important;
  list-style-type: none;
  border-radius:10px;
 }
@@ -260,10 +263,38 @@ ul.listItem li:hover{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  position:relative;
 }
 .backgroundManage{
 	background-color:#eff4f9;
+	border-radius: 30px;
+	margin: auto !important;
+	  position: absolute !important;
+	  left: 50%!important;
+	  margin-left: -445px!important;
+	  margin-top:1rem!important;
 }
+@media (max-width: 1024px) {
+  .backgroundManage {
+  	border-radius: 0px;
+  	width:100%;
+    left: 0!important;
+	  margin-left: 0!important;
+	  margin-top:0!important;
+  }
+
+	.selectedContainer{
+	border:1px dashed #65bee4;
+	border-radius: 30px;
+	background-color:#ffffff;
+	width:475px!important;
+	}
+	.garbageContainer{
+		width:115px!important;
+	}
+}
+
+
 /**************** BO Selection Screen Styles ***************************************************************/
 .paddingForm{
 	padding-left: 20%;

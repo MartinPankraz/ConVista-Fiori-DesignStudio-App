@@ -5,43 +5,149 @@
       class="html_container imageResponsive"
       showHeader="false">
     	<content>
-    		<l:VerticalLayout class="sapUiContentPadding sapUiSmallMargin backgroundManage">
-    		<l:HorizontalLayout>
-    		<form:SimpleForm
-    			id="manageGroupsForm"
-    			labelSpanXL="12"
-    			labelSpanL="12"
-    			labelSpanM="12"
-    			labelSpanS="12"
-    			editable="true"
-    			width="250px"
-    			layout="ResponsiveGridLayout"
-    			singleContainerFullSize="false"
-    			class="ccPanelBG">
-    			<form:content>
-    				<Label text="{i18n>manageNewGroupName}">
-    				</Label>
-    				<Input    
-    					id="newGrpInput"
-    					type="Text"
-    					placeholder="{i18n>manageInputPlaceholder}">
-    				</Input>
-    				<Button text="{i18n>manageSaveNewGroup}" press="handleButtonSavePressed" />
-    				<Label text="{i18n>manageYourGroups}" class="sapUiTinyMarginTop">
-    				</Label>
-    				<Select
-						id="yourGroups"
-						forceSelection="true"
-						required="true"
-						change="groupSelectChange"
-						items="{
-								path: '/groups'
-							}">
-						<core:Item key="{groupKey}" text="{groupDesc}" />
-					</Select>
-					<Button text="{i18n>manageDeleteExistingGroup}" press="handleButtonDeletePressed" />
-    			</form:content>
-    		</form:SimpleForm>
+    		<l:VerticalLayout class="sapUiContentPadding backgroundManage">
+    			<form:Form 
+					id="manageGroupsForm"
+					editable="true"
+					class="ccPanelBG">
+					<form:layout>
+                    <form:ResponsiveGridLayout 
+                    	visible="true" 
+                		labelSpanL="12" 
+                		labelSpanM="12" 
+                		labelSpanS="12" 
+                		columnsL="2" 
+                		columnsM="2" 
+                		columnsS="2" 
+                		breakpointL="800" 
+                		breakpointM="400">
+                    </form:ResponsiveGridLayout>
+                </form:layout>
+    			
+    			 <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="{i18n>manageNewGroupName}">
+                                <form:fields>
+									<Input    
+				    					id="newGrpInput"
+				    					type="Text"
+				    					placeholder="{i18n>manageInputPlaceholder}">
+				    				</Input>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement>
+                                <form:fields>
+									<Button text="{i18n>manageSaveNewGroup}" press="handleButtonSavePressed" />
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="{i18n>manageReportsSelectedGroup}" class="sapUiSmallMarginTop sapUiTinyMarginBottom">
+                                <form:fields>
+                                	<ScrollContainer
+				        				id="reportsSelectedGroupContainer"
+				        				class="selectionList"
+				        				height="200px"
+				        				horizontal="false"
+										vertical="true">
+				        				<SelectList
+											id="reportsSelectedGroup" class="listItem">
+										</SelectList>
+				        			</ScrollContainer>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+    			
+    			<form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="{i18n>manageYourGroups}" class="sapUiTinyMarginTop">
+                                <form:fields>
+									<Select
+										id="yourGroups"
+										forceSelection="true"
+										required="true"
+										change="groupSelectChange"
+										items="{
+												path: '/groups'
+											}">
+										<core:Item key="{groupKey}" text="{groupDesc}" />
+									</Select>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement>
+                                <form:fields>
+										<Button text="{i18n>manageDeleteExistingGroup}" press="handleButtonDeletePressed" />
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement label="{i18n>manageAllAvailableReports}" class="sapUiSmallMarginTop sapUiTinyMarginBottom">
+                                <form:fields>
+                                	<ScrollContainer
+										id="availableReportsContainer"
+			            				class="selectionList"
+			            				height="200px"
+			            				horizontal="false"
+										vertical="true">
+										<SelectList
+											id="availableReports"
+											class="listItem"
+											items="{
+												path: '/reports'
+											}">
+											<core:Item
+												text="{descr}"
+												key="{query}"/>
+										</SelectList>
+									</ScrollContainer>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                
+    	</form:Form>		
+    			
+    			
+	    		<!--<form:SimpleForm
+	    			id="manageGroupsForm"
+	    			labelSpanXL="12"
+	    			labelSpanL="12"
+	    			labelSpanM="12"
+	    			labelSpanS="12"
+	    			editable="true"
+	    			singleContainerFullSize="true"
+	    			class="ccPanelBG mngGroupsForm">
+	    			<form:content>
+	    				<l:VerticalLayout>
+		    				<Label text="{i18n>manageNewGroupName}">
+		    				</Label>
+		    				<Input    
+		    					id="newGrpInput"
+		    					type="Text"
+		    					placeholder="{i18n>manageInputPlaceholder}">
+		    				</Input>
+		    				<Button text="{i18n>manageSaveNewGroup}" press="handleButtonSavePressed" />
+	    				</l:VerticalLayout>
+	    				<l:VerticalLayout>
+		    				<Label text="{i18n>manageYourGroups}" class="sapUiTinyMarginTop">
+		    				</Label>
+		    				<Select
+								id="yourGroups"
+								forceSelection="true"
+								required="true"
+								change="groupSelectChange"
+								items="{
+										path: '/groups'
+									}">
+								<core:Item key="{groupKey}" text="{groupDesc}" />
+							</Select>
+							<Button text="{i18n>manageDeleteExistingGroup}" press="handleButtonDeletePressed" />
+						</l:VerticalLayout>
+	    			</form:content>
+	    		</form:SimpleForm>-->
+
+	    	<!--<l:HorizontalLayout>
     		<l:VerticalLayout class="sapUiSmallMargin">
     		<Label text="{i18n>manageReportsSelectedGroup}" class="sapUiTinyMarginBottom"></Label>
     		<ScrollContainer
@@ -77,16 +183,16 @@
 							</SelectList>
 						</ScrollContainer>
 			</l:VerticalLayout>
-			</l:HorizontalLayout>
-				<Title text="Drag &amp; Drop your reports" class="sapUiSmallMarginBegin  titleScheduleForm" width="95%"></Title>
+			</l:HorizontalLayout>-->
+			
+			
 			<l:HorizontalLayout>
 				<l:VerticalLayout class="sapUiSmallMargin">
 				<Label text=" " class="sapUiTinyMarginBottom"></Label>
             		<ScrollContainer
             				id = "garbageContainer"
             				class="garbageContainer"
-            				width="215px"
-            				height="400px"
+            				height="300px"
             				horizontal="false"
 							vertical="true">
             			<content>
@@ -99,8 +205,7 @@
             		<ScrollContainer
             				id = "selectedReportsContainer"
             				class="selectedContainer"
-            				width="575px"
-            				height="400px"
+            				height="300px"
             				horizontal="false"
 							vertical="true">
 		            	<SelectList id="selectedReports" class="listItem" >

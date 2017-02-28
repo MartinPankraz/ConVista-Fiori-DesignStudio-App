@@ -7,7 +7,8 @@ sap.ui.define([
     "sap/ui/thirdparty/jqueryui/jquery-ui-mouse",
     "sap/ui/thirdparty/jqueryui/jquery-ui-sortable",
     "sap/ui/thirdparty/jqueryui/jquery-ui-draggable",
-    "sap/ui/thirdparty/jqueryui/jquery-ui-droppable"
+    "sap/ui/thirdparty/jqueryui/jquery-ui-droppable",
+    "convista/com/arp/demo/lib/TouchPunch"
 ], function(Controller,ODataModel,Filter,Sorter) {
 	"use strict";
 	
@@ -67,9 +68,71 @@ sap.ui.define([
 				}
 			});
 			this.makeDragAndDropAvailable();
+			this.initTouchHandler();
+		},
+		// Touch handler for enabling scrolling on draggable lists
+		touchHandler: function(event) {
+		    var self = this;
+		    var touches = event.changedTouches,
+		        first = touches[0],
+		        type = "";
+		
+		    switch (event.type) {
+		    case "touchstart":
+		        type = "mousedown";
+		        window.startY = event.pageY;
+		        break;
+		    case "touchmove":
+		        type = "mousemove";
+		        break;
+		    case "touchend":
+		        type = "mouseup";
+		        break;
+		    default:
+		        return;
+		    }
+		    var simulatedEvent = document.createEvent("MouseEvent");
+		    simulatedEvent.initMouseEvent(type, true, true, window, 1, first.screenX, first.screenY, first.clientX, first.clientY, false, false, false, false, 0 /*left*/ , null);
+		
+		    first.target.dispatchEvent(simulatedEvent);
+		
+		    var scrollables = [];
+		    var clickedInScrollArea = false;
+		    // check if any of the parents has is-scollable class
+		    var parentEls = jQuery(event.target).parents().map(function() {
+		        try {
+		            if (jQuery(this).hasClass('is-scrollable')) {
+		                clickedInScrollArea = true;
+		                // get vertical direction of touch event
+		                var direction = (window.startY < first.clientY) ? 'down' : 'up';
+		                // calculate stuff... :o)
+		                if (((jQuery(this).scrollTop() <= 0) && (direction === 'down')) || ((jQuery(this).height() <= jQuery(this).scrollTop()) && (direction === 'up')) ){
+		
+		                } else {
+		                    scrollables.push(this);
+		                }
+		            }
+		        } catch (e) {}
+		    });
+		    // if not, prevent default to prevent bouncing
+		    if ((scrollables.length === 0) && (type === 'mousemove')) {
+		        event.preventDefault();
+		    }
+		
 		},
 		
-		// Make the selected Reports List draggable and droppable
+		initTouchHandler: function() {
+		    document.addEventListener("touchstart", this.touchHandler, true);
+		    document.addEventListener("touchmove", this.touchHandler, true);
+		    document.addEventListener("touchend", this.touchHandler, true);
+		    document.addEventListener("touchcancel", this.touchHandler, true);
+		
+		},
+		
+		
+		
+		
+		// Make the drag and drop function available
 		makeDragAndDropAvailable:  function(){
 			var that = this;
 			var selRepList = this.getView().byId("selectedReports");
@@ -140,7 +203,33 @@ sap.ui.define([
 			selRepList.addEventDelegate({
 				onAfterRendering: function (){
 					jQuery(selRepContainerId).droppable({
-						accept: "#" + avRepList.getId() + " li, #" + selGrpList.getId() + " li" ,
+						//only accept not duplicated elements
+						accept: function(draggable){
+							var listItemDragged = $(draggable).html();
+							var aAccepted = [];
+							var accepted;
+							
+							//Check if list is empty, if so, add report
+							if($(selRepListId).length === 0){
+									accepted = true;
+							}
+							//If list is not empty, check if the report is already there
+							// if so, add it to a temporary array and return false
+							else{
+								$(selRepListId).each(function(){
+									if($(this).html() === listItemDragged){
+										aAccepted.push($(this));
+									}
+								});
+								if(aAccepted.length > 0){
+										accepted = false;
+									}else{
+										accepted = true;
+									}
+								}
+							return accepted;
+							
+						},
 						drop: function( event, ui ) {
 							that.addNewItem(ui.draggable);
 						}
@@ -159,14 +248,14 @@ sap.ui.define([
 				}
 			});
 		},
-		// Add new item when dropped
+		// Add new item when dropped to the selected reports list 
 		addNewItem: function(item){
 			var listElementId = item.context.id;
 			var draggedElement = sap.ui.getCore().byId(listElementId);
 			this.getView().byId("selectedReports").addItem(new sap.ui.core.Item({key: draggedElement.getKey(),text: draggedElement.getText()}));
 			//sap.ui.getCore().byId(item.parent()[0].id).removeItem(draggedElement);
 		},
-		// Add new item when dropped
+		// Remove item when dragged to the garbage
 		removeItem: function(item,  sender){
 			var listElementId = item.context.id;
 			var draggedElement = sap.ui.getCore().byId(listElementId);
