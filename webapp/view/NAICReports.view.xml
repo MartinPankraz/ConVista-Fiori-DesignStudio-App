@@ -90,7 +90,9 @@
                 
 				<Table id="idNAICTable"
 					items="{path:'/'}"
-					class="sapUiMediumMarginTop sapUiSmallMarginBottom">
+					class="sapUiMediumMarginTop sapUiSmallMarginBottom"
+					mode= "SingleSelectMaster"
+					select="onRowSelect">
 					<headerToolbar>
 						<Toolbar>
 							<Title text="{i18n>naicYourDocuments}" level="H6"/>
@@ -99,15 +101,6 @@
 							<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
 						</Toolbar>
 					</headerToolbar>
-					<infoToolbar>
-						<Toolbar
-							id="vsdFilterBar"
-							active="true"
-							visible="false"
-							press="[handleViewSettingsDialogFilterBarPressed, views.control.tableViewSettingsDialog]">
-							<Label id="vsdFilterLabel" text="?" />
-						</Toolbar>
-					</infoToolbar>
 					<columns>
 						<Column width="18em"><Text text="Filename" /></Column>
 						<Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>naicKeyDate}" /></Column>

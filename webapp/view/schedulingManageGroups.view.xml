@@ -5,13 +5,13 @@
       class="html_container imageResponsive"
       showHeader="false">
     	<content>
-    		<l:VerticalLayout class="sapUiContentPadding backgroundManage">
+    		<l:Grid defaultSpan="L6 M12 S12">
     			<form:Form 
 					id="yourGroupsForm"
 					editable="true"
 					class="ccPanelBG">
     				<form:title >
-						<core:Title text="Existing groups"/>
+						<core:Title text="{i18n>manageExistingGroups}"/>
 					</form:title>
 					<form:layout>
                     <form:ResponsiveGridLayout 
@@ -61,8 +61,7 @@
                                 <form:fields>
                                 	<ScrollContainer
 				        				id="reportsSelectedGroupContainer"
-				        				class="selectionList"
-				        				height="100px"
+				        				class="selectionList groupContainer"
 				        				horizontal="false"
 										vertical="true">
 				        				<SelectList
@@ -81,7 +80,7 @@
 					editable="true"
 					class="ccPanelBG">
                 	<form:title>
-						<core:Title text="Create new group"  />
+						<core:Title text="{i18n>manageCreateGroup}"  />
 					</form:title>
 					<form:layout>
                     <form:ResponsiveGridLayout 
@@ -116,34 +115,12 @@
 									<Button text="{i18n>manageSaveNewGroup}" press="handleButtonSavePressed" class="sapUiTinyMarginBottom"/>
                                 </form:fields>
                             </form:FormElement>
-                            <form:FormElement label="{i18n>manageSelectedReports}" class="sapUiTinyMarginBottom">
-                                <form:fields>
-                                	<ScrollContainer
-				            				id = "selectedReportsContainer"
-				            				class="selectedContainer"
-				            				height="400px"
-				            				horizontal="false"
-											vertical="true">
-						            	<SelectList id="selectedReports" class="listItem" >
-						            	</SelectList>	
-						            	<Text id="selectedText" text="DROP REPORTS HERE" class="selectedText" textAlign="Center"></Text>
-						            	<core:Icon id="selectedIcon" src="sap-icon://add" class="selectedIcon"></core:Icon>
-									</ScrollContainer>
-                                </form:fields>
-                            </form:FormElement>
-                        </form:formElements>
-                    </form:FormContainer>
-                </form:formContainers>
-                
-                <form:formContainers>
-                    <form:FormContainer>
-                        <form:formElements>
-                            <form:FormElement label="{i18n>manageAllAvailableReports}" class="sapUiSmallMarginTop sapUiTinyMarginBottom">
+                            <form:FormElement label="{i18n>manageAllAvailableReports}" class="sapUiTinyMarginBottom">
                                 <form:fields>
                                 	<ScrollContainer
 										id="availableReportsContainer"
-			            				class="selectionList sapUiSmallMarginBottom"
-			            				height="377px"
+			            				class="selectionList"
+			            				height="387px"
 			            				horizontal="false"
 										vertical="true">
 										<SelectList
@@ -159,6 +136,28 @@
 									</ScrollContainer>
                                 </form:fields>
                             </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                
+                <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="{i18n>manageSelectedReports}" class="sapUiSmallMarginTop sapUiTinyMarginBottom">
+                                <form:fields>
+                                	<ScrollContainer
+				            				id = "selectedReportsContainer"
+				            				class="selectedContainer"
+				            				height="380px"
+				            				horizontal="false"
+											vertical="true">
+						            	<SelectList id="selectedReports" class="listItem" >
+						            	</SelectList>	
+						            	<Text id="selectedText" text="{i18n>manageAddReports}" class="selectedText" textAlign="Center"></Text>
+						            	<core:Icon id="selectedIcon" src="sap-icon://add" class="selectedIcon"></core:Icon>
+									</ScrollContainer>
+                                </form:fields>
+                            </form:FormElement>
                             <form:FormElement>
                                 <form:fields>
                                 	<ScrollContainer
@@ -169,7 +168,7 @@
 											vertical="false">
 				            			<content>
 				            				<core:Icon src="sap-icon://delete" class="garbageIcon"></core:Icon>
-				            				<Text text="DROP TO REMOVE SELECTED REPORT" textAlign="Center" class="garbageText"></Text>
+				            				<Text text="{i18n>manageRemoveReports}" textAlign="Center" class="garbageText"></Text>
 				            			</content>
 									</ScrollContainer>
                                 </form:fields>
@@ -179,7 +178,7 @@
                 </form:formContainers>
                 
     	</form:Form>		
-    			
+    			</l:Grid>
     			
 	    		<!--<form:SimpleForm
 	    			id="manageGroupsForm"
@@ -285,7 +284,6 @@
 					</ScrollContainer>
 				</l:VerticalLayout>
 				</l:HorizontalLayout>-->
-    		</l:VerticalLayout>
   		</content>
 	</Page>
 </mvc:View>

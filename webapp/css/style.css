@@ -227,7 +227,7 @@ ul.listItem li:hover{
 .garbageContainer{
 	border:1px dashed #65bee4;
 	border-radius: 15px;
-	background-color:#f7f9fc;
+	background-color:#ffffff;
 	margin-top:8px;
 	position:relative;
 	width:100%!important;
@@ -242,6 +242,9 @@ ul.listItem li:hover{
 .garbageText{
 	color: #65bee4;
 }
+.groupContainer{
+	height:490px!important;
+}
 
 .selectedContainer{
 	border:1px dashed #65bee4;
@@ -251,7 +254,7 @@ ul.listItem li:hover{
 
 .selectedText{
 	color: #65bee4;
-	margin-top: 35%;
+	margin-top: 220px;
 }
 
 .selectedIcon{
@@ -289,23 +292,30 @@ ul.listItem li:hover{
   position:relative;*/
   background-color:#eff4f9;
 }
+.horizontalManage{
+	display:block;
+	width:100%;
+}
 .backgroundManage{
 	width:900px;
 	background-color:#eff4f9;
-	border-radius: 30px;
 	margin: auto !important;
 	  position: absolute !important;
 	  left: 50%!important;
 	  margin-left: -450px!important;
 }
 @media (max-width: 1024px) {
+		
   .backgroundManage {
-  	border-radius: 0px;
   	width:100%;
     left: 0!important;
 	  margin-left: 0!important;
 	  margin-top:0!important;
   }
+  .groupContainer{
+	height:150px!important;
+}
+
 }
 
 

@@ -2,8 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/Filter",
 	"sap/ui/model/Sorter",
-    "convista/com/arp/demo/view/utils/BExHelperFunctions"
-], function(Controller,Filter,Sorter,BExHelper) {
+    "convista/com/arp/demo/view/utils/BExHelperFunctions",
+    "convista/com/arp/demo/lib/FileSaver.min"
+], function(Controller,Filter,Sorter,BExHelper,FileSaver) {
 	"use strict";
 
 	return Controller.extend("convista.com.arp.demo.controller.NAICReports", {
@@ -140,6 +141,35 @@ sap.ui.define([
 		onSortObjectName: function(){
 			this._objSorter.bDescending = !this._objSorter.bDescending;
 			this.byId("idNAICTable").getBinding("items").sort(this._objSorter);
+		},
+		
+		// Method for downloading files
+		onRowSelect: function(oEvent){
+			var that = this;
+        	  //Get Hold of List Item selected.
+			//Get Hold Binding Context of Selected List Item.
+			//get the property "filename"
+			var fileName = oEvent.getParameter("listItem").getBindingContext().getProperty("filename");        
+			//nee xhr for filesaver blob. Not able to figure out how to use ajax likewise yet
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', this.sServiceUrl+"_method=single&_file="+fileName, true);
+			xhr.responseType = 'blob';
+			xhr.onreadystatechange = function(e) {
+				if (this.readyState === 4){
+				  if (this.status === 200) {
+				  	var blob = new Blob([this.response]/*, {type: that.mimetype()'application/pdf'}*/);
+			    	/* eslint-disable */
+			    	saveAs(blob, fileName);	
+			    	/* eslint-enable */
+				  }else{
+					sap.m.MessageToast.show("File could not be downloaded!");
+				  }
+				  that.getView().byId("idNAICTable").setBusy(false);
+				}
+			};
+			this.getView().byId("idNAICTable").setBusy(true);
+			xhr.send();
+			
 		}
 
 	});
