@@ -97,14 +97,38 @@
 				"viewType": "XML",
 				"viewPath": "convista.com.arp.demo.view",
 				"controlId": "app",
-				"controlAggregation": "pages",
-				"transition": "slide"
+				"controlAggregation": "pages"
 			},
 			"routes": [
 				{
 					"pattern": "",
 					"name": "home",
 					"target": "home"
+				},
+				{
+					"pattern":"naic_sr",
+					"name": "NAICReports",
+					"target": "NAICReports"
+				},
+				{
+					"pattern":"sched_1",
+					"name": "schedulingOverview",
+					"target": "schedulingOverview"
+				},
+				{
+					"pattern":"sched_2",
+					"name": "schedulingManageGroups",
+					"target": "schedulingManageGroups"
+				},
+				{
+					"pattern":"sched_3",
+					"name": "scheduleMyFiles",
+					"target": "scheduleMyFiles"
+				},
+				{
+					"pattern":"sched_4",
+					"name": "schedulingHistory",
+					"target":"schedulingHistory"
 				}
 			],
 			"targets": {
@@ -112,6 +136,31 @@
 					"viewName": "Navigation",
 					"viewId": "myMainNavigation",
 					"viewLevel": 1
+				},
+				"schedulingOverview": {
+					"viewName": "schedulingOverview",
+					"controlId": "myNavCon",
+					"controlAggregation": "pages"
+				},
+				"schedulingManageGroups": {
+					"viewName": "schedulingManageGroups",
+					"controlId": "myNavCon",
+					"controlAggregation": "pages"
+				},
+				"scheduleMyFiles": {
+					"viewName": "schedulingMyFiles",
+					"controlId": "myNavCon",
+					"controlAggregation": "pages"
+				},
+				"schedulingHistory": {
+					"viewName": "schedulingHistory",
+					"controlId": "myNavCon",
+					"controlAggregation": "pages"
+				},
+				"NAICReports": {
+					"viewName": "NAICReports",
+					"controlId": "myNavCon",
+					"controlAggregation": "pages"
 				}
 			}
 		}

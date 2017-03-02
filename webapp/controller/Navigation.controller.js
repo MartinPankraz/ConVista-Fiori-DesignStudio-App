@@ -1,14 +1,14 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"convista/com/arp/demo/controller/BaseController",
 	"convista/com/arp/demo/model/sideNavigationModel"
-], function(Controller, sideNavigationModel) {
+], function(BaseController, sideNavigationModel) {
 	"use strict";
 
-	return Controller.extend("convista.com.arp.demo.controller.Navigation", {
+	return BaseController.extend("convista.com.arp.demo.controller.Navigation", {
 
 		onInit: function () {
 			var that = this;
-			
+			this.getRouter(); 
 			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
 			that.idPrefix = that.getView().getId()+"--";
 			
@@ -98,6 +98,7 @@ sap.ui.define([
 			return navigationListItem;
 		},
 		
+		
 		onNavListItemSelect: function(oEvent){
 			var source = oEvent.getSource();
 			var expanded = source.getExpanded();
@@ -138,8 +139,10 @@ sap.ui.define([
 			var navigationList = this.getView().byId("navigationList");
 			var navlistModel = navigationList.getModel();
 			var myPath = item.getContent()[0].getText();
-
+			
+			//var oHashChanger = sap.ui.core.routing.HashChanger.getInstance();
 			var data = navlistModel.getProperty(myPath);
+			
 			if(data){
 				var selectedKey = selectedTabKey.split("_tabItem")[0];
 				var targetLink = "";
@@ -176,6 +179,7 @@ sap.ui.define([
 				var html = null;
 				if(page){
 					html = page.getContent()[0];
+					//oHashChanger.setHash(selectedKey);
 				}else{
 					var newPage = new sap.m.Page({
 								id: pageId,
@@ -203,7 +207,6 @@ sap.ui.define([
 											height:"100%"
 						});
 						newPage.addContent(viewSched);
-					
 					}else if(selectedKey === "sched_2"){
 						var viewSched2 = new sap.ui.view({
 											viewName:"convista.com.arp.demo.view.schedulingManageGroups",
@@ -248,9 +251,12 @@ sap.ui.define([
 					}
 					//newPage.addStyleClass("myPageOverflow");
 					navContainer.addPage(newPage);
+				
 				}
 				navContainer.to(pageId, "show");
+				//oHashChanger.setHash(selectedKey);
 			}
+			
 		},
 		
 		tabItemCloseHandler: function(oEvent){

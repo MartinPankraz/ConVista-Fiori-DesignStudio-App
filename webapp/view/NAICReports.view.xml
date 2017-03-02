@@ -15,11 +15,11 @@
 					<form:layout>
                     <form:ResponsiveGridLayout 
                     	visible="true" 
-                		labelSpanL="4" 
-                		labelSpanM="4" 
+                		labelSpanL="12" 
+                		labelSpanM="12" 
                 		labelSpanS="12" 
-                		emptySpanL="0" 
-                		emptySpanM="0" 
+                		emptySpanL="3" 
+                		emptySpanM="2" 
                 		emptySpanS="0" 
                 		columnsL="3" 
                 		columnsM="2" 
@@ -30,11 +30,11 @@
                 </form:layout>
                 
                 <form:formContainers>
-                    <form:FormContainer>
+                    <form:FormContainer >
                         <form:formElements>
                             <form:FormElement label="{i18n>naicCompany}">
                                 <form:fields>
-									<Select id="naicCompany"
+                           			<Select id="naicCompany"
 											forceSelection="true"
 											selectedKey="demo"
 											required="true">
@@ -94,7 +94,7 @@
 					mode= "SingleSelectMaster"
 					select="onRowSelect">
 					<headerToolbar>
-						<Toolbar>
+						<Toolbar class="toolbarMargin">
 							<Title text="{i18n>naicYourDocuments}" level="H6"/>
 							<ToolbarSpacer></ToolbarSpacer>
 							<Button text="{i18n>sapSchedRefresh}" tooltip="Refresh" icon="sap-icon://refresh" press="handleRefreshButtonPressed"/>

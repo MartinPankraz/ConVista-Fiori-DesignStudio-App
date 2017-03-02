@@ -1,14 +1,14 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"convista/com/arp/demo/controller/BaseController",
 	"sap/ui/model/odata/v2/ODataModel",
 	"sap/ui/model/Filter",
 	"sap/ui/model/Sorter",
     "convista/com/arp/demo/view/utils/BExHelperFunctions",
     "convista/com/arp/demo/view/utils/MyFormatter"
-], function(Controller, ODataModel, Filter, Sorter, BExHelper, MyFormatter) {
+], function(BaseController, ODataModel, Filter, Sorter, BExHelper, MyFormatter) {
 	"use strict";
 
-	return Controller.extend("convista.com.arp.demo.controller.schedulingOverview", {
+	return BaseController.extend("convista.com.arp.demo.controller.schedulingOverview", {
 
 		_oDialog: null,
 		/**
@@ -17,8 +17,12 @@ sap.ui.define([
 		 * @memberOf convista.com.arp.demo.view.schedulingOverview
 		 */
 		onInit: function() {
+			/*this._oView = this.getView();
+			this._oComponent = sap.ui.component(sap.ui.core.Component.getOwnerIdFor(this._oView));
+			this._oRouter = this._oComponent.getRouter();
+			this._oRouter.attachRoutePatternMatched(this._onObjectMatched, this);   */                  
 			var that = this;
-
+			
 			var oModelCompCode = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV",{
 				defaultBindingMode: "TwoWay",
 				defaultCountMode: "Inline"
@@ -71,7 +75,7 @@ sap.ui.define([
 			this.getView().byId("dateRangeFrom").setDateValue(firstDay);
 			this.getView().byId("dateRangeTo").setDateValue(new Date());
 		},
-
+		
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 		 * @memberOf convista.com.arp.demo.view.schedulingOverview

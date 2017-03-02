@@ -331,7 +331,11 @@ ul.listItem li:hover{
 	padding-right: 5%;
   }
 }
+/**************** NAIC Reports Styles ***************************************************************/
 
+.toolbarMargin{
+	padding-left:0!important;
+}
 
 /**************** Footer ***************************************************************/
 .ccImage{

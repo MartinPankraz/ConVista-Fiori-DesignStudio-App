@@ -7,7 +7,8 @@
 	<Page
       id="pageSchedulingOverview"
       class="html_container"
-      showHeader="false">
+      showHeader="false"
+      height="100%">
       <content>
 	
 	

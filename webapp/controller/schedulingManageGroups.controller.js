@@ -1,5 +1,5 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"convista/com/arp/demo/controller/BaseController",
 	"sap/ui/model/Filter",
 	"sap/ui/thirdparty/jqueryui/jquery-ui-effect",
     "sap/ui/thirdparty/jqueryui/jquery-ui-core",

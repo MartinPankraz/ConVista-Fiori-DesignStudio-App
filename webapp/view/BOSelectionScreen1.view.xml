@@ -80,17 +80,17 @@
                             <form:FormElement label="{i18n>dateText}">
                             	<form:fields>
                             		<DateRangeSelection
-										id="datePicker1"
+										id="datePicker2"
 										required="true"
 										displayFormat="dd/MM/yyyy"
 									/>
-                            		<!--<DatePicker
+                            		<DatePicker
 										id="datePicker1"
 										placeholder="Enter Date ..."
 										displayFormat="d MMM y"
 										valueFormat="yyyyMMdd"
 										required="true">
-									</DatePicker>-->
+									</DatePicker>
 									<RadioButtonGroup id="rbg1" columns="2">
 										<buttons>
 											<RadioButton text="{i18n>dateOption1}" selected="true" />
