@@ -32,7 +32,6 @@ sap.ui.define([
 			}
 			
 			if(dateRangeSelection.getVisible()){
-				singleDate.setDateValue(new Date());
 				var date = new Date(), y = date.getFullYear();//, m = date.getMonth();
 				var firstDay = new Date(y, 0, 1);
 				//var lastDay = new Date(y, m + 1, 0);
@@ -40,6 +39,7 @@ sap.ui.define([
 				dateRangeSelection.setSecondDateValue(new Date());
 				//this.getView().byId("datePicker2").setDateValue(new Date());
 			}else{
+				singleDate.setDateValue(new Date());
 				dateRangeSelection.setDateValue(new Date());
 				dateRangeSelection.setSecondDateValue(new Date());
 				//this.getView().byId("datePicker2").setDateValue(new Date());	
@@ -124,7 +124,7 @@ sap.ui.define([
 					// a rather primitive way to filter the TextFields
 					if (control.getValue) {
 						// check the value on empty text
-						if (control.getValue() === "" && control.getRequired() === true) {
+						if (control.getValue() === "" && control.getRequired() === true && control.getVisible() === true) {
 							// do whatever you want to show the user he has to provide more input
 							control.setValueState(sap.ui.core.ValueState.Error);
 							validated = false;

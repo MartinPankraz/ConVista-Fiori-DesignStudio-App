@@ -82,7 +82,7 @@
                             		<DateRangeSelection
 										id="datePicker2"
 										required="true"
-										displayFormat="dd/MM/yyyy"
+										displayFormat="d MMM y"
 									/>
                             		<DatePicker
 										id="datePicker1"

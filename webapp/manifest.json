@@ -107,34 +107,34 @@
 					"target": "home"
 				},
 				{
-					"pattern":"NAICReports",
+					"pattern": "NAICReports",
 					"name": "naic_sr",
 					"target": "naic_sr"
 				},
 				{
-					"pattern":"schedulingOverview",
+					"pattern": "schedulingOverview",
 					"name": "sched_1",
 					"target": "sched_1"
 				},
 				{
-					"pattern":"schedulingManageGroups",
+					"pattern": "schedulingManageGroups",
 					"name": "sched_2",
 					"target": "sched_2"
 				},
 				{
-					"pattern":"scheduleMyFiles",
+					"pattern": "scheduleMyFiles",
 					"name": "sched_3",
 					"target": "sched_3"
 				},
 				{
-					"pattern":"schedulingHistory",
+					"pattern": "schedulingHistory",
 					"name": "sched_4",
-					"target":"sched_4"
+					"target": "sched_4"
 				},
 				{
-					"pattern":"BoseSelectionScreen",
+					"pattern": "BoseSelectionScreen",
 					"name": "BOSelectionScreen1",
-					"target":"BOSelectionScreen1"
+					"target": "BOSelectionScreen1"
 				}
 			],
 			"targets": {
