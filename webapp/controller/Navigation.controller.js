@@ -7,8 +7,8 @@ sap.ui.define([
 	return BaseController.extend("convista.com.arp.demo.controller.Navigation", {
 
 		onInit: function () {
+			
 			var that = this;
-			this.getRouter(); 
 			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
 			that.idPrefix = that.getView().getId()+"--";
 			
@@ -128,9 +128,17 @@ sap.ui.define([
 			}else{
 				item.setExpanded(!itemExpanded);
 			}
+			//this.getRouter().navTo(selectedKey);
 		},
+		/*tabItemSelectNavigation: function(oEvent){
+			var item = oEvent.getParameters().item;
+			var selectedTabKey = item.getKey();
+			var selectedKey = selectedTabKey.split("_tabItem")[0];
+			this.getRouter().navTo(selectedKey);
+		},*/
 		
 		tabItemSelectHandler: function(oEvent){
+			var oRouter = this.getRouter(); 
 			var that = this;
 			var item = oEvent.getParameters().item;
 			var selectedTabKey = item.getKey();
@@ -158,7 +166,7 @@ sap.ui.define([
 						break;
 					}
 				}
-								//Remember selections for selection screen controller. Global model ensures correct state handling!
+				//Remember selections for selection screen controller. Global model ensures correct state handling!
 				var params= {
 					"mainViewId": that.getView().getId(),
 					"selectedTab":selectedTabKey,
@@ -179,9 +187,53 @@ sap.ui.define([
 				var html = null;
 				if(page){
 					html = page.getContent()[0];
-					//oHashChanger.setHash(selectedKey);
+					navContainer.to(pageId, "show");
 				}else{
-					var newPage = new sap.m.Page({
+					var newPage;
+					
+					if(selectedKey === "naic_sr"){
+						newPage = new sap.ui.view({
+											id: pageId,
+											title: selectedTabText,
+											viewName:"convista.com.arp.demo.view.NAICReports",
+											type: sap.ui.core.mvc.ViewType.XML
+						});
+					}
+					else if(selectedKey === "sched_1"){
+					/*if(selectedKey === "naic_sr" || selectedKey === "sched_1" || selectedKey === "sched_2" || selectedKey === "sched_3" || selectedKey === "sched_4"){
+						oRouter.navTo(selectedKey,{
+							id: pageId
+						});
+					}*/
+						newPage = new sap.ui.view({
+											id: pageId,
+											title: selectedTabText,
+											viewName:"convista.com.arp.demo.view.schedulingOverview",
+											type: sap.ui.core.mvc.ViewType.XML
+						});
+					}else if(selectedKey === "sched_2"){
+						newPage = new sap.ui.view({
+											id: pageId,
+											title: selectedTabText,
+											viewName:"convista.com.arp.demo.view.schedulingManageGroups",
+											type: sap.ui.core.mvc.ViewType.XML
+						});
+					}else if(selectedKey === "sched_3"){
+						newPage = new sap.ui.view({
+											id: pageId,
+											title: selectedTabText,
+											viewName:"convista.com.arp.demo.view.schedulingMyFiles",
+											type: sap.ui.core.mvc.ViewType.XML
+						});
+					}else if(selectedKey === "sched_4"){
+						newPage = new sap.ui.view({
+											id: pageId,
+											title: selectedTabText,
+											viewName:"convista.com.arp.demo.view.schedulingHistory",
+											type: sap.ui.core.mvc.ViewType.XML
+						});
+					}else{
+						newPage = new sap.m.Page({
 								id: pageId,
 								title: selectedTabText,
 								showHeader: false,
@@ -190,45 +242,8 @@ sap.ui.define([
 									var myNavContainer = that.getView().byId("myNavCon");
 									myNavContainer.back();
 								}
-					});
-					
-					if(selectedKey === "naic_sr"){
-						var viewReg = new sap.ui.view({
-											viewName:"convista.com.arp.demo.view.NAICReports",
-											type: sap.ui.core.mvc.ViewType.XML,
-											height:"100%"
 						});
-						newPage.addContent(viewReg);
-					}
-					else if(selectedKey === "sched_1"){
-						var viewSched = new sap.ui.view({
-											viewName:"convista.com.arp.demo.view.schedulingOverview",
-											type: sap.ui.core.mvc.ViewType.XML,
-											height:"100%"
-						});
-						newPage.addContent(viewSched);
-					}else if(selectedKey === "sched_2"){
-						var viewSched2 = new sap.ui.view({
-											viewName:"convista.com.arp.demo.view.schedulingManageGroups",
-											type: sap.ui.core.mvc.ViewType.XML,
-											height:"100%"
-						});
-						newPage.addContent(viewSched2);
-					}else if(selectedKey === "sched_3"){
-						var viewSched3 = new sap.ui.view({
-											viewName:"convista.com.arp.demo.view.schedulingMyFiles",
-											type: sap.ui.core.mvc.ViewType.XML,
-											height:"100%"
-						});
-						newPage.addContent(viewSched3);
-					}else if(selectedKey === "sched_4"){
-						var viewSched4 = new sap.ui.view({
-											viewName:"convista.com.arp.demo.view.schedulingHistory",
-											type: sap.ui.core.mvc.ViewType.XML,
-											height:"100%"
-						});
-						newPage.addContent(viewSched4);
-					}else{
+						
 						if(selectionScreen){//use selection screen in case it is defined
 							var selView = new sap.ui.view({
 								viewName:"convista.com.arp.demo.view." + selectionScreen,
@@ -251,10 +266,10 @@ sap.ui.define([
 					}
 					//newPage.addStyleClass("myPageOverflow");
 					navContainer.addPage(newPage);
-				
+					navContainer.to(newPage, "show");
 				}
-				navContainer.to(pageId, "show");
-				//oHashChanger.setHash(selectedKey);
+				
+				//oHashChanger.replaceHash(selectedKey);
 			}
 			
 		},

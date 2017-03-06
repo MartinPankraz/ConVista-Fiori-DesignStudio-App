@@ -17,10 +17,9 @@ sap.ui.define([
 		 * @memberOf convista.com.arp.demo.view.schedulingOverview
 		 */
 		onInit: function() {
-			/*this._oView = this.getView();
-			this._oComponent = sap.ui.component(sap.ui.core.Component.getOwnerIdFor(this._oView));
-			this._oRouter = this._oComponent.getRouter();
-			this._oRouter.attachRoutePatternMatched(this._onObjectMatched, this);   */                  
+			//var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			//oRouter.getRoute("sched_1").attachPatternMatched(this._onObjectMatched, this);
+
 			var that = this;
 			
 			var oModelCompCode = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV",{
@@ -74,6 +73,12 @@ sap.ui.define([
 			var firstDay = new Date(y, 0, 1);
 			this.getView().byId("dateRangeFrom").setDateValue(firstDay);
 			this.getView().byId("dateRangeTo").setDateValue(new Date());
+		},
+		
+		_onObjectMatched: function (oEvent) {
+				this.getView().bindElement({
+					path: "/" + oEvent.getParameter("arguments").id
+				});
 		},
 		
 		/**

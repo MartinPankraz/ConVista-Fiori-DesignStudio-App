@@ -97,7 +97,8 @@
 				"viewType": "XML",
 				"viewPath": "convista.com.arp.demo.view",
 				"controlId": "app",
-				"controlAggregation": "pages"
+				"controlAggregation": "pages",
+				"transition": "slide"
 			},
 			"routes": [
 				{
@@ -106,29 +107,34 @@
 					"target": "home"
 				},
 				{
-					"pattern":"naic_sr",
-					"name": "NAICReports",
-					"target": "NAICReports"
+					"pattern":"NAICReports",
+					"name": "naic_sr",
+					"target": "naic_sr"
 				},
 				{
-					"pattern":"sched_1",
-					"name": "schedulingOverview",
-					"target": "schedulingOverview"
+					"pattern":"schedulingOverview",
+					"name": "sched_1",
+					"target": "sched_1"
 				},
 				{
-					"pattern":"sched_2",
-					"name": "schedulingManageGroups",
-					"target": "schedulingManageGroups"
+					"pattern":"schedulingManageGroups",
+					"name": "sched_2",
+					"target": "sched_2"
 				},
 				{
-					"pattern":"sched_3",
-					"name": "scheduleMyFiles",
-					"target": "scheduleMyFiles"
+					"pattern":"scheduleMyFiles",
+					"name": "sched_3",
+					"target": "sched_3"
 				},
 				{
-					"pattern":"sched_4",
-					"name": "schedulingHistory",
-					"target":"schedulingHistory"
+					"pattern":"schedulingHistory",
+					"name": "sched_4",
+					"target":"sched_4"
+				},
+				{
+					"pattern":"BoseSelectionScreen",
+					"name": "BOSelectionScreen1",
+					"target":"BOSelectionScreen1"
 				}
 			],
 			"targets": {
@@ -137,28 +143,33 @@
 					"viewId": "myMainNavigation",
 					"viewLevel": 1
 				},
-				"schedulingOverview": {
+				"sched_1": {
 					"viewName": "schedulingOverview",
 					"controlId": "myNavCon",
 					"controlAggregation": "pages"
 				},
-				"schedulingManageGroups": {
+				"sched_2": {
 					"viewName": "schedulingManageGroups",
 					"controlId": "myNavCon",
 					"controlAggregation": "pages"
 				},
-				"scheduleMyFiles": {
+				"sched_3": {
 					"viewName": "schedulingMyFiles",
 					"controlId": "myNavCon",
 					"controlAggregation": "pages"
 				},
-				"schedulingHistory": {
+				"sched_4": {
 					"viewName": "schedulingHistory",
 					"controlId": "myNavCon",
 					"controlAggregation": "pages"
 				},
-				"NAICReports": {
+				"naic_sr": {
 					"viewName": "NAICReports",
+					"controlId": "myNavCon",
+					"controlAggregation": "pages"
+				},
+				"BOSelectionScreen1": {
+					"viewName": "BOSelectionScreen1",
 					"controlId": "myNavCon",
 					"controlAggregation": "pages"
 				}

@@ -3,12 +3,12 @@
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:semantic="sap.m.semantic"
 	xmlns:form="sap.ui.layout.form"
-	class="sapUiSizeCompact">
+	class="sapUiSizeCompact"
+	height="100%">
 	<Page
       id="pageSchedulingOverview"
       class="html_container"
-      showHeader="false"
-      height="100%">
+      showHeader="false">
       <content>
 	
 	

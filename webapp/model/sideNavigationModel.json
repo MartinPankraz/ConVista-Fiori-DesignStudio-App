@@ -45,7 +45,7 @@
 					"icon":"sap-icon://insurance-life",
 					"link":"https://sapwebdcbw.sap.convista.local:8444/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=AemWo9Efn7xDgpYCD1.7nwA&noDetailsPanel=true",
 					"selectionscreen":"BOSelectionScreen1",
-					"hiddenscreenparts":["ledgerBasis","periodLabel","period","glAccText","glAccount"]
+					"hiddenscreenparts":["datePicker1","ledgerBasis","periodLabel","period","glAccText","glAccount"]
 				},
 				{
 					"key":"acc_4",

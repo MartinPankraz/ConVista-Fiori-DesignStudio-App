@@ -32,7 +32,6 @@ sap.ui.define([
 			}
 			
 			if(dateRangeSelection.getVisible()){
-				singleDate.setVisible(false);
 				singleDate.setDateValue(new Date());
 				var date = new Date(), y = date.getFullYear();//, m = date.getMonth();
 				var firstDay = new Date(y, 0, 1);
