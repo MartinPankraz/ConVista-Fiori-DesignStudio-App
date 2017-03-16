@@ -11,11 +11,19 @@
 				  class="testCSS">
 				<content>
 					<l:HorizontalLayout id="layout_horizontal_sideNav" class="ccHorizontalSideNavCon">
-			            <tnt:NavigationList id="navigationList"
-			            					itemSelect="onNavListItemSelect"
-			            					expanded="false"
-			            					class="ccTntSideNav">
-		                </tnt:NavigationList>
+						<tnt:NavigationList expanded="false" id="navigationList" items="{sideNavigationData>/NavigationItems}" itemSelect="onNavListItemSelect" class="ccTntSideNav">
+		                    <tnt:NavigationListItem text="{sideNavigationData>text}"
+		                                            icon="{sideNavigationData>icon}"
+		                                            expanded="false"
+		                                            items="{sideNavigationData>subitems}"
+		                                            key="{sideNavigationData>key}"
+		                                            select="onMainItemSelect">
+		                        <tnt:NavigationListItem text="{sideNavigationData>text}"
+		                                                key="{sideNavigationData>key}"
+		                                                select="onItemSelect">
+		                        </tnt:NavigationListItem>
+		                    </tnt:NavigationListItem>
+	                	</tnt:NavigationList>
 		                <l:VerticalLayout id="layout_vartical_Nav" class="ccVerticalNavCon">
 			                <TabContainer
 								id="myTabCon"
@@ -24,11 +32,11 @@
 								itemClose="tabItemCloseHandler"
 								itemSelect="tabItemSelectHandler"
 								class="ccTabContainer">
-			                	<items>
+			                	<!--<items>
 			                		<TabContainerItem id="firstItem" name="Dashboard Library" key="landing_tabItem">
 			                			<content><Text text="/NavigationItems/1"/></content>
 			                		</TabContainerItem>
-			                	</items>
+			                	</items>-->
 			                </TabContainer>
 			                <NavContainer
 								id="myNavCon"

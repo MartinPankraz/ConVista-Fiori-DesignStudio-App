@@ -30,6 +30,10 @@
 					"odataVersion": "2.0",
 					"localUri": "localService/ZARP_COMPCODE_SRV/metadata.xml"
 				}
+			},
+			"side_navigation_model": {
+				"uri": "model/sideNavigationModel.json",
+				"type": "JSON"
 			}
 		}
 	},
@@ -82,6 +86,10 @@
 				"settings": {
 					"bundleName": "convista.com.arp.demo.i18n.i18n"
 				}
+			},
+			"sideNavigationData": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "side_navigation_model"
 			}
 		},
 		"resources": {
@@ -102,47 +110,37 @@
 			},
 			"routes": [
 				{
-					"pattern": "",
-					"name": "home",
-					"target": "home"
-				},
-				{
-					"pattern": "NAICReports",
+					"pattern":"naic_sr/{key}",
 					"name": "naic_sr",
 					"target": "naic_sr"
 				},
 				{
-					"pattern": "schedulingOverview",
+					"pattern":"sched_1/{key}",
 					"name": "sched_1",
 					"target": "sched_1"
 				},
 				{
-					"pattern": "schedulingManageGroups",
+					"pattern":"sched_2/{key}",
 					"name": "sched_2",
 					"target": "sched_2"
 				},
 				{
-					"pattern": "scheduleMyFiles",
+					"pattern":"sched_3/{key}",
 					"name": "sched_3",
 					"target": "sched_3"
 				},
 				{
-					"pattern": "schedulingHistory",
+					"pattern":"sched_4/{key}",
 					"name": "sched_4",
 					"target": "sched_4"
 				},
 				{
-					"pattern": "BoseSelectionScreen",
+					"pattern":"BOSelectionScreen1",
 					"name": "BOSelectionScreen1",
 					"target": "BOSelectionScreen1"
 				}
 			],
 			"targets": {
-				"home": {
-					"viewName": "Navigation",
-					"viewId": "myMainNavigation",
-					"viewLevel": 1
-				},
 				"sched_1": {
 					"viewName": "schedulingOverview",
 					"controlId": "myNavCon",
