@@ -49,25 +49,56 @@ sap.ui.define([
 				that.createFirstTab();
 			});
 			
+			
+			var navContainer = that.getView().byId("myNavCon");
+			window.addEventListener("popstate", function(){
+				console.log(navContainer);
+				if(history.state !== null){
+					var pageId = history.state.id;
+					var key = history.state.selectedKey;
+					navContainer.to(pageId, "slide");
+				}
+			});
+
+			//window.addEventListener("popstate", this.sayHello(navContainer));
+			
 			//that.getRouter().attachRoutePatternMatched(that._onObjectMatched, that);
 		    
 		},
+		
+		
 		createFirstTab: function(){
-			var oSideNavModel = this.getMyComponent().getModel("sideNavigationData");
-			var html = this.getView().byId("firstItem_page_html");
-        	//choose first link to be loaded as home page
-        	var src = oSideNavModel.getProperty("/NavigationItems/1/subitems/0/link");
-			html.setContent("<iframe style='width:100%; height:100%;' src='"+src+"'></iframe>");
-			
+			var hash = window.location.hash;
+			var key = hash.split("/")[1];
 			var tabContainer = this.getView().byId("myTabCon");
-			var tabContainerItem = new sap.m.TabContainerItem({
-				key: "landing_tabItem",
-				name: "Dashboard Library",
-				id: "firstItem"
-			});
-			//workaround to remember path for loosely coupled navigation with NavContainer in hidden text
-			tabContainerItem.addContent(new sap.m.Text({text:"/NavigationItems/1"}));
-			tabContainer.addItem(tabContainerItem);
+			var tabContainerItem;
+			if(key === undefined || key === "landing_tabItem"){
+				var oSideNavModel = this.getMyComponent().getModel("sideNavigationData");
+				var html = this.getView().byId("firstItem_page_html");
+	        	//choose first link to be loaded as home page
+	        	var src = oSideNavModel.getProperty("/NavigationItems/1/subitems/0/link");
+				html.setContent("<iframe style='width:100%; height:100%;' src='"+src+"'></iframe>");
+
+				tabContainerItem = new sap.m.TabContainerItem({
+					key: "landing_tabItem",
+					name: "Dashboard Library",
+					id: "firstItem"
+				});
+				//workaround to remember path for loosely coupled navigation with NavContainer in hidden text
+				tabContainer.addItem(tabContainerItem);
+			}else{
+				var	result = this.findObjectMatch(key);
+				tabContainerItem = new sap.m.TabContainerItem({
+					key: key + "_tabItem",
+					name: result[0].text
+				});
+				tabContainer.addItem(tabContainerItem);
+				//Call the createpage method to create the selected item
+				this.createPage(tabContainerItem);
+				//select new tab right away
+				tabContainer.setSelectedItem(tabContainerItem);
+			}
+			
 		},
 	
 		
@@ -104,9 +135,8 @@ sap.ui.define([
 			this.createPage(tabContainerItem);
 			//select new tab right away
 			tabContainer.setSelectedItem(tabContainerItem);
-			
-			
 		},
+		
 		// Method for iterating through the navigation model to find the object selected
 		findObjectMatch: function(selectedKey){
 			var navlistModel = this.getView().getModel("sideNavigationData");
@@ -235,8 +265,11 @@ sap.ui.define([
 						}
 					}
 				}
-				//stateObj = { id: pageId };
-				//history.pushState(stateObj, selectedKey,"#fioriHtmlBuilder-display&/" + selectedKey + "/" + pageId);
+				/*stateObj = { 
+					id: pageId, 
+					key: selectedKey
+				};
+				history.pushState(stateObj, selectedKey,"#fioriHtmlBuilder-display&/" + selectedKey + "/" + pageId);*/
 				navContainer.addPage(newPage);
 				navContainer.to(newPage, "slide");
 			}
@@ -263,8 +296,11 @@ sap.ui.define([
 					if(page){
 						//selectedKey = result[0].key;
 						navContainer.to(pageId, "slide");
-						//stateObj = { id: pageId };
-						//history.pushState(stateObj, selectedKey,"#fioriHtmlBuilder-display&/" + selectedKey + "/" + pageId);
+						stateObj = { 
+							id: pageId, 
+							key: selectedKey
+						};
+						history.pushState(stateObj, selectedKey,"#fioriHtmlBuilder-display&/" + selectedKey + "/" + pageId);
 					}
 				}
 			}

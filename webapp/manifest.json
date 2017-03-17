@@ -115,26 +115,6 @@
 					"target": "naic_sr"
 				},
 				{
-					"pattern":"sched_1/{key}",
-					"name": "sched_1",
-					"target": "sched_1"
-				},
-				{
-					"pattern":"sched_2/{key}",
-					"name": "sched_2",
-					"target": "sched_2"
-				},
-				{
-					"pattern":"sched_3/{key}",
-					"name": "sched_3",
-					"target": "sched_3"
-				},
-				{
-					"pattern":"sched_4/{key}",
-					"name": "sched_4",
-					"target": "sched_4"
-				},
-				{
 					"pattern":"BOSelectionScreen1",
 					"name": "BOSelectionScreen1",
 					"target": "BOSelectionScreen1"
