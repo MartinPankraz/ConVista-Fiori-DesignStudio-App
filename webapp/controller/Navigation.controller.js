@@ -58,7 +58,7 @@ sap.ui.define([
 					var key = history.state.key;
 					var tab = history.state.tab;
 					navContainer.to(pageId, "slide");
-					tabContainer.setSelectedItem(tabContainer.getItems()[0],true,false);
+					//tabContainer.setSelectedItem(tabContainer.getItems()[0],true,false);
 				}
 			});
 
@@ -74,7 +74,7 @@ sap.ui.define([
 			var key = hash.split("/")[1];
 			var tabContainer = this.getView().byId("myTabCon");
 			var tabContainerItem;
-			if(key === undefined || key === "landing_tabItem"){
+			if(key === undefined || key === "landing"){
 				var oSideNavModel = this.getMyComponent().getModel("sideNavigationData");
 				var html = this.getView().byId("firstItem_page_html");
 	        	//choose first link to be loaded as home page
@@ -98,11 +98,10 @@ sap.ui.define([
 				//Call the createpage method to create the selected item
 				this.createPage(tabContainerItem);
 				//select new tab right away
-				tabContainer.setSelectedItem(tabContainerItem);
+				//tabContainer.setSelectedItem(tabContainerItem);
 			}
 			
 		},
-	
 		
 		// What to do if selected item is collapse button or a main item
 		onNavListItemSelect: function(oEvent){
@@ -131,12 +130,12 @@ sap.ui.define([
 				key: selectedKey + "_tabItem",
 				name: selectedItemText
 			});
-			//tabContainerItem.addContent(new sap.m.Text({text:myPath}));
+			tabContainerItem.addContent(new sap.m.Text({text:"holaaaaa"}));
 			tabContainer.addItem(tabContainerItem);
 			//Call the createpage method to create the selected item
 			this.createPage(tabContainerItem);
 			//select new tab right away
-			tabContainer.setSelectedItem(tabContainerItem);
+			//tabContainer.setSelectedItem(tabContainerItem);
 		},
 		
 		// Method for iterating through the navigation model to find the object selected
@@ -273,7 +272,7 @@ sap.ui.define([
 				};
 				history.pushState(stateObj, selectedKey,"#fioriHtmlBuilder-display&/" + selectedKey + "/" + pageId);*/
 				navContainer.addPage(newPage);
-				navContainer.to(newPage, "slide");
+				//navContainer.to(newPage, "slide");
 			}
 		},
 		

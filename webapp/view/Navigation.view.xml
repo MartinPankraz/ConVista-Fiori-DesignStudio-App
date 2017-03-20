@@ -7,7 +7,7 @@
 				  showHeader="false"
 				  title="{i18n>title}"
 				  showNavButton="true"
-				  enableScrolling="true"
+				  enableScrolling="false"
 				  class="testCSS">
 				<content>
 					<l:HorizontalLayout id="layout_horizontal_sideNav" class="ccHorizontalSideNavCon">
