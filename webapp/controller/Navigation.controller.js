@@ -49,14 +49,16 @@ sap.ui.define([
 				that.createFirstTab();
 			});
 			
-			
+			var tabContainer = that.getView().byId("myTabCon");
 			var navContainer = that.getView().byId("myNavCon");
 			window.addEventListener("popstate", function(){
 				console.log(navContainer);
 				if(history.state !== null){
 					var pageId = history.state.id;
-					var key = history.state.selectedKey;
+					var key = history.state.key;
+					var tab = history.state.tab;
 					navContainer.to(pageId, "slide");
+					tabContainer.setSelectedItem(tabContainer.getItems()[0],true,false);
 				}
 			});
 
@@ -77,7 +79,7 @@ sap.ui.define([
 				var html = this.getView().byId("firstItem_page_html");
 	        	//choose first link to be loaded as home page
 	        	var src = oSideNavModel.getProperty("/NavigationItems/1/subitems/0/link");
-				html.setContent("<iframe style='width:100%; height:100%;' src='"+src+"'></iframe>");
+				html.setContent("<iframe style='width:100%; height:100%;' src='" + src + "'></iframe>");
 
 				tabContainerItem = new sap.m.TabContainerItem({
 					key: "landing_tabItem",
@@ -146,7 +148,7 @@ sap.ui.define([
 			};
 			var result = $.grep(navItems, findObject);
 			if(result.length === 0){
-				for(var i = 0; i < navItems.length;i++){
+				for(var i = 0; i < navItems.length; i++){
 					if(navItems[i].subitems){
 						if($.grep(navItems[i].subitems, findObject).length !== 0){
 							result = $.grep(navItems[i].subitems, findObject);
@@ -160,7 +162,7 @@ sap.ui.define([
 		//Method for creating pages depending on selected item
 		createPage: function(tabItem){
 			var that = this;
-			var stateObj;
+			// var stateObj;
 			var selectedTabKey = tabItem.getKey();
 			var selectedTabText = tabItem.getName();
 			var selectedKey = selectedTabKey.split("_tabItem")[0];
@@ -177,7 +179,7 @@ sap.ui.define([
 				var listItem = selectedKey;
 				hiddenItems = result[0].hiddenscreenparts; 
 				//Remember selections for selection screen controller. Global model ensures correct state handling!
-				var params= {
+				var params = {
 					"mainViewId": that.getView().getId(),
 					"selectedTab":selectedTabKey,
 					"selectedListItem":listItem,
@@ -259,9 +261,9 @@ sap.ui.define([
 						newPage.addContent(html);
 						if(targetLink === ""){
 							var src = [sRootPath,"view/test.html"].join("/");
-							html.setContent("<iframe class='html_container' src='"+src+"'></iframe>");
+							html.setContent("<iframe class='html_container' src='" + src + "'></iframe>");
 						}else{
-							html.setContent("<iframe class='bo_container' src='"+targetLink+"'></iframe>");
+							html.setContent("<iframe class='bo_container' src='" + targetLink + "'></iframe>");
 						}
 					}
 				}
@@ -277,10 +279,11 @@ sap.ui.define([
 		
 		tabItemSelectHandler: function(oEvent){
 			var item = oEvent.getParameters().item;
-			if(item!==null){
+			if(item !== null && typeof item !== "string"){
 				var stateObj;
 				var that = this;
 				var selectedTabId = item.getId();
+				var selectedTab = item.getKey();
 				var selectedKey = item.getKey().split("_tabItem")[0];
 				var navContainer = that.getView().byId("myNavCon");
 				var result = that.findObjectMatch(selectedKey);
@@ -298,7 +301,8 @@ sap.ui.define([
 						navContainer.to(pageId, "slide");
 						stateObj = { 
 							id: pageId, 
-							key: selectedKey
+							key: selectedKey,
+							tab: selectedTab
 						};
 						history.pushState(stateObj, selectedKey,"#fioriHtmlBuilder-display&/" + selectedKey + "/" + pageId);
 					}
