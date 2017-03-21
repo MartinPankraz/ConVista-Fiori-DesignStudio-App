@@ -89,7 +89,8 @@
 			},
 			"sideNavigationData": {
 				"type": "sap.ui.model.json.JSONModel",
-				"dataSource": "side_navigation_model"
+				"dataSource": "side_navigation_model",
+				"preload": true
 			}
 		},
 		"resources": {
@@ -110,7 +111,7 @@
 			},
 			"routes": [
 				{
-					"pattern":"naic_sr/{key}",
+					"pattern":"naic_sr",
 					"name": "naic_sr",
 					"target": "naic_sr"
 				},

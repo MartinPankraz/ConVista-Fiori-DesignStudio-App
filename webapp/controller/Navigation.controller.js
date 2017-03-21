@@ -52,11 +52,10 @@ sap.ui.define([
 			var tabContainer = that.getView().byId("myTabCon");
 			var navContainer = that.getView().byId("myNavCon");
 			window.addEventListener("popstate", function(){
-				console.log(navContainer);
 				if(history.state !== null){
 					var pageId = history.state.id;
-					var key = history.state.key;
-					var tab = history.state.tab;
+					//var key = history.state.key;
+					//var tab = history.state.tab;
 					navContainer.to(pageId, "slide");
 					//tabContainer.setSelectedItem(tabContainer.getItems()[0],true,false);
 				}
@@ -67,8 +66,7 @@ sap.ui.define([
 			//that.getRouter().attachRoutePatternMatched(that._onObjectMatched, that);
 		    
 		},
-		
-		
+
 		createFirstTab: function(){
 			var hash = window.location.hash;
 			var key = hash.split("/")[1];
@@ -135,7 +133,7 @@ sap.ui.define([
 			//Call the createpage method to create the selected item
 			this.createPage(tabContainerItem);
 			//select new tab right away
-			//tabContainer.setSelectedItem(tabContainerItem);
+			tabContainer.setSelectedItem(tabContainerItem);
 		},
 		
 		// Method for iterating through the navigation model to find the object selected
@@ -303,7 +301,7 @@ sap.ui.define([
 							key: selectedKey,
 							tab: selectedTab
 						};
-						history.pushState(stateObj, selectedKey,"#fioriHtmlBuilder-display&/" + selectedKey + "/" + pageId);
+						history.pushState(stateObj, selectedKey,"#fioriHtmlBuilder-display&/" + selectedKey);
 					}
 				}
 			}

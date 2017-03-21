@@ -261,11 +261,24 @@ sap.ui.define([
 			}
 		},
 		
+		groupNameCheck: function(key) {
+			var grpRep = this.getView().getModel().getProperty("/grp_rep");
+			for(var i = 0; i < grpRep.length; i++){
+					var groupKey = grpRep[i].groupKey;
+					if(groupKey === key ){
+						return true;
+					}
+				}
+			return false;
+		},
+		
 		//update done by overriding (always sending all values to simplify update logic on backend)
 		handleButtonSavePressed: function(oEvent){
 			var newGrpText = this.getView().byId("newGrpInput").getValue();
 			if(newGrpText === ""){
 				sap.m.MessageToast.show("Enter a group name");
+			}else if(this.groupNameCheck(newGrpText)){
+				sap.m.MessageToast.show("The group name you selected already exists");
 			}else if(this.getView().byId("selectedReports").getItems().length === 0){
 				sap.m.MessageToast.show("Add at least one report to the list");
 			}else{
@@ -319,11 +332,13 @@ sap.ui.define([
 			}else{
 				var selectedGroupItemKey = selectedGroupItem.getKey();
 				var grp_rep = this.getView().getModel().getProperty("/grp_rep");
+				var newGrp_rep = [];
 				
 				for(var i = 0; i < grp_rep.length; i++){
 					var groupKey = grp_rep[i].groupKey;
-					if(groupKey === selectedGroupItemKey ){
-						grp_rep.splice(i,1);
+					if(groupKey !== selectedGroupItemKey ){
+						newGrp_rep.push(grp_rep[i]);
+						//grp_rep.splice(i,1);
 					}
 				}
 				
@@ -332,7 +347,7 @@ sap.ui.define([
 					type: "POST",
 					cache: false,
 					processData: false,//avoid URL parsing of payload!
-					data: JSON.stringify(grp_rep),
+					data: JSON.stringify(newGrp_rep),
 					dataType: "json",
 					contentType: "application/json",
 					success: function(json) {
@@ -370,7 +385,11 @@ sap.ui.define([
 		},
 		
 		groupSelectChange: function(){
+			var yourGroups = this.getView().byId("yourGroups").getItems();
 			var item = this.getView().byId("yourGroups").getSelectedItem();
+			if(!item){
+				item = yourGroups[0];
+			}
 			var queryListForGroup = this.getView().byId("reportsSelectedGroup");
 			if(item === null){
 				queryListForGroup.removeAllItems();
