@@ -321,7 +321,10 @@ sap.ui.define([
 					path:"/reports",
 					template: oTemplate
 				});
-				
+				var selectedIcon = this.getView().byId("selectedIcon");
+				var selectedText = this.getView().byId("selectedText");
+				selectedIcon.removeStyleClass("invisible");
+				selectedText.removeStyleClass("invisible");
 			}
 			
 		},
