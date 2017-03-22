@@ -335,23 +335,24 @@ sap.ui.define([
 				sap.m.MessageToast.show("Select or create a group first");
 			}else{
 				var selectedGroupItemKey = selectedGroupItem.getKey();
-				var grp_rep = this.getView().getModel().getProperty("/grp_rep");
-				var newGrp_rep = [];
+				var data = this.getView().getModel().getProperty("/grp_rep");
+				var newData = [];
 				
-				for(var i = 0; i < grp_rep.length; i++){
-					var groupKey = grp_rep[i].groupKey;
+				for(var i = 0; i < data.length; i++){
+					var groupKey = data[i].groupKey;
 					if(groupKey !== selectedGroupItemKey ){
-						newGrp_rep.push(grp_rep[i]);
-						//grp_rep.splice(i,1);
+						newData.push(data[i]);
 					}
 				}
+				data = newData;
+				this.getView().getModel().setProperty("/grp_rep", data);
 				
 				$.ajax({
 					url: this.sServiceUrl + "_method=update_user_groups",
 					type: "POST",
 					cache: false,
 					processData: false,//avoid URL parsing of payload!
-					data: JSON.stringify(newGrp_rep),
+					data: JSON.stringify(data),
 					dataType: "json",
 					contentType: "application/json",
 					success: function(json) {
@@ -365,7 +366,7 @@ sap.ui.define([
 			
 		},
 		
-		moveGroupReportsToSelectedGroup: function(oEvent){
+		/*moveGroupReportsToSelectedGroup: function(oEvent){
 			var item = this.getView().byId("reportsSelectedGroup").getSelectedItem();
 			if(item){
 				this.getView().byId("selectedReports").addItem(new sap.ui.core.Item({key: item.getKey(),text: item.getText()}));
@@ -386,7 +387,7 @@ sap.ui.define([
 			if(item){
 				this.getView().byId("selectedReports").removeItem(item);	
 			}
-		},
+		},*/
 		
 		groupSelectChange: function(){
 			var yourGroups = this.getView().byId("yourGroups").getItems();
@@ -395,7 +396,7 @@ sap.ui.define([
 				item = yourGroups[0];
 			}
 			var queryListForGroup = this.getView().byId("reportsSelectedGroup");
-			if(item === null){
+			if(item === null || yourGroups.length === 0){
 				queryListForGroup.removeAllItems();
 			}else{
 				var itemKey = item.getKey();
