@@ -14,24 +14,7 @@
 			"id": "servicecatalog.connectivityComponent",
 			"version": "0.0.0"
 		},
-		"dataSources": {
-			"ZARP_SCHED_SRV": {
-				"uri": "/sap/opu/odata/sap/ZARP_SCHED_SRV/",
-				"type": "OData",
-				"settings": {
-					"odataVersion": "2.0",
-					"localUri": "localService/metadata.xml"
-				}
-			},
-			"ZARP_COMPCODE_SRV": {
-				"uri": "/sap/opu/odata/sap/ZARP_COMPCODE_SRV/",
-				"type": "OData",
-				"settings": {
-					"odataVersion": "2.0",
-					"localUri": "localService/ZARP_COMPCODE_SRV/metadata.xml"
-				}
-			}
-		}
+		"dataSources": {}
 	},
 	"sap.ui": {
 		"_version": "1.1.0",
@@ -49,10 +32,7 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": [
-			"sap_bluecrystal",
-			"sap_hcb"
-		],
+		"supportedThemes": ["sap_bluecrystal", "sap_hcb"],
 		"fullWidth": true
 	},
 	"sap.ui5": {
@@ -85,11 +65,9 @@
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -100,43 +78,35 @@
 				"controlAggregation": "pages",
 				"transition": "slide"
 			},
-			"routes": [
-				{
-					"pattern": "",
-					"name": "home",
-					"target": "home"
-				},
-				{
-					"pattern": "NAICReports",
-					"name": "naic_sr",
-					"target": "naic_sr"
-				},
-				{
-					"pattern": "schedulingOverview",
-					"name": "sched_1",
-					"target": "sched_1"
-				},
-				{
-					"pattern": "schedulingManageGroups",
-					"name": "sched_2",
-					"target": "sched_2"
-				},
-				{
-					"pattern": "scheduleMyFiles",
-					"name": "sched_3",
-					"target": "sched_3"
-				},
-				{
-					"pattern": "schedulingHistory",
-					"name": "sched_4",
-					"target": "sched_4"
-				},
-				{
-					"pattern": "BoseSelectionScreen",
-					"name": "BOSelectionScreen1",
-					"target": "BOSelectionScreen1"
-				}
-			],
+			"routes": [{
+				"pattern": "",
+				"name": "home",
+				"target": "home"
+			}, {
+				"pattern": "NAICReports",
+				"name": "naic_sr",
+				"target": "naic_sr"
+			}, {
+				"pattern": "schedulingOverview",
+				"name": "sched_1",
+				"target": "sched_1"
+			}, {
+				"pattern": "schedulingManageGroups",
+				"name": "sched_2",
+				"target": "sched_2"
+			}, {
+				"pattern": "scheduleMyFiles",
+				"name": "sched_3",
+				"target": "sched_3"
+			}, {
+				"pattern": "schedulingHistory",
+				"name": "sched_4",
+				"target": "sched_4"
+			}, {
+				"pattern": "BoseSelectionScreen",
+				"name": "BOSelectionScreen1",
+				"target": "BOSelectionScreen1"
+			}],
 			"targets": {
 				"home": {
 					"viewName": "Navigation",

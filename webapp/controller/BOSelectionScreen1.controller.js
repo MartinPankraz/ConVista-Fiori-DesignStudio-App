@@ -15,11 +15,6 @@ sap.ui.define([
 		 * @memberOf convista.com.arp.demo.view.BOSelectionScreen1
 		 */
 		onInit: function() {
-			var oModel = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV", {defaultBindingMode: "TwoWay",defaultCountMode: "Inline"});
-			this.getView().byId("companyCode").setModel(oModel);
-			this.getView().byId("securityAccount").setModel(oModel);
-			this.getView().byId("glAccount").setModel(oModel);
-			
 			var globalParams = sap.ui.getCore().getModel("globalParameters").getData();
 			var itemsToHide = globalParams.hiddenItems;
 			var singleDate = this.getView().byId("datePicker1");
@@ -136,7 +131,7 @@ sap.ui.define([
 		},
 		
 		onCompanySelectionFinish: function(oEvent) {
-			var selectedCompanies = this.getView().byId("companyCode").getSelectedKeys();
+			/*var selectedCompanies = this.getView().byId("companyCode").getSelectedKeys();
 			var filters = [];
 			for(var i=0;i<selectedCompanies.length;i++){
 				var key = selectedCompanies[i];
@@ -147,12 +142,12 @@ sap.ui.define([
 			          value1: key
 			    	})
 			     );
-			}
+			}*/
 			// invoking entity by passing parameters
 			/*oModel.read("/securityAccountSet", {
 			     filters: filters
 			});*/
-			this.getView().byId("securityAccount").getBinding("items").filter(filters);
+			//this.getView().byId("securityAccount").getBinding("items").filter(filters);
 		}
 	});
 

@@ -71,9 +71,14 @@
                             		<MultiComboBox
 										id="companyCode"
 										required="false"
-										items="{/companySet}"
 										selectionFinish="onCompanySelectionFinish">
-										<core:Item key="{Compcode}" text="{Txtmd}" />
+                            			<items>
+                            				<core:Item key="001" text="ConVista Global" />
+                            				<core:Item key="002" text="ConVista DE" />
+                            				<core:Item key="003" text="ConVista Brazil" />
+                            				<core:Item key="004" text="SAP Asia" />
+                            				<core:Item key="005" text="DEMO Life" />
+                            			</items>
 									</MultiComboBox>
                             	</form:fields>
                             </form:FormElement>
@@ -142,9 +147,14 @@
                             	<form:fields>
                             		<MultiComboBox
 										id="securityAccount"
-										required="false"
-										items="{/securityAccountSet}">
-											<core:Item text="{Cfmsecac} | {Txtmd}" key="{Cfmsecac}"/>
+										required="false">
+                            				<items>
+                            					<core:Item text="BANK_ACC1 | CUSTODY_ACCOUNT_1" key="001"/>
+                            					<core:Item text="BANK_ACC2 | CUSTODY_ACCOUNT_2" key="002"/>
+                            					<core:Item text="1111 | General" key="003"/>
+                            					<core:Item text="1112 | General" key="004"/>
+                            					<core:Item text="ABC | Test" key="005"/>
+                            				</items>
 									</MultiComboBox>
                             	</form:fields>
                             </form:FormElement>
@@ -152,9 +162,14 @@
                             	<form:fields>
 									<MultiComboBox
 										id="glAccount"
-										required="false"
-										items="{/glaccountSet}">
-											<core:Item text="{Chrtacct} | {Glaccont}" key="{Glaccont}"/>
+										required="false">
+											<items>
+												<core:Item text="INSU | 1805040000" key="001"/>
+												<core:Item text="INSU | 1905040000" key="002"/>
+												<core:Item text="INSU | 2105040000" key="003"/>
+												<core:Item text="INSU | 3105040000" key="004"/>
+												<core:Item text="INSU | 4105040000" key="005"/>
+											</items>
 									</MultiComboBox>
                             	</form:fields>
                             </form:FormElement> 
