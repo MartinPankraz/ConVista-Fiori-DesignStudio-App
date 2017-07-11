@@ -4,8 +4,9 @@ sap.ui.define([
 	"sap/ui/model/Filter",
 	"sap/ui/model/Sorter",
     "convista/com/arp/demo/view/utils/BExHelperFunctions",
-    "convista/com/arp/demo/view/utils/MyFormatter"
-], function(BaseController, ODataModel, Filter, Sorter, BExHelper, MyFormatter) {
+    "convista/com/arp/demo/view/utils/MyFormatter",
+    "sap/ui/model/json/JSONModel"
+], function(BaseController, ODataModel, Filter, Sorter, BExHelper, MyFormatter,JSONModel) {
 	"use strict";
 
 	return BaseController.extend("convista.com.arp.demo.controller.schedulingOverview", {
@@ -21,17 +22,23 @@ sap.ui.define([
 			//oRouter.getRoute("sched_1").attachPatternMatched(this._onObjectMatched, this);
 
 			var that = this;
+			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
 			
-			var oModelCompCode = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV",{
+			/*var oModelCompCode = new ODataModel("/sap/opu/odata/sap/ZARP_COMPCODE_SRV",{
 				defaultBindingMode: "TwoWay",
 				defaultCountMode: "Inline"
 			});
+			this.getView().setModel(oModelCompCode, "compCode");*/
+			
+			var oModelCompCode = new JSONModel([sRootPath,'model/oDataModelCompanyCodes.json'].join("/"));
 			this.getView().setModel(oModelCompCode, "compCode");
 
-			var oModel = new sap.ui.model.json.JSONModel();
-			/* eslint-disable */
+			//var oModel = new sap.ui.model.json.JSONModel();
+			var oModel = new JSONModel([sRootPath,'model/mainModel.json'].join("/"));
+			this.getView().setModel(oModel);
+			
+			/*
 			this.sServiceUrl = "https://sapwebdcbw.sap.convista.local:8443/sap/bc/cs67_ds_com?";
-			/* eslint-enable */
 			$.ajax({
 				url: this.sServiceUrl + "_method=get_user_info&_datasrc=sched_future",
 				dataType: "jsonp",
@@ -40,9 +47,12 @@ sap.ui.define([
 					oModel.setData(json);
 					that.getView().setModel(oModel);
 				}
-			});
+			});*/
 			
-			var oReportModel = new sap.ui.model.json.JSONModel();
+			var oReportModel = new JSONModel([sRootPath,'model/reportSelection.json'].join("/"));
+			this.getView().setModel(oReportModel, "reportSelection");
+			
+			/*var oReportModel = new sap.ui.model.json.JSONModel();
 			this.getView().byId("reportSelection").setModel(oReportModel);
 			$.ajax({
 				url: this.sServiceUrl + "_method=get_user_info&_datasrc=REP",
@@ -52,9 +62,24 @@ sap.ui.define([
 					oReportModel.setData(json);
 					that.getView().setModel(oReportModel, "reportSelection");
 				}
-			});
+			});*/
+			
+			var reportGroupPath = [sRootPath,'model/reportGroups.json'].join("/");
+
 			
 			var oReportGroupModel = new sap.ui.model.json.JSONModel();
+			this.getView().byId("reportGroupSelection").setModel(oReportGroupModel);
+			$.ajax({
+				url: reportGroupPath,
+				dataType: "json",
+				success: function(json) {
+					json.entries = that.filterGrpStructureForGroups(json.entries);
+					oReportGroupModel.setData(json);
+					that.getView().byId("reportGroupSelection").addItem(new sap.ui.core.Item({key:"none",text:"None"}));
+				}
+			});
+			
+			/*var oReportGroupModel = new sap.ui.model.json.JSONModel();
 			this.getView().byId("reportGroupSelection").setModel(oReportGroupModel);
 			$.ajax({
 				url: this.sServiceUrl + "_method=get_user_info&_datasrc=GRP_REP",
@@ -65,7 +90,7 @@ sap.ui.define([
 					oReportGroupModel.setData(json);
 					that.getView().byId("reportGroupSelection").addItem(new sap.ui.core.Item({key:"none",text:"None"}));
 				}
-			});
+			});*/
 			
 			this.getView().byId("firstStartDate").setDateValue(new Date());
 			this.getView().byId("dateAsOf").setDateValue(new Date());
@@ -153,7 +178,27 @@ sap.ui.define([
 			/*oView.byId("vsdFilterBar").setVisible(aFilters.length > 0);
 			oView.byId("vsdFilterLabel").setText(mParams.filterString);*/
 		},
-		
+		addNewMockReport: function(oEvent) {
+			var oTable = this.byId("idSchedulingTable");
+			var sStartDate = MyFormatter.formatDate(this.byId("firstStartDate").getDateValue()); 
+			var sStartTime = MyFormatter.formatTime(this.byId("firstStartTime").getDateValue()); 
+			var oColumnListItem = new sap.m.ColumnListItem({
+				cells:[
+					new sap.m.ObjectIdentifier({title: "JobName"}),
+					new sap.m.Text({text: "schedObjNameDesc"}),
+					new sap.m.Text({text: "Report"}),
+					new sap.m.Text({text: "schedStatus"}),
+					new sap.m.Text({text: sStartDate + sStartTime}),
+					new sap.m.Text({text: MyFormatter.getDateStamp()}),
+					new sap.m.Text({text: "jobStartTypeDesc"}),
+					new sap.m.Text({text: "jobZip"}),
+					new sap.m.Text({text: "jobPeriodicDesc"}),
+					new sap.m.Text({text: "jobDelayHolidayDesc"}),
+					new sap.m.Text({text: "jobcount"})
+					]
+			});
+			oTable.addItem(oColumnListItem);
+		},
 		scheduleReports: function(oEvent){
 			var that = this;
 			var dateAsOf = MyFormatter.getSAPInternatlDate(this.getView().byId("dateAsOf").getDateValue());
@@ -229,24 +274,34 @@ sap.ui.define([
 			if(this.byId("idSchedulingTable").getSelectedItem() === null){
 				sap.m.MessageToast.show("Select one item from the table");
 			}else{
-				var sJobName = this.byId("idSchedulingTable").getSelectedItem().getBindingContext().getProperty("jobname");
-				var sJobCount = this.byId("idSchedulingTable").getSelectedItem().getBindingContext().getProperty("jobcount");
+				var oItem = this.byId("idSchedulingTable").getSelectedItem();
+				var oTable = this.byId("idSchedulingTable");
 				
-				$.ajax({
-					url: this.sServiceUrl + "_method=delete_job&_jobname=" + sJobName + "&_jobcount=" + sJobCount,
-					type: "POST",
-					cache: false,
-					processData: false,//avoid URL parsing of payload!
-					dataType: "json",
-					contentType: "application/json",
-					success: function(json) {
-						var oModel = that.getView().byId("idSchedulingTable").getModel();
-						oModel.setData(json);
-						that.byId("idSchedulingTable").removeSelections(true);
-						sap.m.MessageToast.show("Item deleted succesfully");
-					}
-				});
+				oTable.removeItem(oItem);
+				sap.m.MessageToast.show("Item deleted succesfully");
 			}
+			// var that = this;
+			// if(this.byId("idSchedulingTable").getSelectedItem() === null){
+			// 	sap.m.MessageToast.show("Select one item from the table");
+			// }else{
+			// 	var sJobName = this.byId("idSchedulingTable").getSelectedItem().getBindingContext().getProperty("jobname");
+			// 	var sJobCount = this.byId("idSchedulingTable").getSelectedItem().getBindingContext().getProperty("jobcount");
+				
+			// 	$.ajax({
+			// 		url: this.sServiceUrl + "_method=delete_job&_jobname=" + sJobName + "&_jobcount=" + sJobCount,
+			// 		type: "POST",
+			// 		cache: false,
+			// 		processData: false,//avoid URL parsing of payload!
+			// 		dataType: "json",
+			// 		contentType: "application/json",
+			// 		success: function(json) {
+			// 			var oModel = that.getView().byId("idSchedulingTable").getModel();
+			// 			oModel.setData(json);
+			// 			that.byId("idSchedulingTable").removeSelections(true);
+			// 			sap.m.MessageToast.show("Item deleted succesfully");
+			// 		}
+			// 	});
+			// }
 		},
 		
 		cancelReport: function(){

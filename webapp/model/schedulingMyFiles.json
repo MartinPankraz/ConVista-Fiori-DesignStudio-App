@@ -1,0 +1,91 @@
+[{
+	"filename": "AC_ALL_HOLDINGS_20170516_0000000765.pdf",
+	"type": "PDF",
+	"keydate": "07.02.2017",
+	"createdate": "16.05.2017 00:00:21",
+	"schedule": "",
+	"exportType": "NT",
+	"jobtype": "Report",
+	"schedobj": "/CS67/AC_ALL_HOLDINGS",
+	"counter": "0000000765"
+}, {
+	"filename": "AC_ALL_HOLDINGS_20170523_0000000780.pdf",
+	"type": "PDF",
+	"keydate": "07.02.2017",
+	"createdate": "23.05.2017 00:00:24",
+	"schedule": "",
+	"exportType": "NT",
+	"jobtype": "Report",
+	"schedobj": "/CS67/AC_ALL_HOLDINGS",
+	"counter": "0000000780"
+}, {
+	"filename": "AC_ALL_HOLDINGS_20170530_0000000795.pdf",
+	"type": "PDF",
+	"keydate": "07.02.2017",
+	"createdate": "30.05.2017 00:00:27",
+	"schedule": "",
+	"exportType": "NT",
+	"jobtype": "Report",
+	"schedobj": "/CS67/AC_ALL_HOLDINGS",
+	"counter": "0000000795"
+}, {
+	"filename": "AC_ALL_HOLDINGS_20170606_0000000815.pdf",
+	"type": "PDF",
+	"keydate": "07.02.2017",
+	"createdate": "06.06.2017 00:00:31",
+	"schedule": "",
+	"exportType": "NT",
+	"jobtype": "Report",
+	"schedobj": "/CS67/AC_ALL_HOLDINGS",
+	"counter": "0000000815"
+}, {
+	"filename": "AC_ALL_HOLDINGS_20170613_0000000830.pdf",
+	"type": "PDF",
+	"keydate": "07.02.2017",
+	"createdate": "13.06.2017 00:00:36",
+	"schedule": "",
+	"exportType": "NT",
+	"jobtype": "Report",
+	"schedobj": "/CS67/AC_ALL_HOLDINGS",
+	"counter": "0000000830"
+}, {
+	"filename": "AC_ALL_HOLDINGS_20170620_0000000845.pdf",
+	"type": "PDF",
+	"keydate": "07.02.2017",
+	"createdate": "20.06.2017 00:00:20",
+	"schedule": "",
+	"exportType": "NT",
+	"jobtype": "Report",
+	"schedobj": "/CS67/AC_ALL_HOLDINGS",
+	"counter": "0000000845"
+}, {
+	"filename": "AC_ALL_HOLDINGS_20170627_0000000860.pdf",
+	"type": "PDF",
+	"keydate": "07.02.2017",
+	"createdate": "27.06.2017 00:00:43",
+	"schedule": "",
+	"exportType": "NT",
+	"jobtype": "Report",
+	"schedobj": "/CS67/AC_ALL_HOLDINGS",
+	"counter": "0000000860"
+}, {
+	"filename": "AC_ALL_HOLDINGS_20170704_0000000875.pdf",
+	"type": "PDF",
+	"keydate": "07.02.2017",
+	"createdate": "04.07.2017 00:04:15",
+	"schedule": "",
+	"exportType": "NT",
+	"jobtype": "Report",
+	"schedobj": "/CS67/AC_ALL_HOLDINGS",
+	"counter": "0000000875"
+}, {
+	"filename": "AC_ALL_HOLDINGS_20170711_0000000890.pdf",
+	"type": "PDF",
+	"keydate": "07.02.2017",
+	"createdate": "11.07.2017 00:00:03",
+	"schedule": "",
+	"exportType": "NT",
+	"jobtype": "Report",
+	"schedobj": "/CS67/AC_ALL_HOLDINGS",
+	"counter": "0000000890"
+}]

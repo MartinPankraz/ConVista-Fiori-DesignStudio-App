@@ -3,8 +3,9 @@ sap.ui.define([
 	"sap/ui/model/odata/v2/ODataModel",
 	"sap/ui/model/Filter",
 	"sap/ui/model/Sorter",
-	"convista/com/arp/demo/lib/FileSaver.min"
-], function(Controller, ODataModel, Filter, Sorter, FileSaver) {
+	"convista/com/arp/demo/lib/FileSaver.min",
+    "sap/ui/model/json/JSONModel"
+], function(Controller, ODataModel, Filter, Sorter, FileSaver,JSONModel) {
 	"use strict";
 
 	return Controller.extend("convista.com.arp.demo.controller.schedulingMyFiles", {
@@ -18,11 +19,13 @@ sap.ui.define([
 		onInit: function() {
 			//jQuery.sap.require("FileSaver");
 			var that = this;
-
-			var oModel = new sap.ui.model.json.JSONModel();
-			/* eslint-disable */
+			
+			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
+			var oModel = new JSONModel([sRootPath,'model/schedulingMyFiles.json'].join("/"));
+			this.getView().setModel(oModel);
+			
+			/*var oModel = new sap.ui.model.json.JSONModel();
 			this.sServiceUrl = "https://sapwebdcbw.sap.convista.local:8443/sap/bc/cs67_ds_com?";
-			/* eslint-enable */
 			$.ajax({
 				url: this.sServiceUrl+"_method=list_all&exportType=",
 				dataType: "jsonp",
@@ -32,7 +35,7 @@ sap.ui.define([
 					that.getView().setModel(oModel);
 					//sap.ui.getCore().setModel(oModel);
 				}
-			});
+			});*/
 		},
 
 		/**
@@ -109,31 +112,47 @@ sap.ui.define([
 		},
 		
 		onRowSelect: function(oEvent){
-			var that = this;
-			var oSelectedListItem = oEvent.getParameter("listItem");            //Get Hold of List Item selected.
-			var oBindingContext = oSelectedListItem.getBindingContext();     //Get Hold Binding Context of Selected List Item.
-			var oPath = oBindingContext.getPath();              //Get Hold of Binding Context Path
-			var oModel = this.getView().getModel().getProperty(oPath);          //Get the binding model.
-			var fileName = oModel.filename;
-			//nee xhr for filesaver blob. Not able to figure out how to use ajax likewise yet
-			var xhr = new XMLHttpRequest();
-			xhr.open('GET', this.sServiceUrl+"_method=single&_file="+fileName, true);
-			xhr.responseType = 'blob';
-			xhr.onreadystatechange = function(e) {
-				if (this.readyState === 4){
-				  if (this.status === 200) {
-				  	var blob = new Blob([this.response]/*, {type: that.mimetype()'application/pdf'}*/);
-			    	/* eslint-disable */
-			    	saveAs(blob, fileName);	
-			    	/* eslint-enable */
-				  }else{
-					sap.m.MessageToast.show("File could not be downloaded!");
-				  }
-				  that.getView().byId("idSchedulingMyFiles").setBusy(false);
+			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
+			var pdfExampleRoute = [sRootPath,'localFiles/pdfExample.txt'].join("/");
+			
+			$.ajax({
+				url: pdfExampleRoute,
+				dataType: "text",
+				success: function(data) {
+					window.open("data:application/pdf;base64," + data);
+				},
+				error: function(error){
+					console.log(error);
 				}
-			};
-			this.getView().byId("idSchedulingMyFiles").setBusy(true);
-			xhr.send();
+			});
+			
+			
+			
+			// var that = this;
+			// var oSelectedListItem = oEvent.getParameter("listItem");            //Get Hold of List Item selected.
+			// var oBindingContext = oSelectedListItem.getBindingContext();     //Get Hold Binding Context of Selected List Item.
+			// var oPath = oBindingContext.getPath();              //Get Hold of Binding Context Path
+			// var oModel = this.getView().getModel().getProperty(oPath);          //Get the binding model.
+			// var fileName = oModel.filename;
+			// //nee xhr for filesaver blob. Not able to figure out how to use ajax likewise yet
+			// var xhr = new XMLHttpRequest();
+			// xhr.open('GET', this.sServiceUrl+"_method=single&_file="+fileName, true);
+			// xhr.responseType = 'blob';
+			// xhr.onreadystatechange = function(e) {
+			// 	if (this.readyState === 4){
+			// 	  if (this.status === 200) {
+			// 	  	var blob = new Blob([this.response]/*, {type: that.mimetype()'application/pdf'}*/);
+			//     	/* eslint-disable */
+			//     	saveAs(blob, fileName);	
+			//     	/* eslint-enable */
+			// 	  }else{
+			// 		sap.m.MessageToast.show("File could not be downloaded!");
+			// 	  }
+			// 	  that.getView().byId("idSchedulingMyFiles").setBusy(false);
+			// 	}
+			// };
+			// this.getView().byId("idSchedulingMyFiles").setBusy(true);
+			// xhr.send();
 			
 			/*$.ajax({
 				url: this.sServiceUrl+"_method=single&_file="+fileName,

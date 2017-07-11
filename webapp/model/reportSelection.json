@@ -1,0 +1,84 @@
+{
+    "id": "REP",
+    "entries": [{
+        "mandt": "100",
+        "query": "/CS67/AC_ALL_AMZ_COST_PROG",
+        "pdf": "/CS67/AC_AMORTIZED_COST",
+        "descr": "Amortized Cost Progression",
+        "dailyPostVar": "/CS67/FS_XDATE",
+        "periodicPostVar": "/CS67/FS_BDATE",
+        "isThroughDate": "X",
+        "expandedDisp": "",
+        "chart": ""
+    }, {
+        "mandt": "100",
+        "query": "/CS67/AC_ALL_EARNED_INCOME",
+        "pdf": "/CS67/AC_EARNED_INCOME",
+        "descr": "Earned Income",
+        "dailyPostVar": "/CS67/FS_XDATE",
+        "periodicPostVar": "/CS67/FS_BDATE",
+        "isThroughDate": "X",
+        "expandedDisp": "",
+        "chart": ""
+    }, {
+        "mandt": "100",
+        "query": "/CS67/AC_ALL_EARNED_INC_PROG",
+        "pdf": "/CS67/AC_ALL_EARNED_INC_PROGR",
+        "descr": "Earned Income Trend Analysis",
+        "dailyPostVar": "/CS67/FS_XDATE",
+        "periodicPostVar": "/CS67/FS_BDATE",
+        "isThroughDate": "X",
+        "expandedDisp": "",
+        "chart": "X"
+    }, {
+        "mandt": "100",
+        "query": "/CS67/AC_ALL_HOLDINGS",
+        "pdf": "/CS67/AC_HOLDINGS",
+        "descr": "Portfolio Holdings",
+        "dailyPostVar": "/CS67/FS_XDATE",
+        "periodicPostVar": "/CS67/FS_BDATE",
+        "isThroughDate": "",
+        "expandedDisp": "",
+        "chart": ""
+    }, {
+        "mandt": "100",
+        "query": "/CS67/AC_ALL_TRANSACTIONS",
+        "pdf": "/CS67/AC_TRANSACTIONS",
+        "descr": "Transaction Activity",
+        "dailyPostVar": "/CS67/FS_XDATE",
+        "periodicPostVar": "/CS67/FS_BDATE",
+        "isThroughDate": "X",
+        "expandedDisp": "",
+        "chart": ""
+    }, {
+        "mandt": "100",
+        "query": "/CS67/AC_ALL_TRANSACTIONS_IMP",
+        "pdf": "/CS67/AC_TRANSACTIONS_IMP",
+        "descr": "Transaction Activity with Impairment",
+        "dailyPostVar": "/CS67/FS_XDATE",
+        "periodicPostVar": "/CS67/FS_BDATE",
+        "isThroughDate": "X",
+        "expandedDisp": "",
+        "chart": ""
+    }, {
+        "mandt": "100",
+        "query": "/CS67/GL_ALL_BAL_BY_SEC",
+        "pdf": "/CS67/GL_BAL_BY_SEC",
+        "descr": "General Ledger Summary",
+        "dailyPostVar": "/CS67/PSTNGDAT",
+        "periodicPostVar": "/CS67/PSTNGDAT",
+        "isThroughDate": "X",
+        "expandedDisp": "",
+        "chart": ""
+    }, {
+        "mandt": "100",
+        "query": "/CS67/GL_ALL_TRIAL_BALANCE",
+        "pdf": "/CS67/GL_TRIAL_BALANCE",
+        "descr": "Trial Balance Rollforward",
+        "dailyPostVar": "/CS67/PSTNGDAT",
+        "periodicPostVar": "/CS67/PSTNGDAT",
+        "isThroughDate": "X",
+        "expandedDisp": "",
+        "chart": ""
+    }]
+}

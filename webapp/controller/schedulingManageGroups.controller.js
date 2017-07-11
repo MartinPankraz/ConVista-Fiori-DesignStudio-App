@@ -27,10 +27,50 @@ sap.ui.define([
 			var oModel = new sap.ui.model.json.JSONModel();
 			this.getView().setModel(oModel);
 			/* eslint-disable */
-			this.sServiceUrl = "https://sapwebdcbw.sap.convista.local:8443/sap/bc/cs67_ds_com?";
+			//this.sServiceUrl = "https://sapwebdcbw.sap.convista.local:8443/sap/bc/cs67_ds_com?";
 			/* eslint-enable */
 			
+			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
+			var reportSelectionPath = [sRootPath,'model/reportSelection.json'].join("/");
+			var reportGroupPath = [sRootPath,'model/reportGroups.json'].join("/");
+			
 			$.ajax({
+				url: reportSelectionPath,
+				dataType: "json",
+				success: function(json) {
+					oModel.setProperty("/reports",json.entries);
+					
+					$.ajax({
+						url: reportGroupPath,
+						dataType: "json",
+						success: function(jsonGrpRep) {
+							oModel.setProperty("/grp_rep",jsonGrpRep.entries);
+							var entries = that.filterGrpStructureForGroups(jsonGrpRep.entries);
+							oModel.setProperty("/groups", entries);
+							//make sure first value is always selected!
+							if(typeof jsonGrpRep.entries[0] !== "undefined"){
+								var selectedGroupKey = jsonGrpRep.entries[0].groupKey;
+								var queriesWithinGroupBox = that.getView().byId("reportsSelectedGroup");
+								for(var i = 0; i < jsonGrpRep.entries.length; i++){
+									var grpEntry = jsonGrpRep.entries[i];
+									if(grpEntry.groupKey === selectedGroupKey){
+										for(var j = 0; j < json.entries.length; j++){
+											var entry = json.entries[j];	
+											if(entry.query === grpEntry.query){
+												queriesWithinGroupBox.addItem(new sap.ui.core.Item({key: entry.query, text: entry.descr}));
+												break;
+											}
+										}	
+									}
+								}
+							}
+							
+						}
+					});
+				}
+			});
+			
+			/*$.ajax({
 				url: this.sServiceUrl + "_method=get_user_info&_datasrc=REP",
 				dataType: "jsonp",
 				jsonp: "callback",
@@ -66,7 +106,7 @@ sap.ui.define([
 						}
 					});
 				}
-			});
+			});*/
 			this.makeDragAndDropAvailable();
 			this.initTouchHandler();
 		},

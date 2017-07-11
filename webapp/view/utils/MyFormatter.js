@@ -24,6 +24,27 @@ sap.ui.define([], function() {
 			});
 			var resultTS = oDateFormat.format(new Date());
 			return resultTS;
+		},
+		getDateStamp: function(){
+			var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+				pattern: "dd.MM.YYYY HH:mm:ss"
+			});
+			var resultTS = oDateFormat.format(new Date());
+			return resultTS;
+		},
+		formatDate: function(oDate){
+			var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+				pattern: "dd.MM.YYYY"
+			});
+			var formattedDate = oDateFormat.format(oDate);
+			return formattedDate;
+		},
+		formatTime: function(oTime){
+			var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+				pattern: " HH:mm:ss"
+			});
+			var formattedTime = oDateFormat.format(oTime);
+			return formattedTime;
 		}
    };
 });

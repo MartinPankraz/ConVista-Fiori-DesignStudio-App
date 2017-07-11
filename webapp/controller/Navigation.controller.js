@@ -40,7 +40,8 @@ sap.ui.define([
     			var html = that.getView().byId("firstItem_page_html");
 	        	//choose first link to be loaded as home page
 	        	var src = navigationListModel.getProperty("/NavigationItems/1/subitems/0/link");
-				html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
+				//html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
+				html.setContent("<img class='bo_container'width='100%' height='100%' src='"+src+"'></img>");
 				html.addStyleClass("bo_container");
 				//using Fioir URL params?
 				if(that.getMyComponent().getComponentData()){
@@ -258,9 +259,11 @@ sap.ui.define([
 							newPage.addContent(html);
 							if(targetLink === ""){
 								var src = [sRootPath,"view/test.html"].join("/");
-								html.setContent("<iframe class='html_container' src='"+src+"'></iframe>");
+								//html.setContent("<iframe class='html_container' src='"+src+"'></iframe>");
+								html.setContent("<img class='html_container'width='100%' height='100%' src='"+src+"'></img>");
 							}else{
-								html.setContent("<iframe class='bo_container' src='"+targetLink+"'></iframe>");
+								//html.setContent("<iframe class='bo_container' src='"+targetLink+"'></iframe>");
+								html.setContent("<img class='bo_container' width='100%' height='100%' src='"+targetLink+"'></img>");
 							}
 						}
 					}

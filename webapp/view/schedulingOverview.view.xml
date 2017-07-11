@@ -332,7 +332,8 @@
             <FlexBox 
             	justifyContent="End">
             	<items>
-            		<Button text="{i18n>buttonExecute}" type="Accept" width="20rem" class="sapUiTinyMarginTop sapUiTinyMarginBottom" press="scheduleReports"/>
+            		<!--<Button text="{i18n>buttonExecute}" type="Accept" width="20rem" class="sapUiTinyMarginTop sapUiTinyMarginBottom" press="scheduleReports"/>-->
+            		<Button text="{i18n>buttonExecute}" type="Accept" width="20rem" class="sapUiTinyMarginTop sapUiTinyMarginBottom" press="addNewMockReport"/>
             	</items>
         	</FlexBox>
             <!-- End of second Form -->

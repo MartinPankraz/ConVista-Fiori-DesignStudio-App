@@ -1,8 +1,9 @@
 sap.ui.define([
 	"convista/com/arp/demo/controller/BaseController",
 	"sap/ui/model/Filter",
-	"sap/ui/model/Sorter"
-], function(Controller,Filter,Sorter) {
+	"sap/ui/model/Sorter",
+    "sap/ui/model/json/JSONModel"
+], function(Controller,Filter,Sorter,JSONModel) {
 	"use strict";
 
 	return Controller.extend("convista.com.arp.demo.controller.schedulingHistory", {
@@ -16,10 +17,12 @@ sap.ui.define([
 		onInit: function() {
 			var that = this;
 			
-			var oModel = new sap.ui.model.json.JSONModel();
-			/* eslint-disable */
+			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
+			var oModel = new JSONModel([sRootPath,'model/schedulingHistory.json'].join("/"));
+			this.getView().setModel(oModel);
+			
+			/*var oModel = new sap.ui.model.json.JSONModel();
 			var sServiceUrl = "https://sapwebdcbw.sap.convista.local:8443/sap/bc/cs67_ds_com?_method=get_user_info&_datasrc=sched_hist";
-			/* eslint-enable */
 			$.ajax({
 				url: sServiceUrl,
 				dataType: "jsonp",
@@ -29,7 +32,7 @@ sap.ui.define([
 					that.getView().setModel(oModel);
 					//sap.ui.getCore().setModel(oModel);
 				}
-			});
+			});*/
 			
 		},
 

@@ -1,0 +1,28 @@
+{
+	"id": "GRP_REP",
+	"entries": [{
+		"mandt": "100",
+		"uname": "DGARCIA",
+		"groupKey": "First group",
+		"query": "/CS67/AC_ALL_EARNED_INCOME",
+		"groupDesc": "First group"
+	}, {
+		"mandt": "100",
+		"uname": "DGARCIA",
+		"groupKey": "First group",
+		"query": "/CS67/AC_ALL_EARNED_INC_PROG",
+		"groupDesc": "First group"
+	}, {
+		"mandt": "100",
+		"uname": "DGARCIA",
+		"groupKey": "First group",
+		"query": "/CS67/AC_ALL_HOLDINGS",
+		"groupDesc": "First group"
+	}, {
+		"mandt": "100",
+		"uname": "DGARCIA",
+		"groupKey": "First group",
+		"query": "/CS67/AC_ALL_TRANSACTIONS",
+		"groupDesc": "First group"
+	}]
+}

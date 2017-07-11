@@ -1,0 +1,112 @@
+{
+	"companySet": [{
+		"Compcode": "0001",
+		"Txtmd": "SAP Brazil"
+	}, {
+		"Compcode": "ADL1",
+		"Txtmd": "ADL1"
+	}, {
+		"Compcode": "ARP1",
+		"Txtmd": "DEMO P&C Company Ltd."
+	}, {
+		"Compcode": "ARP2",
+		"Txtmd": "DEMO LIFE"
+	}, {
+		"Compcode": "BR03",
+		"Txtmd": "CC Brazil"
+	}, {
+		"Compcode": "SG01",
+		"Txtmd": "SAP Asia"
+	}, {
+		"Compcode": "SMIC",
+		"Txtmd": "Sawgrass Mutual Insurance"
+	}],
+	"securityAccountSet": [{
+		"Compcode": "ADL1",
+		"Cfmsecac": "TEST",
+		"Txtmd": "ADL1"
+	}, {
+		"Compcode": "ARP1",
+		"Cfmsecac": "1111",
+		"Txtmd": "General"
+	}, {
+		"Compcode": "ARP1",
+		"Cfmsecac": "BANK_ACC1",
+		"Txtmd": "CUSTODY ACCOUNT 1"
+	}, {
+		"Compcode": "ARP1",
+		"Cfmsecac": "BANK_ACC2",
+		"Txtmd": "CUSTODY ACCOUNT 2"
+	}, {
+		"Compcode": "ARP2",
+		"Cfmsecac": "1112",
+		"Txtmd": "General"
+	}, {
+		"Compcode": "ARP2",
+		"Cfmsecac": "BANK_ACC20",
+		"Txtmd": "CUSTODY ACCOUNT 20"
+	}, {
+		"Compcode": "BR03",
+		"Cfmsecac": "TEST",
+		"Txtmd": "TEST"
+	}, {
+		"Compcode": "SMIC",
+		"Cfmsecac": "123",
+		"Txtmd": "123"
+	}],
+	"glaccountSet": [{
+		"Chrtacct": "A1",
+		"Glaccont": "1100080000"
+	}, {
+		"Chrtacct": "A2",
+		"Glaccont": "1101010000"
+	}, {
+		"Chrtacct": "A3",
+		"Glaccont": "1101050000"
+	}, {
+		"Chrtacct": "A4",
+		"Glaccont": "1101080000"
+	}, {
+		"Chrtacct": "A5",
+		"Glaccont": "1200080000"
+	}, {
+		"Chrtacct": "A6",
+		"Glaccont": "1501010000"
+	}, {
+		"Chrtacct": "A7",
+		"Glaccont": "1501060000"
+	}, {
+		"Chrtacct": "A8",
+		"Glaccont": "1501070000"
+	}, {
+		"Chrtacct": "A9",
+		"Glaccont": "1801010000"
+	}, {
+		"Chrtacct": "A10",
+		"Glaccont": "1801020000"
+	}, {
+		"Chrtacct": "A11",
+		"Glaccont": "1805040000"
+	}, {
+		"Chrtacct": "A12",
+		"Glaccont": "2111010000"
+	}, {
+		"Chrtacct": "A13",
+		"Glaccont": "2111030000"
+	}, {
+		"Chrtacct": "A14",
+		"Glaccont": "2111050000"
+	}, {
+		"Chrtacct": "A15",
+		"Glaccont": "2114080000"
+	}, {
+		"Chrtacct": "A16",
+		"Glaccont": "2183110000"
+	}, {
+		"Chrtacct": "A17",
+		"Glaccont": "2511010000"
+	}, {
+		"Chrtacct": "A18",
+		"Glaccont": "2511020000"
+	}]
+}

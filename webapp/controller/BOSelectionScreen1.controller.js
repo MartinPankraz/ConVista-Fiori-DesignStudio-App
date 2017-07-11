@@ -97,10 +97,12 @@ sap.ui.define([
 				currentPage.addContent(html);
 				if (targetLink === "") {
 					var src = [sRootPath, "view/test.html"].join("/");
-					html.setContent("<iframe class='bo_container' src='" + src + "'></iframe>");
+					//html.setContent("<iframe class='bo_container' src='" + src + "'></iframe>");
+					html.setContent("<img class='bo_container'width='100%' height='100%' src='" + src + "'></img>");
 				} else {
 					targetLink += va + cc + date + dateVar + sec + ld + gla + period;
-					html.setContent("<iframe class='bo_container' src='" + targetLink + "'></iframe>");
+					//html.setContent("<iframe class='bo_container' src='" + targetLink + "'></iframe>");
+					html.setContent("<img class='bo_container'width='100%' height='100%' src='" + targetLink + "'></img>");
 				}
 			}
 		},
