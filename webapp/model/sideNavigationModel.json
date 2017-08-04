@@ -14,7 +14,7 @@
 					"key":"lib",
 					"text":"Dashboard Library",
 					"icon":"sap-icon://business-by-design",
-					"link":"/webapp/css/images/ds_dashboards.png"
+					"link":"/css/images/ds_dashboards.png"
 				}
 			]
 		},
@@ -27,7 +27,7 @@
 					"key":"acc_1",
 					"text":"Portfolio Holdings",
 					"icon":"sap-icon://insurance-life",
-					"link":"/webapp/css/images/ds_holdings.png?",
+					"link":"/css/images/ds_holdings.png?",
 					"selectionscreen":"BOSelectionScreen1",
 					"hiddenscreenparts":["datePicker2","ledgerBasis","periodLabel","period","glAccText","glAccount"]
 				},
@@ -35,7 +35,7 @@
 					"key":"acc_2",
 					"text":"Earned Income Trend Analysis",
 					"icon":"sap-icon://insurance-life",
-					"link":"/webapp/css/images/ds_ea_trend.png?",
+					"link":"/css/images/ds_ea_trend.png?",
 					"selectionscreen":"BOSelectionScreen1",
 					"hiddenscreenparts":["datePicker2","ledgerBasis","periodLabel","period","glAccText","glAccount"]
 				},
@@ -43,7 +43,7 @@
 					"key":"acc_3",
 					"text":"Earned Income",
 					"icon":"sap-icon://insurance-life",
-					"link":"/webapp/css/images/ds_ea.png?",
+					"link":"/css/images/ds_ea.png?",
 					"selectionscreen":"BOSelectionScreen1",
 					"hiddenscreenparts":["datePicker1","ledgerBasis","periodLabel","period","glAccText","glAccount"]
 				},
@@ -82,7 +82,7 @@
 					"key":"gl_summary",
 					"text":"General Ledger Summary",
 					"icon":"sap-icon://wallet",
-					"link":"/webapp/css/images/GL_summary.png?",
+					"link":"/css/images/GL_summary.png?",
 					"selectionscreen":"BOSelectionScreen1",
 					"hiddenscreenparts":["datePicker1","valuationArea","secAccLabel","securityAccount"]
 				},
@@ -116,7 +116,9 @@
 					"key":"mgmt_ps",
 					"text":"Portfolio Summary by Amortized Cost",
 					"icon":"sap-icon://employee-approvals",
-					"link":""
+					"link":"/css/images/portfolio_summary.png?",
+					"selectionscreen":"BOSelectionScreen1",
+					"hiddenscreenparts":["datePicker2","ledgerBasis","periodLabel","period","glAccText","glAccount"]
 				}	
 			]
 		},

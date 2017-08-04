@@ -37,7 +37,10 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": ["sap_bluecrystal", "sap_hcb"],
+		"supportedThemes": [
+			"sap_bluecrystal",
+			"sap_hcb"
+		],
 		"fullWidth": true
 	},
 	"sap.ui5": {
@@ -47,7 +50,7 @@
 			"type": "XML"
 		},
 		"dependencies": {
-			"minUI5Version": "1.30.0",
+			"minUI5Version": "1.28.0",
 			"libs": {
 				"sap.m": {},
 				"sap.tnt": {
@@ -74,9 +77,11 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -87,35 +92,43 @@
 				"controlAggregation": "pages",
 				"transition": "slide"
 			},
-			"routes": [{
-				"pattern": "",
-				"name": "home",
-				"target": "home"
-			}, {
-				"pattern": "NAICReports",
-				"name": "naic_sr",
-				"target": "naic_sr"
-			}, {
-				"pattern": "schedulingOverview",
-				"name": "sched_1",
-				"target": "sched_1"
-			}, {
-				"pattern": "schedulingManageGroups",
-				"name": "sched_2",
-				"target": "sched_2"
-			}, {
-				"pattern": "scheduleMyFiles",
-				"name": "sched_3",
-				"target": "sched_3"
-			}, {
-				"pattern": "schedulingHistory",
-				"name": "sched_4",
-				"target": "sched_4"
-			}, {
-				"pattern": "BoseSelectionScreen",
-				"name": "BOSelectionScreen1",
-				"target": "BOSelectionScreen1"
-			}],
+			"routes": [
+				{
+					"pattern": "",
+					"name": "home",
+					"target": "home"
+				},
+				{
+					"pattern": "NAICReports",
+					"name": "naic_sr",
+					"target": "naic_sr"
+				},
+				{
+					"pattern": "schedulingOverview",
+					"name": "sched_1",
+					"target": "sched_1"
+				},
+				{
+					"pattern": "schedulingManageGroups",
+					"name": "sched_2",
+					"target": "sched_2"
+				},
+				{
+					"pattern": "scheduleMyFiles",
+					"name": "sched_3",
+					"target": "sched_3"
+				},
+				{
+					"pattern": "schedulingHistory",
+					"name": "sched_4",
+					"target": "sched_4"
+				},
+				{
+					"pattern": "BoseSelectionScreen",
+					"name": "BOSelectionScreen1",
+					"target": "BOSelectionScreen1"
+				}
+			],
 			"targets": {
 				"home": {
 					"viewName": "Navigation",
@@ -157,6 +170,10 @@
 	},
 	"sap.platform.abap": {
 		"uri": "/sap/bc/ui5_ui5/sap/zboarp/webapp",
+		"_version": "1.1.0"
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
 		"_version": "1.1.0"
 	}
 }

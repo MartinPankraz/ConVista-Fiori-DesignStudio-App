@@ -6,8 +6,8 @@
   "build": {
     "targetFolder": "dist",
     "sourceFolder": "webapp",
-    "buildRequired": true,
-    "lastBuildDateTime": "Mon, 06 Mar 2017 16:22:11 GMT"
+    "buildRequired": false,
+    "lastBuildDateTime": "Fri, 04 Aug 2017 13:06:25 GMT"
   },
   "generation": [
     {
@@ -45,15 +45,9 @@
     "blockPush": false,
     "blockPushLevel": "Error"
   },
-  "deploy": {
-    "destination": "CBW",
-    "name": "ZBOARP"
-  },
-  "mockpreview": {
-    "mockUri": "/sap/opu/odata/sap/ZARP_COMPCODE_SRV",
-    "metadataFilePath": "localService/metadata.xml",
-    "loadJSONFiles": false,
-    "loadCustomRequests": false,
-    "mockRequestsFilePath": ""
+  "hcpdeploy": {
+    "account": "a5bcaf605",
+    "name": "fioridesignstudio",
+    "lastVersionWeTriedToDeploy": "4"
   }
 }

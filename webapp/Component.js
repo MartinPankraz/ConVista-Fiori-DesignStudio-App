@@ -5,7 +5,7 @@ sap.ui.define([
 ], function(UIComponent, Device, models) {
 	"use strict";
 	
-	var that = null;
+	/*var that = null;*/
 	
 	return UIComponent.extend("convista.com.arp.demo.Component", {
 
@@ -21,14 +21,14 @@ sap.ui.define([
 		init: function() {
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
-			that = this;
+			/*that = this;*/
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
 			
 			// create the views based on the url/hash
             this.getRouter().initialize();
             //Retrieve Shell to add custom functions to header bar
-            var oRendererExtensions = jQuery.sap.getObject('sap.ushell.renderers.fiori2.RendererExtensions');
+            /*var oRendererExtensions = jQuery.sap.getObject('sap.ushell.renderers.fiori2.RendererExtensions');
             var oBundle = this.getModel("i18n").getResourceBundle();
             var title = oBundle.getText("title");
             
@@ -45,7 +45,7 @@ sap.ui.define([
 	
 				// add button to the right side of the shellbar
 	            oRendererExtensions.addHeaderEndItem(that.oFavoriteHeaderItem);
-            }
+            }*/
             
             /*var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
             jQuery.sap.registerModulePath("FileSaver",sRootPath + "/lib/FileSaver.min");*/
@@ -54,14 +54,14 @@ sap.ui.define([
 		
 		exit: function(){
 			//running Fiori?
-			var oRendererExtensions = jQuery.sap.getObject('sap.ushell.renderers.fiori2.RendererExtensions');
+			/*var oRendererExtensions = jQuery.sap.getObject('sap.ushell.renderers.fiori2.RendererExtensions');
             if(oRendererExtensions){
 				//clean up custom icon from bar
 				oRendererExtensions.removeHeaderEndItem(that.oFavoriteHeaderItem);
 				that.oFavoriteHeaderItem.destroy();
 				//clean up custom title
 	            oRendererExtensions.setHeaderTitle("");
-            }
+            }*/
 		},
 		
 		onFavoritesHeaderItemPress: function(oEvent){
