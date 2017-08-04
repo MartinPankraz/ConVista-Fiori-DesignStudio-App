@@ -33,9 +33,10 @@ sap.ui.define([
 			// 	}
 			// });
 			this._iReportCounter = 6;
-			var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
-			var oModel = new JSONModel([sRootPath,'model/NAICReportsModel.json'].join("/"));
-			this.getView().setModel(oModel);
+			// var sRootPath = jQuery.sap.getModulePath("convista.com.arp.demo");
+			// var oModel = new JSONModel([sRootPath,'model/NAICReportsModel.json'].join("/"));
+			// this.getView().setModel(oModel);
+			this._oModel = this.getView().getModel("naicReports");
 		},
 
 		/**
@@ -50,20 +51,30 @@ sap.ui.define([
 		
 		runNAICReport: function(oEvent){
 			var sReportCounter = this._iReportCounter < 10 ? "0" + this._iReportCounter.toString() : this._iReportCounter.toString();
-			var oTable = this.byId("idNAICTable");
+			// var oTable = this.byId("idNAICTable");
 			var sKeyDate = MyFormatter.formatDate(this.byId("datePicker1").getDateValue()); 
-			var oColumnListItem = new sap.m.ColumnListItem({
-				cells:[
-					new sap.m.ObjectIdentifier({title: "TEST-2309842098324-LT1-000" + sReportCounter}),
-					new sap.m.Text({text: sKeyDate}),
-					new sap.m.Text({text: MyFormatter.getDateStamp()}),
-					new sap.m.Text({text: "PDF"}),
-					new sap.m.Text({text: "LT1"})
-					]
-			});
-			oTable.addItem(oColumnListItem);
+			// var oColumnListItem = new sap.m.ColumnListItem({
+			// 	cells:[
+			// 		new sap.m.ObjectIdentifier({title: "TEST-2309842098324-LT1-000" + sReportCounter}),
+			// 		new sap.m.Text({text: sKeyDate}),
+			// 		new sap.m.Text({text: MyFormatter.getDateStamp()}),
+			// 		new sap.m.Text({text: "PDF"}),
+			// 		new sap.m.Text({text: "LT1"})
+			// 		]
+			// });
+			// oTable.addItem(oColumnListItem);
 			sap.m.MessageToast.show("Report added successfully");
 			this._iReportCounter++;
+			
+			var oReport = {
+				"filename":"TEST-2309842098324-LT1-000" + sReportCounter,
+		        "keydate":sKeyDate,
+		        "createdate":MyFormatter.getDateStamp(),
+		        "schedobj" : "LT1"
+			};
+			
+			this.getView().getModel("naicReports").getProperty("/entries").push(oReport);
+			this.getView().getModel("naicReports").refresh(true);
 
 			
 

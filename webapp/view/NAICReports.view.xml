@@ -89,7 +89,7 @@
                 </form:Form>
                 
 				<Table id="idNAICTable"
-					items="{path:'/entries'}"
+					items="{path:'naicReports>/entries'}"
 					class="sapUiMediumMarginTop sapUiSmallMarginBottom"
 					mode= "SingleSelectMaster"
 					select="onRowSelect">
@@ -111,11 +111,11 @@
 					<items>
 						<ColumnListItem>
 							<cells>
-								<ObjectIdentifier title="{filename}" />
-								<Text text="{keydate}"/>
-								<Text text="{createdate}"/>
+								<ObjectIdentifier title="{naicReports>filename}" />
+								<Text text="{naicReports>keydate}"/>
+								<Text text="{naicReports>createdate}"/>
 								<Text text="PDF"/>
-								<Text text="{schedobj}"/>
+								<Text text="{naicReports>schedobj}"/>
 							</cells>
 						</ColumnListItem>
 					</items>

@@ -14,7 +14,12 @@
 			"id": "servicecatalog.connectivityComponent",
 			"version": "0.0.0"
 		},
-		"dataSources": {}
+		"dataSources": {
+			"NAICReportsModel": {
+				"uri": "model/NAICReportsModel.json",
+				"type": "JSON"
+			}
+		}
 	},
 	"sap.ui": {
 		"_version": "1.1.0",
@@ -62,6 +67,10 @@
 				"settings": {
 					"bundleName": "convista.com.arp.demo.i18n.i18n"
 				}
+			},
+			"naicReports": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "NAICReportsModel"
 			}
 		},
 		"resources": {
