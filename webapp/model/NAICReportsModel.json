@@ -1,0 +1,35 @@
+{  
+   "id":"SCHED_FUTURE",
+   "entries":[  
+      {  
+         "filename":"TEST-2309842098324-LT1-00001",
+         "keydate":"11.12.2015",
+         "createdate":"02.08.2017 16:31:04",
+         "schedobj" : "LT1"
+      },
+      {  
+         "filename":"TEST-2309842098324-LT1-00002",
+         "keydate":"11.12.2016",
+         "createdate":"03.08.2017 16:31:04",
+         "schedobj" : "LT1"
+      },
+      {  
+         "filename":"TEST-2309842098324-LT1-00003",
+         "keydate":"11.12.2017",
+         "createdate":"04.08.2017 16:31:04",
+         "schedobj" : "LT1"
+      },
+      {  
+         "filename":"TEST-2309842098324-LT1-00004",
+         "keydate":"11.12.2018",
+         "createdate":"05.08.2017 16:31:04",
+         "schedobj" : "LT1"
+      },
+      {  
+         "filename":"TEST-2309842098324-LT1-00005",
+         "keydate":"11.12.2019",
+         "createdate":"06.08.2017 16:31:04",
+         "schedobj" : "LT1"
+      }
+   ]
+}

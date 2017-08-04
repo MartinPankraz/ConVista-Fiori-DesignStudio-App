@@ -182,23 +182,54 @@ sap.ui.define([
 			var oTable = this.byId("idSchedulingTable");
 			var sStartDate = MyFormatter.formatDate(this.byId("firstStartDate").getDateValue()); 
 			var sStartTime = MyFormatter.formatTime(this.byId("firstStartTime").getDateValue()); 
-			var oColumnListItem = new sap.m.ColumnListItem({
-				cells:[
-					new sap.m.ObjectIdentifier({title: "JobName"}),
-					new sap.m.Text({text: "schedObjNameDesc"}),
-					new sap.m.Text({text: "Report"}),
-					new sap.m.Text({text: "schedStatus"}),
-					new sap.m.Text({text: sStartDate + sStartTime}),
-					new sap.m.Text({text: MyFormatter.getDateStamp()}),
-					new sap.m.Text({text: "jobStartTypeDesc"}),
-					new sap.m.Text({text: "jobZip"}),
-					new sap.m.Text({text: "jobPeriodicDesc"}),
-					new sap.m.Text({text: "jobDelayHolidayDesc"}),
-					new sap.m.Text({text: "jobcount"})
-					]
-			});
-			oTable.addItem(oColumnListItem);
+			var oSingleReportsComboBox = this.byId("reportSelection");
+			var aSingleReportsSelected = this.byId("reportSelection").getSelectedItems();
+			var sSingleReportsSelected = this._getScheduledObject(aSingleReportsSelected);
+			if(aSingleReportsSelected.length){
+				var bIsZipSelected = this.byId("zip").getSelected();
+				var bIsImmediatelySelected = this.byId("immediate").getSelected();
+				var sJobPeriod = this.byId("execRule").getSelectedItem().getText();
+				var sDelayHoliday = this.byId("skipHoliday").getSelectedItem().getText();
+				var oColumnListItem = new sap.m.ColumnListItem({
+					cells:[
+						new sap.m.ObjectIdentifier({title: "PDF_20170207123524_" + (Math.round(Math.random() * (99999999 - 0) + 0)).toString()}),
+						new sap.m.Text({text: sSingleReportsSelected}),
+						new sap.m.Text({text: "Report"}),
+						new sap.ui.core.Icon({src: "sap-icon://calendar"}),
+						new sap.m.Text({text: bIsImmediatelySelected ? MyFormatter.getDateStamp() : (sStartDate + sStartTime)}),
+						new sap.m.Text({text: MyFormatter.getDateStamp()}),
+						new sap.m.Text({text: bIsImmediatelySelected ? "Immediately" : "Date/Time"}),
+						new sap.m.Text({text: bIsZipSelected ? "X" : ""}),
+						new sap.m.Text({text: sJobPeriod}),
+						new sap.m.Text({text: sDelayHoliday}),
+						new sap.m.Text({text: (Math.round(Math.random() * (99999999 - 0) + 0)).toString()})
+						]
+				});
+				oTable.addItem(oColumnListItem);
+				sap.m.MessageToast.show("Report added successfully");
+				oSingleReportsComboBox.setValueState("None");
+			}else{
+				sap.m.MessageToast.show("You need to add a report type from Single Reports section");
+				oSingleReportsComboBox.setValueState("Error");
+				oSingleReportsComboBox.setValueStateText("Add a report first");
+			}
+			
+			
+			
 		},
+		
+		_getScheduledObject: function(aProjects){
+			var sValue = "";
+			aProjects.forEach(function(element, index, array){
+				if(index < (array.length - 1)){
+					sValue += element.getText() +  " | ";
+				}else{
+					sValue += element.getText();
+				}
+			});
+			return sValue;
+		},
+		
 		scheduleReports: function(oEvent){
 			var that = this;
 			var dateAsOf = MyFormatter.getSAPInternatlDate(this.getView().byId("dateAsOf").getDateValue());

@@ -89,7 +89,7 @@
                 </form:Form>
                 
 				<Table id="idNAICTable"
-					items="{path:'/'}"
+					items="{path:'/entries'}"
 					class="sapUiMediumMarginTop sapUiSmallMarginBottom"
 					mode= "SingleSelectMaster"
 					select="onRowSelect">
