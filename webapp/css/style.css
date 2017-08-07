@@ -84,6 +84,10 @@
 	overflow-y:hidden!important;
 }*/
 
+div.sectionOverflowHidden > section:first-child {
+	overflow-y: hidden!important;
+}
+
 /***************** Setting horizontal sideNav position  ************************************/
 
 .ccTntSideNav{
@@ -125,7 +129,7 @@ li[class="sapTntNavLIItemSelected"] > div {
 }
 
 .ccTntSideNav li > ul > li{
-    background-color: #394958;
+    background-color: #6b7a88!important;
     border:none;
 }
 
@@ -150,7 +154,7 @@ li[class*="sapTntNavLIItemSelected"]{
 }
 
 .ccHorizontalSideNavCon > div:nth-child(1){
-	 width: 3rem;
+	 width: 2rem;
 	 height:100%;
 }
 
@@ -169,10 +173,14 @@ li[class*="sapTntNavLIItemSelected"]{
 	margin-right: 10px;
 }
 
+.sapTntNavLIGroupItem.sapTntNavLIItem:last-child {
+    border-bottom:none!important;
+}
+
 /***************** Setting bo container iframe width and height  ************************************/
 
 .bo_container {
-	height:calc(100% - 3rem)!important;
+	height:calc(100% - 2rem)!important;
 	/*overflow-y:scroll!important;*/
 	width: 100%;
 	border-color:transparent;
@@ -187,7 +195,7 @@ li[class*="sapTntNavLIItemSelected"]{
 /***************** Setting bo container iframe width and height  ************************************/
 
 .html_container {
-	height:calc(100% - 3rem)!important;
+	height:calc(100% - 2rem)!important;
 	width: 100%;
 	border-color:transparent;
 	border:none;
@@ -200,6 +208,10 @@ li[class*="sapTntNavLIItemSelected"]{
 	color:#65bee4;
 	margin-left: 1rem;
 	border-bottom: 1px dotted #65bee4;
+}
+
+.sapMPanelBGTranslucent {
+    background-color: #f0f5f9;
 }
 
 /**************** Scheduling manage groups styles ***************************************************************/

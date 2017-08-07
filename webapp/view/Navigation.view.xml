@@ -8,7 +8,7 @@
 				  title="{i18n>title}"
 				  showNavButton="true"
 				  enableScrolling="true"
-				  class="testCSS">
+				  class="sectionOverflowHidden">
 				<content>
 					<l:HorizontalLayout id="layout_horizontal_sideNav" class="ccHorizontalSideNavCon">
 			            <tnt:NavigationList id="navigationList"
