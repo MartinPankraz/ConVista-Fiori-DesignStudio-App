@@ -20,16 +20,8 @@
         "version": "1.46.10"
       },
       "description": "SAPUI5 Test Resources"
-    },
-    {
-      "path": "/sap/opu/odata",
-      "target": {
-        "type": "destination",
-        "name": "CBW",
-        "entryPath": "/sap/opu/odata"
-      },
-      "description": "ConVista ARP Gateway System"
     }
   ],
-  "sendWelcomeFileRedirect": true
+  "sendWelcomeFileRedirect": true,
+  "authenticationMethod": "none"
 }

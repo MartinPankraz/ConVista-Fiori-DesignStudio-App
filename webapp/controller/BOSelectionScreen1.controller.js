@@ -102,8 +102,13 @@ sap.ui.define([
 				} else {
 					targetLink += va + cc + date + dateVar + sec + ld + gla + period;
 					//html.setContent("<iframe class='bo_container' src='" + targetLink + "'></iframe>");
-					html.setContent("<img class='bo_container'width='100%' height='100%' src='" + targetLink + "'></img>");
+					html.setContent("<img class='bo_container'width='100%' height='100%' src='" + sRootPath + targetLink + "'></img>");
 				}
+				$(document).on('click', "#" + pageId + "_html", function(){ 
+				     sap.m.MessageToast.show("This is a demo app using only DesignStudio dashboard screens. Feel free to contact us for a live demo of the integration.", {
+						duration: 5000
+					});
+				});
 			}
 		},
 

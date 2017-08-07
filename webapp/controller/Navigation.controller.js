@@ -41,7 +41,7 @@ sap.ui.define([
 	        	//choose first link to be loaded as home page
 	        	var src = navigationListModel.getProperty("/NavigationItems/1/subitems/0/link");
 				//html.setContent("<iframe class='bo_container' src='"+src+"'></iframe>");
-				html.setContent("<img class='bo_container'width='100%' height='100%' src='"+src+"'></img>");
+				html.setContent("<img class='bo_container'width='100%' height='100%' src='" + sRootPath + src + "'></img>");
 				html.addStyleClass("bo_container");
 				//using Fioir URL params?
 				if(that.getMyComponent().getComponentData()){
@@ -66,6 +66,12 @@ sap.ui.define([
 						}
 					}	
 				}
+				var currentPageId = that.getView().byId("myNavCon").getCurrentPage().getId();
+				$(document).on("click", "#" + currentPageId, function(){ 
+				     sap.m.MessageToast.show("This is a demo app using only DesignStudio dashboard screens. Feel free to contact us for a live demo of the integration.", {
+						duration: 5000
+					});
+				});
 		    });
 		},
 		
@@ -260,11 +266,16 @@ sap.ui.define([
 							if(targetLink === ""){
 								var src = [sRootPath,"view/test.html"].join("/");
 								//html.setContent("<iframe class='html_container' src='"+src+"'></iframe>");
-								html.setContent("<img class='html_container'width='100%' height='100%' src='"+src+"'></img>");
+								html.setContent("<iframe class='html_container'width='100%' height='100%' src='"+src+"'></iframe>");
 							}else{
 								//html.setContent("<iframe class='bo_container' src='"+targetLink+"'></iframe>");
 								html.setContent("<img class='bo_container' width='100%' height='100%' src='"+targetLink+"'></img>");
 							}
+							$("#" + pageId + "_html").on("click", function(){
+								sap.m.MessageToast.show("Toasted", {
+									duration: 3000
+								});
+							});
 						}
 					}
 					//newPage.addStyleClass("myPageOverflow");
