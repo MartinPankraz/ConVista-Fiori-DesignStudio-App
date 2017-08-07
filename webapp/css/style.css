@@ -101,12 +101,12 @@ div.sectionOverflowHidden > section:first-child {
 }
 
 div[class="sapMPopoverScroll"] li[class*="sapTntNavLIItemSelected"] {
-	background-color: #e6f2f9!important;
+	background-color: #9ba6b0!important;
     border-bottom: 1px solid #e5e5e5!important;
 }
 
 div[class="sapMPopoverScroll"] li[class*="sapTntNavLIItemSelected"] > div {
-	background-color: #e6f2f9!important;
+	background-color: #9ba6b0!important;
     border-bottom: 1px solid #e5e5e5!important;
 }
 
@@ -129,14 +129,18 @@ li[class="sapTntNavLIItemSelected"] > div {
 }
 
 .ccTntSideNav li > ul > li{
-    background-color: #6b7a88!important;
+    background-color: #9ba6b0!important;
     border:none;
 }
 
-.ccTntSideNav li > ul > li:hover{
+.ccTntSideNav li > ul > li.sapTntNavLIItemSelected {
+    background-color: #e8eff6!important;
+}
+
+/*.ccTntSideNav li > ul > li:hover{
 	background-color: #45596a!important;
 	border:none!important;
-}
+}*/
 
 li[class*="sapTntNavLIItemSelected"]{
 	background-color: #496b8a!important;
@@ -199,7 +203,7 @@ li[class*="sapTntNavLIItemSelected"]{
 	width: 100%;
 	border-color:transparent;
 	border:none;
-	background-color:#f0f5f9;
+	background-color:#f0f5f9!important;
 }
 /**************** Scheduling overview styles ***************************************************************/
 
@@ -217,6 +221,10 @@ li[class*="sapTntNavLIItemSelected"]{
 /**************** Scheduling manage groups styles ***************************************************************/
 
 div.manageTitle h4{
+	background-color:#f0f5f9!important;
+}
+
+div.manageTitle > div{
 	background-color:#f0f5f9!important;
 }
 
